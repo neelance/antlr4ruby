@@ -2,15 +2,15 @@ task :gemspec do
   File.open("antlr4ruby.gemspec", "w") do |file|
     file.write Gem::Specification.new { |s|
       s.name = "antlr4ruby"
-      s.version = "1.0.2"
+      s.version = "1.0.3"
       s.files = ["antlr4ruby.rb", "LICENSE"] + Dir.glob("antlr4ruby/lib/**/*.*") + Dir.glob("antlr4ruby/fix/**/*.*")
       s.homepage = %q{http://github.com/neelance/antlr4ruby/}
       s.has_rdoc = true
       s.rdoc_options = ["--charset=UTF-8"]
       s.require_paths = ["."]
       s.summary = "Converted ANTLR."
-      s.add_dependency "java2ruby"
-      s.add_dependency "jre4ruby"
+      s.add_dependency "neelance-java2ruby"
+      s.add_dependency "neelance-jre4ruby"
     }.to_yaml
   end
 end

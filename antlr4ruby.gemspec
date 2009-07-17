@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: antlr4ruby
 version: !ruby/object:Gem::Version 
-  version: 1.0.2
+  version: 1.0.3
 platform: ruby
 authors: []
 
@@ -13,7 +13,7 @@ date: 2009-07-17 00:00:00 +02:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
-  name: java2ruby
+  name: neelance-java2ruby
   type: :runtime
   version_requirement: 
   version_requirements: !ruby/object:Gem::Requirement 
@@ -23,7 +23,7 @@ dependencies:
         version: "0"
     version: 
 - !ruby/object:Gem::Dependency 
-  name: jre4ruby
+  name: neelance-jre4ruby
   type: :runtime
   version_requirement: 
   version_requirements: !ruby/object:Gem::Requirement 
