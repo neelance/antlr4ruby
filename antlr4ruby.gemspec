@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: antlr4ruby
 version: !ruby/object:Gem::Version 
-  version: 1.0.0
+  version: 1.0.1
 platform: ruby
 authors: []
 
@@ -23,6 +23,7 @@ extra_rdoc_files: []
 
 files: 
 - antlr4ruby.rb
+- LICENSE
 - antlr4ruby/lib/org/antlr/tool/templates/dot/nfa.st
 - antlr4ruby/lib/org/antlr/tool/templates/dot/dfa.st
 - antlr4ruby/lib/org/antlr/tool/templates/dot/edge.st
