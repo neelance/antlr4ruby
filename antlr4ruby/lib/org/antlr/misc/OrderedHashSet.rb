@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -83,7 +82,6 @@ module Org::Antlr::Misc
     typesig { [Object] }
     def remove(o)
       raise UnsupportedOperationException.new
-      # 
       # elements.remove(o);
       # return super.remove(o);
     end
@@ -103,7 +101,6 @@ module Org::Antlr::Misc
     
     typesig { [] }
     def size
-      # 
       # if ( elements.size()!=super.size() ) {
       # ErrorManager.internalError("OrderedHashSet: elements and set size differs; "+
       # elements.size()+"!="+super.size());

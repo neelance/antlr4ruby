@@ -1,6 +1,5 @@
 require "rjava"
  # $ANTLR 2.7.7 (2006-01-29): "antlr.g" -> "ANTLRParser.java"$
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -294,38 +293,24 @@ module Org::Antlr::Tool
         alias_method :initialize_anonymous, :initialize
       end.new_local(self)
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when ACTION
-            tmp1_ast = nil
-            tmp1_ast = self.attr_ast_factory.create(_lt(1))
-            match(ACTION)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PARSER, DOC_COMMENT, LITERAL_lexer, LITERAL_tree, LITERAL_grammar
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when ACTION
+          tmp1_ast = nil
+          tmp1_ast = self.attr_ast_factory.create(_lt(1))
+          match(ACTION)
+        when PARSER, DOC_COMMENT, LITERAL_lexer, LITERAL_tree, LITERAL_grammar
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when DOC_COMMENT
-            cmt = _lt(1)
-            cmt_ast = self.attr_ast_factory.create(cmt)
-            match(DOC_COMMENT)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PARSER, LITERAL_lexer, LITERAL_tree, LITERAL_grammar
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when DOC_COMMENT
+          cmt = _lt(1)
+          cmt_ast = self.attr_ast_factory.create(cmt)
+          match(DOC_COMMENT)
+        when PARSER, LITERAL_lexer, LITERAL_tree, LITERAL_grammar
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         grammar_type
         gr_ast = self.attr_return_ast
@@ -335,69 +320,41 @@ module Org::Antlr::Tool
         tmp2_ast = nil
         tmp2_ast = self.attr_ast_factory.create(_lt(1))
         match(SEMI)
-        catch(:break_case) do
-          case (_la(1))
-          when OPTIONS
-            options_start_token = _lt(1)
-            opts = options_spec
-            @grammar.set_options(opts, options_start_token)
-            opt = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when TOKENS, SCOPE, IMPORT, FRAGMENT, DOC_COMMENT, AMPERSAND, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when OPTIONS
+          options_start_token = _lt(1)
+          opts = options_spec
+          @grammar.set_options(opts, options_start_token)
+          opt = self.attr_return_ast
+        when TOKENS, SCOPE, IMPORT, FRAGMENT, DOC_COMMENT, AMPERSAND, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when IMPORT
-            delegate_grammars
-            ig_ast = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when TOKENS, SCOPE, FRAGMENT, DOC_COMMENT, AMPERSAND, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when IMPORT
+          delegate_grammars
+          ig_ast = self.attr_return_ast
+        when TOKENS, SCOPE, FRAGMENT, DOC_COMMENT, AMPERSAND, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when TOKENS
-            tokens_spec
-            ts_ast = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when SCOPE, FRAGMENT, DOC_COMMENT, AMPERSAND, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when TOKENS
+          tokens_spec
+          ts_ast = self.attr_return_ast
+        when SCOPE, FRAGMENT, DOC_COMMENT, AMPERSAND, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         attr_scopes
         scopes_ast = self.attr_return_ast
-        catch(:break_case) do
-          case (_la(1))
-          when AMPERSAND
-            actions
-            a_ast = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when FRAGMENT, DOC_COMMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when AMPERSAND
+          actions
+          a_ast = self.attr_return_ast
+        when FRAGMENT, DOC_COMMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         rules
         r_ast = self.attr_return_ast
@@ -425,56 +382,25 @@ module Org::Antlr::Tool
       gr = nil
       gr_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when LITERAL_lexer
-            match(LITERAL_lexer)
-            @gtype = LEXER_GRAMMAR
-            @grammar.attr_type = Grammar::LEXER
-            throw :break_case, :thrown
-            match(PARSER)
-            @gtype = PARSER_GRAMMAR
-            @grammar.attr_type = Grammar::PARSER
-            throw :break_case, :thrown
-            match(LITERAL_tree)
-            @gtype = TREE_GRAMMAR
-            @grammar.attr_type = Grammar::TREE_PARSER
-            throw :break_case, :thrown
-            @gtype = COMBINED_GRAMMAR
-            @grammar.attr_type = Grammar::COMBINED
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PARSER
-            match(PARSER)
-            @gtype = PARSER_GRAMMAR
-            @grammar.attr_type = Grammar::PARSER
-            throw :break_case, :thrown
-            match(LITERAL_tree)
-            @gtype = TREE_GRAMMAR
-            @grammar.attr_type = Grammar::TREE_PARSER
-            throw :break_case, :thrown
-            @gtype = COMBINED_GRAMMAR
-            @grammar.attr_type = Grammar::COMBINED
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LITERAL_tree
-            match(LITERAL_tree)
-            @gtype = TREE_GRAMMAR
-            @grammar.attr_type = Grammar::TREE_PARSER
-            throw :break_case, :thrown
-            @gtype = COMBINED_GRAMMAR
-            @grammar.attr_type = Grammar::COMBINED
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LITERAL_grammar
-            @gtype = COMBINED_GRAMMAR
-            @grammar.attr_type = Grammar::COMBINED
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when LITERAL_lexer
+          match(LITERAL_lexer)
+          @gtype = LEXER_GRAMMAR
+          @grammar.attr_type = Grammar::LEXER
+        when PARSER
+          match(PARSER)
+          @gtype = PARSER_GRAMMAR
+          @grammar.attr_type = Grammar::PARSER
+        when LITERAL_tree
+          match(LITERAL_tree)
+          @gtype = TREE_GRAMMAR
+          @grammar.attr_type = Grammar::TREE_PARSER
+        when LITERAL_grammar
+          @gtype = COMBINED_GRAMMAR
+          @grammar.attr_type = Grammar::COMBINED
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         gr = _lt(1)
         gr_ast = self.attr_ast_factory.create(gr)
@@ -495,40 +421,26 @@ module Org::Antlr::Tool
       current_ast = ASTPair.new
       id_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when TOKEN_REF
-            tmp7_ast = nil
-            tmp7_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp7_ast)
-            match(TOKEN_REF)
-            id_ast = current_ast.attr_root
-            id_ast.set_type(ID)
-            id_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            tmp8_ast = nil
-            tmp8_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp8_ast)
-            match(RULE_REF)
-            id_ast = current_ast.attr_root
-            id_ast.set_type(ID)
-            id_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when RULE_REF
-            tmp8_ast_ = nil
-            tmp8_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp8_ast_)
-            match(RULE_REF)
-            id_ast = current_ast.attr_root
-            id_ast.set_type(ID)
-            id_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when TOKEN_REF
+          tmp7_ast = nil
+          tmp7_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp7_ast)
+          match(TOKEN_REF)
+          id_ast = current_ast.attr_root
+          id_ast.set_type(ID)
+          id_ast = current_ast.attr_root
+        when RULE_REF
+          tmp8_ast = nil
+          tmp8_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp8_ast)
+          match(RULE_REF)
+          id_ast = current_ast.attr_root
+          id_ast.set_type(ID)
+          id_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -769,57 +681,28 @@ module Org::Antlr::Tool
       p = nil
       p_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when TOKEN_REF, RULE_REF
-            id
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            action_scope_name_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            l = _lt(1)
-            l_ast = self.attr_ast_factory.create(l)
-            self.attr_ast_factory.add_astchild(current_ast, l_ast)
-            match(LITERAL_lexer)
-            l_ast.set_type(ID)
-            action_scope_name_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(PARSER)
-            p_ast.set_type(ID)
-            action_scope_name_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LITERAL_lexer
-            l = _lt(1)
-            l_ast = self.attr_ast_factory.create(l)
-            self.attr_ast_factory.add_astchild(current_ast, l_ast)
-            match(LITERAL_lexer)
-            l_ast.set_type(ID)
-            action_scope_name_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(PARSER)
-            p_ast.set_type(ID)
-            action_scope_name_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PARSER
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(PARSER)
-            p_ast.set_type(ID)
-            action_scope_name_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when TOKEN_REF, RULE_REF
+          id
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          action_scope_name_ast = current_ast.attr_root
+        when LITERAL_lexer
+          l = _lt(1)
+          l_ast = self.attr_ast_factory.create(l)
+          self.attr_ast_factory.add_astchild(current_ast, l_ast)
+          match(LITERAL_lexer)
+          l_ast.set_type(ID)
+          action_scope_name_ast = current_ast.attr_root
+        when PARSER
+          p = _lt(1)
+          p_ast = self.attr_ast_factory.create(p)
+          self.attr_ast_factory.add_astchild(current_ast, p_ast)
+          match(PARSER)
+          p_ast.set_type(ID)
+          action_scope_name_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -871,136 +754,47 @@ module Org::Antlr::Tool
       ss = nil
       ss_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when TOKEN_REF, RULE_REF
-            id
-            x_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            value = x_ast.get_text
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            s = _lt(1)
-            s_ast = self.attr_ast_factory.create(s)
-            self.attr_ast_factory.add_astchild(current_ast, s_ast)
-            match(STRING_LITERAL)
-            vs = s_ast.get_text
-            value = vs.substring(1, vs.length - 1)
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            c = _lt(1)
-            c_ast = self.attr_ast_factory.create(c)
-            self.attr_ast_factory.add_astchild(current_ast, c_ast)
-            match(CHAR_LITERAL)
-            vs_ = c_ast.get_text
-            value = vs_.substring(1, vs_.length - 1)
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            i = _lt(1)
-            i_ast = self.attr_ast_factory.create(i)
-            self.attr_ast_factory.add_astchild(current_ast, i_ast)
-            match(INT)
-            value = i_ast.get_text
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            ss = _lt(1)
-            ss_ast = self.attr_ast_factory.create(ss)
-            self.attr_ast_factory.add_astchild(current_ast, ss_ast)
-            match(STAR)
-            ss_ast.set_type(STRING_LITERAL)
-            value = "*"
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STRING_LITERAL
-            s = _lt(1)
-            s_ast = self.attr_ast_factory.create(s)
-            self.attr_ast_factory.add_astchild(current_ast, s_ast)
-            match(STRING_LITERAL)
-            vs__ = s_ast.get_text
-            value = vs__.substring(1, vs__.length - 1)
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            c = _lt(1)
-            c_ast = self.attr_ast_factory.create(c)
-            self.attr_ast_factory.add_astchild(current_ast, c_ast)
-            match(CHAR_LITERAL)
-            vs___ = c_ast.get_text
-            value = vs___.substring(1, vs___.length - 1)
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            i = _lt(1)
-            i_ast = self.attr_ast_factory.create(i)
-            self.attr_ast_factory.add_astchild(current_ast, i_ast)
-            match(INT)
-            value = i_ast.get_text
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            ss = _lt(1)
-            ss_ast = self.attr_ast_factory.create(ss)
-            self.attr_ast_factory.add_astchild(current_ast, ss_ast)
-            match(STAR)
-            ss_ast.set_type(STRING_LITERAL)
-            value = "*"
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when CHAR_LITERAL
-            c = _lt(1)
-            c_ast = self.attr_ast_factory.create(c)
-            self.attr_ast_factory.add_astchild(current_ast, c_ast)
-            match(CHAR_LITERAL)
-            vs____ = c_ast.get_text
-            value = vs____.substring(1, vs____.length - 1)
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            i = _lt(1)
-            i_ast = self.attr_ast_factory.create(i)
-            self.attr_ast_factory.add_astchild(current_ast, i_ast)
-            match(INT)
-            value = i_ast.get_text
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            ss = _lt(1)
-            ss_ast = self.attr_ast_factory.create(ss)
-            self.attr_ast_factory.add_astchild(current_ast, ss_ast)
-            match(STAR)
-            ss_ast.set_type(STRING_LITERAL)
-            value = "*"
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when INT
-            i = _lt(1)
-            i_ast = self.attr_ast_factory.create(i)
-            self.attr_ast_factory.add_astchild(current_ast, i_ast)
-            match(INT)
-            value = i_ast.get_text
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            ss = _lt(1)
-            ss_ast = self.attr_ast_factory.create(ss)
-            self.attr_ast_factory.add_astchild(current_ast, ss_ast)
-            match(STAR)
-            ss_ast.set_type(STRING_LITERAL)
-            value = "*"
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STAR
-            ss = _lt(1)
-            ss_ast = self.attr_ast_factory.create(ss)
-            self.attr_ast_factory.add_astchild(current_ast, ss_ast)
-            match(STAR)
-            ss_ast.set_type(STRING_LITERAL)
-            value = "*"
-            option_value_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when TOKEN_REF, RULE_REF
+          id
+          x_ast = self.attr_return_ast
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          value = x_ast.get_text
+          option_value_ast = current_ast.attr_root
+        when STRING_LITERAL
+          s = _lt(1)
+          s_ast = self.attr_ast_factory.create(s)
+          self.attr_ast_factory.add_astchild(current_ast, s_ast)
+          match(STRING_LITERAL)
+          vs = s_ast.get_text
+          value = vs.substring(1, vs.length - 1)
+          option_value_ast = current_ast.attr_root
+        when CHAR_LITERAL
+          c = _lt(1)
+          c_ast = self.attr_ast_factory.create(c)
+          self.attr_ast_factory.add_astchild(current_ast, c_ast)
+          match(CHAR_LITERAL)
+          vs = c_ast.get_text
+          value = vs.substring(1, vs.length - 1)
+          option_value_ast = current_ast.attr_root
+        when INT
+          i = _lt(1)
+          i_ast = self.attr_ast_factory.create(i)
+          self.attr_ast_factory.add_astchild(current_ast, i_ast)
+          match(INT)
+          value = i_ast.get_text
+          option_value_ast = current_ast.attr_root
+        when STAR
+          ss = _lt(1)
+          ss_ast = self.attr_ast_factory.create(ss)
+          self.attr_ast_factory.add_astchild(current_ast, ss_ast)
+          match(STAR)
+          ss_ast.set_type(STRING_LITERAL)
+          value = "*"
+          option_value_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1062,47 +856,29 @@ module Org::Antlr::Tool
         tmp23_ast = self.attr_ast_factory.create(_lt(1))
         self.attr_ast_factory.add_astchild(current_ast, tmp23_ast)
         match(TOKEN_REF)
-        catch(:break_case) do
+        case (_la(1))
+        when ASSIGN
+          tmp24_ast = nil
+          tmp24_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.make_astroot(current_ast, tmp24_ast)
+          match(ASSIGN)
           case (_la(1))
-          when ASSIGN
-            tmp24_ast = nil
-            tmp24_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.make_astroot(current_ast, tmp24_ast)
-            match(ASSIGN)
-            catch(:break_case) do
-              case (_la(1))
-              when STRING_LITERAL
-                tmp25_ast = nil
-                tmp25_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.add_astchild(current_ast, tmp25_ast)
-                match(STRING_LITERAL)
-                throw :break_case, :thrown
-                tmp26_ast = nil
-                tmp26_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.add_astchild(current_ast, tmp26_ast)
-                match(CHAR_LITERAL)
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when CHAR_LITERAL
-                tmp26_ast_ = nil
-                tmp26_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.add_astchild(current_ast, tmp26_ast_)
-                match(CHAR_LITERAL)
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when SEMI
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+          when STRING_LITERAL
+            tmp25_ast = nil
+            tmp25_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.add_astchild(current_ast, tmp25_ast)
+            match(STRING_LITERAL)
+          when CHAR_LITERAL
+            tmp26_ast = nil
+            tmp26_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.add_astchild(current_ast, tmp26_ast)
+            match(CHAR_LITERAL)
           else
             raise NoViableAltException.new(_lt(1), get_filename)
           end
+        when SEMI
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         match(SEMI)
         token_spec_ast = current_ast.attr_root
@@ -1175,93 +951,40 @@ module Org::Antlr::Tool
       opt = nil
       opts = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when DOC_COMMENT
-            d = _lt(1)
-            d_ast = self.attr_ast_factory.create(d)
-            match(DOC_COMMENT)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when FRAGMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when DOC_COMMENT
+          d = _lt(1)
+          d_ast = self.attr_ast_factory.create(d)
+          match(DOC_COMMENT)
+        when FRAGMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when LITERAL_protected
-            p1 = _lt(1)
-            p1_ast = self.attr_ast_factory.create(p1)
-            match(LITERAL_protected)
-            modifier = p1_ast
-            throw :break_case, :thrown
-            p2 = _lt(1)
-            p2_ast = self.attr_ast_factory.create(p2)
-            match(LITERAL_public)
-            modifier = p2_ast
-            throw :break_case, :thrown
-            p3 = _lt(1)
-            p3_ast = self.attr_ast_factory.create(p3)
-            match(LITERAL_private)
-            modifier = p3_ast
-            throw :break_case, :thrown
-            p4 = _lt(1)
-            p4_ast = self.attr_ast_factory.create(p4)
-            match(FRAGMENT)
-            modifier = p4_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LITERAL_public
-            p2 = _lt(1)
-            p2_ast = self.attr_ast_factory.create(p2)
-            match(LITERAL_public)
-            modifier = p2_ast
-            throw :break_case, :thrown
-            p3 = _lt(1)
-            p3_ast = self.attr_ast_factory.create(p3)
-            match(LITERAL_private)
-            modifier = p3_ast
-            throw :break_case, :thrown
-            p4 = _lt(1)
-            p4_ast = self.attr_ast_factory.create(p4)
-            match(FRAGMENT)
-            modifier = p4_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LITERAL_private
-            p3 = _lt(1)
-            p3_ast = self.attr_ast_factory.create(p3)
-            match(LITERAL_private)
-            modifier = p3_ast
-            throw :break_case, :thrown
-            p4 = _lt(1)
-            p4_ast = self.attr_ast_factory.create(p4)
-            match(FRAGMENT)
-            modifier = p4_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when FRAGMENT
-            p4 = _lt(1)
-            p4_ast = self.attr_ast_factory.create(p4)
-            match(FRAGMENT)
-            modifier = p4_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when TOKEN_REF, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when LITERAL_protected
+          p1 = _lt(1)
+          p1_ast = self.attr_ast_factory.create(p1)
+          match(LITERAL_protected)
+          modifier = p1_ast
+        when LITERAL_public
+          p2 = _lt(1)
+          p2_ast = self.attr_ast_factory.create(p2)
+          match(LITERAL_public)
+          modifier = p2_ast
+        when LITERAL_private
+          p3 = _lt(1)
+          p3_ast = self.attr_ast_factory.create(p3)
+          match(LITERAL_private)
+          modifier = p3_ast
+        when FRAGMENT
+          p4 = _lt(1)
+          p4_ast = self.attr_ast_factory.create(p4)
+          match(FRAGMENT)
+          modifier = p4_ast
+        when TOKEN_REF, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         id
         rule_name_ast = self.attr_return_ast
@@ -1269,100 +992,58 @@ module Org::Antlr::Tool
         if ((@gtype).equal?(LEXER_GRAMMAR) && (p4_ast).nil?)
           @grammar.attr_lexer_rule_names_in_combined.add(@current_rule_name)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when BANG
-            tmp30_ast = nil
-            tmp30_ast = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when OPTIONS, SCOPE, AMPERSAND, COLON, ARG_ACTION, LITERAL_returns, LITERAL_throws
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when BANG
+          tmp30_ast = nil
+          tmp30_ast = self.attr_ast_factory.create(_lt(1))
+          match(BANG)
+        when OPTIONS, SCOPE, AMPERSAND, COLON, ARG_ACTION, LITERAL_returns, LITERAL_throws
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when ARG_ACTION
-            aa = _lt(1)
-            aa_ast = self.attr_ast_factory.create(aa)
-            match(ARG_ACTION)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when OPTIONS, SCOPE, AMPERSAND, COLON, LITERAL_returns, LITERAL_throws
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when ARG_ACTION
+          aa = _lt(1)
+          aa_ast = self.attr_ast_factory.create(aa)
+          match(ARG_ACTION)
+        when OPTIONS, SCOPE, AMPERSAND, COLON, LITERAL_returns, LITERAL_throws
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when LITERAL_returns
-            match(LITERAL_returns)
-            rt = _lt(1)
-            rt_ast = self.attr_ast_factory.create(rt)
-            match(ARG_ACTION)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when OPTIONS, SCOPE, AMPERSAND, COLON, LITERAL_throws
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when LITERAL_returns
+          match(LITERAL_returns)
+          rt = _lt(1)
+          rt_ast = self.attr_ast_factory.create(rt)
+          match(ARG_ACTION)
+        when OPTIONS, SCOPE, AMPERSAND, COLON, LITERAL_throws
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when LITERAL_throws
-            throws_spec
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when OPTIONS, SCOPE, AMPERSAND, COLON
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when LITERAL_throws
+          throws_spec
+        when OPTIONS, SCOPE, AMPERSAND, COLON
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when OPTIONS
-            opts = options_spec
-            opt = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when SCOPE, AMPERSAND, COLON
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when OPTIONS
+          opts = options_spec
+          opt = self.attr_return_ast
+        when SCOPE, AMPERSAND, COLON
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         rule_scope_spec
         scopes_ast = self.attr_return_ast
-        catch(:break_case) do
-          case (_la(1))
-          when AMPERSAND
-            rule_actions
-            a_ast = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when COLON
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when AMPERSAND
+          rule_actions
+          a_ast = self.attr_return_ast
+        when COLON
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         colon = _lt(1)
         colon_ast = self.attr_ast_factory.create(colon)
@@ -1378,20 +1059,13 @@ module Org::Antlr::Tool
         semi = _lt(1)
         semi_ast = self.attr_ast_factory.create(semi)
         match(SEMI)
-        catch(:break_case) do
-          case (_la(1))
-          when LITERAL_catch, LITERAL_finally
-            exception_group
-            ex_ast = self.attr_return_ast
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when EOF, FRAGMENT, DOC_COMMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when LITERAL_catch, LITERAL_finally
+          exception_group
+          ex_ast = self.attr_return_ast
+        when EOF, FRAGMENT, DOC_COMMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         rule_ast = current_ast.attr_root
         stop = (_lt(1)).get_index - 1 # point at the semi or exception thingie
@@ -1585,55 +1259,38 @@ module Org::Antlr::Tool
       current_ast = ASTPair.new
       exception_group_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when LITERAL_catch
-            _cnt73 = 0
-            begin
-              if (((_la(1)).equal?(LITERAL_catch)))
-                exception_handler
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              else
-                if (_cnt73 >= 1)
-                  break
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              ((_cnt73 += 1) - 1)
-            end while (true)
-            catch(:break_case) do
-              case (_la(1))
-              when LITERAL_finally
-                finally_clause
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when EOF, FRAGMENT, DOC_COMMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
+        # for error handling
+        case (_la(1))
+        when LITERAL_catch
+          _cnt73 = 0
+          begin
+            if (((_la(1)).equal?(LITERAL_catch)))
+              exception_handler
+              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+            else
+              if (_cnt73 >= 1)
+                break
               else
                 raise NoViableAltException.new(_lt(1), get_filename)
               end
             end
-            exception_group_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            finally_clause
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            exception_group_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+            ((_cnt73 += 1) - 1)
+          end while (true)
+          case (_la(1))
           when LITERAL_finally
             finally_clause
             self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            exception_group_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+          when EOF, FRAGMENT, DOC_COMMENT, TOKEN_REF, LITERAL_protected, LITERAL_public, LITERAL_private, RULE_REF
           else
             raise NoViableAltException.new(_lt(1), get_filename)
           end
+          exception_group_ast = current_ast.attr_root
+        when LITERAL_finally
+          finally_clause
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          exception_group_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1717,37 +1374,23 @@ module Org::Antlr::Tool
         lp_ast.set_type(BLOCK)
         lp_ast.set_text("BLOCK")
         if (((_la(1)).equal?(OPTIONS) || (_la(1)).equal?(AMPERSAND) || (_la(1)).equal?(COLON)))
-          catch(:break_case) do
-            case (_la(1))
-            when OPTIONS
-              opts = options_spec
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              block_ast = current_ast.attr_root
-              block_ast.set_options(@grammar, opts)
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            when AMPERSAND, COLON
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            else
-              raise NoViableAltException.new(_lt(1), get_filename)
-            end
+          case (_la(1))
+          when OPTIONS
+            opts = options_spec
+            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+            block_ast = current_ast.attr_root
+            block_ast.set_options(@grammar, opts)
+          when AMPERSAND, COLON
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
           end
-          catch(:break_case) do
-            case (_la(1))
-            when AMPERSAND
-              rule_actions
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            when COLON
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            else
-              raise NoViableAltException.new(_lt(1), get_filename)
-            end
+          case (_la(1))
+          when AMPERSAND
+            rule_actions
+            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          when COLON
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
           end
           match(COLON)
         else
@@ -1816,63 +1459,47 @@ module Org::Antlr::Tool
       alt_root.set_line(_lt(1).get_line)
       alt_root.set_column(_lt(1).get_column)
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when FORCED_ACTION, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN
-            _cnt70 = 0
-            begin
-              if ((_tokenSet_22.member(_la(1))))
-                element
-                el_ast = self.attr_return_ast
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              else
-                if (_cnt70 >= 1)
-                  break
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              ((_cnt70 += 1) - 1)
-            end while (true)
-            alternative_ast = current_ast.attr_root
-            if ((alternative_ast).nil?)
-              alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(self.attr_ast_factory.create(EPSILON, "epsilon")).add(eoa))
+        # for error handling
+        case (_la(1))
+        when FORCED_ACTION, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN
+          _cnt70 = 0
+          begin
+            if ((_tokenSet_22.member(_la(1))))
+              element
+              el_ast = self.attr_return_ast
+              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
             else
-              # we have a real list of stuff
-              alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(alternative_ast).add(eoa))
+              if (_cnt70 >= 1)
+                break
+              else
+                raise NoViableAltException.new(_lt(1), get_filename)
+              end
             end
-            current_ast.attr_root = alternative_ast
-            current_ast.attr_child = !(alternative_ast).nil? && !(alternative_ast.get_first_child).nil? ? alternative_ast.get_first_child : alternative_ast
-            current_ast.advance_child_to_end
-            alternative_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            alternative_ast = current_ast.attr_root
-            eps = self.attr_ast_factory.create(EPSILON, "epsilon")
-            eps.set_line(_lt(0).get_line) # get line/col of '|' or ':' (prev token)
-            eps.set_column(_lt(0).get_column)
-            alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(eps).add(eoa))
-            current_ast.attr_root = alternative_ast
-            current_ast.attr_child = !(alternative_ast).nil? && !(alternative_ast.get_first_child).nil? ? alternative_ast.get_first_child : alternative_ast
-            current_ast.advance_child_to_end
-            alternative_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when SEMI, OR, RPAREN, REWRITE
-            alternative_ast = current_ast.attr_root
-            eps_ = self.attr_ast_factory.create(EPSILON, "epsilon")
-            eps_.set_line(_lt(0).get_line) # get line/col of '|' or ':' (prev token)
-            eps_.set_column(_lt(0).get_column)
-            alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(eps_).add(eoa))
-            current_ast.attr_root = alternative_ast
-            current_ast.attr_child = !(alternative_ast).nil? && !(alternative_ast.get_first_child).nil? ? alternative_ast.get_first_child : alternative_ast
-            current_ast.advance_child_to_end
-            alternative_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+            ((_cnt70 += 1) - 1)
+          end while (true)
+          alternative_ast = current_ast.attr_root
+          if ((alternative_ast).nil?)
+            alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(self.attr_ast_factory.create(EPSILON, "epsilon")).add(eoa))
           else
-            raise NoViableAltException.new(_lt(1), get_filename)
+            # we have a real list of stuff
+            alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(alternative_ast).add(eoa))
           end
+          current_ast.attr_root = alternative_ast
+          current_ast.attr_child = !(alternative_ast).nil? && !(alternative_ast.get_first_child).nil? ? alternative_ast.get_first_child : alternative_ast
+          current_ast.advance_child_to_end
+          alternative_ast = current_ast.attr_root
+        when SEMI, OR, RPAREN, REWRITE
+          alternative_ast = current_ast.attr_root
+          eps = self.attr_ast_factory.create(EPSILON, "epsilon")
+          eps.set_line(_lt(0).get_line) # get line/col of '|' or ':' (prev token)
+          eps.set_column(_lt(0).get_column)
+          alternative_ast = self.attr_ast_factory.make((ASTArray.new(3)).add(alt_root).add(eps).add(eoa))
+          current_ast.attr_root = alternative_ast
+          current_ast.attr_child = !(alternative_ast).nil? && !(alternative_ast.get_first_child).nil? ? alternative_ast.get_first_child : alternative_ast
+          current_ast.advance_child_to_end
+          alternative_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1896,47 +1523,39 @@ module Org::Antlr::Tool
       alt2_ast = nil
       root = GrammarAST.new
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when REWRITE
-            begin
-              if (((_la(1)).equal?(REWRITE)) && ((_la(2)).equal?(SEMPRED)))
-                rew = _lt(1)
-                rew_ast = self.attr_ast_factory.create(rew)
-                match(REWRITE)
-                pred = _lt(1)
-                pred_ast = self.attr_ast_factory.create(pred)
-                match(SEMPRED)
-                rewrite_alternative
-                alt_ast = self.attr_return_ast
-                root.add_child(self.attr_ast_factory.make((ASTArray.new(3)).add(rew_ast).add(pred_ast).add(alt_ast)))
-              else
-                break
-              end
-            end while (true)
-            rew2 = _lt(1)
-            rew2_ast = self.attr_ast_factory.create(rew2)
-            match(REWRITE)
-            rewrite_alternative
-            alt2_ast = self.attr_return_ast
-            rewrite_ast = current_ast.attr_root
-            root.add_child(self.attr_ast_factory.make((ASTArray.new(2)).add(rew2_ast).add(alt2_ast)))
-            rewrite_ast = root.get_first_child
-            current_ast.attr_root = rewrite_ast
-            current_ast.attr_child = !(rewrite_ast).nil? && !(rewrite_ast.get_first_child).nil? ? rewrite_ast.get_first_child : rewrite_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            rewrite_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when SEMI, OR, RPAREN
-            rewrite_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when REWRITE
+          begin
+            if (((_la(1)).equal?(REWRITE)) && ((_la(2)).equal?(SEMPRED)))
+              rew = _lt(1)
+              rew_ast = self.attr_ast_factory.create(rew)
+              match(REWRITE)
+              pred = _lt(1)
+              pred_ast = self.attr_ast_factory.create(pred)
+              match(SEMPRED)
+              rewrite_alternative
+              alt_ast = self.attr_return_ast
+              root.add_child(self.attr_ast_factory.make((ASTArray.new(3)).add(rew_ast).add(pred_ast).add(alt_ast)))
+            else
+              break
+            end
+          end while (true)
+          rew2 = _lt(1)
+          rew2_ast = self.attr_ast_factory.create(rew2)
+          match(REWRITE)
+          rewrite_alternative
+          alt2_ast = self.attr_return_ast
+          rewrite_ast = current_ast.attr_root
+          root.add_child(self.attr_ast_factory.make((ASTArray.new(2)).add(rew2_ast).add(alt2_ast)))
+          rewrite_ast = root.get_first_child
+          current_ast.attr_root = rewrite_ast
+          current_ast.attr_child = !(rewrite_ast).nil? && !(rewrite_ast.get_first_child).nil? ? rewrite_ast.get_first_child : rewrite_ast
+          current_ast.advance_child_to_end
+        when SEMI, OR, RPAREN
+          rewrite_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -2024,704 +1643,97 @@ module Org::Antlr::Tool
       sub = nil
       sub2 = nil
       begin
-        catch(:break_case) do
-          # for error handling
+        # for error handling
+        case (_la(1))
+        when LPAREN
+          ebnf
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+        when FORCED_ACTION
+          tmp50_ast = nil
+          tmp50_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp50_ast)
+          match(FORCED_ACTION)
+        when ACTION
+          tmp51_ast = nil
+          tmp51_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp51_ast)
+          match(ACTION)
+        when SEMPRED
+          p = _lt(1)
+          p_ast = self.attr_ast_factory.create(p)
+          self.attr_ast_factory.add_astchild(current_ast, p_ast)
+          match(SEMPRED)
           case (_la(1))
-          when LPAREN
-            ebnf
+          when IMPLIES
+            match(IMPLIES)
+            p_ast.set_type(GATED_SEMPRED)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          @grammar.attr_blocks_with_sem_preds.add(@current_block_ast)
+        when TREE_BEGIN
+          tree
+          t3_ast = self.attr_return_ast
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+        else
+          if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
+            id
             self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            tmp50_ast = nil
-            tmp50_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp50_ast)
-            match(FORCED_ACTION)
-            throw :break_case, :thrown
-            tmp51_ast = nil
-            tmp51_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp51_ast)
-            match(ACTION)
-            throw :break_case, :thrown
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(SEMPRED)
-            catch(:break_case) do
-              case (_la(1))
-              when IMPLIES
-                match(IMPLIES)
-                p_ast.set_type(GATED_SEMPRED)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            @grammar.attr_blocks_with_sem_preds.add(@current_block_ast)
-            throw :break_case, :thrown
-            tree
-            t3_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
-              id
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ASSIGN
-                  tmp53_ast = nil
-                  tmp53_ast = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp53_ast)
-                  match(ASSIGN)
-                  throw :break_case, :thrown
-                  tmp54_ast = nil
-                  tmp54_ast = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when PLUS_ASSIGN
-                  tmp54_ast_ = nil
-                  tmp54_ast_ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast_)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
-                  atom
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when LPAREN
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STAR, QUESTION, PLUS
-                  sub = ebnf_suffix(current_ast.attr_root, false)
-                  element_no_option_spec_ast = current_ast.attr_root
-                  element_no_option_spec_ast = sub
-                  current_ast.attr_root = element_no_option_spec_ast
-                  current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                  current_ast.advance_child_to_end
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
+            case (_la(1))
+            when ASSIGN
+              tmp53_ast = nil
+              tmp53_ast = self.attr_ast_factory.create(_lt(1))
+              self.attr_ast_factory.make_astroot(current_ast, tmp53_ast)
+              match(ASSIGN)
+            when PLUS_ASSIGN
+              tmp54_ast = nil
+              tmp54_ast = self.attr_ast_factory.create(_lt(1))
+              self.attr_ast_factory.make_astroot(current_ast, tmp54_ast)
+              match(PLUS_ASSIGN)
             else
-              if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
-                atom
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                catch(:break_case) do
-                  case (_la(1))
-                  when STAR, QUESTION, PLUS
-                    sub2 = ebnf_suffix(current_ast.attr_root, false)
-                    element_no_option_spec_ast = current_ast.attr_root
-                    element_no_option_spec_ast = sub2
-                    current_ast.attr_root = element_no_option_spec_ast
-                    current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                    current_ast.advance_child_to_end
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  else
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  end
-                end
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
+              raise NoViableAltException.new(_lt(1), get_filename)
             end
-          when FORCED_ACTION
-            tmp50_ast_ = nil
-            tmp50_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp50_ast_)
-            match(FORCED_ACTION)
-            throw :break_case, :thrown
-            tmp51_ast_ = nil
-            tmp51_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp51_ast_)
-            match(ACTION)
-            throw :break_case, :thrown
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(SEMPRED)
-            catch(:break_case) do
-              case (_la(1))
-              when IMPLIES
-                match(IMPLIES)
-                p_ast.set_type(GATED_SEMPRED)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            @grammar.attr_blocks_with_sem_preds.add(@current_block_ast)
-            throw :break_case, :thrown
-            tree
-            t3_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
-              id
+            case (_la(1))
+            when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
+              atom
               self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ASSIGN
-                  tmp53_ast_ = nil
-                  tmp53_ast_ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp53_ast_)
-                  match(ASSIGN)
-                  throw :break_case, :thrown
-                  tmp54_ast__ = nil
-                  tmp54_ast__ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast__)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when PLUS_ASSIGN
-                  tmp54_ast___ = nil
-                  tmp54_ast___ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast___)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
-                  atom
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when LPAREN
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STAR, QUESTION, PLUS
-                  sub = ebnf_suffix(current_ast.attr_root, false)
-                  element_no_option_spec_ast = current_ast.attr_root
-                  element_no_option_spec_ast = sub
-                  current_ast.attr_root = element_no_option_spec_ast
-                  current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                  current_ast.advance_child_to_end
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-            else
-              if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
-                atom
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                catch(:break_case) do
-                  case (_la(1))
-                  when STAR, QUESTION, PLUS
-                    sub2 = ebnf_suffix(current_ast.attr_root, false)
-                    element_no_option_spec_ast = current_ast.attr_root
-                    element_no_option_spec_ast = sub2
-                    current_ast.attr_root = element_no_option_spec_ast
-                    current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                    current_ast.advance_child_to_end
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  else
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  end
-                end
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-          when ACTION
-            tmp51_ast__ = nil
-            tmp51_ast__ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp51_ast__)
-            match(ACTION)
-            throw :break_case, :thrown
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(SEMPRED)
-            catch(:break_case) do
-              case (_la(1))
-              when IMPLIES
-                match(IMPLIES)
-                p_ast.set_type(GATED_SEMPRED)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            @grammar.attr_blocks_with_sem_preds.add(@current_block_ast)
-            throw :break_case, :thrown
-            tree
-            t3_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
-              id
+            when LPAREN
+              block
               self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ASSIGN
-                  tmp53_ast__ = nil
-                  tmp53_ast__ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp53_ast__)
-                  match(ASSIGN)
-                  throw :break_case, :thrown
-                  tmp54_ast____ = nil
-                  tmp54_ast____ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast____)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when PLUS_ASSIGN
-                  tmp54_ast_____ = nil
-                  tmp54_ast_____ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast_____)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
-                  atom
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when LPAREN
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STAR, QUESTION, PLUS
-                  sub = ebnf_suffix(current_ast.attr_root, false)
-                  element_no_option_spec_ast = current_ast.attr_root
-                  element_no_option_spec_ast = sub
-                  current_ast.attr_root = element_no_option_spec_ast
-                  current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                  current_ast.advance_child_to_end
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
             else
-              if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
-                atom
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                catch(:break_case) do
-                  case (_la(1))
-                  when STAR, QUESTION, PLUS
-                    sub2 = ebnf_suffix(current_ast.attr_root, false)
-                    element_no_option_spec_ast = current_ast.attr_root
-                    element_no_option_spec_ast = sub2
-                    current_ast.attr_root = element_no_option_spec_ast
-                    current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                    current_ast.advance_child_to_end
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  else
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  end
-                end
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
+              raise NoViableAltException.new(_lt(1), get_filename)
             end
-          when SEMPRED
-            p = _lt(1)
-            p_ast = self.attr_ast_factory.create(p)
-            self.attr_ast_factory.add_astchild(current_ast, p_ast)
-            match(SEMPRED)
-            catch(:break_case) do
-              case (_la(1))
-              when IMPLIES
-                match(IMPLIES)
-                p_ast.set_type(GATED_SEMPRED)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            @grammar.attr_blocks_with_sem_preds.add(@current_block_ast)
-            throw :break_case, :thrown
-            tree
-            t3_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
-              id
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ASSIGN
-                  tmp53_ast___ = nil
-                  tmp53_ast___ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp53_ast___)
-                  match(ASSIGN)
-                  throw :break_case, :thrown
-                  tmp54_ast______ = nil
-                  tmp54_ast______ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast______)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when PLUS_ASSIGN
-                  tmp54_ast_______ = nil
-                  tmp54_ast_______ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast_______)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
-                  atom
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when LPAREN
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STAR, QUESTION, PLUS
-                  sub = ebnf_suffix(current_ast.attr_root, false)
-                  element_no_option_spec_ast = current_ast.attr_root
-                  element_no_option_spec_ast = sub
-                  current_ast.attr_root = element_no_option_spec_ast
-                  current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                  current_ast.advance_child_to_end
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
+            case (_la(1))
+            when STAR, QUESTION, PLUS
+              sub = ebnf_suffix(current_ast.attr_root, false)
+              element_no_option_spec_ast = current_ast.attr_root
+              element_no_option_spec_ast = sub
+              current_ast.attr_root = element_no_option_spec_ast
+              current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
+              current_ast.advance_child_to_end
+            when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
             else
-              if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
-                atom
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                catch(:break_case) do
-                  case (_la(1))
-                  when STAR, QUESTION, PLUS
-                    sub2 = ebnf_suffix(current_ast.attr_root, false)
-                    element_no_option_spec_ast = current_ast.attr_root
-                    element_no_option_spec_ast = sub2
-                    current_ast.attr_root = element_no_option_spec_ast
-                    current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                    current_ast.advance_child_to_end
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  else
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  end
-                end
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-          when TREE_BEGIN
-            tree
-            t3_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
-              id
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ASSIGN
-                  tmp53_ast____ = nil
-                  tmp53_ast____ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp53_ast____)
-                  match(ASSIGN)
-                  throw :break_case, :thrown
-                  tmp54_ast________ = nil
-                  tmp54_ast________ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast________)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when PLUS_ASSIGN
-                  tmp54_ast_________ = nil
-                  tmp54_ast_________ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast_________)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
-                  atom
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when LPAREN
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STAR, QUESTION, PLUS
-                  sub = ebnf_suffix(current_ast.attr_root, false)
-                  element_no_option_spec_ast = current_ast.attr_root
-                  element_no_option_spec_ast = sub
-                  current_ast.attr_root = element_no_option_spec_ast
-                  current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                  current_ast.advance_child_to_end
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-            else
-              if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
-                atom
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                catch(:break_case) do
-                  case (_la(1))
-                  when STAR, QUESTION, PLUS
-                    sub2 = ebnf_suffix(current_ast.attr_root, false)
-                    element_no_option_spec_ast = current_ast.attr_root
-                    element_no_option_spec_ast = sub2
-                    current_ast.attr_root = element_no_option_spec_ast
-                    current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                    current_ast.advance_child_to_end
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  else
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  end
-                end
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
+              raise NoViableAltException.new(_lt(1), get_filename)
             end
           else
-            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(ASSIGN) || (_la(2)).equal?(PLUS_ASSIGN)))
-              id
+            if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
+              atom
               self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ASSIGN
-                  tmp53_ast_____ = nil
-                  tmp53_ast_____ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp53_ast_____)
-                  match(ASSIGN)
-                  throw :break_case, :thrown
-                  tmp54_ast__________ = nil
-                  tmp54_ast__________ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast__________)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when PLUS_ASSIGN
-                  tmp54_ast___________ = nil
-                  tmp54_ast___________ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp54_ast___________)
-                  match(PLUS_ASSIGN)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF, NOT
-                  atom
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when LPAREN
-                  block
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              catch(:break_case) do
-                case (_la(1))
-                when STAR, QUESTION, PLUS
-                  sub = ebnf_suffix(current_ast.attr_root, false)
-                  element_no_option_spec_ast = current_ast.attr_root
-                  element_no_option_spec_ast = sub
-                  current_ast.attr_root = element_no_option_spec_ast
-                  current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                  current_ast.advance_child_to_end
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-            else
-              if ((_tokenSet_27.member(_la(1))) && (_tokenSet_28.member(_la(2))))
-                atom
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                catch(:break_case) do
-                  case (_la(1))
-                  when STAR, QUESTION, PLUS
-                    sub2 = ebnf_suffix(current_ast.attr_root, false)
-                    element_no_option_spec_ast = current_ast.attr_root
-                    element_no_option_spec_ast = sub2
-                    current_ast.attr_root = element_no_option_spec_ast
-                    current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
-                    current_ast.advance_child_to_end
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  else
-                    raise NoViableAltException.new(_lt(1), get_filename)
-                  end
-                end
+              case (_la(1))
+              when STAR, QUESTION, PLUS
+                sub2 = ebnf_suffix(current_ast.attr_root, false)
+                element_no_option_spec_ast = current_ast.attr_root
+                element_no_option_spec_ast = sub2
+                current_ast.attr_root = element_no_option_spec_ast
+                current_ast.attr_child = !(element_no_option_spec_ast).nil? && !(element_no_option_spec_ast.get_first_child).nil? ? element_no_option_spec_ast.get_first_child : element_no_option_spec_ast
+                current_ast.advance_child_to_end
+              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
               else
                 raise NoViableAltException.new(_lt(1), get_filename)
               end
+            else
+              raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
         end
@@ -2745,35 +1757,20 @@ module Org::Antlr::Tool
         if (((_la(1)).equal?(CHAR_LITERAL)) && ((_la(2)).equal?(RANGE)))
           range
           self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-          catch(:break_case) do
-            case (_la(1))
-            when ROOT
-              tmp55_ast = nil
-              tmp55_ast = self.attr_ast_factory.create(_lt(1))
-              self.attr_ast_factory.make_astroot(current_ast, tmp55_ast)
-              match(ROOT)
-              throw :break_case, :thrown
-              tmp56_ast = nil
-              tmp56_ast = self.attr_ast_factory.create(_lt(1))
-              self.attr_ast_factory.make_astroot(current_ast, tmp56_ast)
-              match(BANG)
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            when BANG
-              tmp56_ast_ = nil
-              tmp56_ast_ = self.attr_ast_factory.create(_lt(1))
-              self.attr_ast_factory.make_astroot(current_ast, tmp56_ast_)
-              match(BANG)
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_lt(1), get_filename)
-            else
-              raise NoViableAltException.new(_lt(1), get_filename)
-            end
+          case (_la(1))
+          when ROOT
+            tmp55_ast = nil
+            tmp55_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp55_ast)
+            match(ROOT)
+          when BANG
+            tmp56_ast = nil
+            tmp56_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp56_ast)
+            match(BANG)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
           end
           atom_ast = current_ast.attr_root
         else
@@ -2785,24 +1782,15 @@ module Org::Antlr::Tool
               w_ast = self.attr_ast_factory.create(w)
               self.attr_ast_factory.make_astroot(current_ast, w_ast)
               match(WILDCARD)
-              catch(:break_case) do
-                case (_la(1))
-                when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD
-                  terminal
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  ruleref
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when RULE_REF
-                  ruleref
-                  self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
+              case (_la(1))
+              when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD
+                terminal
+                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+              when RULE_REF
+                ruleref
+                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+              else
+                raise NoViableAltException.new(_lt(1), get_filename)
               end
               w_ast.set_type(DOT)
             else
@@ -2823,35 +1811,20 @@ module Org::Antlr::Tool
             if (((_la(1)).equal?(NOT)))
               not_set
               self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              catch(:break_case) do
-                case (_la(1))
-                when ROOT
-                  tmp57_ast = nil
-                  tmp57_ast = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp57_ast)
-                  match(ROOT)
-                  throw :break_case, :thrown
-                  tmp58_ast = nil
-                  tmp58_ast = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp58_ast)
-                  match(BANG)
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when BANG
-                  tmp58_ast_ = nil
-                  tmp58_ast_ = self.attr_ast_factory.create(_lt(1))
-                  self.attr_ast_factory.make_astroot(current_ast, tmp58_ast_)
-                  match(BANG)
-                  throw :break_case, :thrown
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
+              case (_la(1))
+              when ROOT
+                tmp57_ast = nil
+                tmp57_ast = self.attr_ast_factory.create(_lt(1))
+                self.attr_ast_factory.make_astroot(current_ast, tmp57_ast)
+                match(ROOT)
+              when BANG
+                tmp58_ast = nil
+                tmp58_ast = self.attr_ast_factory.create(_lt(1))
+                self.attr_ast_factory.make_astroot(current_ast, tmp58_ast)
+                match(BANG)
+              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+              else
+                raise NoViableAltException.new(_lt(1), get_filename)
               end
               atom_ast = current_ast.attr_root
             else
@@ -2874,48 +1847,25 @@ module Org::Antlr::Tool
       ebnf_suffix_ast = nil
       ebnf_root = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when QUESTION
-            tmp59_ast = nil
-            tmp59_ast = self.attr_ast_factory.create(_lt(1))
-            match(QUESTION)
-            ebnf_root = self.attr_ast_factory.create(OPTIONAL, "?")
-            throw :break_case, :thrown
-            tmp60_ast = nil
-            tmp60_ast = self.attr_ast_factory.create(_lt(1))
-            match(STAR)
-            ebnf_root = self.attr_ast_factory.create(CLOSURE, "*")
-            throw :break_case, :thrown
-            tmp61_ast = nil
-            tmp61_ast = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            ebnf_root = self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STAR
-            tmp60_ast_ = nil
-            tmp60_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(STAR)
-            ebnf_root = self.attr_ast_factory.create(CLOSURE, "*")
-            throw :break_case, :thrown
-            tmp61_ast_ = nil
-            tmp61_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            ebnf_root = self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PLUS
-            tmp61_ast__ = nil
-            tmp61_ast__ = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            ebnf_root = self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when QUESTION
+          tmp59_ast = nil
+          tmp59_ast = self.attr_ast_factory.create(_lt(1))
+          match(QUESTION)
+          ebnf_root = self.attr_ast_factory.create(OPTIONAL, "?")
+        when STAR
+          tmp60_ast = nil
+          tmp60_ast = self.attr_ast_factory.create(_lt(1))
+          match(STAR)
+          ebnf_root = self.attr_ast_factory.create(CLOSURE, "*")
+        when PLUS
+          tmp61_ast = nil
+          tmp61_ast = self.attr_ast_factory.create(_lt(1))
+          match(PLUS)
+          ebnf_root = self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         save = @current_block_ast
         ebnf_root.set_line(elem_ast.get_line)
@@ -2952,276 +1902,74 @@ module Org::Antlr::Tool
         # for error handling
         block
         b_ast = self.attr_return_ast
-        catch(:break_case) do
-          case (_la(1))
-          when QUESTION
-            tmp62_ast = nil
-            tmp62_ast = self.attr_ast_factory.create(_lt(1))
-            match(QUESTION)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(OPTIONAL, "?")).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp63_ast = nil
-            tmp63_ast = self.attr_ast_factory.create(_lt(1))
-            match(STAR)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(CLOSURE, "*")).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp64_ast = nil
-            tmp64_ast = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            match(IMPLIES)
-            ebnf_ast = current_ast.attr_root
-            if ((@gtype).equal?(COMBINED_GRAMMAR) && Character.is_upper_case(@current_rule_name.char_at(0)))
-              # ignore for lexer rules in combined
-              ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(SYNPRED, "=>")).add(b_ast))
-            else
-              # create manually specified (...)=> predicate;
-              # convert to sempred
-              ebnf_ast = create_syn_sem_pred_from_block(b_ast, SYN_SEMPRED)
-            end
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp66_ast = nil
-            tmp66_ast = self.attr_ast_factory.create(_lt(1))
-            match(ROOT)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp66_ast).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp67_ast = nil
-            tmp67_ast = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STAR
-            tmp63_ast_ = nil
-            tmp63_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(STAR)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(CLOSURE, "*")).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp64_ast_ = nil
-            tmp64_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            match(IMPLIES)
-            ebnf_ast = current_ast.attr_root
-            if ((@gtype).equal?(COMBINED_GRAMMAR) && Character.is_upper_case(@current_rule_name.char_at(0)))
-              # ignore for lexer rules in combined
-              ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(SYNPRED, "=>")).add(b_ast))
-            else
-              # create manually specified (...)=> predicate;
-              # convert to sempred
-              ebnf_ast = create_syn_sem_pred_from_block(b_ast, SYN_SEMPRED)
-            end
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp66_ast_ = nil
-            tmp66_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(ROOT)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp66_ast_).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp67_ast_ = nil
-            tmp67_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast_).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PLUS
-            tmp64_ast__ = nil
-            tmp64_ast__ = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            match(IMPLIES)
-            ebnf_ast = current_ast.attr_root
-            if ((@gtype).equal?(COMBINED_GRAMMAR) && Character.is_upper_case(@current_rule_name.char_at(0)))
-              # ignore for lexer rules in combined
-              ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(SYNPRED, "=>")).add(b_ast))
-            else
-              # create manually specified (...)=> predicate;
-              # convert to sempred
-              ebnf_ast = create_syn_sem_pred_from_block(b_ast, SYN_SEMPRED)
-            end
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp66_ast__ = nil
-            tmp66_ast__ = self.attr_ast_factory.create(_lt(1))
-            match(ROOT)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp66_ast__).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp67_ast__ = nil
-            tmp67_ast__ = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast__).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when IMPLIES
-            match(IMPLIES)
-            ebnf_ast = current_ast.attr_root
-            if ((@gtype).equal?(COMBINED_GRAMMAR) && Character.is_upper_case(@current_rule_name.char_at(0)))
-              # ignore for lexer rules in combined
-              ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(SYNPRED, "=>")).add(b_ast))
-            else
-              # create manually specified (...)=> predicate;
-              # convert to sempred
-              ebnf_ast = create_syn_sem_pred_from_block(b_ast, SYN_SEMPRED)
-            end
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp66_ast___ = nil
-            tmp66_ast___ = self.attr_ast_factory.create(_lt(1))
-            match(ROOT)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp66_ast___).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp67_ast___ = nil
-            tmp67_ast___ = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast___).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when ROOT
-            tmp66_ast____ = nil
-            tmp66_ast____ = self.attr_ast_factory.create(_lt(1))
-            match(ROOT)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp66_ast____).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp67_ast____ = nil
-            tmp67_ast____ = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast____).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when BANG
-            tmp67_ast_____ = nil
-            tmp67_ast_____ = self.attr_ast_factory.create(_lt(1))
-            match(BANG)
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast_____).add(b_ast))
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
-            ebnf_ast = current_ast.attr_root
-            ebnf_ast = b_ast
-            current_ast.attr_root = ebnf_ast
-            current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+        case (_la(1))
+        when QUESTION
+          tmp62_ast = nil
+          tmp62_ast = self.attr_ast_factory.create(_lt(1))
+          match(QUESTION)
+          ebnf_ast = current_ast.attr_root
+          ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(OPTIONAL, "?")).add(b_ast))
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        when STAR
+          tmp63_ast = nil
+          tmp63_ast = self.attr_ast_factory.create(_lt(1))
+          match(STAR)
+          ebnf_ast = current_ast.attr_root
+          ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(CLOSURE, "*")).add(b_ast))
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        when PLUS
+          tmp64_ast = nil
+          tmp64_ast = self.attr_ast_factory.create(_lt(1))
+          match(PLUS)
+          ebnf_ast = current_ast.attr_root
+          ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        when IMPLIES
+          match(IMPLIES)
+          ebnf_ast = current_ast.attr_root
+          if ((@gtype).equal?(COMBINED_GRAMMAR) && Character.is_upper_case(@current_rule_name.char_at(0)))
+            # ignore for lexer rules in combined
+            ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(SYNPRED, "=>")).add(b_ast))
           else
-            raise NoViableAltException.new(_lt(1), get_filename)
+            # create manually specified (...)=> predicate;
+            # convert to sempred
+            ebnf_ast = create_syn_sem_pred_from_block(b_ast, SYN_SEMPRED)
           end
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        when ROOT
+          tmp66_ast = nil
+          tmp66_ast = self.attr_ast_factory.create(_lt(1))
+          match(ROOT)
+          ebnf_ast = current_ast.attr_root
+          ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp66_ast).add(b_ast))
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        when BANG
+          tmp67_ast = nil
+          tmp67_ast = self.attr_ast_factory.create(_lt(1))
+          match(BANG)
+          ebnf_ast = current_ast.attr_root
+          ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(tmp67_ast).add(b_ast))
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, REWRITE
+          ebnf_ast = current_ast.attr_root
+          ebnf_ast = b_ast
+          current_ast.attr_root = ebnf_ast
+          current_ast.attr_child = !(ebnf_ast).nil? && !(ebnf_ast.get_first_child).nil? ? ebnf_ast.get_first_child : ebnf_ast
+          current_ast.advance_child_to_end
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         ebnf_ast = current_ast.attr_root
         ebnf_ast.set_line(line)
@@ -3323,498 +2071,125 @@ module Org::Antlr::Tool
       ebnf_root = nil
       subrule = nil
       begin
-        catch(:break_case) do
-          # for error handling
+        # for error handling
+        case (_la(1))
+        when CHAR_LITERAL
+          cl = _lt(1)
+          cl_ast = self.attr_ast_factory.create(cl)
+          self.attr_ast_factory.make_astroot(current_ast, cl_ast)
+          match(CHAR_LITERAL)
           case (_la(1))
-          when CHAR_LITERAL
-            cl = _lt(1)
-            cl_ast = self.attr_ast_factory.create(cl)
-            self.attr_ast_factory.make_astroot(current_ast, cl_ast)
-            match(CHAR_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(cl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp71_ast = nil
-                tmp71_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp71_ast)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp72_ast = nil
-                tmp72_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp72_ast)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp72_ast_ = nil
-                tmp72_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp72_ast_)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            tr = _lt(1)
-            tr_ast = self.attr_ast_factory.create(tr)
-            self.attr_ast_factory.make_astroot(current_ast, tr_ast)
-            match(TOKEN_REF)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(tr_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, ARG_ACTION, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ARG_ACTION
-                tmp73_ast = nil
-                tmp73_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.add_astchild(current_ast, tmp73_ast)
-                match(ARG_ACTION)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp74_ast = nil
-                tmp74_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp74_ast)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp75_ast = nil
-                tmp75_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp75_ast)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp75_ast_ = nil
-                tmp75_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp75_ast_)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp76_ast = nil
-                tmp76_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp76_ast)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp77_ast = nil
-                tmp77_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp77_ast)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp77_ast_ = nil
-                tmp77_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp77_ast_)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            wi = _lt(1)
-            wi_ast = self.attr_ast_factory.create(wi)
-            self.attr_ast_factory.add_astchild(current_ast, wi_ast)
-            match(WILDCARD)
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp78_ast = nil
-                tmp78_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp78_ast)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp79_ast = nil
-                tmp79_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp79_ast_ = nil
-                tmp79_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast_)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when TOKEN_REF
-            tr = _lt(1)
-            tr_ast = self.attr_ast_factory.create(tr)
-            self.attr_ast_factory.make_astroot(current_ast, tr_ast)
-            match(TOKEN_REF)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(tr_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, ARG_ACTION, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ARG_ACTION
-                tmp73_ast_ = nil
-                tmp73_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.add_astchild(current_ast, tmp73_ast_)
-                match(ARG_ACTION)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp74_ast_ = nil
-                tmp74_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp74_ast_)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp75_ast__ = nil
-                tmp75_ast__ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp75_ast__)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp75_ast___ = nil
-                tmp75_ast___ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp75_ast___)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp76_ast_ = nil
-                tmp76_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp76_ast_)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp77_ast__ = nil
-                tmp77_ast__ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp77_ast__)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp77_ast___ = nil
-                tmp77_ast___ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp77_ast___)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            wi = _lt(1)
-            wi_ast = self.attr_ast_factory.create(wi)
-            self.attr_ast_factory.add_astchild(current_ast, wi_ast)
-            match(WILDCARD)
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp78_ast_ = nil
-                tmp78_ast_ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp78_ast_)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp79_ast__ = nil
-                tmp79_ast__ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast__)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp79_ast___ = nil
-                tmp79_ast___ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast___)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STRING_LITERAL
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp76_ast__ = nil
-                tmp76_ast__ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp76_ast__)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp77_ast____ = nil
-                tmp77_ast____ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp77_ast____)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp77_ast_____ = nil
-                tmp77_ast_____ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp77_ast_____)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            wi = _lt(1)
-            wi_ast = self.attr_ast_factory.create(wi)
-            self.attr_ast_factory.add_astchild(current_ast, wi_ast)
-            match(WILDCARD)
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp78_ast__ = nil
-                tmp78_ast__ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp78_ast__)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp79_ast____ = nil
-                tmp79_ast____ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast____)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp79_ast_____ = nil
-                tmp79_ast_____ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast_____)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when WILDCARD
-            wi = _lt(1)
-            wi_ast = self.attr_ast_factory.create(wi)
-            self.attr_ast_factory.add_astchild(current_ast, wi_ast)
-            match(WILDCARD)
-            catch(:break_case) do
-              case (_la(1))
-              when ROOT
-                tmp78_ast___ = nil
-                tmp78_ast___ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp78_ast___)
-                match(ROOT)
-                throw :break_case, :thrown
-                tmp79_ast______ = nil
-                tmp79_ast______ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast______)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when BANG
-                tmp79_ast_______ = nil
-                tmp79_ast_______ = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.make_astroot(current_ast, tmp79_ast_______)
-                match(BANG)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+          when OPEN_ELEMENT_OPTION
+            element_options(cl_ast)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
           else
             raise NoViableAltException.new(_lt(1), get_filename)
           end
+          case (_la(1))
+          when ROOT
+            tmp71_ast = nil
+            tmp71_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp71_ast)
+            match(ROOT)
+          when BANG
+            tmp72_ast = nil
+            tmp72_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp72_ast)
+            match(BANG)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          terminal_ast = current_ast.attr_root
+        when TOKEN_REF
+          tr = _lt(1)
+          tr_ast = self.attr_ast_factory.create(tr)
+          self.attr_ast_factory.make_astroot(current_ast, tr_ast)
+          match(TOKEN_REF)
+          case (_la(1))
+          when OPEN_ELEMENT_OPTION
+            element_options(tr_ast)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, ARG_ACTION, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          case (_la(1))
+          when ARG_ACTION
+            tmp73_ast = nil
+            tmp73_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.add_astchild(current_ast, tmp73_ast)
+            match(ARG_ACTION)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          case (_la(1))
+          when ROOT
+            tmp74_ast = nil
+            tmp74_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp74_ast)
+            match(ROOT)
+          when BANG
+            tmp75_ast = nil
+            tmp75_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp75_ast)
+            match(BANG)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          terminal_ast = current_ast.attr_root
+        when STRING_LITERAL
+          sl = _lt(1)
+          sl_ast = self.attr_ast_factory.create(sl)
+          self.attr_ast_factory.make_astroot(current_ast, sl_ast)
+          match(STRING_LITERAL)
+          case (_la(1))
+          when OPEN_ELEMENT_OPTION
+            element_options(sl_ast)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          case (_la(1))
+          when ROOT
+            tmp76_ast = nil
+            tmp76_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp76_ast)
+            match(ROOT)
+          when BANG
+            tmp77_ast = nil
+            tmp77_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp77_ast)
+            match(BANG)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          terminal_ast = current_ast.attr_root
+        when WILDCARD
+          wi = _lt(1)
+          wi_ast = self.attr_ast_factory.create(wi)
+          self.attr_ast_factory.add_astchild(current_ast, wi_ast)
+          match(WILDCARD)
+          case (_la(1))
+          when ROOT
+            tmp78_ast = nil
+            tmp78_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp78_ast)
+            match(ROOT)
+          when BANG
+            tmp79_ast = nil
+            tmp79_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.make_astroot(current_ast, tmp79_ast)
+            match(BANG)
+          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          terminal_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3836,52 +2211,30 @@ module Org::Antlr::Tool
         rr_ast = self.attr_ast_factory.create(rr)
         self.attr_ast_factory.make_astroot(current_ast, rr_ast)
         match(RULE_REF)
-        catch(:break_case) do
-          case (_la(1))
-          when ARG_ACTION
-            tmp80_ast = nil
-            tmp80_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp80_ast)
-            match(ARG_ACTION)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when ARG_ACTION
+          tmp80_ast = nil
+          tmp80_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp80_ast)
+          match(ARG_ACTION)
+        when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, BANG, LPAREN, OR, RPAREN, SEMPRED, ROOT, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
-        catch(:break_case) do
-          case (_la(1))
-          when ROOT
-            tmp81_ast = nil
-            tmp81_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.make_astroot(current_ast, tmp81_ast)
-            match(ROOT)
-            throw :break_case, :thrown
-            tmp82_ast = nil
-            tmp82_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.make_astroot(current_ast, tmp82_ast)
-            match(BANG)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when BANG
-            tmp82_ast_ = nil
-            tmp82_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.make_astroot(current_ast, tmp82_ast_)
-            match(BANG)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when ROOT
+          tmp81_ast = nil
+          tmp81_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.make_astroot(current_ast, tmp81_ast)
+          match(ROOT)
+        when BANG
+          tmp82_ast = nil
+          tmp82_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.make_astroot(current_ast, tmp82_ast)
+          match(BANG)
+        when FORCED_ACTION, ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, SEMPRED, WILDCARD, RULE_REF, NOT, TREE_BEGIN, QUESTION, PLUS, REWRITE
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         ruleref_ast = current_ast.attr_root
       rescue RecognitionException => ex
@@ -3907,24 +2260,15 @@ module Org::Antlr::Tool
         n_ast = self.attr_ast_factory.create(n)
         self.attr_ast_factory.make_astroot(current_ast, n_ast)
         match(NOT)
-        catch(:break_case) do
-          case (_la(1))
-          when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF
-            not_terminal
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            block
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LPAREN
-            block
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF
+          not_terminal
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+        when LPAREN
+          block
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         not_set_ast = current_ast.attr_root
         not_set_ast.set_line(line)
@@ -3947,54 +2291,28 @@ module Org::Antlr::Tool
       tr = nil
       tr_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when CHAR_LITERAL
-            cl = _lt(1)
-            cl_ast = self.attr_ast_factory.create(cl)
-            self.attr_ast_factory.add_astchild(current_ast, cl_ast)
-            match(CHAR_LITERAL)
-            not_terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            tr = _lt(1)
-            tr_ast = self.attr_ast_factory.create(tr)
-            self.attr_ast_factory.add_astchild(current_ast, tr_ast)
-            match(TOKEN_REF)
-            not_terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            tmp83_ast = nil
-            tmp83_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp83_ast)
-            match(STRING_LITERAL)
-            not_terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when TOKEN_REF
-            tr = _lt(1)
-            tr_ast = self.attr_ast_factory.create(tr)
-            self.attr_ast_factory.add_astchild(current_ast, tr_ast)
-            match(TOKEN_REF)
-            not_terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            tmp83_ast_ = nil
-            tmp83_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp83_ast_)
-            match(STRING_LITERAL)
-            not_terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STRING_LITERAL
-            tmp83_ast__ = nil
-            tmp83_ast__ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp83_ast__)
-            match(STRING_LITERAL)
-            not_terminal_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when CHAR_LITERAL
+          cl = _lt(1)
+          cl_ast = self.attr_ast_factory.create(cl)
+          self.attr_ast_factory.add_astchild(current_ast, cl_ast)
+          match(CHAR_LITERAL)
+          not_terminal_ast = current_ast.attr_root
+        when TOKEN_REF
+          tr = _lt(1)
+          tr_ast = self.attr_ast_factory.create(tr)
+          self.attr_ast_factory.add_astchild(current_ast, tr_ast)
+          match(TOKEN_REF)
+          not_terminal_ast = current_ast.attr_root
+        when STRING_LITERAL
+          tmp83_ast = nil
+          tmp83_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp83_ast)
+          match(STRING_LITERAL)
+          not_terminal_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -4104,29 +2422,18 @@ module Org::Antlr::Tool
         tmp90_ast = self.attr_ast_factory.create(_lt(1))
         self.attr_ast_factory.make_astroot(current_ast, tmp90_ast)
         match(ASSIGN)
-        catch(:break_case) do
-          case (_la(1))
-          when TOKEN_REF, RULE_REF
-            id
-            b_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            throw :break_case, :thrown
-            s = _lt(1)
-            s_ast = self.attr_ast_factory.create(s)
-            self.attr_ast_factory.add_astchild(current_ast, s_ast)
-            match(STRING_LITERAL)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STRING_LITERAL
-            s = _lt(1)
-            s_ast = self.attr_ast_factory.create(s)
-            self.attr_ast_factory.add_astchild(current_ast, s_ast)
-            match(STRING_LITERAL)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when TOKEN_REF, RULE_REF
+          id
+          b_ast = self.attr_return_ast
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+        when STRING_LITERAL
+          s = _lt(1)
+          s_ast = self.attr_ast_factory.create(s)
+          self.attr_ast_factory.add_astchild(current_ast, s_ast)
+          match(STRING_LITERAL)
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         v = (!(b_ast).nil?) ? b_ast.get_text : s_ast.get_text
         terminal_ast.set_terminal_option(@grammar, a_ast.get_text, v)
@@ -4255,123 +2562,41 @@ module Org::Antlr::Tool
       rewrite_template_ast = nil
       st = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when LPAREN
-            rewrite_indirect_template_head
+        # for error handling
+        case (_la(1))
+        when LPAREN
+          rewrite_indirect_template_head
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          rewrite_template_ast = current_ast.attr_root
+        when ACTION
+          tmp93_ast = nil
+          tmp93_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp93_ast)
+          match(ACTION)
+          rewrite_template_ast = current_ast.attr_root
+        else
+          if ((((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF))) && ((_lt(1).get_text == "template")))
+            rewrite_template_head
             self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            rewrite_template_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            tmp93_ast = nil
-            tmp93_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp93_ast)
-            match(ACTION)
-            rewrite_template_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            if ((((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF))) && ((_lt(1).get_text == "template")))
-              rewrite_template_head
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              st = _lt(1)
-              catch(:break_case) do
-                case (_la(1))
-                when DOUBLE_QUOTE_STRING_LITERAL
-                  match(DOUBLE_QUOTE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  match(DOUBLE_ANGLE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when DOUBLE_ANGLE_STRING_LITERAL
-                  match(DOUBLE_ANGLE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              rewrite_template_ast = current_ast.attr_root
-              rewrite_template_ast.add_child(self.attr_ast_factory.create(st))
-              rewrite_template_ast = current_ast.attr_root
+            st = _lt(1)
+            case (_la(1))
+            when DOUBLE_QUOTE_STRING_LITERAL
+              match(DOUBLE_QUOTE_STRING_LITERAL)
+            when DOUBLE_ANGLE_STRING_LITERAL
+              match(DOUBLE_ANGLE_STRING_LITERAL)
             else
-              if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF)))
-                rewrite_template_head
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_template_ast = current_ast.attr_root
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
+              raise NoViableAltException.new(_lt(1), get_filename)
             end
-          when ACTION
-            tmp93_ast_ = nil
-            tmp93_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp93_ast_)
-            match(ACTION)
             rewrite_template_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            if ((((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF))) && ((_lt(1).get_text == "template")))
-              rewrite_template_head
-              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              st = _lt(1)
-              catch(:break_case) do
-                case (_la(1))
-                when DOUBLE_QUOTE_STRING_LITERAL
-                  match(DOUBLE_QUOTE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  match(DOUBLE_ANGLE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when DOUBLE_ANGLE_STRING_LITERAL
-                  match(DOUBLE_ANGLE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              rewrite_template_ast = current_ast.attr_root
-              rewrite_template_ast.add_child(self.attr_ast_factory.create(st))
-              rewrite_template_ast = current_ast.attr_root
-            else
-              if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF)))
-                rewrite_template_head
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_template_ast = current_ast.attr_root
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
+            rewrite_template_ast.add_child(self.attr_ast_factory.create(st))
+            rewrite_template_ast = current_ast.attr_root
           else
-            if ((((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF))) && ((_lt(1).get_text == "template")))
+            if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF)))
               rewrite_template_head
               self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              st = _lt(1)
-              catch(:break_case) do
-                case (_la(1))
-                when DOUBLE_QUOTE_STRING_LITERAL
-                  match(DOUBLE_QUOTE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  match(DOUBLE_ANGLE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                when DOUBLE_ANGLE_STRING_LITERAL
-                  match(DOUBLE_ANGLE_STRING_LITERAL)
-                  throw :break_case, :thrown
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                else
-                  raise NoViableAltException.new(_lt(1), get_filename)
-                end
-              end
-              rewrite_template_ast = current_ast.attr_root
-              rewrite_template_ast.add_child(self.attr_ast_factory.create(st))
               rewrite_template_ast = current_ast.attr_root
             else
-              if (((_la(1)).equal?(TOKEN_REF) || (_la(1)).equal?(RULE_REF)) && ((_la(2)).equal?(LPAREN)) && ((_la(3)).equal?(TOKEN_REF) || (_la(3)).equal?(RPAREN) || (_la(3)).equal?(RULE_REF)))
-                rewrite_template_head
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_template_ast = current_ast.attr_root
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
+              raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
         end
@@ -4391,126 +2616,50 @@ module Org::Antlr::Tool
       tr_ast = nil
       subrule = nil
       begin
-        catch(:break_case) do
-          # for error handling
+        # for error handling
+        case (_la(1))
+        when ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF, DOLLAR
+          rewrite_atom
+          t_ast = self.attr_return_ast
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
           case (_la(1))
-          when ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF, DOLLAR
-            rewrite_atom
-            t_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            catch(:break_case) do
-              case (_la(1))
-              when STAR, QUESTION, PLUS
-                subrule = ebnf_suffix(t_ast, true)
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_element_ast = current_ast.attr_root
-                rewrite_element_ast = subrule
-                current_ast.attr_root = rewrite_element_ast
-                current_ast.attr_child = !(rewrite_element_ast).nil? && !(rewrite_element_ast.get_first_child).nil? ? rewrite_element_ast.get_first_child : rewrite_element_ast
-                current_ast.advance_child_to_end
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_element_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            rewrite_ebnf
+          when STAR, QUESTION, PLUS
+            subrule = ebnf_suffix(t_ast, true)
             self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
             rewrite_element_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            rewrite_tree
-            tr_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            catch(:break_case) do
-              case (_la(1))
-              when STAR, QUESTION, PLUS
-                subrule = ebnf_suffix(tr_ast, true)
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_element_ast = current_ast.attr_root
-                rewrite_element_ast = subrule
-                current_ast.attr_root = rewrite_element_ast
-                current_ast.attr_child = !(rewrite_element_ast).nil? && !(rewrite_element_ast.get_first_child).nil? ? rewrite_element_ast.get_first_child : rewrite_element_ast
-                current_ast.advance_child_to_end
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_element_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when LPAREN
-            rewrite_ebnf
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            rewrite_element_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            rewrite_tree
-            tr_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            catch(:break_case) do
-              case (_la(1))
-              when STAR, QUESTION, PLUS
-                subrule = ebnf_suffix(tr_ast, true)
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_element_ast = current_ast.attr_root
-                rewrite_element_ast = subrule
-                current_ast.attr_root = rewrite_element_ast
-                current_ast.attr_child = !(rewrite_element_ast).nil? && !(rewrite_element_ast.get_first_child).nil? ? rewrite_element_ast.get_first_child : rewrite_element_ast
-                current_ast.advance_child_to_end
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_element_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when TREE_BEGIN
-            rewrite_tree
-            tr_ast = self.attr_return_ast
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            catch(:break_case) do
-              case (_la(1))
-              when STAR, QUESTION, PLUS
-                subrule = ebnf_suffix(tr_ast, true)
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-                rewrite_element_ast = current_ast.attr_root
-                rewrite_element_ast = subrule
-                current_ast.attr_root = rewrite_element_ast
-                current_ast.attr_child = !(rewrite_element_ast).nil? && !(rewrite_element_ast.get_first_child).nil? ? rewrite_element_ast.get_first_child : rewrite_element_ast
-                current_ast.advance_child_to_end
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_element_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+            rewrite_element_ast = subrule
+            current_ast.attr_root = rewrite_element_ast
+            current_ast.attr_child = !(rewrite_element_ast).nil? && !(rewrite_element_ast.get_first_child).nil? ? rewrite_element_ast.get_first_child : rewrite_element_ast
+            current_ast.advance_child_to_end
+          when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, REWRITE, DOLLAR
           else
             raise NoViableAltException.new(_lt(1), get_filename)
           end
+          rewrite_element_ast = current_ast.attr_root
+        when LPAREN
+          rewrite_ebnf
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          rewrite_element_ast = current_ast.attr_root
+        when TREE_BEGIN
+          rewrite_tree
+          tr_ast = self.attr_return_ast
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          case (_la(1))
+          when STAR, QUESTION, PLUS
+            subrule = ebnf_suffix(tr_ast, true)
+            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+            rewrite_element_ast = current_ast.attr_root
+            rewrite_element_ast = subrule
+            current_ast.attr_root = rewrite_element_ast
+            current_ast.attr_child = !(rewrite_element_ast).nil? && !(rewrite_element_ast.get_first_child).nil? ? rewrite_element_ast.get_first_child : rewrite_element_ast
+            current_ast.advance_child_to_end
+          when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, REWRITE, DOLLAR
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          rewrite_element_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -4537,314 +2686,84 @@ module Org::Antlr::Tool
       i_ast = nil
       subrule = nil
       begin
-        catch(:break_case) do
-          # for error handling
+        # for error handling
+        case (_la(1))
+        when TOKEN_REF
+          tr = _lt(1)
+          tr_ast = self.attr_ast_factory.create(tr)
+          self.attr_ast_factory.make_astroot(current_ast, tr_ast)
+          match(TOKEN_REF)
           case (_la(1))
-          when TOKEN_REF
-            tr = _lt(1)
-            tr_ast = self.attr_ast_factory.create(tr)
-            self.attr_ast_factory.make_astroot(current_ast, tr_ast)
-            match(TOKEN_REF)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(tr_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, ARG_ACTION, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            catch(:break_case) do
-              case (_la(1))
-              when ARG_ACTION
-                tmp96_ast = nil
-                tmp96_ast = self.attr_ast_factory.create(_lt(1))
-                self.attr_ast_factory.add_astchild(current_ast, tmp96_ast)
-                match(ARG_ACTION)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            rr = _lt(1)
-            rr_ast = self.attr_ast_factory.create(rr)
-            self.attr_ast_factory.add_astchild(current_ast, rr_ast)
-            match(RULE_REF)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            cl = _lt(1)
-            cl_ast = self.attr_ast_factory.create(cl)
-            self.attr_ast_factory.make_astroot(current_ast, cl_ast)
-            match(CHAR_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(cl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            d = _lt(1)
-            d_ast = self.attr_ast_factory.create(d)
-            match(DOLLAR)
-            id
-            i_ast = self.attr_return_ast
-            rewrite_atom_ast = current_ast.attr_root
-            rewrite_atom_ast = self.attr_ast_factory.create(LABEL, i_ast.get_text)
-            rewrite_atom_ast.set_line(d_ast.get_line)
-            rewrite_atom_ast.set_column(d_ast.get_column)
-            current_ast.attr_root = rewrite_atom_ast
-            current_ast.attr_child = !(rewrite_atom_ast).nil? && !(rewrite_atom_ast.get_first_child).nil? ? rewrite_atom_ast.get_first_child : rewrite_atom_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp97_ast = nil
-            tmp97_ast = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp97_ast)
-            match(ACTION)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when RULE_REF
-            rr = _lt(1)
-            rr_ast = self.attr_ast_factory.create(rr)
-            self.attr_ast_factory.add_astchild(current_ast, rr_ast)
-            match(RULE_REF)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            cl = _lt(1)
-            cl_ast = self.attr_ast_factory.create(cl)
-            self.attr_ast_factory.make_astroot(current_ast, cl_ast)
-            match(CHAR_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(cl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            d = _lt(1)
-            d_ast = self.attr_ast_factory.create(d)
-            match(DOLLAR)
-            id
-            i_ast = self.attr_return_ast
-            rewrite_atom_ast = current_ast.attr_root
-            rewrite_atom_ast = self.attr_ast_factory.create(LABEL, i_ast.get_text)
-            rewrite_atom_ast.set_line(d_ast.get_line)
-            rewrite_atom_ast.set_column(d_ast.get_column)
-            current_ast.attr_root = rewrite_atom_ast
-            current_ast.attr_child = !(rewrite_atom_ast).nil? && !(rewrite_atom_ast.get_first_child).nil? ? rewrite_atom_ast.get_first_child : rewrite_atom_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp97_ast_ = nil
-            tmp97_ast_ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp97_ast_)
-            match(ACTION)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when CHAR_LITERAL
-            cl = _lt(1)
-            cl_ast = self.attr_ast_factory.create(cl)
-            self.attr_ast_factory.make_astroot(current_ast, cl_ast)
-            match(CHAR_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(cl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            d = _lt(1)
-            d_ast = self.attr_ast_factory.create(d)
-            match(DOLLAR)
-            id
-            i_ast = self.attr_return_ast
-            rewrite_atom_ast = current_ast.attr_root
-            rewrite_atom_ast = self.attr_ast_factory.create(LABEL, i_ast.get_text)
-            rewrite_atom_ast.set_line(d_ast.get_line)
-            rewrite_atom_ast.set_column(d_ast.get_column)
-            current_ast.attr_root = rewrite_atom_ast
-            current_ast.attr_child = !(rewrite_atom_ast).nil? && !(rewrite_atom_ast.get_first_child).nil? ? rewrite_atom_ast.get_first_child : rewrite_atom_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp97_ast__ = nil
-            tmp97_ast__ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp97_ast__)
-            match(ACTION)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STRING_LITERAL
-            sl = _lt(1)
-            sl_ast = self.attr_ast_factory.create(sl)
-            self.attr_ast_factory.make_astroot(current_ast, sl_ast)
-            match(STRING_LITERAL)
-            catch(:break_case) do
-              case (_la(1))
-              when OPEN_ELEMENT_OPTION
-                element_options(sl_ast)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_lt(1), get_filename)
-              else
-                raise NoViableAltException.new(_lt(1), get_filename)
-              end
-            end
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            d = _lt(1)
-            d_ast = self.attr_ast_factory.create(d)
-            match(DOLLAR)
-            id
-            i_ast = self.attr_return_ast
-            rewrite_atom_ast = current_ast.attr_root
-            rewrite_atom_ast = self.attr_ast_factory.create(LABEL, i_ast.get_text)
-            rewrite_atom_ast.set_line(d_ast.get_line)
-            rewrite_atom_ast.set_column(d_ast.get_column)
-            current_ast.attr_root = rewrite_atom_ast
-            current_ast.attr_child = !(rewrite_atom_ast).nil? && !(rewrite_atom_ast.get_first_child).nil? ? rewrite_atom_ast.get_first_child : rewrite_atom_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp97_ast___ = nil
-            tmp97_ast___ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp97_ast___)
-            match(ACTION)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when DOLLAR
-            d = _lt(1)
-            d_ast = self.attr_ast_factory.create(d)
-            match(DOLLAR)
-            id
-            i_ast = self.attr_return_ast
-            rewrite_atom_ast = current_ast.attr_root
-            rewrite_atom_ast = self.attr_ast_factory.create(LABEL, i_ast.get_text)
-            rewrite_atom_ast.set_line(d_ast.get_line)
-            rewrite_atom_ast.set_column(d_ast.get_column)
-            current_ast.attr_root = rewrite_atom_ast
-            current_ast.attr_child = !(rewrite_atom_ast).nil? && !(rewrite_atom_ast.get_first_child).nil? ? rewrite_atom_ast.get_first_child : rewrite_atom_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp97_ast____ = nil
-            tmp97_ast____ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp97_ast____)
-            match(ACTION)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when ACTION
-            tmp97_ast_____ = nil
-            tmp97_ast_____ = self.attr_ast_factory.create(_lt(1))
-            self.attr_ast_factory.add_astchild(current_ast, tmp97_ast_____)
-            match(ACTION)
-            rewrite_atom_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
+          when OPEN_ELEMENT_OPTION
+            element_options(tr_ast)
+          when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, ARG_ACTION, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
           else
             raise NoViableAltException.new(_lt(1), get_filename)
           end
+          case (_la(1))
+          when ARG_ACTION
+            tmp96_ast = nil
+            tmp96_ast = self.attr_ast_factory.create(_lt(1))
+            self.attr_ast_factory.add_astchild(current_ast, tmp96_ast)
+            match(ARG_ACTION)
+          when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          rewrite_atom_ast = current_ast.attr_root
+        when RULE_REF
+          rr = _lt(1)
+          rr_ast = self.attr_ast_factory.create(rr)
+          self.attr_ast_factory.add_astchild(current_ast, rr_ast)
+          match(RULE_REF)
+          rewrite_atom_ast = current_ast.attr_root
+        when CHAR_LITERAL
+          cl = _lt(1)
+          cl_ast = self.attr_ast_factory.create(cl)
+          self.attr_ast_factory.make_astroot(current_ast, cl_ast)
+          match(CHAR_LITERAL)
+          case (_la(1))
+          when OPEN_ELEMENT_OPTION
+            element_options(cl_ast)
+          when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          rewrite_atom_ast = current_ast.attr_root
+        when STRING_LITERAL
+          sl = _lt(1)
+          sl_ast = self.attr_ast_factory.create(sl)
+          self.attr_ast_factory.make_astroot(current_ast, sl_ast)
+          match(STRING_LITERAL)
+          case (_la(1))
+          when OPEN_ELEMENT_OPTION
+            element_options(sl_ast)
+          when ACTION, SEMI, STRING_LITERAL, CHAR_LITERAL, STAR, TOKEN_REF, LPAREN, OR, RPAREN, RULE_REF, TREE_BEGIN, QUESTION, PLUS, REWRITE, DOLLAR
+          else
+            raise NoViableAltException.new(_lt(1), get_filename)
+          end
+          rewrite_atom_ast = current_ast.attr_root
+        when DOLLAR
+          d = _lt(1)
+          d_ast = self.attr_ast_factory.create(d)
+          match(DOLLAR)
+          id
+          i_ast = self.attr_return_ast
+          rewrite_atom_ast = current_ast.attr_root
+          rewrite_atom_ast = self.attr_ast_factory.create(LABEL, i_ast.get_text)
+          rewrite_atom_ast.set_line(d_ast.get_line)
+          rewrite_atom_ast.set_column(d_ast.get_column)
+          current_ast.attr_root = rewrite_atom_ast
+          current_ast.attr_child = !(rewrite_atom_ast).nil? && !(rewrite_atom_ast.get_first_child).nil? ? rewrite_atom_ast.get_first_child : rewrite_atom_ast
+          current_ast.advance_child_to_end
+        when ACTION
+          tmp97_ast = nil
+          tmp97_ast = self.attr_ast_factory.create(_lt(1))
+          self.attr_ast_factory.add_astchild(current_ast, tmp97_ast)
+          match(ACTION)
+          rewrite_atom_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -4865,71 +2784,36 @@ module Org::Antlr::Tool
         # for error handling
         rewrite_block
         b_ast = self.attr_return_ast
-        catch(:break_case) do
-          case (_la(1))
-          when QUESTION
-            tmp98_ast = nil
-            tmp98_ast = self.attr_ast_factory.create(_lt(1))
-            match(QUESTION)
-            rewrite_ebnf_ast = current_ast.attr_root
-            rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(OPTIONAL, "?")).add(b_ast))
-            current_ast.attr_root = rewrite_ebnf_ast
-            current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp99_ast = nil
-            tmp99_ast = self.attr_ast_factory.create(_lt(1))
-            match(STAR)
-            rewrite_ebnf_ast = current_ast.attr_root
-            rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(CLOSURE, "*")).add(b_ast))
-            current_ast.attr_root = rewrite_ebnf_ast
-            current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp100_ast = nil
-            tmp100_ast = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            rewrite_ebnf_ast = current_ast.attr_root
-            rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
-            current_ast.attr_root = rewrite_ebnf_ast
-            current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when STAR
-            tmp99_ast_ = nil
-            tmp99_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(STAR)
-            rewrite_ebnf_ast = current_ast.attr_root
-            rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(CLOSURE, "*")).add(b_ast))
-            current_ast.attr_root = rewrite_ebnf_ast
-            current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            tmp100_ast_ = nil
-            tmp100_ast_ = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            rewrite_ebnf_ast = current_ast.attr_root
-            rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
-            current_ast.attr_root = rewrite_ebnf_ast
-            current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when PLUS
-            tmp100_ast__ = nil
-            tmp100_ast__ = self.attr_ast_factory.create(_lt(1))
-            match(PLUS)
-            rewrite_ebnf_ast = current_ast.attr_root
-            rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
-            current_ast.attr_root = rewrite_ebnf_ast
-            current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
-            current_ast.advance_child_to_end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        case (_la(1))
+        when QUESTION
+          tmp98_ast = nil
+          tmp98_ast = self.attr_ast_factory.create(_lt(1))
+          match(QUESTION)
+          rewrite_ebnf_ast = current_ast.attr_root
+          rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(OPTIONAL, "?")).add(b_ast))
+          current_ast.attr_root = rewrite_ebnf_ast
+          current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
+          current_ast.advance_child_to_end
+        when STAR
+          tmp99_ast = nil
+          tmp99_ast = self.attr_ast_factory.create(_lt(1))
+          match(STAR)
+          rewrite_ebnf_ast = current_ast.attr_root
+          rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(CLOSURE, "*")).add(b_ast))
+          current_ast.attr_root = rewrite_ebnf_ast
+          current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
+          current_ast.advance_child_to_end
+        when PLUS
+          tmp100_ast = nil
+          tmp100_ast = self.attr_ast_factory.create(_lt(1))
+          match(PLUS)
+          rewrite_ebnf_ast = current_ast.attr_root
+          rewrite_ebnf_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(POSITIVE_CLOSURE, "+")).add(b_ast))
+          current_ast.attr_root = rewrite_ebnf_ast
+          current_ast.attr_child = !(rewrite_ebnf_ast).nil? && !(rewrite_ebnf_ast.get_first_child).nil? ? rewrite_ebnf_ast.get_first_child : rewrite_ebnf_ast
+          current_ast.advance_child_to_end
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
         rewrite_ebnf_ast = current_ast.attr_root
         rewrite_ebnf_ast.set_line(line)
@@ -5039,48 +2923,35 @@ module Org::Antlr::Tool
       current_ast = ASTPair.new
       rewrite_template_args_ast = nil
       begin
-        catch(:break_case) do
-          # for error handling
-          case (_la(1))
-          when TOKEN_REF, RULE_REF
-            rewrite_template_arg
-            self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            begin
-              if (((_la(1)).equal?(COMMA)))
-                match(COMMA)
-                rewrite_template_arg
-                self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-              else
-                break
-              end
-            end while (true)
-            rewrite_template_args_ast = current_ast.attr_root
-            rewrite_template_args_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(ARGLIST, "ARGLIST")).add(rewrite_template_args_ast))
-            current_ast.attr_root = rewrite_template_args_ast
-            current_ast.attr_child = !(rewrite_template_args_ast).nil? && !(rewrite_template_args_ast.get_first_child).nil? ? rewrite_template_args_ast.get_first_child : rewrite_template_args_ast
-            current_ast.advance_child_to_end
-            rewrite_template_args_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            rewrite_template_args_ast = current_ast.attr_root
-            rewrite_template_args_ast = self.attr_ast_factory.create(ARGLIST, "ARGLIST")
-            current_ast.attr_root = rewrite_template_args_ast
-            current_ast.attr_child = !(rewrite_template_args_ast).nil? && !(rewrite_template_args_ast.get_first_child).nil? ? rewrite_template_args_ast.get_first_child : rewrite_template_args_ast
-            current_ast.advance_child_to_end
-            rewrite_template_args_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          when RPAREN
-            rewrite_template_args_ast = current_ast.attr_root
-            rewrite_template_args_ast = self.attr_ast_factory.create(ARGLIST, "ARGLIST")
-            current_ast.attr_root = rewrite_template_args_ast
-            current_ast.attr_child = !(rewrite_template_args_ast).nil? && !(rewrite_template_args_ast.get_first_child).nil? ? rewrite_template_args_ast.get_first_child : rewrite_template_args_ast
-            current_ast.advance_child_to_end
-            rewrite_template_args_ast = current_ast.attr_root
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_lt(1), get_filename)
-          else
-            raise NoViableAltException.new(_lt(1), get_filename)
-          end
+        # for error handling
+        case (_la(1))
+        when TOKEN_REF, RULE_REF
+          rewrite_template_arg
+          self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+          begin
+            if (((_la(1)).equal?(COMMA)))
+              match(COMMA)
+              rewrite_template_arg
+              self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
+            else
+              break
+            end
+          end while (true)
+          rewrite_template_args_ast = current_ast.attr_root
+          rewrite_template_args_ast = self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(ARGLIST, "ARGLIST")).add(rewrite_template_args_ast))
+          current_ast.attr_root = rewrite_template_args_ast
+          current_ast.attr_child = !(rewrite_template_args_ast).nil? && !(rewrite_template_args_ast.get_first_child).nil? ? rewrite_template_args_ast.get_first_child : rewrite_template_args_ast
+          current_ast.advance_child_to_end
+          rewrite_template_args_ast = current_ast.attr_root
+        when RPAREN
+          rewrite_template_args_ast = current_ast.attr_root
+          rewrite_template_args_ast = self.attr_ast_factory.create(ARGLIST, "ARGLIST")
+          current_ast.attr_root = rewrite_template_args_ast
+          current_ast.attr_child = !(rewrite_template_args_ast).nil? && !(rewrite_template_args_ast.get_first_child).nil? ? rewrite_template_args_ast.get_first_child : rewrite_template_args_ast
+          current_ast.advance_child_to_end
+          rewrite_template_args_ast = current_ast.attr_root
+        else
+          raise NoViableAltException.new(_lt(1), get_filename)
         end
       rescue RecognitionException => ex
         report_error(ex)

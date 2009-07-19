@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -608,8 +607,8 @@ module Org::Antlr::Test
         st = StringTokenizer.new(rule_labels_str, ", ")
         rule_labels = HashSet.new
         while (st.has_more_tokens)
-          label_name_ = st.next_token
-          rule_labels.add(label_name_)
+          label_name = st.next_token
+          rule_labels.add(label_name)
         end
       end
       assert_true("token += labels mismatch; " + (token_labels).to_s + "!=" + (r.attr_token_list_labels).to_s, (!(token_labels).nil? && !(r.attr_token_list_labels).nil?) || ((token_labels).nil? && (r.attr_token_list_labels).nil?))
@@ -635,8 +634,8 @@ module Org::Antlr::Test
       # make sure there are not any others (other than <EOF> etc...)
       iter = tokens.iterator
       while iter.has_next
-        token_name_ = iter.next
-        assert_true("unexpected token name " + token_name_, g.get_token_type(token_name_) < Label::MIN_TOKEN_TYPE)
+        token_name = iter.next
+        assert_true("unexpected token name " + token_name, g.get_token_type(token_name) < Label::MIN_TOKEN_TYPE)
       end
       # make sure all expected rules are there
       st = StringTokenizer.new(rules_str, ", ")

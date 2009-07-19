@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -688,7 +687,6 @@ module Org::Antlr::Tool
             if (!(e).nil?)
               System.err.println("exception: " + (e).to_s)
             end
-            # 
             # if ( e!=null ) {
             # e.printStackTrace(System.err);
             # }
@@ -854,7 +852,7 @@ module Org::Antlr::Tool
             begin
               br.close
             rescue IOException => ioe
-              raw_error("cannot close message file " + file_name, ioe_)
+              raw_error("cannot close message file " + file_name, ioe)
             end
           end
         end
@@ -1148,7 +1146,6 @@ module Org::Antlr::Tool
       end
       
       typesig { [Collection] }
-      # 
       # // TODO: we can remove I think.  All detected now with cycles check.
       # public static void leftRecursion(DecisionProbe probe,
       # int alt,

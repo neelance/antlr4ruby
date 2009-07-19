@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -264,8 +263,8 @@ module Org::Antlr
               if (@lib_directory.ends_with("/") || @lib_directory.ends_with("\\"))
                 @lib_directory = (@lib_directory.substring(0, @lib_directory.length - 1)).to_s
               end
-              out_dir_ = JavaFile.new(@lib_directory)
-              if (!out_dir_.exists)
+              out_dir = JavaFile.new(@lib_directory)
+              if (!out_dir.exists)
                 ErrorManager.error(ErrorManager::MSG_DIR_NOT_FOUND, @lib_directory)
                 @lib_directory = "."
               end
@@ -407,7 +406,6 @@ module Org::Antlr
     end
     
     typesig { [] }
-    # 
     # protected void checkForInvalidArguments(String[] args, BitSet cmdLineArgValid) {
     # // check for invalid command line args
     # for (int a = 0; a < args.length; a++) {
@@ -456,8 +454,8 @@ module Org::Antlr
             System.out.println(report.get_analysis_timeout_report)
           end
           if (@profile)
-            report_ = GrammarReport.new(grammar)
-            Stats.write_report(GrammarReport::GRAMMAR_STATS_FILENAME, report_.to_notify_string)
+            report = GrammarReport.new(grammar)
+            Stats.write_report(GrammarReport::GRAMMAR_STATS_FILENAME, report.to_notify_string)
           end
           # now handle the lexer if one was created for a merged spec
           lexer_grammar_str = grammar.get_lexer_grammar
@@ -500,12 +498,12 @@ module Org::Antlr
           end
         rescue IOException => e
           if (exception_when_writing_lexer_file)
-            ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, lexer_grammar_file_name, e_)
+            ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, lexer_grammar_file_name, e)
           else
             ErrorManager.error(ErrorManager::MSG_CANNOT_OPEN_FILE, grammar_file_name)
           end
         rescue Exception => e
-          ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, grammar_file_name, e__)
+          ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, grammar_file_name, e)
         end
         ((i += 1) - 1)
       end

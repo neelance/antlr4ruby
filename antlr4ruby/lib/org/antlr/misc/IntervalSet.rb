@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -37,7 +36,6 @@ module Org::Antlr::Misc
     }
   end
   
-  # 
   # protected void finalize() throws Throwable {
   # super.finalize();
   # System.out.println("size "+intervals.size()+" "+size());
@@ -166,7 +164,6 @@ module Org::Antlr::Misc
     end
     
     typesig { [IntSet] }
-    # 
     # protected void add(Interval addition) {
     # //System.out.println("add "+addition+" to "+intervals.toString());
     # if ( addition.b<addition.a ) {
@@ -264,17 +261,17 @@ module Org::Antlr::Misc
         # from 2nd interval .. nth
         previous_ = @intervals.get(i - 1)
         current = @intervals.get(i)
-        s_ = IntervalSet.of(previous_.attr_b + 1, current.attr_a - 1)
-        a_ = s_.and(vocabulary_is)
-        compl.add_all(a_)
+        s = IntervalSet.of(previous_.attr_b + 1, current.attr_a - 1)
+        a = s.and(vocabulary_is)
+        compl.add_all(a)
         ((i += 1) - 1)
       end
       last = @intervals.get(n - 1)
       # add a range from last.b to maxElement constrained to vocab
       if (last.attr_b < max_element)
-        s__ = IntervalSet.of(last.attr_b + 1, max_element)
-        a__ = s__.and(vocabulary_is)
-        compl.add_all(a__)
+        s = IntervalSet.of(last.attr_b + 1, max_element)
+        a = s.and(vocabulary_is)
+        compl.add_all(a)
       end
       return compl
     end
@@ -518,7 +515,6 @@ module Org::Antlr::Misc
         ((i += 1) - 1)
       end
       return false
-      # 
       # for (ListIterator iter = intervals.listIterator(); iter.hasNext();) {
       # Interval I = (Interval) iter.next();
       # if ( el<I.a ) {

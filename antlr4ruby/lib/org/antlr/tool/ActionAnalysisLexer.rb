@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -247,9 +246,9 @@ module Org::Antlr::Tool
               if (!(@enclosing_rule.get_rule_refs_in_alt(x.get_text, @outer_alt_num)).nil?)
                 # ref to rule referenced in this alt
                 refd_rule_name = ((!(x).nil? ? x.get_text : nil)).to_s
-                refd_rule_ = @grammar.get_rule(refd_rule_name)
-                if (!(refd_rule_).nil?)
-                  scope = refd_rule_.get_local_attribute_scope((!(y).nil? ? y.get_text : nil))
+                refd_rule = @grammar.get_rule(refd_rule_name)
+                if (!(refd_rule).nil?)
+                  scope = refd_rule.get_local_attribute_scope((!(y).nil? ? y.get_text : nil))
                 end
               end
             end
@@ -356,32 +355,34 @@ module Org::Antlr::Tool
           recover(mse)
           raise mse
         end
-        # ActionAnalysis.g:132:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-        begin
-          alt1 = 2
-          la1_0 = self.attr_input._la(1)
-          if (((la1_0 >= Character.new(?0.ord) && la1_0 <= Character.new(?9.ord)) || (la1_0 >= Character.new(?A.ord) && la1_0 <= Character.new(?Z.ord)) || (la1_0).equal?(Character.new(?_.ord)) || (la1_0 >= Character.new(?a.ord) && la1_0 <= Character.new(?z.ord))))
-            alt1 = 1
-          end
-          case (alt1)
-          when 1
-            # ActionAnalysis.g:
-            if ((self.attr_input._la(1) >= Character.new(?0.ord) && self.attr_input._la(1) <= Character.new(?9.ord)) || (self.attr_input._la(1) >= Character.new(?A.ord) && self.attr_input._la(1) <= Character.new(?Z.ord)) || (self.attr_input._la(1)).equal?(Character.new(?_.ord)) || (self.attr_input._la(1) >= Character.new(?a.ord) && self.attr_input._la(1) <= Character.new(?z.ord)))
-              self.attr_input.consume
-              self.attr_state.attr_failed = false
-            else
-              if (self.attr_state.attr_backtracking > 0)
-                self.attr_state.attr_failed = true
-                return
-              end
-              mse_ = MismatchedSetException.new(nil, self.attr_input)
-              recover(mse_)
-              raise mse_
+        catch(:break_loop1) do
+          # ActionAnalysis.g:132:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+          begin
+            alt1 = 2
+            la1_0 = self.attr_input._la(1)
+            if (((la1_0 >= Character.new(?0.ord) && la1_0 <= Character.new(?9.ord)) || (la1_0 >= Character.new(?A.ord) && la1_0 <= Character.new(?Z.ord)) || (la1_0).equal?(Character.new(?_.ord)) || (la1_0 >= Character.new(?a.ord) && la1_0 <= Character.new(?z.ord))))
+              alt1 = 1
             end
-          else
-            break
-          end
-        end while (true)
+            case (alt1)
+            when 1
+              # ActionAnalysis.g:
+              if ((self.attr_input._la(1) >= Character.new(?0.ord) && self.attr_input._la(1) <= Character.new(?9.ord)) || (self.attr_input._la(1) >= Character.new(?A.ord) && self.attr_input._la(1) <= Character.new(?Z.ord)) || (self.attr_input._la(1)).equal?(Character.new(?_.ord)) || (self.attr_input._la(1) >= Character.new(?a.ord) && self.attr_input._la(1) <= Character.new(?z.ord)))
+                self.attr_input.consume
+                self.attr_state.attr_failed = false
+              else
+                if (self.attr_state.attr_backtracking > 0)
+                  self.attr_state.attr_failed = true
+                  return
+                end
+                mse = MismatchedSetException.new(nil, self.attr_input)
+                recover(mse)
+                raise mse
+              end
+            else
+              throw :break_loop1, :thrown
+            end
+          end while (true)
+        end
       ensure
       end
     end
@@ -417,8 +418,8 @@ module Org::Antlr::Tool
           self.attr_state.attr_failed = true
           return
         end
-        nvae_ = NoViableAltException.new("1:1: Tokens options {k=1; backtrack=true; } : ( X_Y | X | Y );", 2, 0, self.attr_input)
-        raise nvae_
+        nvae = NoViableAltException.new("1:1: Tokens options {k=1; backtrack=true; } : ( X_Y | X | Y );", 2, 0, self.attr_input)
+        raise nvae
       end
       case (alt2)
       when 1

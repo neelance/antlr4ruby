@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -79,18 +78,17 @@ module Org::Antlr::Codegen
         dfa_optional_block_state_name = "dfaOptionalBlockStateSwitch"
         dfa_edge_name = "dfaEdgeSwitch"
       end
-      dfa_st_ = templates.get_instance_of(dfa_state_name)
+      dfa_st = templates.get_instance_of(dfa_state_name)
       if ((dfa.get_nfadecision_start_state.attr_decision_state_type).equal?(NFAState::LOOPBACK))
-        dfa_st_ = templates.get_instance_of(dfa_loopback_state_name)
+        dfa_st = templates.get_instance_of(dfa_loopback_state_name)
       else
         if ((dfa.get_nfadecision_start_state.attr_decision_state_type).equal?(NFAState::OPTIONAL_BLOCK_START))
-          dfa_st_ = templates.get_instance_of(dfa_optional_block_state_name)
+          dfa_st = templates.get_instance_of(dfa_optional_block_state_name)
         end
       end
-      dfa_st_.set_attribute("k", Utils.integer(k))
-      dfa_st_.set_attribute("stateNumber", Utils.integer(s.attr_state_number))
-      dfa_st_.set_attribute("semPredState", Boolean.value_of(s.is_resolved_with_predicates))
-      # 
+      dfa_st.set_attribute("k", Utils.integer(k))
+      dfa_st.set_attribute("stateNumber", Utils.integer(s.attr_state_number))
+      dfa_st.set_attribute("semPredState", Boolean.value_of(s.is_resolved_with_predicates))
       # String description = dfa.getNFADecisionStartState().getDescription();
       # description = parentGenerator.target.getTargetStringLiteralFromString(description);
       # //System.out.println("DFA: "+description+" associated with AST "+dfa.getNFADecisionStartState());
@@ -109,7 +107,6 @@ module Org::Antlr::Codegen
           # generate that prediction in the else clause as default case
           eottarget = edge.attr_target
           eotpredicts = eottarget.get_uniquely_predicted_alt
-          # 
           # System.out.println("DFA s"+s.stateNumber+" EOT goes to s"+
           # edge.target.stateNumber+" predicates alt "+
           # EOTPredicts);
@@ -144,13 +141,13 @@ module Org::Antlr::Codegen
         end
         target_st = walk_fixed_dfagenerating_state_machine(templates, dfa, edge.attr_target, k + 1)
         edge_st.set_attribute("targetState", target_st)
-        dfa_st_.set_attribute("edges", edge_st)
+        dfa_st.set_attribute("edges", edge_st)
         ((i += 1) - 1)
       end
       # HANDLE EOT EDGE
       if (!(eotpredicts).equal?(NFA::INVALID_ALT_NUMBER))
         # EOT unique predicts an alt
-        dfa_st_.set_attribute("eotPredictsAlt", Utils.integer(eotpredicts))
+        dfa_st.set_attribute("eotPredictsAlt", Utils.integer(eotpredicts))
       else
         if (!(eottarget).nil? && eottarget.get_number_of_transitions > 0)
           # EOT state has transitions so must split on predicates.
@@ -164,18 +161,18 @@ module Org::Antlr::Codegen
           i_ = 0
           while i_ < eottarget.get_number_of_transitions
             pred_edge = eottarget.transition(i_)
-            edge_st_ = templates.get_instance_of(dfa_edge_name)
-            edge_st_.set_attribute("labelExpr", @parent_generator.gen_semantic_predicate_expr(templates, pred_edge))
+            edge_st = templates.get_instance_of(dfa_edge_name)
+            edge_st.set_attribute("labelExpr", @parent_generator.gen_semantic_predicate_expr(templates, pred_edge))
             # the target must be an accept state
             # System.out.println("EOT edge");
-            target_st_ = walk_fixed_dfagenerating_state_machine(templates, dfa, pred_edge.attr_target, k + 1)
-            edge_st_.set_attribute("targetState", target_st_)
-            dfa_st_.set_attribute("edges", edge_st_)
+            target_st = walk_fixed_dfagenerating_state_machine(templates, dfa, pred_edge.attr_target, k + 1)
+            edge_st.set_attribute("targetState", target_st)
+            dfa_st.set_attribute("edges", edge_st)
             ((i_ += 1) - 1)
           end
         end
       end
-      return dfa_st_
+      return dfa_st
     end
     
     private

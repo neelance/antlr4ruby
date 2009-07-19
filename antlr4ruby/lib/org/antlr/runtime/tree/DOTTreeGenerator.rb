@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -113,7 +112,6 @@ module Org::Antlr::Runtime::Tree
       to_dotdefine_nodes(tree, adaptor, tree_st)
       @node_number = 0
       to_dotdefine_edges(tree, adaptor, tree_st)
-      # 
       # if ( adaptor.getChildCount(tree)==0 ) {
       # // single node, don't do edge.
       # treeST.setAttribute("nodes", adaptor.getText(tree));

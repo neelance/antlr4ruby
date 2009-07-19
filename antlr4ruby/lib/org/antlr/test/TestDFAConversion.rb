@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -1104,10 +1103,10 @@ module Org::Antlr::Test
       # check nondet alts
       if (!(expecting_non_det_alts).nil?)
         rec_msg = nil
-        nondet_msg_ = get_non_determinism_message(equeue.attr_warnings)
+        nondet_msg = get_non_determinism_message(equeue.attr_warnings)
         non_det_alts = nil
-        if (!(nondet_msg_).nil?)
-          non_det_alts = nondet_msg_.attr_probe.get_non_deterministic_alts_for_state(nondet_msg_.attr_problem_state)
+        if (!(nondet_msg).nil?)
+          non_det_alts = nondet_msg.attr_probe.get_non_deterministic_alts_for_state(nondet_msg.attr_problem_state)
         else
           rec_msg = get_recursion_overflow_message(equeue.attr_warnings)
           if (!(rec_msg).nil?)
@@ -1115,16 +1114,16 @@ module Org::Antlr::Test
           end
         end
         # compare nonDetAlts with expectingNonDetAlts
-        s_ = BitSet.new
-        s_.add_all(expecting_non_det_alts)
-        s2_ = BitSet.new
-        s2_.add_all(non_det_alts)
-        assert_equals("nondet alts mismatch", s_, s2_)
-        assert_true("found no nondet alts; expecting: " + (str(expecting_non_det_alts)).to_s, !(nondet_msg_).nil? || !(rec_msg).nil?)
+        s = BitSet.new
+        s.add_all(expecting_non_det_alts)
+        s2 = BitSet.new
+        s2.add_all(non_det_alts)
+        assert_equals("nondet alts mismatch", s, s2)
+        assert_true("found no nondet alts; expecting: " + (str(expecting_non_det_alts)).to_s, !(nondet_msg).nil? || !(rec_msg).nil?)
       else
         # not expecting any nondet alts, make sure there are none
-        nondet_msg__ = get_non_determinism_message(equeue.attr_warnings)
-        assert_null("found nondet alts, but expecting none", nondet_msg__)
+        nondet_msg = get_non_determinism_message(equeue.attr_warnings)
+        assert_null("found nondet alts, but expecting none", nondet_msg)
       end
       assert_equals(expecting, result)
     end

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -39,7 +38,6 @@ module Org::Antlr::Tool
     }
   end
   
-  # 
   # public void minimizeRuleSet() {
   # Set<Rule> refs = _minimizeRuleSet(delegateGrammarTreeRoot);
   # System.out.println("all rule refs: "+refs);
@@ -543,8 +541,8 @@ module Org::Antlr::Tool
       end
       i_ = 0
       while !(grammars).nil? && i_ < grammars.size
-        g_ = grammars.get(i_)
-        g_.check_name_space_and_actions
+        g = grammars.get(i_)
+        g.check_name_space_and_actions
         ((i_ += 1) - 1)
       end
       minimize_rule_set
@@ -566,14 +564,14 @@ module Org::Antlr::Tool
       # System.out.println("### createNFAs for composite; grammars: "+names);
       i_ = 0
       while !(grammars).nil? && i_ < grammars.size
-        g_ = grammars.get(i_)
-        g_.create_rule_start_and_stop_nfastates
+        g = grammars.get(i_)
+        g.create_rule_start_and_stop_nfastates
         ((i_ += 1) - 1)
       end
       i__ = 0
       while !(grammars).nil? && i__ < grammars.size
-        g__ = grammars.get(i__)
-        g__.build_nfa
+        g = grammars.get(i__)
+        g.build_nfa
         ((i__ += 1) - 1)
       end
     end

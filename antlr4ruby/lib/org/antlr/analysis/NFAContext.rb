@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -293,7 +292,6 @@ module Org::Antlr::Analysis
     typesig { [] }
     def hash_code
       return @cached_hash_code
-      # 
       # int h = 0;
       # NFAContext sp = this;
       # while ( sp.parent!=null ) {

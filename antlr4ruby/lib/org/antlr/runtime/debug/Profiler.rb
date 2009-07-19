@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -379,9 +378,9 @@ module Org::Antlr::Runtime::Debug
         @decision_max_cyclic_lookaheads[@num_cyclic_decisions - 1] = @max_lookahead_in_current_decision
       else
         if (@num_fixed_decisions >= @decision_max_fixed_lookaheads.attr_length)
-          bigger_ = Array.typed(::Java::Int).new(@decision_max_fixed_lookaheads.attr_length * 2) { 0 }
-          System.arraycopy(@decision_max_fixed_lookaheads, 0, bigger_, 0, @decision_max_fixed_lookaheads.attr_length)
-          @decision_max_fixed_lookaheads = bigger_
+          bigger = Array.typed(::Java::Int).new(@decision_max_fixed_lookaheads.attr_length * 2) { 0 }
+          System.arraycopy(@decision_max_fixed_lookaheads, 0, bigger, 0, @decision_max_fixed_lookaheads.attr_length)
+          @decision_max_fixed_lookaheads = bigger
         end
         @decision_max_fixed_lookaheads[@num_fixed_decisions - 1] = @max_lookahead_in_current_decision
       end
@@ -419,7 +418,6 @@ module Org::Antlr::Runtime::Debug
         this_ref_index = @parser.get_token_stream.index
         num_hidden = get_number_of_hidden_tokens(starting_index.int_value, this_ref_index)
         depth = i + this_ref_index - starting_index.int_value - num_hidden
-        # 
         # System.out.println("LT("+i+") @ index "+thisRefIndex+" is depth "+depth+
         # " max is "+maxLookaheadInCurrentDecision);
         if (depth > @max_lookahead_in_current_decision)
@@ -456,7 +454,6 @@ module Org::Antlr::Runtime::Debug
     end
     
     typesig { [RecognitionException] }
-    # 
     # public void mark(int marker) {
     # int i = parser.getTokenStream().index();
     # System.out.println("mark @ index "+i);

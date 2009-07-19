@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -226,7 +225,6 @@ module Org::Antlr::Analysis
               generator.attr_grammar.attr_decisions_whose_dfas_uses_sem_preds.add(dfa)
             end
             pred_enclosing_rule_name = @predicate_ast.attr_enclosing_rule_name
-            # 
             # String decisionEnclosingRuleName =
             # dfa.getNFADecisionStartState().getEnclosingRule();
             # // if these rulenames are diff, then pred was hoisted out of rule
@@ -307,7 +305,6 @@ module Org::Antlr::Analysis
         alias_method :initialize__true_predicate, :initialize
       end }
       
-      # 
       # public static class FalsePredicate extends Predicate {
       # public FalsePredicate() {
       # super();
@@ -603,9 +600,9 @@ module Org::Antlr::Analysis
           end
         else
           if (b.is_a?(NOT) && a.is_a?(Predicate))
-            n_ = b
+            n = b
             # check for p||!p
-            if ((n_.attr_ctx == a))
+            if ((n.attr_ctx == a))
               return TruePredicate.new
             end
           else

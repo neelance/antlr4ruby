@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -548,7 +547,7 @@ module Org::Antlr::Analysis
         if (!ok_to_retry_dfawith_k1)
           @probe.issue_warnings
         end
-      rescue NonLLStarDecisionException => nonLL
+      rescue NonLLStarDecisionException => non_ll
         @probe.report_non_llstar_decision(self)
         # >1 alt recurses, k=* and no auto backtrack nor manual sem/syn
         if (!ok_to_retry_dfawith_k1)
@@ -779,7 +778,6 @@ module Org::Antlr::Analysis
     end
     
     typesig { [DFAState] }
-    # 
     # private void testEncodeDecode(List data) {
     # System.out.println("data="+data);
     # List encoded = getRunLengthEncoding(data);
@@ -852,7 +850,6 @@ module Org::Antlr::Analysis
     
     typesig { [DFAState] }
     def create_transition_table_entry_for_state(s)
-      # 
       # System.out.println("createTransitionTableEntryForState s"+s.stateNumber+
       # " dec "+s.dfa.decisionNumber+" cyclic="+s.dfa.isCyclic());
       smax = (@max.get(s.attr_state_number)).int_value
@@ -875,8 +872,8 @@ module Org::Antlr::Analysis
             while a < atoms.attr_length
               # set the transition if the label is valid (don't do EOF)
               if (atoms[a] >= Label::MIN_CHAR_VALUE)
-                label_index_ = atoms[a] - smin # offset from 0
-                state_transitions.set(label_index_, Utils.integer(edge.attr_target.attr_state_number))
+                label_index = atoms[a] - smin # offset from 0
+                state_transitions.set(label_index, Utils.integer(edge.attr_target.attr_state_number))
               end
               ((a += 1) - 1)
             end
@@ -987,7 +984,6 @@ module Org::Antlr::Analysis
       # except its state number?
       existing = @unique_states.get(d)
       if (!(existing).nil?)
-        # 
         # System.out.println("state "+d.stateNumber+" exists as state "+
         # existing.stateNumber);
         # 

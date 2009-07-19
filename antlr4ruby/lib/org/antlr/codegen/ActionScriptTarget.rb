@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -62,7 +61,6 @@ module Org::Antlr::Codegen
     end
     
     typesig { [::Java::Int] }
-    # 
     # ActionScript doesn't support Unicode String literals that are considered "illegal"
     # or are in the surrogate pair ranges.  For example "/uffff" will not encode properly
     # nor will "/ud800".  To keep things as compact as possible we use the following encoding

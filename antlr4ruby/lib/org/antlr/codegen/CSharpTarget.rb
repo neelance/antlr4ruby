@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2006 Kunle Odutola
 # Copyright (c) 2005 Terence Parr

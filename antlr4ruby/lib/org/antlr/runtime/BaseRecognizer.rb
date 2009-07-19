@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -273,33 +272,33 @@ module Org::Antlr::Runtime
       else
         if (e.is_a?(MissingTokenException))
           mte = e
-          token_name_ = "<unknown>"
+          token_name = "<unknown>"
           if ((mte.attr_expecting).equal?(Token::EOF))
-            token_name_ = "EOF"
+            token_name = "EOF"
           else
-            token_name_ = (token_names[mte.attr_expecting]).to_s
+            token_name = (token_names[mte.attr_expecting]).to_s
           end
-          msg = "missing " + token_name_ + " at " + (get_token_error_display(e.attr_token)).to_s
+          msg = "missing " + token_name + " at " + (get_token_error_display(e.attr_token)).to_s
         else
           if (e.is_a?(MismatchedTokenException))
-            mte_ = e
-            token_name__ = "<unknown>"
-            if ((mte_.attr_expecting).equal?(Token::EOF))
-              token_name__ = "EOF"
+            mte = e
+            token_name = "<unknown>"
+            if ((mte.attr_expecting).equal?(Token::EOF))
+              token_name = "EOF"
             else
-              token_name__ = (token_names[mte_.attr_expecting]).to_s
+              token_name = (token_names[mte.attr_expecting]).to_s
             end
-            msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting " + token_name__
+            msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting " + token_name
           else
             if (e.is_a?(MismatchedTreeNodeException))
               mtne = e
-              token_name___ = "<unknown>"
+              token_name = "<unknown>"
               if ((mtne.attr_expecting).equal?(Token::EOF))
-                token_name___ = "EOF"
+                token_name = "EOF"
               else
-                token_name___ = (token_names[mtne.attr_expecting]).to_s
+                token_name = (token_names[mtne.attr_expecting]).to_s
               end
-              msg = "mismatched tree node: " + (mtne.attr_node).to_s + " expecting " + token_name___
+              msg = "mismatched tree node: " + (mtne.attr_node).to_s + " expecting " + token_name
             else
               if (e.is_a?(NoViableAltException))
                 nvae = e
@@ -318,8 +317,8 @@ module Org::Antlr::Runtime
                     msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting set " + (mse.attr_expecting).to_s
                   else
                     if (e.is_a?(MismatchedNotSetException))
-                      mse_ = e
-                      msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting set " + (mse_.attr_expecting).to_s
+                      mse = e
+                      msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting set " + (mse.attr_expecting).to_s
                     else
                       if (e.is_a?(FailedPredicateException))
                         fpe = e
@@ -571,7 +570,6 @@ module Org::Antlr::Runtime
       i = top
       while i >= 0
         local_follow_set = @state.attr_following[i]
-        # 
         # System.out.println("local follow depth "+i+"="+
         # localFollowSet.toString(getTokenNames())+")");
         follow_set.or_in_place(local_follow_set)
@@ -627,7 +625,6 @@ module Org::Antlr::Runtime
       # if next token is what we are looking for then "delete" this token
       if (mismatch_is_unwanted_token(input, ttype))
         e = UnwantedTokenException.new(ttype, input)
-        # 
         # System.err.println("recoverFromMismatchedToken deleting "+
         # ((TokenStream)input).LT(1)+
         # " since "+((TokenStream)input).LT(2)+" is what we want");

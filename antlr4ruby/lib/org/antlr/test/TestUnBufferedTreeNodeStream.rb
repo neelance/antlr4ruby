@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -110,8 +109,8 @@ module Org::Antlr::Test
       i__ = 1
       while i__ <= remaining + wrap_by
         # wrap past end of buffer
-        node_ = stream._lt(i__) # look ahead to ith token
-        assert_equals(n + i__, node_.get_type)
+        node = stream._lt(i__) # look ahead to ith token
+        assert_equals(n + i__, node.get_type)
         ((i__ += 1) - 1)
       end
     end

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -219,7 +218,6 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_error(equeue, expected_message)
-      # 
       # System.out.println(equeue.infos);
       # System.out.println(equeue.warnings);
       # System.out.println(equeue.errors);

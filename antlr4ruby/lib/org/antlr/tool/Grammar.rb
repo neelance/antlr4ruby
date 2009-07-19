@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -1401,7 +1400,6 @@ module Org::Antlr::Tool
       end
       # CHECK FOR LEFT RECURSION; Make sure we can actually do analysis
       check_all_rules_for_left_recursion
-      # 
       # // was there a severe problem while sniffing the grammar?
       # if ( ErrorManager.doNotAttemptAnalysis() ) {
       # return;
@@ -1508,7 +1506,6 @@ module Org::Antlr::Tool
         while i <= num_alts
           j = i + 1
           while j <= num_alts
-            # 
             # System.out.println("compare "+i+", "+j+": "+
             # altLook[i].toString(this)+" with "+
             # altLook[j].toString(this));
@@ -1576,11 +1573,11 @@ module Org::Antlr::Tool
       # System.out.println("edge map: "+edgeMap);
       # TODO: how do we know we covered stuff?
       # build an LL(1) optimized DFA with edge for each altLook[i]
-      lookahead_dfa_ = LL1DFA.new(decision, decision_start_state, edge_map)
-      set_lookahead_dfa(decision, lookahead_dfa_)
+      lookahead_dfa = LL1DFA.new(decision, decision_start_state, edge_map)
+      set_lookahead_dfa(decision, lookahead_dfa)
       # create map from line:col to decision DFA (for ANTLRWorks)
-      update_line_column_to_lookahead_dfamap(lookahead_dfa_)
-      return lookahead_dfa_
+      update_line_column_to_lookahead_dfamap(lookahead_dfa)
+      return lookahead_dfa
     end
     
     typesig { [DFA] }
@@ -1764,7 +1761,6 @@ module Org::Antlr::Tool
         return
       end
       r = Rule.new(self, rule_name, @composite.attr_rule_index, num_alts)
-      # 
       # System.out.println("defineRule("+ruleName+",modifier="+modifier+
       # "): index="+r.index+", nalts="+numAlts);
       r.attr_modifier = modifier
@@ -1813,7 +1809,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [GrammarAST, String, GrammarAST, GrammarAST] }
-    # 
     # public Set<Rule> getRuleNamesVisitedDuringLOOK() {
     # return rulesSensitiveToOtherRules;
     # }
@@ -1957,7 +1952,6 @@ module Org::Antlr::Tool
     typesig { [String] }
     def get_rule(rule_name)
       r = @composite.get_rule(rule_name)
-      # 
       # if ( r!=null && r.grammar != this ) {
       # System.out.println(name+".getRule("+ruleName+")="+r);
       # }
@@ -2155,9 +2149,9 @@ module Org::Antlr::Tool
         named_actions = r.get_actions.values
         it2 = named_actions.iterator
         while it2.has_next
-          action_ast_ = it2.next
-          sniffer_ = ActionAnalysisLexer.new(self, r.attr_name, action_ast_)
-          sniffer_.analyze
+          action_ast = it2.next
+          sniffer = ActionAnalysisLexer.new(self, r.attr_name, action_ast)
+          sniffer.analyze
         end
       end
     end
@@ -2521,7 +2515,7 @@ module Org::Antlr::Tool
           begin
             br.close
           rescue IOException => ioe
-            ErrorManager.error(ErrorManager::MSG_CANNOT_CLOSE_FILE, gname, ioe_)
+            ErrorManager.error(ErrorManager::MSG_CANNOT_CLOSE_FILE, gname, ioe)
           end
         end
       end
@@ -3060,7 +3054,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [] }
-    # 
     # public void setDecisionOptions(int decision, Map options) {
     # Decision d = createDecision(decision);
     # d.options = options;
@@ -3311,7 +3304,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [NFAState] }
-    # 
     # public void computeRuleFOLLOWSets() {
     # if ( getNumberOfDecisions()==0 ) {
     # createNFAs();

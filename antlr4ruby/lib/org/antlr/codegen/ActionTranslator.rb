@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -1428,40 +1427,42 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:635:4: (~ ']' )+
         # ActionTranslator.g:635:4: (~ ']' )+
         cnt6 = 0
-        begin
-          alt6 = 2
-          la6_0 = self.attr_input._la(1)
-          if (((la6_0 >= Character.new(0x0000) && la6_0 <= Character.new(?\\.ord)) || (la6_0 >= Character.new(?^.ord) && la6_0 <= Character.new(0xFFFE))))
-            alt6 = 1
-          end
-          case (alt6)
-          when 1
-            # ActionTranslator.g:635:5: ~ ']'
-            if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?\\.ord)) || (self.attr_input._la(1) >= Character.new(?^.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
-              self.attr_input.consume
-              self.attr_state.attr_failed = false
+        catch(:break_loop6) do
+          begin
+            alt6 = 2
+            la6_0 = self.attr_input._la(1)
+            if (((la6_0 >= Character.new(0x0000) && la6_0 <= Character.new(?\\.ord)) || (la6_0 >= Character.new(?^.ord) && la6_0 <= Character.new(0xFFFE))))
+              alt6 = 1
+            end
+            case (alt6)
+            when 1
+              # ActionTranslator.g:635:5: ~ ']'
+              if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?\\.ord)) || (self.attr_input._la(1) >= Character.new(?^.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
+                self.attr_input.consume
+                self.attr_state.attr_failed = false
+              else
+                if (self.attr_state.attr_backtracking > 0)
+                  self.attr_state.attr_failed = true
+                  return
+                end
+                mse = MismatchedSetException.new(nil, self.attr_input)
+                recover(mse)
+                raise mse
+              end
             else
+              if (cnt6 >= 1)
+                throw :break_loop6, :thrown
+              end
               if (self.attr_state.attr_backtracking > 0)
                 self.attr_state.attr_failed = true
                 return
               end
-              mse = MismatchedSetException.new(nil, self.attr_input)
-              recover(mse)
-              raise mse
+              eee = EarlyExitException.new(6, self.attr_input)
+              raise eee
             end
-          else
-            if (cnt6 >= 1)
-              break
-            end
-            if (self.attr_state.attr_backtracking > 0)
-              self.attr_state.attr_failed = true
-              return
-            end
-            eee = EarlyExitException.new(6, self.attr_input)
-            raise eee
-          end
-          ((cnt6 += 1) - 1)
-        end while (true)
+            ((cnt6 += 1) - 1)
+          end while (true)
+        end
       ensure
       end
     end
@@ -1548,42 +1549,44 @@ module Org::Antlr::Codegen
           if (self.attr_state.attr_failed)
             return
           end
-          # ActionTranslator.g:657:25: ( ',' ( WS )? ARG )*
-          begin
-            alt9 = 2
-            la9_0 = self.attr_input._la(1)
-            if (((la9_0).equal?(Character.new(?,.ord))))
-              alt9 = 1
-            end
-            case (alt9)
-            when 1
-              # ActionTranslator.g:657:26: ',' ( WS )? ARG
-              match(Character.new(?,.ord))
-              if (self.attr_state.attr_failed)
-                return
+          catch(:break_loop9) do
+            # ActionTranslator.g:657:25: ( ',' ( WS )? ARG )*
+            begin
+              alt9 = 2
+              la9_0 = self.attr_input._la(1)
+              if (((la9_0).equal?(Character.new(?,.ord))))
+                alt9 = 1
               end
-              # ActionTranslator.g:657:30: ( WS )?
-              alt8 = 2
-              la8_0 = self.attr_input._la(1)
-              if (((la8_0 >= Character.new(?\t.ord) && la8_0 <= Character.new(?\n.ord)) || (la8_0).equal?(Character.new(?\r.ord)) || (la8_0).equal?(Character.new(?\s.ord))))
-                alt8 = 1
-              end
-              case (alt8)
+              case (alt9)
               when 1
-                # ActionTranslator.g:657:30: WS
-                m_ws
+                # ActionTranslator.g:657:26: ',' ( WS )? ARG
+                match(Character.new(?,.ord))
                 if (self.attr_state.attr_failed)
                   return
                 end
+                # ActionTranslator.g:657:30: ( WS )?
+                alt8 = 2
+                la8_0 = self.attr_input._la(1)
+                if (((la8_0 >= Character.new(?\t.ord) && la8_0 <= Character.new(?\n.ord)) || (la8_0).equal?(Character.new(?\r.ord)) || (la8_0).equal?(Character.new(?\s.ord))))
+                  alt8 = 1
+                end
+                case (alt8)
+                when 1
+                  # ActionTranslator.g:657:30: WS
+                  m_ws
+                  if (self.attr_state.attr_failed)
+                    return
+                  end
+                end
+                m_arg
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              else
+                throw :break_loop9, :thrown
               end
-              m_arg
-              if (self.attr_state.attr_failed)
-                return
-              end
-            else
-              break
-            end
-          end while (true)
+            end while (true)
+          end == :thrown or break
           # ActionTranslator.g:657:40: ( WS )?
           alt10 = 2
           la10_0 = self.attr_input._la(1)
@@ -1674,42 +1677,44 @@ module Org::Antlr::Codegen
           if (self.attr_state.attr_failed)
             return
           end
-          # ActionTranslator.g:678:37: ( ',' ( WS )? ARG )*
-          begin
-            alt14 = 2
-            la14_0 = self.attr_input._la(1)
-            if (((la14_0).equal?(Character.new(?,.ord))))
-              alt14 = 1
-            end
-            case (alt14)
-            when 1
-              # ActionTranslator.g:678:38: ',' ( WS )? ARG
-              match(Character.new(?,.ord))
-              if (self.attr_state.attr_failed)
-                return
+          catch(:break_loop14) do
+            # ActionTranslator.g:678:37: ( ',' ( WS )? ARG )*
+            begin
+              alt14 = 2
+              la14_0 = self.attr_input._la(1)
+              if (((la14_0).equal?(Character.new(?,.ord))))
+                alt14 = 1
               end
-              # ActionTranslator.g:678:42: ( WS )?
-              alt13 = 2
-              la13_0 = self.attr_input._la(1)
-              if (((la13_0 >= Character.new(?\t.ord) && la13_0 <= Character.new(?\n.ord)) || (la13_0).equal?(Character.new(?\r.ord)) || (la13_0).equal?(Character.new(?\s.ord))))
-                alt13 = 1
-              end
-              case (alt13)
+              case (alt14)
               when 1
-                # ActionTranslator.g:678:42: WS
-                m_ws
+                # ActionTranslator.g:678:38: ',' ( WS )? ARG
+                match(Character.new(?,.ord))
                 if (self.attr_state.attr_failed)
                   return
                 end
+                # ActionTranslator.g:678:42: ( WS )?
+                alt13 = 2
+                la13_0 = self.attr_input._la(1)
+                if (((la13_0 >= Character.new(?\t.ord) && la13_0 <= Character.new(?\n.ord)) || (la13_0).equal?(Character.new(?\r.ord)) || (la13_0).equal?(Character.new(?\s.ord))))
+                  alt13 = 1
+                end
+                case (alt13)
+                when 1
+                  # ActionTranslator.g:678:42: WS
+                  m_ws
+                  if (self.attr_state.attr_failed)
+                    return
+                  end
+                end
+                m_arg
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              else
+                throw :break_loop14, :thrown
               end
-              m_arg
-              if (self.attr_state.attr_failed)
-                return
-              end
-            else
-              break
-            end
-          end while (true)
+            end while (true)
+          end == :thrown or break
           # ActionTranslator.g:678:52: ( WS )?
           alt15 = 2
           la15_0 = self.attr_input._la(1)
@@ -1923,32 +1928,34 @@ module Org::Antlr::Codegen
           recover(mse)
           raise mse
         end
-        # ActionTranslator.g:727:9: (~ ';' )*
-        begin
-          alt19 = 2
-          la19_0 = self.attr_input._la(1)
-          if (((la19_0 >= Character.new(0x0000) && la19_0 <= Character.new(?:.ord)) || (la19_0 >= Character.new(?<.ord) && la19_0 <= Character.new(0xFFFE))))
-            alt19 = 1
-          end
-          case (alt19)
-          when 1
-            # ActionTranslator.g:727:10: ~ ';'
-            if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?:.ord)) || (self.attr_input._la(1) >= Character.new(?<.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
-              self.attr_input.consume
-              self.attr_state.attr_failed = false
-            else
-              if (self.attr_state.attr_backtracking > 0)
-                self.attr_state.attr_failed = true
-                return
-              end
-              mse_ = MismatchedSetException.new(nil, self.attr_input)
-              recover(mse_)
-              raise mse_
+        catch(:break_loop19) do
+          # ActionTranslator.g:727:9: (~ ';' )*
+          begin
+            alt19 = 2
+            la19_0 = self.attr_input._la(1)
+            if (((la19_0 >= Character.new(0x0000) && la19_0 <= Character.new(?:.ord)) || (la19_0 >= Character.new(?<.ord) && la19_0 <= Character.new(0xFFFE))))
+              alt19 = 1
             end
-          else
-            break
-          end
-        end while (true)
+            case (alt19)
+            when 1
+              # ActionTranslator.g:727:10: ~ ';'
+              if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?:.ord)) || (self.attr_input._la(1) >= Character.new(?<.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
+                self.attr_input.consume
+                self.attr_state.attr_failed = false
+              else
+                if (self.attr_state.attr_backtracking > 0)
+                  self.attr_state.attr_failed = true
+                  return
+                end
+                mse = MismatchedSetException.new(nil, self.attr_input)
+                recover(mse)
+                raise mse
+              end
+            else
+              throw :break_loop19, :thrown
+            end
+          end while (true)
+        end
       ensure
       end
     end
@@ -1994,28 +2001,30 @@ module Org::Antlr::Codegen
         if (self.attr_state.attr_failed)
           return
         end
-        # ActionTranslator.g:744:8: ( options {greedy=false; } : . )*
-        begin
-          alt20 = 2
-          la20_0 = self.attr_input._la(1)
-          if (((la20_0).equal?(Character.new(?}.ord))))
+        catch(:break_loop20) do
+          # ActionTranslator.g:744:8: ( options {greedy=false; } : . )*
+          begin
             alt20 = 2
-          else
-            if (((la20_0 >= Character.new(0x0000) && la20_0 <= Character.new(?|.ord)) || (la20_0 >= Character.new(?~.ord) && la20_0 <= Character.new(0xFFFE))))
-              alt20 = 1
+            la20_0 = self.attr_input._la(1)
+            if (((la20_0).equal?(Character.new(?}.ord))))
+              alt20 = 2
+            else
+              if (((la20_0 >= Character.new(0x0000) && la20_0 <= Character.new(?|.ord)) || (la20_0 >= Character.new(?~.ord) && la20_0 <= Character.new(0xFFFE))))
+                alt20 = 1
+              end
             end
-          end
-          case (alt20)
-          when 1
-            # ActionTranslator.g:744:33: .
-            match_any
-            if (self.attr_state.attr_failed)
-              return
+            case (alt20)
+            when 1
+              # ActionTranslator.g:744:33: .
+              match_any
+              if (self.attr_state.attr_failed)
+                return
+              end
+            else
+              throw :break_loop20, :thrown
             end
-          else
-            break
-          end
-        end while (true)
+          end while (true)
+        end
         match(Character.new(?}.ord))
         if (self.attr_state.attr_failed)
           return
@@ -2058,8 +2067,8 @@ module Org::Antlr::Codegen
             self.attr_state.attr_failed = true
             return
           end
-          nvae_ = NoViableAltException.new("", 21, 0, self.attr_input)
-          raise nvae_
+          nvae = NoViableAltException.new("", 21, 0, self.attr_input)
+          raise nvae
         end
         case (alt21)
         when 1
@@ -2222,63 +2231,65 @@ module Org::Antlr::Codegen
           if (self.attr_state.attr_failed)
             return
           end
-          # ActionTranslator.g:778:8: ( ID | '.' | '(' | ')' | ',' | '{' | '}' | '\"' )*
-          begin
-            alt22 = 9
-            alt22 = @dfa22.predict(self.attr_input)
-            case (alt22)
-            when 1
-              # ActionTranslator.g:778:9: ID
-              m_id
-              if (self.attr_state.attr_failed)
-                return
+          catch(:break_loop22) do
+            # ActionTranslator.g:778:8: ( ID | '.' | '(' | ')' | ',' | '{' | '}' | '\"' )*
+            begin
+              alt22 = 9
+              alt22 = @dfa22.predict(self.attr_input)
+              case (alt22)
+              when 1
+                # ActionTranslator.g:778:9: ID
+                m_id
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 2
+                # ActionTranslator.g:778:12: '.'
+                match(Character.new(?..ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 3
+                # ActionTranslator.g:778:16: '('
+                match(Character.new(?(.ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 4
+                # ActionTranslator.g:778:20: ')'
+                match(Character.new(?).ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 5
+                # ActionTranslator.g:778:24: ','
+                match(Character.new(?,.ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 6
+                # ActionTranslator.g:778:28: '{'
+                match(Character.new(?{.ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 7
+                # ActionTranslator.g:778:32: '}'
+                match(Character.new(?}.ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              when 8
+                # ActionTranslator.g:778:36: '\"'
+                match(Character.new(?\".ord))
+                if (self.attr_state.attr_failed)
+                  return
+                end
+              else
+                throw :break_loop22, :thrown
               end
-            when 2
-              # ActionTranslator.g:778:12: '.'
-              match(Character.new(?..ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            when 3
-              # ActionTranslator.g:778:16: '('
-              match(Character.new(?(.ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            when 4
-              # ActionTranslator.g:778:20: ')'
-              match(Character.new(?).ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            when 5
-              # ActionTranslator.g:778:24: ','
-              match(Character.new(?,.ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            when 6
-              # ActionTranslator.g:778:28: '{'
-              match(Character.new(?{.ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            when 7
-              # ActionTranslator.g:778:32: '}'
-              match(Character.new(?}.ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            when 8
-              # ActionTranslator.g:778:36: '\"'
-              match(Character.new(?\".ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            else
-              break
-            end
-          end while (true)
+            end while (true)
+          end == :thrown or break
           if ((self.attr_state.attr_backtracking).equal?(1))
             @chunks.add(get_text)
             ErrorManager.grammar_error(ErrorManager::MSG_INVALID_TEMPLATE_ACTION, @grammar, @action_token, get_text)
@@ -2299,40 +2310,42 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:788:7: (~ ( '$' | '%' | '\\\\' ) )+
         # ActionTranslator.g:788:7: (~ ( '$' | '%' | '\\\\' ) )+
         cnt24 = 0
-        begin
-          alt24 = 2
-          la24_0 = self.attr_input._la(1)
-          if (((la24_0 >= Character.new(0x0000) && la24_0 <= Character.new(?#.ord)) || (la24_0 >= Character.new(?&.ord) && la24_0 <= Character.new(?[.ord)) || (la24_0 >= Character.new(?].ord) && la24_0 <= Character.new(0xFFFE))))
-            alt24 = 1
-          end
-          case (alt24)
-          when 1
-            # ActionTranslator.g:788:7: ~ ( '$' | '%' | '\\\\' )
-            if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?#.ord)) || (self.attr_input._la(1) >= Character.new(?&.ord) && self.attr_input._la(1) <= Character.new(?[.ord)) || (self.attr_input._la(1) >= Character.new(?].ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
-              self.attr_input.consume
-              self.attr_state.attr_failed = false
+        catch(:break_loop24) do
+          begin
+            alt24 = 2
+            la24_0 = self.attr_input._la(1)
+            if (((la24_0 >= Character.new(0x0000) && la24_0 <= Character.new(?#.ord)) || (la24_0 >= Character.new(?&.ord) && la24_0 <= Character.new(?[.ord)) || (la24_0 >= Character.new(?].ord) && la24_0 <= Character.new(0xFFFE))))
+              alt24 = 1
+            end
+            case (alt24)
+            when 1
+              # ActionTranslator.g:788:7: ~ ( '$' | '%' | '\\\\' )
+              if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?#.ord)) || (self.attr_input._la(1) >= Character.new(?&.ord) && self.attr_input._la(1) <= Character.new(?[.ord)) || (self.attr_input._la(1) >= Character.new(?].ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
+                self.attr_input.consume
+                self.attr_state.attr_failed = false
+              else
+                if (self.attr_state.attr_backtracking > 0)
+                  self.attr_state.attr_failed = true
+                  return
+                end
+                mse = MismatchedSetException.new(nil, self.attr_input)
+                recover(mse)
+                raise mse
+              end
             else
+              if (cnt24 >= 1)
+                throw :break_loop24, :thrown
+              end
               if (self.attr_state.attr_backtracking > 0)
                 self.attr_state.attr_failed = true
                 return
               end
-              mse = MismatchedSetException.new(nil, self.attr_input)
-              recover(mse)
-              raise mse
+              eee = EarlyExitException.new(24, self.attr_input)
+              raise eee
             end
-          else
-            if (cnt24 >= 1)
-              break
-            end
-            if (self.attr_state.attr_backtracking > 0)
-              self.attr_state.attr_failed = true
-              return
-            end
-            eee = EarlyExitException.new(24, self.attr_input)
-            raise eee
-          end
-          ((cnt24 += 1) - 1)
-        end while (true)
+            ((cnt24 += 1) - 1)
+          end while (true)
+        end
         if ((self.attr_state.attr_backtracking).equal?(1))
           @chunks.add(get_text)
         end
@@ -2360,32 +2373,34 @@ module Org::Antlr::Codegen
           recover(mse)
           raise mse
         end
-        # ActionTranslator.g:792:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-        begin
-          alt25 = 2
-          la25_0 = self.attr_input._la(1)
-          if (((la25_0 >= Character.new(?0.ord) && la25_0 <= Character.new(?9.ord)) || (la25_0 >= Character.new(?A.ord) && la25_0 <= Character.new(?Z.ord)) || (la25_0).equal?(Character.new(?_.ord)) || (la25_0 >= Character.new(?a.ord) && la25_0 <= Character.new(?z.ord))))
-            alt25 = 1
-          end
-          case (alt25)
-          when 1
-            # ActionTranslator.g:
-            if ((self.attr_input._la(1) >= Character.new(?0.ord) && self.attr_input._la(1) <= Character.new(?9.ord)) || (self.attr_input._la(1) >= Character.new(?A.ord) && self.attr_input._la(1) <= Character.new(?Z.ord)) || (self.attr_input._la(1)).equal?(Character.new(?_.ord)) || (self.attr_input._la(1) >= Character.new(?a.ord) && self.attr_input._la(1) <= Character.new(?z.ord)))
-              self.attr_input.consume
-              self.attr_state.attr_failed = false
-            else
-              if (self.attr_state.attr_backtracking > 0)
-                self.attr_state.attr_failed = true
-                return
-              end
-              mse_ = MismatchedSetException.new(nil, self.attr_input)
-              recover(mse_)
-              raise mse_
+        catch(:break_loop25) do
+          # ActionTranslator.g:792:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+          begin
+            alt25 = 2
+            la25_0 = self.attr_input._la(1)
+            if (((la25_0 >= Character.new(?0.ord) && la25_0 <= Character.new(?9.ord)) || (la25_0 >= Character.new(?A.ord) && la25_0 <= Character.new(?Z.ord)) || (la25_0).equal?(Character.new(?_.ord)) || (la25_0 >= Character.new(?a.ord) && la25_0 <= Character.new(?z.ord))))
+              alt25 = 1
             end
-          else
-            break
-          end
-        end while (true)
+            case (alt25)
+            when 1
+              # ActionTranslator.g:
+              if ((self.attr_input._la(1) >= Character.new(?0.ord) && self.attr_input._la(1) <= Character.new(?9.ord)) || (self.attr_input._la(1) >= Character.new(?A.ord) && self.attr_input._la(1) <= Character.new(?Z.ord)) || (self.attr_input._la(1)).equal?(Character.new(?_.ord)) || (self.attr_input._la(1) >= Character.new(?a.ord) && self.attr_input._la(1) <= Character.new(?z.ord)))
+                self.attr_input.consume
+                self.attr_state.attr_failed = false
+              else
+                if (self.attr_state.attr_backtracking > 0)
+                  self.attr_state.attr_failed = true
+                  return
+                end
+                mse = MismatchedSetException.new(nil, self.attr_input)
+                recover(mse)
+                raise mse
+              end
+            else
+              throw :break_loop25, :thrown
+            end
+          end while (true)
+        end
       ensure
       end
     end
@@ -2399,32 +2414,34 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:796:7: ( '0' .. '9' )+
         # ActionTranslator.g:796:7: ( '0' .. '9' )+
         cnt26 = 0
-        begin
-          alt26 = 2
-          la26_0 = self.attr_input._la(1)
-          if (((la26_0 >= Character.new(?0.ord) && la26_0 <= Character.new(?9.ord))))
-            alt26 = 1
-          end
-          case (alt26)
-          when 1
-            # ActionTranslator.g:796:7: '0' .. '9'
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            if (self.attr_state.attr_failed)
-              return
+        catch(:break_loop26) do
+          begin
+            alt26 = 2
+            la26_0 = self.attr_input._la(1)
+            if (((la26_0 >= Character.new(?0.ord) && la26_0 <= Character.new(?9.ord))))
+              alt26 = 1
             end
-          else
-            if (cnt26 >= 1)
-              break
+            case (alt26)
+            when 1
+              # ActionTranslator.g:796:7: '0' .. '9'
+              match_range(Character.new(?0.ord), Character.new(?9.ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            else
+              if (cnt26 >= 1)
+                throw :break_loop26, :thrown
+              end
+              if (self.attr_state.attr_backtracking > 0)
+                self.attr_state.attr_failed = true
+                return
+              end
+              eee = EarlyExitException.new(26, self.attr_input)
+              raise eee
             end
-            if (self.attr_state.attr_backtracking > 0)
-              self.attr_state.attr_failed = true
-              return
-            end
-            eee = EarlyExitException.new(26, self.attr_input)
-            raise eee
-          end
-          ((cnt26 += 1) - 1)
-        end while (true)
+            ((cnt26 += 1) - 1)
+          end while (true)
+        end
       ensure
       end
     end
@@ -2438,40 +2455,42 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:800:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
         # ActionTranslator.g:800:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
         cnt27 = 0
-        begin
-          alt27 = 2
-          la27_0 = self.attr_input._la(1)
-          if (((la27_0 >= Character.new(?\t.ord) && la27_0 <= Character.new(?\n.ord)) || (la27_0).equal?(Character.new(?\r.ord)) || (la27_0).equal?(Character.new(?\s.ord))))
-            alt27 = 1
-          end
-          case (alt27)
-          when 1
-            # ActionTranslator.g:
-            if ((self.attr_input._la(1) >= Character.new(?\t.ord) && self.attr_input._la(1) <= Character.new(?\n.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\r.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\s.ord)))
-              self.attr_input.consume
-              self.attr_state.attr_failed = false
+        catch(:break_loop27) do
+          begin
+            alt27 = 2
+            la27_0 = self.attr_input._la(1)
+            if (((la27_0 >= Character.new(?\t.ord) && la27_0 <= Character.new(?\n.ord)) || (la27_0).equal?(Character.new(?\r.ord)) || (la27_0).equal?(Character.new(?\s.ord))))
+              alt27 = 1
+            end
+            case (alt27)
+            when 1
+              # ActionTranslator.g:
+              if ((self.attr_input._la(1) >= Character.new(?\t.ord) && self.attr_input._la(1) <= Character.new(?\n.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\r.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\s.ord)))
+                self.attr_input.consume
+                self.attr_state.attr_failed = false
+              else
+                if (self.attr_state.attr_backtracking > 0)
+                  self.attr_state.attr_failed = true
+                  return
+                end
+                mse = MismatchedSetException.new(nil, self.attr_input)
+                recover(mse)
+                raise mse
+              end
             else
+              if (cnt27 >= 1)
+                throw :break_loop27, :thrown
+              end
               if (self.attr_state.attr_backtracking > 0)
                 self.attr_state.attr_failed = true
                 return
               end
-              mse = MismatchedSetException.new(nil, self.attr_input)
-              recover(mse)
-              raise mse
+              eee = EarlyExitException.new(27, self.attr_input)
+              raise eee
             end
-          else
-            if (cnt27 >= 1)
-              break
-            end
-            if (self.attr_state.attr_backtracking > 0)
-              self.attr_state.attr_failed = true
-              return
-            end
-            eee = EarlyExitException.new(27, self.attr_input)
-            raise eee
-          end
-          ((cnt27 += 1) - 1)
-        end while (true)
+            ((cnt27 += 1) - 1)
+          end while (true)
+        end
       ensure
       end
     end

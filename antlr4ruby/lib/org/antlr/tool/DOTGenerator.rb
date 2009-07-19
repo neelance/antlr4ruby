@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -162,7 +161,6 @@ module Org::Antlr::Tool
       i = 0
       while i < s.get_number_of_transitions
         edge = s.transition(i)
-        # 
         # System.out.println("dfa "+s.dfa.decisionNumber+
         # " edge from s"+s.stateNumber+" ["+i+"] of "+s.getNumberOfTransitions());
         if (STRIP_NONREDUCED_STATES)
@@ -265,7 +263,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [Transition] }
-    # 
     # public void writeDOTFilesForAllRuleNFAs() throws IOException {
     # Collection rules = grammar.getRules();
     # for (Iterator itr = rules.iterator(); itr.hasNext();) {
@@ -373,9 +370,9 @@ module Org::Antlr::Tool
               n = 0
               c_index = 0
               while c_index < configs_in_alt.size
-                c_ = configs_in_alt.get(c_index)
+                c = configs_in_alt.get(c_index)
                 ((n += 1) - 1)
-                buf.append(c_.to_s(false))
+                buf.append(c.to_s(false))
                 if ((c_index + 1) < configs_in_alt.size)
                   buf.append(", ")
                 end
@@ -397,8 +394,8 @@ module Org::Antlr::Tool
         end
       else
         if ((s.is_a?(NFAState)) && !((s).attr_end_of_block_state_number).equal?(State::INVALID_STATE_NUMBER))
-          n_ = (s)
-          state_label = state_label + ",eob=" + (n_.attr_end_of_block_state_number).to_s
+          n = (s)
+          state_label = state_label + ",eob=" + (n.attr_end_of_block_state_number).to_s
         else
           if (s.is_a?(DFAState) && (s).is_accept_state)
             state_label = state_label + "=>" + ((s).get_uniquely_predicted_alt).to_s

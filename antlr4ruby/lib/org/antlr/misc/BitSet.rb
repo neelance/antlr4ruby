@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -163,7 +162,6 @@ module Org::Antlr::Misc
         e_i = o
         add(e_i.int_value)
       end
-      # 
       # int n = elements.size();
       # for (int i = 0; i < n; i++) {
       # Object o = elements.get(i);
@@ -284,12 +282,12 @@ module Org::Antlr::Misc
         end
       else
         if (other_set.attr_bits.attr_length > n)
-          i__ = n + 1
-          while i__ < other_set.attr_bits.attr_length
-            if (!(other_set.attr_bits[i__]).equal?(0))
+          i_ = n + 1
+          while i_ < other_set.attr_bits.attr_length
+            if (!(other_set.attr_bits[i_]).equal?(0))
               return false
             end
-            ((i__ += 1) - 1)
+            ((i_ += 1) - 1)
           end
         end
       end
@@ -297,7 +295,6 @@ module Org::Antlr::Misc
     end
     
     typesig { [::Java::Int] }
-    # 
     # Grows the set to a larger number of bits.
     # @param bit element that must fit in set
     def grow_to_include(bit)
@@ -482,7 +479,6 @@ module Org::Antlr::Misc
     end
     
     typesig { [::Java::Int] }
-    # 
     # Sets the size of a set.
     # @param nwords how many words the new set should be
     def set_size(nwords)
@@ -628,7 +624,6 @@ module Org::Antlr::Misc
     end
     
     typesig { [] }
-    # 
     # Dump a comma-separated list of the words making up the bit set.
     # Split each 64 bit number into two more manageable 32 bit numbers.
     # This generates a comma-separated list of C++-like unsigned long constants.
@@ -654,7 +649,6 @@ module Org::Antlr::Misc
     end
     
     typesig { [] }
-    # 
     # Dump a comma-separated list of the words making up the bit set.
     # This generates a comma-separated list of Java-like long int constants.
     def to_string_of_words

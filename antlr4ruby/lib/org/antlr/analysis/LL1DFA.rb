@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -111,14 +110,14 @@ module Org::Antlr::Analysis
           s.attr_resolved_with_predicates = true
           i = 0
           while i < alts.size
-            alt_ = RJava.cast_to_int(alts.get(i))
+            alt = RJava.cast_to_int(alts.get(i))
             s.attr_cached_uniquely_predicated_alt = NFA::INVALID_ALT_NUMBER
-            pred_dfatarget = get_accept_state(alt_)
+            pred_dfatarget = get_accept_state(alt)
             if ((pred_dfatarget).nil?)
               pred_dfatarget = new_state # create if not there.
               pred_dfatarget.attr_accept_state = true
-              pred_dfatarget.attr_cached_uniquely_predicated_alt = alt_
-              set_accept_state(alt_, pred_dfatarget)
+              pred_dfatarget.attr_cached_uniquely_predicated_alt = alt
+              set_accept_state(alt, pred_dfatarget)
             end
             # add a transition to pred target from d
             # 
@@ -132,7 +131,7 @@ module Org::Antlr::Analysis
             # ctx = new SemanticContext.TruePredicate();
             # }
             # s.addTransition(predDFATarget, new Label(ctx));
-            synpred = get_syn_pred_for_alt(decision_start_state, alt_)
+            synpred = get_syn_pred_for_alt(decision_start_state, alt)
             if ((synpred).nil?)
               synpred = SemanticContext::TruePredicate.new
             end
@@ -167,7 +166,6 @@ module Org::Antlr::Analysis
         if (ctx.is_syntactic_predicate)
           p = ctx
           if ((p.attr_predicate_ast.get_type).equal?(ANTLRParser::BACKTRACK_SEMPRED))
-            # 
             # System.out.println("syn pred for alt "+walkAlt+" "+
             # ((SemanticContext.Predicate)altStartState.transition[0].label.getSemanticContext()).predicateAST);
             if (ctx.is_syntactic_predicate)

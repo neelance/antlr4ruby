@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -34,7 +33,6 @@ module Org::Antlr::Runtime
     }
   end
   
-  # 
   # public int specialTransition(int state, int symbol) {
   # return 0;
   # }

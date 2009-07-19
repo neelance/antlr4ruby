@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -528,7 +527,6 @@ module Org::Antlr::Runtime::Tree
       tokenizer = TreePatternLexer.new(pattern_)
       parser = TreePatternParser.new(tokenizer, self, TreePatternTreeAdaptor.new)
       tpattern = parser.pattern
-      # 
       # System.out.println("t="+((Tree)t).toStringTree());
       # System.out.println("scant="+tpattern.toStringTree());
       matched = __parse(t, tpattern, labels)

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -157,7 +156,6 @@ module Org::Antlr::Runtime
     end
     
     typesig { [::Java::Int] }
-    # 
     # Grows the set to a larger number of bits.
     # @param bit element that must fit in set
     def grow_to_include(bit)
@@ -185,7 +183,6 @@ module Org::Antlr::Runtime
     end
     
     typesig { [::Java::Int] }
-    # 
     # Sets the size of a set.
     # @param nwords how many words the new set should be
     def set_size(nwords)
@@ -262,12 +259,12 @@ module Org::Antlr::Runtime
         end
       else
         if (other_set.attr_bits.attr_length > n)
-          i__ = n + 1
-          while i__ < other_set.attr_bits.attr_length
-            if (!(other_set.attr_bits[i__]).equal?(0))
+          i_ = n + 1
+          while i_ < other_set.attr_bits.attr_length
+            if (!(other_set.attr_bits[i_]).equal?(0))
               return false
             end
-            ((i__ += 1) - 1)
+            ((i_ += 1) - 1)
           end
         end
       end

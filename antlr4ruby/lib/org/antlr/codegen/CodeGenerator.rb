@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2007 Terence Parr
 # All rights reserved.
@@ -284,7 +283,7 @@ module Org::Antlr::Codegen
       rescue InstantiationException => ie
         ErrorManager.error(ErrorManager::MSG_CANNOT_CREATE_TARGET_GENERATOR, target_name, ie)
       rescue IllegalAccessException => cnfe
-        ErrorManager.error(ErrorManager::MSG_CANNOT_CREATE_TARGET_GENERATOR, target_name, cnfe_)
+        ErrorManager.error(ErrorManager::MSG_CANNOT_CREATE_TARGET_GENERATOR, target_name, cnfe)
       end
     end
     
@@ -323,23 +322,23 @@ module Org::Antlr::Codegen
           ast_dbg_templates = StringTemplateGroup.load_group("ASTDbg", ast_parser_templates)
           @templates = ast_dbg_templates
         else
-          ast_templates_ = StringTemplateGroup.load_group("AST", core_templates)
-          ast_parser_templates_ = ast_templates_
+          ast_templates = StringTemplateGroup.load_group("AST", core_templates)
+          ast_parser_templates = ast_templates
           # if ( !grammar.rewriteMode() ) {
           if ((@grammar.attr_type).equal?(Grammar::TREE_PARSER))
-            ast_parser_templates_ = StringTemplateGroup.load_group("ASTTreeParser", ast_templates_)
+            ast_parser_templates = StringTemplateGroup.load_group("ASTTreeParser", ast_templates)
           else
-            ast_parser_templates_ = StringTemplateGroup.load_group("ASTParser", ast_templates_)
+            ast_parser_templates = StringTemplateGroup.load_group("ASTParser", ast_templates)
           end
           # }
-          @templates = ast_parser_templates_
+          @templates = ast_parser_templates
         end
       else
         if (!(output_option).nil? && (output_option == "template"))
           if (@debug && !(@grammar.attr_type).equal?(Grammar::LEXER))
-            dbg_templates_ = StringTemplateGroup.load_group("Dbg", core_templates)
-            @base_templates = dbg_templates_
-            st_templates = StringTemplateGroup.load_group("ST", dbg_templates_)
+            dbg_templates = StringTemplateGroup.load_group("Dbg", core_templates)
+            @base_templates = dbg_templates
+            st_templates = StringTemplateGroup.load_group("ST", dbg_templates)
             @templates = st_templates
           else
             @templates = StringTemplateGroup.load_group("ST", core_templates)
@@ -517,7 +516,6 @@ module Org::Antlr::Codegen
       rescue IOException => ioe
         ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, get_vocab_file_name, ioe)
       end
-      # 
       # System.out.println("num obj.prop refs: "+ ASTExpr.totalObjPropRefs);
       # System.out.println("num reflection lookups: "+ ASTExpr.totalReflectionLookups);
       return @output_file_st
@@ -590,7 +588,6 @@ module Org::Antlr::Codegen
     # Like Grosch I implemented local FOLLOW sets that are combined at run-time
     # upon error to avoid parsing overhead.
     def generate_local_follow(referenced_element_node, referenced_element_name, enclosing_rule_name, element_index)
-      # 
       # System.out.println("compute FOLLOW "+grammar.name+"."+referencedElementNode.toString()+
       # " for "+referencedElementName+"#"+elementIndex +" in "+
       # enclosingRuleName+
@@ -872,9 +869,9 @@ module Org::Antlr::Codegen
       literals = @grammar.get_string_literals.iterator
       while (literals.has_next)
         literal = literals.next
-        token_type_ = @grammar.get_token_type(literal)
-        if (token_type_ >= Label::MIN_TOKEN_TYPE)
-          vocab_file_st.set_attribute("tokens.{name,type}", literal, Utils.integer(token_type_))
+        token_type = @grammar.get_token_type(literal)
+        if (token_type >= Label::MIN_TOKEN_TYPE)
+          vocab_file_st.set_attribute("tokens.{name,type}", literal, Utils.integer(token_type))
         end
       end
       return vocab_file_st
@@ -989,10 +986,10 @@ module Org::Antlr::Codegen
           end
         end
         if ((target_char).equal?(-1) && p <= n)
-          arg_ = action_text.substring(last, p).trim
+          arg = action_text.substring(last, p).trim
           # System.out.println("arg="+arg);
-          if (arg_.length > 0)
-            args.add(arg_.trim)
+          if (arg.length > 0)
+            args.add(arg.trim)
           end
         end
         ((p += 1) - 1)
@@ -1035,7 +1032,7 @@ module Org::Antlr::Codegen
       begin
         st = gen.rewrite_template(rewrite_tree)
       rescue RecognitionException => re
-        ErrorManager.error(ErrorManager::MSG_BAD_AST_STRUCTURE, re_)
+        ErrorManager.error(ErrorManager::MSG_BAD_AST_STRUCTURE, re)
       end
       return st
     end
@@ -1154,7 +1151,6 @@ module Org::Antlr::Codegen
       ext_st = @templates.get_instance_of("codeFileExtension")
       recognizer_name = @grammar.get_recognizer_name
       return recognizer_name + (ext_st.to_s).to_s
-      # 
       # String suffix = "";
       # if ( type==Grammar.COMBINED ||
       # (type==Grammar.LEXER && !grammar.implicitLexer) )

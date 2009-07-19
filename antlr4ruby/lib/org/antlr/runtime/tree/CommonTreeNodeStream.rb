@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -325,7 +324,6 @@ module Org::Antlr::Runtime::Tree
     end
     
     typesig { [::Java::Int] }
-    # 
     # public Object getLastTreeNode() {
     # int i = index();
     # if ( i>=size() ) {
@@ -589,11 +587,11 @@ module Org::Antlr::Runtime::Tree
         t = @nodes.get(i)
       end
       # include stop node too
-      text_ = @adaptor.get_text(stop)
-      if ((text_).nil?)
-        text_ = " " + (String.value_of(@adaptor.get_type(stop))).to_s
+      text = @adaptor.get_text(stop)
+      if ((text).nil?)
+        text = " " + (String.value_of(@adaptor.get_type(stop))).to_s
       end
-      buf.append(text_)
+      buf.append(text)
       return buf.to_s
     end
     

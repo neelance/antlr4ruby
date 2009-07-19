@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005 Martin Traverso
 # All rights reserved.
@@ -113,23 +112,23 @@ module Org::Antlr::Codegen
             text = ws + text
           end
           parts = split_lines(text)
-          j_ = 0
-          while j_ < parts.size
-            chunk = parts.get(j_)
+          j = 0
+          while j < parts.size
+            chunk = parts.get(j)
             n_chunks.add(chunk)
-            ((j_ += 1) - 1)
+            ((j += 1) - 1)
           end
         else
           if ((n_chunks.size).equal?(0) && action_token.get_column > 0)
             # first chunk and some 'virtual' WS at beginning
             # add as a chunk of its own
-            ws_ = ""
-            j__ = 0
-            while j__ < action_token.get_column
-              ws_ += " "
-              ((j__ += 1) - 1)
+            ws = ""
+            j = 0
+            while j < action_token.get_column
+              ws += " "
+              ((j += 1) - 1)
             end
-            n_chunks.add(ws_)
+            n_chunks.add(ws)
           end
           n_chunks.add(chunk)
         end
@@ -151,50 +150,50 @@ module Org::Antlr::Codegen
       indent = -1
       i_ = first_chunk
       while i_ <= last_chunk
-        chunk_ = n_chunks.get(i_)
+        chunk = n_chunks.get(i_)
         # System.out.println(lineNo + ":" + col + " " + quote(chunk.toString()));
-        if (chunk_.is_a?(String))
-          text_ = chunk_
+        if (chunk.is_a?(String))
+          text = chunk
           if ((col).equal?(0))
             if ((indent).equal?(-1))
               # first non-blank line
               # count number of leading whitespaces
               indent = 0
-              j___ = 0
-              while j___ < text_.length
-                if (!Character.is_whitespace(text_.char_at(j___)))
+              j = 0
+              while j < text.length
+                if (!Character.is_whitespace(text.char_at(j)))
                   break
                 end
                 ((indent += 1) - 1)
-                ((j___ += 1) - 1)
+                ((j += 1) - 1)
               end
             end
-            if (text_.length >= indent)
-              j____ = 0
-              j____ = 0
-              while j____ < indent
-                if (!Character.is_whitespace(text_.char_at(j____)))
+            if (text.length >= indent)
+              j = 0
+              j = 0
+              while j < indent
+                if (!Character.is_whitespace(text.char_at(j)))
                   # should do real error reporting here...
                   System.err.println("Warning: badly indented line " + (line_no).to_s + " in action:")
-                  System.err.println(text_)
+                  System.err.println(text)
                   break
                 end
-                ((j____ += 1) - 1)
+                ((j += 1) - 1)
               end
-              n_chunks.set(i_, text_.substring(j____))
+              n_chunks.set(i_, text.substring(j))
             else
-              if (text_.trim.length > 0)
+              if (text.trim.length > 0)
                 # should do real error reporting here...
                 System.err.println("Warning: badly indented line " + (line_no).to_s + " in action:")
-                System.err.println(text_)
+                System.err.println(text)
               end
             end
           end
-          if (text_.ends_with("\n"))
+          if (text.ends_with("\n"))
             ((line_no += 1) - 1)
             col = 0
           else
-            col += text_.length
+            col += text.length
           end
         else
           # not really correct, but all I need is col to increment...

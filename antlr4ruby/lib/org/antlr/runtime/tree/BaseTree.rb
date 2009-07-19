@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -195,7 +194,6 @@ module Org::Antlr::Runtime::Tree
     # For huge child lists, inserting children can force walking rest of
     # children to set their childindex; could be slow.
     def replace_children(start_child_index, stop_child_index, t)
-      # 
       # System.out.println("replaceChildren "+startChildIndex+", "+stopChildIndex+
       # " with "+((BaseTree)t).toStringTree());
       # System.out.println("in="+toStringTree());
@@ -232,10 +230,10 @@ module Org::Antlr::Runtime::Tree
         if (delta > 0)
           # fewer new nodes than there were
           # set children and then delete extra
-          j_ = 0
-          while j_ < num_new_children
-            @children.set(start_child_index + j_, new_children.get(j_))
-            ((j_ += 1) - 1)
+          j = 0
+          while j < num_new_children
+            @children.set(start_child_index + j, new_children.get(j))
+            ((j += 1) - 1)
           end
           index_to_delete = start_child_index + num_new_children
           c = index_to_delete
@@ -248,16 +246,16 @@ module Org::Antlr::Runtime::Tree
         else
           # more new nodes than were there before
           # fill in as many children as we can (replacingHowMany) w/o moving data
-          j__ = 0
-          while j__ < replacing_how_many
-            @children.set(start_child_index + j__, new_children.get(j__))
-            ((j__ += 1) - 1)
+          j = 0
+          while j < replacing_how_many
+            @children.set(start_child_index + j, new_children.get(j))
+            ((j += 1) - 1)
           end
           num_to_insert = replacing_with_how_many - replacing_how_many
-          j___ = replacing_how_many
-          while j___ < replacing_with_how_many
-            @children.add(start_child_index + j___, new_children.get(j___))
-            ((j___ += 1) - 1)
+          j_ = replacing_how_many
+          while j_ < replacing_with_how_many
+            @children.add(start_child_index + j_, new_children.get(j_))
+            ((j_ += 1) - 1)
           end
           freshen_parent_and_child_indexes(start_child_index)
         end

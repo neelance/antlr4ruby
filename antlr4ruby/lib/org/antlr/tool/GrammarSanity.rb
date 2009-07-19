@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -122,7 +121,6 @@ module Org::Antlr::Tool
         if (@visited_during_recursion_check.contains(ref_rule_def))
           # record left-recursive rule, but don't go back in
           @grammar.attr_left_recursive_rules.add(ref_rule_def)
-          # 
           # System.out.println("already visited "+refRuleDef+", calling from "+
           # s.enclosingRule);
           add_rules_to_cycle(ref_rule_def, s.attr_enclosing_rule, list_of_recursive_cycles)

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -405,7 +404,6 @@ module Org::Antlr::Runtime::Tree
     typesig { [] }
     # Satisfy IntStream interface
     def consume
-      # 
       # System.out.println("consume: currentNode="+currentNode.getType()+
       # " childIndex="+currentChildIndex+
       # " nodeIndex="+absoluteNodeIndex);

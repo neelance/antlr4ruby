@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -222,7 +221,6 @@ module Org::Antlr::Analysis
       if ((dfa).nil?)
         return # nothing to do
       end
-      # 
       # System.out.println("Optimize DFA "+dfa.decisionNFAStartState.decisionNumber+
       # " num states="+dfa.getNumberOfStates());
       # 
@@ -259,14 +257,12 @@ module Org::Antlr::Analysis
       while i < d.get_number_of_transitions
         edge = d.transition(i)
         edge_target = (edge.attr_target)
-        # 
         # System.out.println(d.stateNumber+"-"+
         # edge.label.toString(d.dfa.nfa.grammar)+"->"+
         # edgeTarget.stateNumber);
         # 
         # if target is an accept state and that alt is the exit alt
         if (edge_target.is_accept_state && (edge_target.get_uniquely_predicted_alt).equal?(n_alts))
-          # 
           # System.out.println("ignoring transition "+i+" to max alt "+
           # d.dfa.getNumberOfAlts());
           d.remove_transition(i)
@@ -288,7 +284,6 @@ module Org::Antlr::Analysis
       while i < d.get_number_of_transitions
         edge = d.transition(i)
         edge_target = (edge.attr_target)
-        # 
         # System.out.println(d.stateNumber+"-"+
         # edge.label.toString(d.dfa.nfa.grammar)+"->"+
         # edgeTarget.stateNumber);

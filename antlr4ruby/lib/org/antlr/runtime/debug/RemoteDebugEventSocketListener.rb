@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -473,7 +472,7 @@ module Org::Antlr::Runtime::Debug
           begin
             @channel.close
           rescue IOException => ioe
-            System.err.println(ioe_)
+            System.err.println(ioe)
           end
         end
       end
@@ -537,16 +536,16 @@ module Org::Antlr::Runtime::Debug
                         @listener.consume_token(t)
                       else
                         if ((elements[0] == "consumeHiddenToken"))
-                          t_ = deserialize_token(elements, 1)
-                          if ((t_.get_token_index).equal?(@previous_token_index))
+                          t = deserialize_token(elements, 1)
+                          if ((t.get_token_index).equal?(@previous_token_index))
                             @token_indexes_invalid = true
                           end
-                          @previous_token_index = t_.get_token_index
-                          @listener.consume_hidden_token(t_)
+                          @previous_token_index = t.get_token_index
+                          @listener.consume_hidden_token(t)
                         else
                           if ((elements[0] == "LT"))
-                            t__ = deserialize_token(elements, 2)
-                            @listener._lt(JavaInteger.parse_int(elements[1]), t__)
+                            t = deserialize_token(elements, 2)
+                            @listener._lt(JavaInteger.parse_int(elements[1]), t)
                           else
                             if ((elements[0] == "mark"))
                               @listener.mark(JavaInteger.parse_int(elements[1]))
@@ -611,38 +610,38 @@ module Org::Antlr::Runtime::Debug
                                               else
                                                 if ((elements[0] == "LN"))
                                                   i = JavaInteger.parse_int(elements[1])
-                                                  node_ = deserialize_node(elements, 2)
-                                                  @listener._lt(i, node_)
+                                                  node = deserialize_node(elements, 2)
+                                                  @listener._lt(i, node)
                                                 else
                                                   if ((elements[0] == "createNodeFromTokenElements"))
                                                     id = JavaInteger.parse_int(elements[1])
                                                     type = JavaInteger.parse_int(elements[2])
                                                     text = elements[3]
                                                     text = (un_escape_newlines(text)).to_s
-                                                    node__ = ProxyTree.new(id, type, -1, -1, -1, text)
-                                                    @listener.create_node(node__)
+                                                    node = ProxyTree.new(id, type, -1, -1, -1, text)
+                                                    @listener.create_node(node)
                                                   else
                                                     if ((elements[0] == "createNode"))
-                                                      id_ = JavaInteger.parse_int(elements[1])
+                                                      id = JavaInteger.parse_int(elements[1])
                                                       token_index = JavaInteger.parse_int(elements[2])
                                                       # create dummy node/token filled with ID, tokenIndex
-                                                      node___ = ProxyTree.new(id_)
+                                                      node = ProxyTree.new(id)
                                                       token = ProxyToken.new(token_index)
-                                                      @listener.create_node(node___, token)
+                                                      @listener.create_node(node, token)
                                                     else
                                                       if ((elements[0] == "nilNode"))
-                                                        id__ = JavaInteger.parse_int(elements[1])
-                                                        node____ = ProxyTree.new(id__)
-                                                        @listener.nil_node(node____)
+                                                        id = JavaInteger.parse_int(elements[1])
+                                                        node = ProxyTree.new(id)
+                                                        @listener.nil_node(node)
                                                       else
                                                         if ((elements[0] == "errorNode"))
                                                           # TODO: do we need a special tree here?
-                                                          id___ = JavaInteger.parse_int(elements[1])
-                                                          type_ = JavaInteger.parse_int(elements[2])
-                                                          text_ = elements[3]
-                                                          text_ = (un_escape_newlines(text_)).to_s
-                                                          node_____ = ProxyTree.new(id___, type_, -1, -1, -1, text_)
-                                                          @listener.error_node(node_____)
+                                                          id = JavaInteger.parse_int(elements[1])
+                                                          type = JavaInteger.parse_int(elements[2])
+                                                          text = elements[3]
+                                                          text = (un_escape_newlines(text)).to_s
+                                                          node = ProxyTree.new(id, type, -1, -1, -1, text)
+                                                          @listener.error_node(node)
                                                         else
                                                           if ((elements[0] == "becomeRoot"))
                                                             new_root_id = JavaInteger.parse_int(elements[1])
@@ -659,9 +658,9 @@ module Org::Antlr::Runtime::Debug
                                                               @listener.add_child(root, child)
                                                             else
                                                               if ((elements[0] == "setTokenBoundaries"))
-                                                                id____ = JavaInteger.parse_int(elements[1])
-                                                                node______ = ProxyTree.new(id____)
-                                                                @listener.set_token_boundaries(node______, JavaInteger.parse_int(elements[2]), JavaInteger.parse_int(elements[3]))
+                                                                id = JavaInteger.parse_int(elements[1])
+                                                                node = ProxyTree.new(id)
+                                                                @listener.set_token_boundaries(node, JavaInteger.parse_int(elements[2]), JavaInteger.parse_int(elements[3]))
                                                               else
                                                                 System.err.println("unknown debug event: " + line)
                                                               end
