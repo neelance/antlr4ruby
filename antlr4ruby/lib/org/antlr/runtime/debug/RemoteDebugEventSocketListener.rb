@@ -758,7 +758,7 @@ module Org::Antlr::Runtime::Debug
             return elements
           end
           elements[i] = st.next_token
-          ((i += 1) - 1)
+          i += 1
         end
         if (!(str).nil?)
           elements[i] = str

@@ -336,7 +336,7 @@ module Org::Antlr::Test
         i = 0
         while i < expecting_unreachable_alts.attr_length
           assert_true("unreachable alts mismatch", !(non_det_alts).nil? ? non_det_alts.contains(expecting_unreachable_alts[i]) : false)
-          ((i += 1) - 1)
+          i += 1
         end
       end
       assert_equals(expecting, result)

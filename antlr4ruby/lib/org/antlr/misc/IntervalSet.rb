@@ -220,7 +220,7 @@ module Org::Antlr::Misc
       while i < n
         i_ = other.attr_intervals.get(i)
         self.add(i_.attr_a, i_.attr_b)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -264,7 +264,7 @@ module Org::Antlr::Misc
         s = IntervalSet.of(previous_.attr_b + 1, current.attr_a - 1)
         a = s.and(vocabulary_is)
         compl.add_all(a)
-        ((i += 1) - 1)
+        i += 1
       end
       last = @intervals.get(n - 1)
       # add a range from last.b to maxElement constrained to vocab
@@ -443,11 +443,11 @@ module Org::Antlr::Misc
         # System.out.println("mine="+mine+" and theirs="+theirs);
         if (mine.starts_before_disjoint(theirs))
           # move this iterator looking for interval that might overlap
-          ((i += 1) - 1)
+          i += 1
         else
           if (theirs.starts_before_disjoint(mine))
             # move other iterator looking for interval that might overlap
-            ((j += 1) - 1)
+            j += 1
           else
             if (mine.properly_contains(theirs))
               # overlap, add intersection, get next theirs
@@ -455,7 +455,7 @@ module Org::Antlr::Misc
                 intersection = IntervalSet.new
               end
               intersection.add(mine.intersection(theirs))
-              ((j += 1) - 1)
+              j += 1
             else
               if (theirs.properly_contains(mine))
                 # overlap, add intersection, get next mine
@@ -463,7 +463,7 @@ module Org::Antlr::Misc
                   intersection = IntervalSet.new
                 end
                 intersection.add(mine.intersection(theirs))
-                ((i += 1) - 1)
+                i += 1
               else
                 if (!mine.disjoint(theirs))
                   # overlap, add intersection
@@ -479,10 +479,10 @@ module Org::Antlr::Misc
                   # in thisIter.
                   # move both iterators to next ranges
                   if (mine.starts_after_non_disjoint(theirs))
-                    ((j += 1) - 1)
+                    j += 1
                   else
                     if (theirs.starts_after_non_disjoint(mine))
-                      ((i += 1) - 1)
+                      i += 1
                     end
                   end
                 end
@@ -512,7 +512,7 @@ module Org::Antlr::Misc
         if (el >= a && el <= b)
           return true # found in this interval
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return false
       # for (ListIterator iter = intervals.listIterator(); iter.hasNext();) {
@@ -571,9 +571,9 @@ module Org::Antlr::Misc
           if (v >= 0)
             return v
           end
-          ((v += 1) - 1)
+          v += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return Label::INVALID
     end
@@ -651,7 +651,7 @@ module Org::Antlr::Misc
       while i < num_intervals
         i_ = @intervals.get(i)
         n += (i_.attr_b - i_.attr_a + 1)
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end
@@ -668,9 +668,9 @@ module Org::Antlr::Misc
         v = a
         while v <= b
           values.add(Utils.integer(v))
-          ((v += 1) - 1)
+          v += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return values
     end
@@ -692,10 +692,10 @@ module Org::Antlr::Misc
           if ((index).equal?(i))
             return v
           end
-          ((index += 1) - 1)
-          ((v += 1) - 1)
+          index += 1
+          v += 1
         end
-        ((j += 1) - 1)
+        j += 1
       end
       return -1
     end
@@ -713,10 +713,10 @@ module Org::Antlr::Misc
         v = a
         while v <= b
           values[j] = v
-          ((j += 1) - 1)
-          ((v += 1) - 1)
+          j += 1
+          v += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return values
     end
@@ -733,9 +733,9 @@ module Org::Antlr::Misc
         v = a
         while v <= b
           s.add(v)
-          ((v += 1) - 1)
+          v += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return s
     end

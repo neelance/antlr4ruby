@@ -110,7 +110,7 @@ module Org::Antlr::Codegen
           # System.out.println("DFA s"+s.stateNumber+" EOT goes to s"+
           # edge.target.stateNumber+" predicates alt "+
           # EOTPredicts);
-          ((i += 1) - 1)
+          i += 1
           next
         end
         edge_st = templates.get_instance_of(dfa_edge_name)
@@ -122,7 +122,7 @@ module Org::Antlr::Codegen
             v_i = labels.get(j)
             label = @parent_generator.get_token_type_as_target_label(v_i.int_value)
             labels.set(j, label) # rewrite List element to be name
-            ((j += 1) - 1)
+            j += 1
           end
           edge_st.set_attribute("labels", labels)
         else
@@ -142,7 +142,7 @@ module Org::Antlr::Codegen
         target_st = walk_fixed_dfagenerating_state_machine(templates, dfa, edge.attr_target, k + 1)
         edge_st.set_attribute("targetState", target_st)
         dfa_st.set_attribute("edges", edge_st)
-        ((i += 1) - 1)
+        i += 1
       end
       # HANDLE EOT EDGE
       if (!(eotpredicts).equal?(NFA::INVALID_ALT_NUMBER))
@@ -168,7 +168,7 @@ module Org::Antlr::Codegen
             target_st = walk_fixed_dfagenerating_state_machine(templates, dfa, pred_edge.attr_target, k + 1)
             edge_st.set_attribute("targetState", target_st)
             dfa_st.set_attribute("edges", edge_st)
-            ((i_ += 1) - 1)
+            i_ += 1
           end
         end
       end

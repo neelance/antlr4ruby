@@ -158,7 +158,7 @@ module Org::Antlr::Test
             while i < equeue.attr_errors.size
               msg = equeue.attr_errors.get(i)
               System.err.println(msg)
-              ((i += 1) - 1)
+              i += 1
             end
           end
         end
@@ -289,7 +289,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_not_null("no error; " + (expected_message.attr_msg_id).to_s + " expected", found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
@@ -308,7 +308,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_not_null("no error; " + (expected_message.attr_msg_id).to_s + " expected", found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
@@ -480,7 +480,7 @@ module Org::Antlr::Test
         if (files[i].ends_with(files_ending_with))
           JavaFile.new(@tmpdir + "/" + (files[i]).to_s).delete
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -503,7 +503,7 @@ module Org::Antlr::Test
         if (!(o).nil?)
           n.add(o)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end

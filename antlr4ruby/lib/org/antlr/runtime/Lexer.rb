@@ -195,7 +195,7 @@ module Org::Antlr::Runtime
           recover(mte)
           raise mte
         end
-        ((i += 1) - 1)
+        i += 1
         @input.consume
         self.attr_state.attr_failed = false
       end

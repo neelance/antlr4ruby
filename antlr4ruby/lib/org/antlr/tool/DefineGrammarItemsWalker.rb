@@ -440,7 +440,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt28 += 1) - 1)
+            _cnt28 += 1
           end while (true)
         end
         _t = __t25
@@ -482,7 +482,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt32 += 1) - 1)
+          _cnt32 += 1
         end while (true)
         _t = __t30
         _t = _t.get_next_sibling
@@ -519,7 +519,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt19 += 1) - 1)
+          _cnt19 += 1
         end while (true)
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -554,7 +554,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt38 += 1) - 1)
+          _cnt38 += 1
         end while (true)
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -1006,7 +1006,7 @@ module Org::Antlr::Tool
     typesig { [AST] }
     def block(_t)
       block_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      ((@block_level += 1) - 1)
+      @block_level += 1
       if ((@block_level).equal?(1))
         @outer_alt_num = 1
       end
@@ -1050,7 +1050,7 @@ module Org::Antlr::Tool
             _t = self.attr__ret_tree
             if ((self.attr_input_state.attr_guessing).equal?(0))
               if ((@block_level).equal?(1))
-                ((@outer_alt_num += 1) - 1)
+                @outer_alt_num += 1
               end
             end
           else
@@ -1060,7 +1060,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt79 += 1) - 1)
+          _cnt79 += 1
         end while (true)
         tmp24_ast_in = _t
         match(_t, EOB)
@@ -1068,7 +1068,7 @@ module Org::Antlr::Tool
         _t = __t74
         _t = _t.get_next_sibling
         if ((self.attr_input_state.attr_guessing).equal?(0))
-          ((@block_level -= 1) + 1)
+          @block_level -= 1
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -1108,7 +1108,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt88 += 1) - 1)
+            _cnt88 += 1
           end while (true)
           if ((_t).nil?)
             _t = ASTNULL
@@ -1245,7 +1245,7 @@ module Org::Antlr::Tool
               end
             end while (true)
             if ((self.attr_input_state.attr_guessing).equal?(0))
-              ((n += 1) - 1)
+              n += 1
             end
           else
             if (_cnt63 >= 1)
@@ -1254,7 +1254,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt63 += 1) - 1)
+          _cnt63 += 1
         end while (true)
         tmp35_ast_in = _t
         match(_t, EOB)
@@ -1358,7 +1358,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt85 += 1) - 1)
+          _cnt85 += 1
         end while (true)
         tmp38_ast_in = _t
         match(_t, EOA)
@@ -1843,7 +1843,7 @@ module Org::Antlr::Tool
           if ((((_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE))))
             __t105 = _t
             syn_pred_matched105 = true
-            ((self.attr_input_state.attr_guessing += 1) - 1)
+            self.attr_input_state.attr_guessing += 1
             begin
               dot_loop(_t)
               _t = self.attr__ret_tree
@@ -1851,7 +1851,7 @@ module Org::Antlr::Tool
               syn_pred_matched105 = false
             end
             _t = __t105
-            ((self.attr_input_state.attr_guessing -= 1) + 1)
+            self.attr_input_state.attr_guessing -= 1
           end
           if (syn_pred_matched105)
             dot_loop(_t)
@@ -2093,7 +2093,7 @@ module Org::Antlr::Tool
                   raise NoViableAltException.new(_t)
                 end
               end
-              ((_cnt138 += 1) - 1)
+              _cnt138 += 1
             end while (true)
           when EPSILON
             tmp74_ast_in = _t

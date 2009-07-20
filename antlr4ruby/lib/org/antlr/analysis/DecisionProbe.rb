@@ -441,7 +441,7 @@ module Org::Antlr::Analysis
       while a <= alt
         s = @dfa.attr_nfa.attr_grammar.get_nfastate_for_alt_of_decision(nfa_start, a)
         path.add(s)
-        ((a += 1) - 1)
+        a += 1
       end
       # add first state of actual alt
       alt_start = @dfa.attr_nfa.attr_grammar.get_nfastate_for_alt_of_decision(nfa_start, alt)
@@ -642,7 +642,7 @@ module Org::Antlr::Analysis
             sample_bad_state = @dfa.get_state(state_i.int_value)
             alt_to_dfastate.put(alt_i, sample_bad_state)
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
     end
@@ -766,7 +766,7 @@ module Org::Antlr::Analysis
         target_status = @state_reachable.get(edge_target.attr_state_number)
         if ((target_status).equal?(REACHABLE_BUSY))
           # avoid cycles; they say nothing
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if ((target_status).equal?(REACHABLE_YES))
@@ -776,7 +776,7 @@ module Org::Antlr::Analysis
         end
         if ((target_status).equal?(REACHABLE_NO))
           # try another transition
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # if null, target must be REACHABLE_UNKNOWN (i.e., unvisited)
@@ -785,7 +785,7 @@ module Org::Antlr::Analysis
           @state_reachable.put(s.attr_state_number, REACHABLE_YES)
           return true
         end
-        ((i += 1) - 1)
+        i += 1
       end
       @state_reachable.put(s.attr_state_number, REACHABLE_NO)
       return false # no path to targetState found.
@@ -827,7 +827,7 @@ module Org::Antlr::Analysis
           # done with this DFA state as we've found a good path to target
           return
         end
-        ((i += 1) - 1)
+        i += 1
       end
       labels.add(Label.new(Label::EPSILON)) # indicate no input found
       # this happens on a : {p1}? a | A ;
@@ -879,7 +879,7 @@ module Org::Antlr::Analysis
             return true # return to "calling" state
           end
           path.remove(path.size - 1) # remove; didn't work out
-          ((i += 1) - 1)
+          i += 1
           next # look at the next edge
         end
         if (t.attr_label.matches(label))
@@ -901,10 +901,10 @@ module Org::Antlr::Analysis
           # System.out.println("backtrack; path from "+s.stateNumber+"->"+
           # t.label.toString(dfa.nfa.grammar)+" didn't work");
           path.remove(path.size - 1) # remove; didn't work out
-          ((i += 1) - 1)
+          i += 1
           next # keep looking for a path for labels
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("no epsilon or matching edge; removing "+thisStateKey);
       # no edge was found matching label; is ok, some state will have it

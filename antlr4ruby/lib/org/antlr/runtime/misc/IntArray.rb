@@ -80,7 +80,7 @@ module Org::Antlr::Runtime::Misc
     typesig { [] }
     def pop
       v = @data[@p]
-      ((@p -= 1) + 1)
+      @p -= 1
       return v
     end
     

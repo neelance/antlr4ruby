@@ -363,14 +363,14 @@ module Org::Antlr::Tool
       if ((((_la(1)).equal?(Character.new(?\s.ord))) && ((_la(2)).equal?(Character.new(?$.ord))) && ((_la(3)).equal?(Character.new(?A.ord)))))
         _m161 = mark
         syn_pred_matched161 = true
-        ((self.attr_input_state.attr_guessing += 1) - 1)
+        self.attr_input_state.attr_guessing += 1
         begin
           match(" $ANTLR")
         rescue RecognitionException => pe
           syn_pred_matched161 = false
         end
         rewind(_m161)
-        ((self.attr_input_state.attr_guessing -= 1) + 1)
+        self.attr_input_state.attr_guessing -= 1
       end
       if (syn_pred_matched161)
         match(" $ANTLR ")
@@ -1141,7 +1141,7 @@ module Org::Antlr::Tool
             raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
           end
         end
-        ((_cnt212 += 1) - 1)
+        _cnt212 += 1
       end while (true)
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -1589,7 +1589,7 @@ module Org::Antlr::Tool
         i = 1
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -1605,7 +1605,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -1629,7 +1629,7 @@ module Org::Antlr::Tool
         i = 1
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -1645,7 +1645,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -1661,7 +1661,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -1677,7 +1677,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -1692,7 +1692,7 @@ module Org::Antlr::Tool
         i = 1
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end

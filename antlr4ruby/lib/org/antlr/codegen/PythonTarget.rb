@@ -107,7 +107,7 @@ module Org::Antlr::Codegen
             j = 0
             while j < action_token.get_column
               ws += " "
-              ((j += 1) - 1)
+              j += 1
             end
             text = ws + text
           end
@@ -116,7 +116,7 @@ module Org::Antlr::Codegen
           while j < parts.size
             chunk = parts.get(j)
             n_chunks.add(chunk)
-            ((j += 1) - 1)
+            j += 1
           end
         else
           if ((n_chunks.size).equal?(0) && action_token.get_column > 0)
@@ -126,26 +126,26 @@ module Org::Antlr::Codegen
             j = 0
             while j < action_token.get_column
               ws += " "
-              ((j += 1) - 1)
+              j += 1
             end
             n_chunks.add(ws)
           end
           n_chunks.add(chunk)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       line_no = action_token.get_line
       col = 0
       # strip trailing empty lines
       last_chunk = n_chunks.size - 1
       while (last_chunk > 0 && n_chunks.get(last_chunk).is_a?(String) && ((n_chunks.get(last_chunk)).trim.length).equal?(0))
-        ((last_chunk -= 1) + 1)
+        last_chunk -= 1
       end
       # string leading empty lines
       first_chunk = 0
       while (first_chunk <= last_chunk && n_chunks.get(first_chunk).is_a?(String) && ((n_chunks.get(first_chunk)).trim.length).equal?(0) && (n_chunks.get(first_chunk)).ends_with("\n"))
-        ((line_no += 1) - 1)
-        ((first_chunk += 1) - 1)
+        line_no += 1
+        first_chunk += 1
       end
       indent = -1
       i_ = first_chunk
@@ -164,8 +164,8 @@ module Org::Antlr::Codegen
                 if (!Character.is_whitespace(text.char_at(j)))
                   break
                 end
-                ((indent += 1) - 1)
-                ((j += 1) - 1)
+                indent += 1
+                j += 1
               end
             end
             if (text.length >= indent)
@@ -178,7 +178,7 @@ module Org::Antlr::Codegen
                   System.err.println(text)
                   break
                 end
-                ((j += 1) - 1)
+                j += 1
               end
               n_chunks.set(i_, text.substring(j))
             else
@@ -190,7 +190,7 @@ module Org::Antlr::Codegen
             end
           end
           if (text.ends_with("\n"))
-            ((line_no += 1) - 1)
+            line_no += 1
             col = 0
           else
             col += text.length
@@ -199,7 +199,7 @@ module Org::Antlr::Codegen
           # not really correct, but all I need is col to increment...
           col += 1
         end
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       return n_chunks
     end

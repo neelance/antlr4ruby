@@ -193,9 +193,9 @@ module Org::Antlr::Analysis
           alt_num = 1 # make next alt the first
         else
           closure(alt.attr_transition[0].attr_target, alt_num, initial_context, SemanticContext::EMPTY_SEMANTIC_CONTEXT, start_state, true)
-          ((alt_num += 1) - 1)
+          alt_num += 1
         end
-        ((i += 1) - 1)
+        i += 1
         # move to next alternative
         if ((alt.attr_transition[1]).nil?)
           break
@@ -296,7 +296,7 @@ module Org::Antlr::Analysis
           # to an end-of-rule state seeing it even though we'll pop
           # an invoking state off the state; don't bother to conflict
           # as this labels set is a covering approximation only.
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # System.out.println("dfa.k="+dfa.getUserMaxLookahead());
@@ -321,7 +321,7 @@ module Org::Antlr::Analysis
         # that is equal to one we just computed...not sure if that's
         # ok.
         target_state.set_lookahead_depth(d.get_lookahead_depth + 1)
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("DFA after reach / closures:\n"+dfa);
       if (!d.is_resolved_with_predicates && (number_of_edges_emanating).equal?(0))
@@ -469,7 +469,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         c = configs.get(i)
         if (c.attr_single_atom_transition_emanating)
-          ((i += 1) - 1)
+          i += 1
           next # ignore NFA states w/o epsilon transitions
         end
         # System.out.println("go do reach for NFA state "+c.state);
@@ -477,7 +477,7 @@ module Org::Antlr::Analysis
         # via epsilon transitions.
         # Fill configsInClosure rather than altering d configs inline
         closure(@dfa.attr_nfa.get_state(c.attr_state), c.attr_alt, c.attr_context, c.attr_semantic_context, d, false)
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("after closure d="+d);
       d.attr_closure_busy = nil # wack all that memory used during closure
@@ -801,7 +801,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         c = configs.get(i)
         if (c.attr_resolved || c.attr_resolve_with_predicate)
-          ((i += 1) - 1)
+          i += 1
           next # the conflict resolver indicates we must leave alone
         end
         p = @dfa.attr_nfa.get_state(c.attr_state)
@@ -809,7 +809,7 @@ module Org::Antlr::Analysis
         # may have a non-epsilon edge.
         edge = p.attr_transition[0]
         if ((edge).nil? || !c.attr_single_atom_transition_emanating)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         edge_label = edge.attr_label
@@ -821,7 +821,7 @@ module Org::Antlr::Analysis
         # somebody called this rule, don't see the EOT emanating from
         # this accept state.
         if (!(c.attr_context.attr_parent).nil? && (edge_label.attr_label).equal?(Label::EOT))
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # Labels not unique at this point (not until addReachableLabels)
@@ -832,7 +832,7 @@ module Org::Antlr::Analysis
           # add NFA target to (potentially) new DFA state
           new_c = label_dfatarget.add_nfaconfiguration(edge.attr_target, c.attr_alt, c.attr_context, c.attr_semantic_context)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if ((label_dfatarget.attr_nfa_configurations.size).equal?(0))
         # kill; it's empty
@@ -860,7 +860,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         c = d.attr_nfa_configurations.get(i)
         if (c.attr_resolved || c.attr_resolve_with_predicate)
-          ((i += 1) - 1)
+          i += 1
           next # the conflict resolver indicates we must leave alone
         end
         p = @dfa.attr_nfa.get_state(c.attr_state)
@@ -875,7 +875,7 @@ module Org::Antlr::Analysis
           # System.out.println("to "+d);
           return # assume only one EOT transition
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -1226,7 +1226,7 @@ module Org::Antlr::Analysis
               configuration.attr_resolved = true
             end
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
       
@@ -1326,7 +1326,7 @@ module Org::Antlr::Analysis
           if ((configuration.attr_alt).equal?(naked_alt))
             configuration.attr_semantic_context = naked_alt_pred
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
       if ((alt_to_pred_map.size).equal?(nondeterministic_alts.size))
@@ -1359,7 +1359,7 @@ module Org::Antlr::Analysis
               configuration.attr_resolved = true
             end
           end
-          ((i += 1) - 1)
+          i += 1
         end
         return true
       end
@@ -1442,7 +1442,7 @@ module Org::Antlr::Analysis
             # }
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # For each alt, OR together all unique predicates associated with
       # all configurations
@@ -1508,7 +1508,7 @@ module Org::Antlr::Analysis
               end
             end
           end
-          ((i_ += 1) - 1)
+          i_ += 1
         end
         @dfa.attr_probe.report_incompletely_covered_alts(d, alt_to_locations_reachable_without_predicate)
       end
@@ -1554,7 +1554,7 @@ module Org::Antlr::Analysis
         if (c.attr_resolve_with_predicate)
           configs_with_preds.add(c)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       Collections.sort(configs_with_preds, # Sort ascending according to alt; alt i has higher precedence than i+1
       Class.new(Comparator.class == Class ? Comparator : Object) do
@@ -1607,7 +1607,7 @@ module Org::Antlr::Analysis
         end
         # add a transition to pred target from d
         d.add_transition(pred_dfatarget, PredicateLabel.new(c.attr_semantic_context))
-        ((i_ += 1) - 1)
+        i_ += 1
       end
     end
     
@@ -1622,7 +1622,7 @@ module Org::Antlr::Analysis
         # node then it implies there is no call stack for
         # that configuration
         @context_trees[i] = NFAContext.new(nil, nil)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -1636,7 +1636,7 @@ module Org::Antlr::Analysis
         m = 0
         it = s.iterator
         while it.has_next
-          ((i += 1) - 1)
+          i += 1
           i_ = it.next
           if ((i).equal?(1))
             # init m with first value

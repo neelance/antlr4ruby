@@ -68,7 +68,7 @@ module Org::Antlr::Runtime::Misc
         i = 0
         while i < m
           s2 += (x[i] - xbar) * (x[i] - xbar)
-          ((i += 1) - 1)
+          i += 1
         end
         s2 = s2 / (m - 1)
         return Math.sqrt(s2)
@@ -85,7 +85,7 @@ module Org::Antlr::Runtime::Misc
         i = 0
         while i < m
           xbar += x[i]
-          ((i += 1) - 1)
+          i += 1
         end
         if (xbar >= 0.0)
           return xbar / m
@@ -105,7 +105,7 @@ module Org::Antlr::Runtime::Misc
           if (x[i] < min)
             min = x[i]
           end
-          ((i += 1) - 1)
+          i += 1
         end
         return min
       end
@@ -122,7 +122,7 @@ module Org::Antlr::Runtime::Misc
           if (x[i] > max)
             max = x[i]
           end
-          ((i += 1) - 1)
+          i += 1
         end
         return max
       end
@@ -137,7 +137,7 @@ module Org::Antlr::Runtime::Misc
         i = 0
         while i < m
           s += x[i]
-          ((i += 1) - 1)
+          i += 1
         end
         return s
       end

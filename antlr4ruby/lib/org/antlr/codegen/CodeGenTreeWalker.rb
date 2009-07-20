@@ -602,7 +602,7 @@ module Org::Antlr::Codegen
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt24 += 1) - 1)
+          _cnt24 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -911,7 +911,7 @@ module Org::Antlr::Codegen
       else
         code = @templates.get_instance_of(block_template_name + "SingleAlt")
       end
-      ((@block_nesting_level += 1) - 1)
+      @block_nesting_level += 1
       code.set_attribute("blockLevel", @block_nesting_level)
       code.set_attribute("enclosingBlockLevel", @block_nesting_level - 1)
       alt = nil
@@ -931,7 +931,7 @@ module Org::Antlr::Codegen
           sb = set_block(_t)
           _t = self.attr__ret_tree
           code.set_attribute("alts", sb)
-          ((@block_nesting_level -= 1) + 1)
+          @block_nesting_level -= 1
         else
           if (((_t.get_type).equal?(BLOCK)))
             __t45 = _t
@@ -962,7 +962,7 @@ module Org::Antlr::Codegen
                 rew = rewrite(_t)
                 _t = self.attr__ret_tree
                 if ((@block_nesting_level).equal?(RULE_BLOCK_NESTING_LEVEL))
-                  ((@outer_alt_num += 1) - 1)
+                  @outer_alt_num += 1
                 end
                 # add the rewrite code as just another element in the alt :)
                 # (unless it's a " -> ..." rewrite
@@ -975,7 +975,7 @@ module Org::Antlr::Codegen
                 code.set_attribute("alts", alt)
                 alt.set_attribute("altNum", Utils.integer(alt_num))
                 alt.set_attribute("outerAlt", Boolean.value_of((@block_nesting_level).equal?(RULE_BLOCK_NESTING_LEVEL)))
-                ((alt_num += 1) - 1)
+                alt_num += 1
               else
                 if (_cnt48 >= 1)
                   break
@@ -983,14 +983,14 @@ module Org::Antlr::Codegen
                   raise NoViableAltException.new(_t)
                 end
               end
-              ((_cnt48 += 1) - 1)
+              _cnt48 += 1
             end while (true)
             tmp34_ast_in = _t
             match(_t, EOB)
             _t = _t.get_next_sibling
             _t = __t45
             _t = _t.get_next_sibling
-            ((@block_nesting_level -= 1) + 1)
+            @block_nesting_level -= 1
           else
             raise NoViableAltException.new(_t)
           end
@@ -1030,7 +1030,7 @@ module Org::Antlr::Codegen
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt52 += 1) - 1)
+            _cnt52 += 1
           end while (true)
           if ((_t).nil?)
             _t = ASTNULL
@@ -1162,7 +1162,7 @@ module Org::Antlr::Codegen
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt61 += 1) - 1)
+          _cnt61 += 1
         end while (true)
         tmp35_ast_in = _t
         match(_t, EOA)
@@ -1861,7 +1861,7 @@ module Org::Antlr::Codegen
         # the child list.
         code.set_attribute("nullableChildList", "true")
       end
-      ((@rewrite_tree_nesting_level += 1) - 1)
+      @rewrite_tree_nesting_level += 1
       code.set_attribute("enclosingTreeLevel", @rewrite_tree_nesting_level - 1)
       code.set_attribute("treeLevel", @rewrite_tree_nesting_level)
       r = @grammar.get_rule(@current_rule_name)
@@ -1907,7 +1907,7 @@ module Org::Antlr::Codegen
         end while (true)
         _t = __t79
         _t = _t.get_next_sibling
-        ((@rewrite_tree_nesting_level -= 1) + 1)
+        @rewrite_tree_nesting_level -= 1
       rescue RecognitionException => ex
         report_error(ex)
         if (!(_t).nil?)
@@ -2106,7 +2106,7 @@ module Org::Antlr::Codegen
                   raise NoViableAltException.new(_t)
                 end
               end
-              ((_cnt105 += 1) - 1)
+              _cnt105 += 1
             end while (true)
           when EPSILON
             tmp58_ast_in = _t
@@ -2149,7 +2149,7 @@ module Org::Antlr::Codegen
     def rewrite_block(_t, block_template_name)
       code = nil
       rewrite_block_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      ((@rewrite_block_nesting_level += 1) - 1)
+      @rewrite_block_nesting_level += 1
       code = @templates.get_instance_of(block_template_name)
       save_current_block_st = @current_block_st
       @current_block_st = code
@@ -2171,7 +2171,7 @@ module Org::Antlr::Codegen
         _t = __t100
         _t = _t.get_next_sibling
         code.set_attribute("alt", alt)
-        ((@rewrite_block_nesting_level -= 1) + 1)
+        @rewrite_block_nesting_level -= 1
         @current_block_st = save_current_block_st
       rescue RecognitionException => ex
         report_error(ex)
@@ -2589,7 +2589,7 @@ module Org::Antlr::Codegen
     def rewrite_tree(_t)
       code = @templates.get_instance_of("rewriteTree")
       rewrite_tree_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      ((@rewrite_tree_nesting_level += 1) - 1)
+      @rewrite_tree_nesting_level += 1
       code.set_attribute("treeLevel", @rewrite_tree_nesting_level)
       code.set_attribute("enclosingTreeLevel", @rewrite_tree_nesting_level - 1)
       r = nil
@@ -2623,7 +2623,7 @@ module Org::Antlr::Codegen
         description = @grammar.grammar_tree_to_string(rewrite_tree_ast_in, false)
         description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
         code.set_attribute("description", description)
-        ((@rewrite_tree_nesting_level -= 1) + 1)
+        @rewrite_tree_nesting_level -= 1
       rescue RecognitionException => ex
         report_error(ex)
         if (!(_t).nil?)

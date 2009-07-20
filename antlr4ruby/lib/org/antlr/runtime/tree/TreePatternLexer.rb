@@ -180,7 +180,7 @@ module Org::Antlr::Runtime::Tree
     
     typesig { [] }
     def consume
-      ((@p += 1) - 1)
+      @p += 1
       if (@p >= @n)
         @c = EOF
       else

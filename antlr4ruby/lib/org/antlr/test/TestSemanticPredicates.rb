@@ -580,7 +580,7 @@ module Org::Antlr::Test
         if (m.is_a?(GrammarNonDeterminismMessage))
           return m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return nil
     end
@@ -593,7 +593,7 @@ module Org::Antlr::Test
         if (m.is_a?(GrammarInsufficientPredicatesMessage))
           return m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return nil
     end
@@ -608,7 +608,7 @@ module Org::Antlr::Test
         end
         element = elements[i]
         buf.append(element)
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end

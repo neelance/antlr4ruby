@@ -404,7 +404,7 @@ module Org::Antlr::Tool
             if ((t.attr_label.get_atom).equal?(Label::EOT))
               eot_transition = t
             end
-            ((i += 1) - 1)
+            i += 1
           end
           if (!(eot_transition).nil?)
             s = eot_transition.attr_target

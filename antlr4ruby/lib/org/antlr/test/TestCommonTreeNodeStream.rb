@@ -70,7 +70,7 @@ module Org::Antlr::Test
       while k <= index_of107
         # consume til 107 node
         stream.consume
-        ((k += 1) - 1)
+        k += 1
       end
       # CALL 102
       assert_equals(107, (stream._lt(1)).get_type)
@@ -113,7 +113,7 @@ module Org::Antlr::Test
       while k <= index_of107
         # consume til 107 node
         stream.consume
-        ((k += 1) - 1)
+        k += 1
       end
       assert_equals(107, (stream._lt(1)).get_type)
       # CALL 102
@@ -201,7 +201,7 @@ module Org::Antlr::Test
       i = 1
       while i <= CommonTreeNodeStream::INITIAL_CALL_STACK_SIZE + 1
         stream.push(i)
-        ((i += 1) - 1)
+        i += 1
       end
       assert_equals(10, stream.pop)
       assert_equals(9, stream.pop)

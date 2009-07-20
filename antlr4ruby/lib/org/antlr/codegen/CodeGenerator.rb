@@ -626,7 +626,7 @@ module Org::Antlr::Codegen
       while j < words.attr_length
         w = words[j]
         word_strings[j] = @target.get_target64bit_string_from_value(w)
-        ((j += 1) - 1)
+        j += 1
       end
       @recognizer_st.set_attribute("bitsets.{name,inName,bits,tokenTypes,tokenIndex}", referenced_element_name, enclosing_rule_name, word_strings, token_type_list, Utils.integer(element_index))
       @output_file_st.set_attribute("bitsets.{name,inName,bits,tokenTypes,tokenIndex}", referenced_element_name, enclosing_rule_name, word_strings, token_type_list, Utils.integer(element_index))
@@ -709,7 +709,7 @@ module Org::Antlr::Codegen
         if (!(edge.attr_label.get_atom).equal?(Label::EOT))
           state_st.set_attribute("edges", edge_st)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (found_gated_pred)
         # state has >= 1 edge with a gated pred (syn or sem)
@@ -790,7 +790,7 @@ module Org::Antlr::Codegen
         end
         e_st.set_attribute("k", Utils.integer(k))
         set_st.set_attribute("ranges", e_st)
-        ((range_number += 1) - 1)
+        range_number += 1
       end
       return set_st
     end
@@ -824,7 +824,7 @@ module Org::Antlr::Codegen
           token_name = (@target.get_target_string_literal_from_string(token_name, true)).to_s
           code.set_attribute("tokenNames", token_name)
         end
-        ((t += 1) - 1)
+        t += 1
       end
     end
     
@@ -944,23 +944,23 @@ module Org::Antlr::Codegen
           c = action_text.char_at(p)
           case (c)
           when Character.new(?\'.ord)
-            ((p += 1) - 1)
+            p += 1
             while (p < n && !(action_text.char_at(p)).equal?(Character.new(?\'.ord)))
               if ((action_text.char_at(p)).equal?(Character.new(?\\.ord)) && (p + 1) < n && (action_text.char_at(p + 1)).equal?(Character.new(?\'.ord)))
-                ((p += 1) - 1) # skip escaped quote
+                p += 1 # skip escaped quote
               end
-              ((p += 1) - 1)
+              p += 1
             end
-            ((p += 1) - 1)
+            p += 1
           when Character.new(?".ord)
-            ((p += 1) - 1)
+            p += 1
             while (p < n && !(action_text.char_at(p)).equal?(Character.new(?\".ord)))
               if ((action_text.char_at(p)).equal?(Character.new(?\\.ord)) && (p + 1) < n && (action_text.char_at(p + 1)).equal?(Character.new(?\".ord)))
-                ((p += 1) - 1) # skip escaped quote
+                p += 1 # skip escaped quote
               end
-              ((p += 1) - 1)
+              p += 1
             end
-            ((p += 1) - 1)
+            p += 1
           when Character.new(?(.ord)
             p = get_list_of_arguments_from_action(action_text, p + 1, Character.new(?).ord), separator_char, args)
           when Character.new(?{.ord)
@@ -971,7 +971,7 @@ module Org::Antlr::Codegen
               # and not less followed by expr with greater than
               p = get_list_of_arguments_from_action(action_text, p + 1, Character.new(?>.ord), separator_char, args)
             else
-              ((p += 1) - 1) # treat as normal char
+              p += 1 # treat as normal char
             end
           when Character.new(?[.ord)
             p = get_list_of_arguments_from_action(action_text, p + 1, Character.new(?].ord), separator_char, args)
@@ -982,7 +982,7 @@ module Org::Antlr::Codegen
               args.add(arg.trim)
               last = p + 1
             end
-            ((p += 1) - 1)
+            p += 1
           end
         end
         if ((target_char).equal?(-1) && p <= n)
@@ -992,7 +992,7 @@ module Org::Antlr::Codegen
             args.add(arg.trim)
           end
         end
-        ((p += 1) - 1)
+        p += 1
         return p
       end
     }
@@ -1214,7 +1214,7 @@ module Org::Antlr::Codegen
           return false
         end
         size_ += edge.attr_label.get_set.size
-        ((i += 1) - 1)
+        i += 1
       end
       if (s.get_number_of_transitions < @min_switch_alts || size_ > @max_switch_case_labels)
         return false

@@ -59,7 +59,7 @@ module Org::Antlr::Tool
       while i < @grammar.attr_composite.attr_rule_index_to_rule_list.size
         r = @grammar.attr_composite.attr_rule_index_to_rule_list.element_at(i)
         if ((r).nil?)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # walk all labels for Rule r
@@ -77,12 +77,12 @@ module Org::Antlr::Tool
           while j < attributes.size
             attribute = attributes.get(j)
             check_for_rule_scope_attribute_conflict(r, attribute)
-            ((j += 1) - 1)
+            j += 1
           end
         end
         check_for_rule_definition_problems(r)
         check_for_rule_argument_and_return_value_conflicts(r)
-        ((i += 1) - 1)
+        i += 1
       end
       # check all global scopes against tokens
       it = @grammar.get_global_scopes.values.iterator

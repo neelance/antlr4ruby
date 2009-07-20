@@ -242,7 +242,7 @@ module Org::Antlr
               # force output into dir
               @force_all_files_to_output_dir = true
             end
-            ((i += 1) - 1)
+            i += 1
             @output_directory = (args[i]).to_s
             if (@output_directory.ends_with("/") || @output_directory.ends_with("\\"))
               @output_directory = (@output_directory.substring(0, @output_directory.length - 1)).to_s
@@ -258,7 +258,7 @@ module Org::Antlr
             if (i + 1 >= args.attr_length)
               System.err.println("missing library directory with -lib option; ignoring")
             else
-              ((i += 1) - 1)
+              i += 1
               @lib_directory = (args[i]).to_s
               if (@lib_directory.ends_with("/") || @lib_directory.ends_with("\\"))
                 @lib_directory = (@lib_directory.substring(0, @lib_directory.length - 1)).to_s
@@ -298,7 +298,7 @@ module Org::Antlr
                               if (i + 1 >= args.attr_length)
                                 System.err.println("missing output format with -message-format option; using default")
                               else
-                                ((i += 1) - 1)
+                                i += 1
                                 ErrorManager.set_format(args[i])
                               end
                             else
@@ -336,7 +336,7 @@ module Org::Antlr
                                                     if (i + 1 >= args.attr_length)
                                                       System.err.println("missing max inline dfa states -Xmaxinlinedfastates option; ignoring")
                                                     else
-                                                      ((i += 1) - 1)
+                                                      i += 1
                                                       CodeGenerator::MAX_ACYCLIC_DFA_STATES_INLINE = JavaInteger.parse_int(args[i])
                                                     end
                                                   else
@@ -344,7 +344,7 @@ module Org::Antlr
                                                       if (i + 1 >= args.attr_length)
                                                         System.err.println("missing max recursion with -Xm option; ignoring")
                                                       else
-                                                        ((i += 1) - 1)
+                                                        i += 1
                                                         NFAContext::MAX_SAME_RULE_INVOCATIONS_PER_NFA_CONFIG_STACK = JavaInteger.parse_int(args[i])
                                                       end
                                                     else
@@ -352,7 +352,7 @@ module Org::Antlr
                                                         if (i + 1 >= args.attr_length)
                                                           System.err.println("missing max number of edges with -Xmaxdfaedges option; ignoring")
                                                         else
-                                                          ((i += 1) - 1)
+                                                          i += 1
                                                           DFA::MAX_STATE_TRANSITIONS_FOR_TABLE = JavaInteger.parse_int(args[i])
                                                         end
                                                       else
@@ -360,7 +360,7 @@ module Org::Antlr
                                                           if (i + 1 >= args.attr_length)
                                                             System.err.println("missing max time in ms -Xconversiontimeout option; ignoring")
                                                           else
-                                                            ((i += 1) - 1)
+                                                            i += 1
                                                             DFA::MAX_TIME_PER_DFA_CREATION = JavaInteger.parse_int(args[i])
                                                           end
                                                         else
@@ -401,7 +401,7 @@ module Org::Antlr
             end
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -432,7 +432,7 @@ module Org::Antlr
             # System.out.println("output: "+outputFiles);
             # System.out.println("dependents: "+dependents);
             System.out.println(dep.get_dependencies)
-            ((i += 1) - 1)
+            i += 1
             next
           end
           grammar = get_root_grammar(grammar_file_name)
@@ -505,7 +505,7 @@ module Org::Antlr
         rescue Exception => e
           ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, grammar_file_name, e)
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -561,7 +561,7 @@ module Org::Antlr
             # already processing this one
             generate_recognizer(delegate)
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
     end
@@ -572,7 +572,7 @@ module Org::Antlr
       while d <= g.get_number_of_decisions
         dfa = g.get_lookahead_dfa(d)
         if ((dfa).nil?)
-          ((d += 1) - 1)
+          d += 1
           next # not there for some reason, ignore
         end
         dot_generator = DOTGenerator.new(g)
@@ -586,7 +586,7 @@ module Org::Antlr
         rescue IOException => ioe
           ErrorManager.error(ErrorManager::MSG_CANNOT_GEN_DOT_FILE, dot_file_name, ioe)
         end
-        ((d += 1) - 1)
+        d += 1
       end
     end
     

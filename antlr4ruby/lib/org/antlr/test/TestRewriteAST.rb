@@ -809,7 +809,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_true("no error; " + (expected_message.attr_msg_id).to_s + " expected", equeue.attr_errors.size > 0)
       assert_true("too many errors; " + (equeue.attr_errors).to_s, equeue.attr_errors.size <= 1)

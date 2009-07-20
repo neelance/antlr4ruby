@@ -210,7 +210,7 @@ module Org::Antlr::Tool
           next_ = new_state
           transition_between_states(prev, next_, c)
           prev = last = next_
-          ((i += 1) - 1)
+          i += 1
         end
         return StateCluster.new(first, last)
       end
@@ -263,7 +263,7 @@ module Org::Antlr::Tool
     def build__semantic_predicate(pred)
       # don't count syn preds
       if (!pred.get_text.to_upper_case.starts_with(Grammar::SYNPRED_RULE_PREFIX.to_upper_case))
-        ((@nfa.attr_grammar.attr_number_of_semantic_predicates += 1) - 1)
+        @nfa.attr_grammar.attr_number_of_semantic_predicates += 1
       end
       left = new_state
       right = new_state
@@ -306,7 +306,7 @@ module Org::Antlr::Tool
           # the rule, make it hit EOF/EOT.
           build__eofstate(end_nfastate)
           # track how many rules have been invoked by another rule
-          ((number_un_invoked_rules += 1) - 1)
+          number_un_invoked_rules += 1
         end
       end
       return number_un_invoked_rules
@@ -423,7 +423,7 @@ module Org::Antlr::Tool
           transition_between_states(prev_alternative, left, Label::EPSILON)
         end
         prev_alternative = left
-        ((alt_num += 1) - 1)
+        alt_num += 1
       end
       # return StateCluster pointing representing entire block
       # Points to first alt NFAState on left, block end on right

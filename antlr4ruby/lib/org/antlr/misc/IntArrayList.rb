@@ -90,7 +90,7 @@ module Org::Antlr::Misc
         grow
       end
       @elements[@n] = o
-      ((@n += 1) - 1)
+      @n += 1
       return true
     end
     
@@ -115,7 +115,7 @@ module Org::Antlr::Misc
         if ((element).equal?(v))
           return true
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return false
     end
@@ -171,7 +171,7 @@ module Org::Antlr::Misc
         if (!(@elements[i]).equal?(other.attr_elements[i]))
           return false
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return true
     end
@@ -193,7 +193,7 @@ module Org::Antlr::Misc
           buf.append(", ")
         end
         buf.append(@elements[i])
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end

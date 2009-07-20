@@ -386,7 +386,7 @@ module Org::Antlr::Tool
       while !(children).nil? && i < children.size
         child = children.get(i)
         grammars.add(child.attr_grammar)
-        ((i += 1) - 1)
+        i += 1
       end
       return grammars
     end
@@ -467,7 +467,7 @@ module Org::Antlr::Tool
             rules.add(r)
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return rules
     end
@@ -522,7 +522,7 @@ module Org::Antlr::Tool
         rescue RecognitionException => re
           ErrorManager.error(ErrorManager::MSG_BAD_AST_STRUCTURE, re)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # the walker has filled literals, tokens, and alias tables.
       # now tell it to define them in the root grammar
@@ -537,13 +537,13 @@ module Org::Antlr::Tool
       while !(grammars).nil? && i < grammars.size
         g = grammars.get(i)
         g.define_grammar_symbols
-        ((i += 1) - 1)
+        i += 1
       end
       i_ = 0
       while !(grammars).nil? && i_ < grammars.size
         g = grammars.get(i_)
         g.check_name_space_and_actions
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       minimize_rule_set
     end
@@ -559,20 +559,20 @@ module Org::Antlr::Tool
       while i < grammars.size
         g = grammars.get(i)
         names.add(g.attr_name)
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("### createNFAs for composite; grammars: "+names);
       i_ = 0
       while !(grammars).nil? && i_ < grammars.size
         g = grammars.get(i_)
         g.create_rule_start_and_stop_nfastates
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       i__ = 0
       while !(grammars).nil? && i__ < grammars.size
         g = grammars.get(i__)
         g.build_nfa
-        ((i__ += 1) - 1)
+        i__ += 1
       end
     end
     

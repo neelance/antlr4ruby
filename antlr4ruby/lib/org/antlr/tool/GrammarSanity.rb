@@ -83,7 +83,7 @@ module Org::Antlr::Tool
           visited_states = HashSet.new
           trace_states_looking_for_left_recursion(r.attr_start_state, visited_states, list_of_recursive_cycles)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (list_of_recursive_cycles.size > 0)
         ErrorManager.left_recursion_cycles(list_of_recursive_cycles)
@@ -170,7 +170,7 @@ module Org::Antlr::Tool
           rules_in_cycle.add(target_rule)
           found_cycle = true
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (!found_cycle)
         cycle = HashSet.new

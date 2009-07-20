@@ -88,7 +88,7 @@ module Org::Antlr::Tool
       while (r).nil? && !(@children).nil? && i < @children.size
         child = @children.get(i)
         r = child.get_rule(rule_name)
-        ((i += 1) - 1)
+        i += 1
       end
       return r
     end
@@ -119,7 +119,7 @@ module Org::Antlr::Tool
       while (n).nil? && !(@children).nil? && i < @children.size
         child = @children.get(i)
         n = child.find_node(g)
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end
@@ -137,7 +137,7 @@ module Org::Antlr::Tool
       while (n).nil? && !(@children).nil? && i < @children.size
         child = @children.get(i)
         n = child.find_node(grammar_name)
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end
@@ -157,7 +157,7 @@ module Org::Antlr::Tool
       while !(@children).nil? && i < @children.size
         child = @children.get(i)
         child.__get_post_ordered_grammar_list(grammars)
-        ((i += 1) - 1)
+        i += 1
       end
       grammars.add(@grammar)
     end
@@ -177,7 +177,7 @@ module Org::Antlr::Tool
       while !(@children).nil? && i < @children.size
         child = @children.get(i)
         child.__get_post_ordered_grammar_list(grammars)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -192,7 +192,7 @@ module Org::Antlr::Tool
       while !(@children).nil? && i < @children.size
         child = @children.get(i)
         child.trim_lexer_imports_into_combined
-        ((i += 1) - 1)
+        i += 1
       end
     end
     

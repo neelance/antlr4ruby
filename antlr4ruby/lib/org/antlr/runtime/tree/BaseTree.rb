@@ -86,7 +86,7 @@ module Org::Antlr::Runtime::Tree
         if ((t.get_type).equal?(type))
           return t
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return nil
     end
@@ -129,7 +129,7 @@ module Org::Antlr::Runtime::Tree
               # handle double-link stuff for each child of nil root
               c.set_parent(self)
               c.set_child_index(@children.size - 1)
-              ((i += 1) - 1)
+              i += 1
             end
           else
             # no children for this but t has children; just set pointer
@@ -157,7 +157,7 @@ module Org::Antlr::Runtime::Tree
       while i < kids.size
         t = kids.get(i)
         add_child(t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -223,8 +223,8 @@ module Org::Antlr::Runtime::Tree
           @children.set(i, child)
           child.set_parent(self)
           child.set_child_index(i)
-          ((j += 1) - 1)
-          ((i += 1) - 1)
+          j += 1
+          i += 1
         end
       else
         if (delta > 0)
@@ -233,14 +233,14 @@ module Org::Antlr::Runtime::Tree
           j = 0
           while j < num_new_children
             @children.set(start_child_index + j, new_children.get(j))
-            ((j += 1) - 1)
+            j += 1
           end
           index_to_delete = start_child_index + num_new_children
           c = index_to_delete
           while c <= stop_child_index
             # delete same index, shifting everybody down each time
             killed = @children.remove(index_to_delete)
-            ((c += 1) - 1)
+            c += 1
           end
           freshen_parent_and_child_indexes(start_child_index)
         else
@@ -249,13 +249,13 @@ module Org::Antlr::Runtime::Tree
           j = 0
           while j < replacing_how_many
             @children.set(start_child_index + j, new_children.get(j))
-            ((j += 1) - 1)
+            j += 1
           end
           num_to_insert = replacing_with_how_many - replacing_how_many
           j_ = replacing_how_many
           while j_ < replacing_with_how_many
             @children.add(start_child_index + j_, new_children.get(j_))
-            ((j_ += 1) - 1)
+            j_ += 1
           end
           freshen_parent_and_child_indexes(start_child_index)
         end
@@ -288,7 +288,7 @@ module Org::Antlr::Runtime::Tree
         child = get_child(c)
         child.set_child_index(c)
         child.set_parent(self)
-        ((c += 1) - 1)
+        c += 1
       end
     end
     
@@ -310,7 +310,7 @@ module Org::Antlr::Runtime::Tree
       while c < n
         child = self.get_child(c)
         child.sanity_check_parent_and_child_indexes(self, c)
-        ((c += 1) - 1)
+        c += 1
       end
     end
     
@@ -353,7 +353,7 @@ module Org::Antlr::Runtime::Tree
           buf.append(Character.new(?\s.ord))
         end
         buf.append(t.to_string_tree)
-        ((i += 1) - 1)
+        i += 1
       end
       if (!is_nil)
         buf.append(")")

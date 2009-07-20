@@ -165,7 +165,7 @@ module Org::Antlr::Tool
         # " edge from s"+s.stateNumber+" ["+i+"] of "+s.getNumberOfTransitions());
         if (STRIP_NONREDUCED_STATES)
           if (edge.attr_target.is_a?(DFAState) && !((edge.attr_target).get_accept_state_reachable).equal?(DFA::REACHABLE_YES))
-            ((i += 1) - 1)
+            i += 1
             next # don't generate nodes for terminal states
           end
         end
@@ -176,7 +176,7 @@ module Org::Antlr::Tool
         st.set_attribute("arrowhead", @arrowhead)
         dot.set_attribute("edges", st)
         walk_creating_dfadot(dot, edge.attr_target) # keep walkin'
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -240,7 +240,7 @@ module Org::Antlr::Tool
           edge_st.set_attribute("arrowhead", @arrowhead)
           dot.set_attribute("edges", edge_st)
           walk_rule_nfacreating_dot(dot, rr.attr_follow_state)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if (edge.is_action)
@@ -258,7 +258,7 @@ module Org::Antlr::Tool
         edge_st.set_attribute("arrowhead", @arrowhead)
         dot.set_attribute("edges", edge_st)
         walk_rule_nfacreating_dot(dot, edge.attr_target) # keep walkin'
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -371,7 +371,7 @@ module Org::Antlr::Tool
               c_index = 0
               while c_index < configs_in_alt.size
                 c = configs_in_alt.get(c_index)
-                ((n += 1) - 1)
+                n += 1
                 buf.append(c.to_s(false))
                 if ((c_index + 1) < configs_in_alt.size)
                   buf.append(", ")
@@ -379,9 +379,9 @@ module Org::Antlr::Tool
                 if ((n % 5).equal?(0) && (configs_in_alt.size - c_index) > 3)
                   buf.append("\\n")
                 end
-                ((c_index += 1) - 1)
+                c_index += 1
               end
-              ((alt_index += 1) - 1)
+              alt_index += 1
             end
           end
         end

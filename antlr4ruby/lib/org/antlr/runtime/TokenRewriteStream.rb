@@ -463,7 +463,7 @@ module Org::Antlr::Runtime
       i = start
       while i >= MIN_TOKEN_INDEX && i <= end_ && i < self.attr_tokens.size
         buf.append(get(i).get_text)
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end
@@ -508,7 +508,7 @@ module Org::Antlr::Runtime
         if ((op).nil?)
           # no operation at that index, just dump token
           buf.append(t.get_text)
-          ((i += 1) - 1) # move to next token
+          i += 1 # move to next token
         else
           i = op.execute(buf) # execute operation and skip
         end
@@ -582,11 +582,11 @@ module Org::Antlr::Runtime
       while i < rewrites.size
         op = rewrites.get(i)
         if ((op).nil?)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if (!(op.is_a?(ReplaceOp)))
-          ((i += 1) - 1)
+          i += 1
           next
         end
         rop = rewrites.get(i)
@@ -599,7 +599,7 @@ module Org::Antlr::Runtime
             # delete insert as it's a no-op.
             rewrites.set(iop.attr_instruction_index, nil)
           end
-          ((j += 1) - 1)
+          j += 1
         end
         # Drop any prior replaces contained within
         prev_replaces = get_kind_of_ops(rewrites, ReplaceOp.class, i)
@@ -609,7 +609,7 @@ module Org::Antlr::Runtime
           if (prev_rop.attr_index >= rop.attr_index && prev_rop.attr_last_index <= rop.attr_last_index)
             # delete replace as it's a no-op.
             rewrites.set(prev_rop.attr_instruction_index, nil)
-            ((j_ += 1) - 1)
+            j_ += 1
             next
           end
           # throw exception unless disjoint or identical
@@ -618,20 +618,20 @@ module Org::Antlr::Runtime
           if (!disjoint && !same)
             raise IllegalArgumentException.new("replace op boundaries of " + (rop).to_s + " overlap with previous " + (prev_rop).to_s)
           end
-          ((j_ += 1) - 1)
+          j_ += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # WALK INSERTS
       i_ = 0
       while i_ < rewrites.size
         op = rewrites.get(i_)
         if ((op).nil?)
-          ((i_ += 1) - 1)
+          i_ += 1
           next
         end
         if (!(op.is_a?(InsertBeforeOp)))
-          ((i_ += 1) - 1)
+          i_ += 1
           next
         end
         iop = rewrites.get(i_)
@@ -648,7 +648,7 @@ module Org::Antlr::Runtime
             # delete redundant prior insert
             rewrites.set(prev_iop.attr_instruction_index, nil)
           end
-          ((j += 1) - 1)
+          j += 1
         end
         # look for replaces where iop.index is in range; error
         prev_replaces = get_kind_of_ops(rewrites, ReplaceOp.class, i_)
@@ -658,15 +658,15 @@ module Org::Antlr::Runtime
           if ((iop.attr_index).equal?(rop.attr_index))
             rop.attr_text = cat_op_text(iop.attr_text, rop.attr_text)
             rewrites.set(i_, nil) # delete current insert
-            ((j_ += 1) - 1)
+            j_ += 1
             next
           end
           if (iop.attr_index >= rop.attr_index && iop.attr_index <= rop.attr_last_index)
             raise IllegalArgumentException.new("insert op " + (iop).to_s + " within boundaries of previous " + (rop).to_s)
           end
-          ((j_ += 1) - 1)
+          j_ += 1
         end
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       # System.out.println("rewrites after="+rewrites);
       m = HashMap.new
@@ -674,14 +674,14 @@ module Org::Antlr::Runtime
       while i__ < rewrites.size
         op = rewrites.get(i__)
         if ((op).nil?)
-          ((i__ += 1) - 1)
+          i__ += 1
           next
         end # ignore deleted ops
         if (!(m.get(op.attr_index)).nil?)
           raise JavaError.new("should only be one op per index")
         end
         m.put(op.attr_index, op)
-        ((i__ += 1) - 1)
+        i__ += 1
       end
       # System.out.println("index to op: "+m);
       return m
@@ -713,13 +713,13 @@ module Org::Antlr::Runtime
       while i < before && i < rewrites.size
         op = rewrites.get(i)
         if ((op).nil?)
-          ((i += 1) - 1)
+          i += 1
           next
         end # ignore deleted
         if ((op.get_class).equal?(kind))
           ops.add(op)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return ops
     end
@@ -735,7 +735,7 @@ module Org::Antlr::Runtime
       i = start
       while i >= MIN_TOKEN_INDEX && i <= end_ && i < self.attr_tokens.size
         buf.append(get(i))
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end

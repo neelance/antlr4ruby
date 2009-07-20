@@ -379,7 +379,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt82 += 1) - 1)
+          _cnt82 += 1
         end while (true)
         tmp11_ast_in = _t
         match(_t, EOA)
@@ -776,7 +776,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt28 += 1) - 1)
+          _cnt28 += 1
         end while (true)
         out("} ")
         _t = __t26
@@ -830,7 +830,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt36 += 1) - 1)
+            _cnt36 += 1
           end while (true)
         end
         _t = __t33
@@ -868,7 +868,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt40 += 1) - 1)
+          _cnt40 += 1
         end while (true)
         _t = __t38
         _t = _t.get_next_sibling
@@ -901,7 +901,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt21 += 1) - 1)
+          _cnt21 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -932,7 +932,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt46 += 1) - 1)
+          _cnt46 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -1321,7 +1321,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt85 += 1) - 1)
+            _cnt85 += 1
           end while (true)
           if ((_t).nil?)
             _t = ASTNULL
@@ -1417,7 +1417,7 @@ module Org::Antlr::Tool
                 break
               end
             end while (true)
-            ((n += 1) - 1)
+            n += 1
           else
             if (_cnt78 >= 1)
               break
@@ -1425,7 +1425,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt78 += 1) - 1)
+          _cnt78 += 1
         end while (true)
         tmp57_ast_in = _t
         match(_t, EOB)

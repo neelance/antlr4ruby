@@ -312,8 +312,8 @@ module Org::Antlr::Runtime::Debug
     typesig { [String, String] }
     def enter_rule(grammar_file_name, rule_name)
       # System.out.println("enterRule "+ruleName);
-      ((@rule_level += 1) - 1)
-      ((@num_rule_invocations += 1) - 1)
+      @rule_level += 1
+      @num_rule_invocations += 1
       if (@rule_level > @max_rule_invocation_depth)
         @max_rule_invocation_depth = @rule_level
       end
@@ -328,12 +328,12 @@ module Org::Antlr::Runtime::Debug
       stop_index = @parser.get_rule_memoization(rule_index, input.index)
       if ((stop_index).equal?(BaseRecognizer::MEMO_RULE_UNKNOWN))
         # System.out.println("rule "+ruleIndex+" missed @ "+input.index());
-        ((@num_memoization_cache_misses += 1) - 1)
-        ((@num_guessing_rule_invocations += 1) - 1) # we'll have to enter
+        @num_memoization_cache_misses += 1
+        @num_guessing_rule_invocations += 1 # we'll have to enter
       else
         # regardless of rule success/failure, if in cache, we have a cache hit
         # System.out.println("rule "+ruleIndex+" hit @ "+input.index());
-        ((@num_memoization_cache_hits += 1) - 1)
+        @num_memoization_cache_hits += 1
       end
     end
     
@@ -341,17 +341,17 @@ module Org::Antlr::Runtime::Debug
     def memoize(input, rule_index, rule_start_index, rule_name)
       # count how many entries go into table
       # System.out.println("memoize "+ruleName);
-      ((@num_memoization_cache_entries += 1) - 1)
+      @num_memoization_cache_entries += 1
     end
     
     typesig { [String, String] }
     def exit_rule(grammar_file_name, rule_name)
-      ((@rule_level -= 1) + 1)
+      @rule_level -= 1
     end
     
     typesig { [::Java::Int] }
     def enter_decision(decision_number)
-      ((@decision_level += 1) - 1)
+      @decision_level += 1
       starting_lookahead_index = @parser.get_token_stream.index
       # System.out.println("enterDecision "+decisionNumber+" @ index "+startingLookaheadIndex);
       @lookahead_stack.add(starting_lookahead_index)
@@ -363,12 +363,12 @@ module Org::Antlr::Runtime::Debug
       # track how many of acyclic, cyclic here as we don't know what kind
       # yet in enterDecision event.
       if (@parser.attr_is_cyclic_decision)
-        ((@num_cyclic_decisions += 1) - 1)
+        @num_cyclic_decisions += 1
       else
-        ((@num_fixed_decisions += 1) - 1)
+        @num_fixed_decisions += 1
       end
       @lookahead_stack.remove(@lookahead_stack.size - 1) # pop lookahead depth counter
-      ((@decision_level -= 1) + 1)
+      @decision_level -= 1
       if (@parser.attr_is_cyclic_decision)
         if (@num_cyclic_decisions >= @decision_max_cyclic_lookaheads.attr_length)
           bigger = Array.typed(::Java::Int).new(@decision_max_cyclic_lookaheads.attr_length * 2) { 0 }
@@ -443,7 +443,7 @@ module Org::Antlr::Runtime::Debug
     # exit rule
     def begin_backtrack(level)
       # System.out.println("enter backtrack "+level);
-      ((@num_backtrack_decisions += 1) - 1)
+      @num_backtrack_decisions += 1
     end
     
     typesig { [::Java::Int, ::Java::Boolean] }
@@ -475,13 +475,13 @@ module Org::Antlr::Runtime::Debug
     # );
     # }
     def recognition_exception(e)
-      ((@number_reported_errors += 1) - 1)
+      @number_reported_errors += 1
     end
     
     typesig { [::Java::Boolean, String] }
     def semantic_predicate(result, predicate)
       if (in_decision)
-        ((@num_semantic_predicates += 1) - 1)
+        @num_semantic_predicates += 1
       end
     end
     
@@ -510,10 +510,10 @@ module Org::Antlr::Runtime::Debug
       while i < input.size && !(@last_token_consumed).nil? && i <= @last_token_consumed.get_token_index
         t = input.get(i)
         if (!(t.get_channel).equal?(Token::DEFAULT_CHANNEL))
-          ((@num_hidden_tokens += 1) - 1)
+          @num_hidden_tokens += 1
           @num_hidden_chars_matched += t.get_text.length
         end
-        ((i += 1) - 1)
+        i += 1
       end
       @num_chars_matched = @last_token_consumed.get_stop_index + 1
       @decision_max_fixed_lookaheads = trim(@decision_max_fixed_lookaheads, @num_fixed_decisions)
@@ -592,7 +592,7 @@ module Org::Antlr::Runtime::Debug
         i = 0
         while (st.has_more_tokens)
           fields[i] = st.next_token
-          ((i += 1) - 1)
+          i += 1
         end
         if (!(i).equal?(NUM_RUNTIME_STATS))
           return nil
@@ -715,7 +715,7 @@ module Org::Antlr::Runtime::Debug
       while i < a.size
         i_ = a.get(i)
         x[i] = i_.int_value
-        ((i += 1) - 1)
+        i += 1
       end
       return x
     end
@@ -729,9 +729,9 @@ module Org::Antlr::Runtime::Debug
       while ti < input.size && ti <= j
         t = input.get(ti)
         if (!(t.get_channel).equal?(Token::DEFAULT_CHANNEL))
-          ((n += 1) - 1)
+          n += 1
         end
-        ((ti += 1) - 1)
+        ti += 1
       end
       return n
     end

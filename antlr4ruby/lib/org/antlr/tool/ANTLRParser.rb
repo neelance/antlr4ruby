@@ -474,7 +474,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
-          ((_cnt18 += 1) - 1)
+          _cnt18 += 1
         end while (true)
         match(RCURLY)
         options_spec_ast = current_ast.attr_root
@@ -540,7 +540,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
-          ((_cnt27 += 1) - 1)
+          _cnt27 += 1
         end while (true)
         match(RCURLY)
         tokens_spec_ast = current_ast.attr_root
@@ -593,7 +593,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
-          ((_cnt12 += 1) - 1)
+          _cnt12 += 1
         end while (true)
         actions_ast = current_ast.attr_root
       rescue RecognitionException => ex
@@ -622,7 +622,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
-          ((_cnt37 += 1) - 1)
+          _cnt37 += 1
         end while (true)
         rules_ast = current_ast.attr_root
       rescue RecognitionException => ex
@@ -1191,7 +1191,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
-          ((_cnt50 += 1) - 1)
+          _cnt50 += 1
         end while (true)
         rule_actions_ast = current_ast.attr_root
       rescue RecognitionException => ex
@@ -1274,7 +1274,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_lt(1), get_filename)
               end
             end
-            ((_cnt73 += 1) - 1)
+            _cnt73 += 1
           end while (true)
           case (_la(1))
           when LITERAL_finally
@@ -1475,7 +1475,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_lt(1), get_filename)
               end
             end
-            ((_cnt70 += 1) - 1)
+            _cnt70 += 1
           end while (true)
           alternative_ast = current_ast.attr_root
           if ((alternative_ast).nil?)
@@ -2006,7 +2006,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_lt(1), get_filename)
             end
           end
-          ((_cnt97 += 1) - 1)
+          _cnt97 += 1
         end while (true)
         match(RPAREN)
         tree_ast = current_ast.attr_root
@@ -2474,7 +2474,7 @@ module Org::Antlr::Tool
                   raise NoViableAltException.new(_lt(1), get_filename)
                 end
               end
-              ((_cnt131 += 1) - 1)
+              _cnt131 += 1
             end while (true)
             rewrite_alternative_ast = current_ast.attr_root
             if ((rewrite_alternative_ast).nil?)

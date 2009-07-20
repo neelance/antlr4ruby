@@ -87,7 +87,7 @@ module Org::Antlr::Codegen
       i = 0
       while i < s.length
         retval.append(escape_char(s.char_at(i)))
-        ((i += 1) - 1)
+        i += 1
       end
       return retval.to_s
     end

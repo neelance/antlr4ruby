@@ -61,7 +61,7 @@ module Org::Antlr::Test
         buf.append(102 + i)
         buf2.append(" ")
         buf2.append(102 + i)
-        ((i += 1) - 1)
+        i += 1
       end
       buf2.append(" ")
       buf2.append(Token::UP)
@@ -90,7 +90,7 @@ module Org::Antlr::Test
       i = 0
       while i < UnBufferedTreeNodeStream::INITIAL_LOOKAHEAD_BUFFER_SIZE + n
         t.add_child(CommonTree.new(CommonToken.new(i + 1)))
-        ((i += 1) - 1)
+        i += 1
       end
       # move head to index N
       stream = new_stream(t)
@@ -100,7 +100,7 @@ module Org::Antlr::Test
         node = stream._lt(1)
         assert_equals(i_, node.get_type)
         stream.consume
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       # now use LT to lookahead past end of buffer
       remaining = UnBufferedTreeNodeStream::INITIAL_LOOKAHEAD_BUFFER_SIZE - n
@@ -111,7 +111,7 @@ module Org::Antlr::Test
         # wrap past end of buffer
         node = stream._lt(i__) # look ahead to ith token
         assert_equals(n + i__, node.get_type)
-        ((i__ += 1) - 1)
+        i__ += 1
       end
     end
     

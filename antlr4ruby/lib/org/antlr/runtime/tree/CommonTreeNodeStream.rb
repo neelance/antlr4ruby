@@ -82,7 +82,7 @@ module Org::Antlr::Runtime::Tree
         typesig { [] }
         def next
           current = @i
-          ((@i += 1) - 1)
+          @i += 1
           if (current < self.attr_nodes.size)
             return self.attr_nodes.get(current)
           end
@@ -244,7 +244,7 @@ module Org::Antlr::Runtime::Tree
       while c < n
         child = @adaptor.get_child(t, c)
         fill_buffer(child)
-        ((c += 1) - 1)
+        c += 1
       end
       # add UP node if t has children
       if (!nil_ && n > 0)
@@ -265,7 +265,7 @@ module Org::Antlr::Runtime::Tree
         if ((t).equal?(node))
           return i
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return -1
     end
@@ -397,7 +397,7 @@ module Org::Antlr::Runtime::Tree
       if ((@p).equal?(-1))
         fill_buffer
       end
-      ((@p += 1) - 1)
+      @p += 1
     end
     
     typesig { [::Java::Int] }
@@ -507,7 +507,7 @@ module Org::Antlr::Runtime::Tree
         t = @nodes.get(i)
         buf.append(" ")
         buf.append(@adaptor.get_type(t))
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end
@@ -524,7 +524,7 @@ module Org::Antlr::Runtime::Tree
         t = @nodes.get(i)
         buf.append(" ")
         buf.append(@adaptor.get_token(t))
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end
@@ -572,7 +572,7 @@ module Org::Antlr::Runtime::Tree
         if ((t).equal?(start))
           break
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # now walk until we see stop, filling string buffer with text
       buf = StringBuffer.new
@@ -583,7 +583,7 @@ module Org::Antlr::Runtime::Tree
           text = " " + (String.value_of(@adaptor.get_type(t))).to_s
         end
         buf.append(text)
-        ((i += 1) - 1)
+        i += 1
         t = @nodes.get(i)
       end
       # include stop node too

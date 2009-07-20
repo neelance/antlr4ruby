@@ -397,7 +397,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt23 += 1) - 1)
+          _cnt23 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -641,7 +641,7 @@ module Org::Antlr::Tool
       block_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
       a = nil
       alts = LinkedList.new
-      ((@block_level += 1) - 1)
+      @block_level += 1
       if ((@block_level).equal?(1))
         @outer_alt_num = 1
       end
@@ -653,7 +653,7 @@ module Org::Antlr::Tool
         if ((((_t.get_type).equal?(BLOCK))) && (@grammar.is_valid_set(self, block_ast_in) && !(@current_rule_name == Grammar::ARTIFICIAL_TOKENS_RULENAME)))
           g = set(_t)
           _t = self.attr__ret_tree
-          ((@block_level -= 1) + 1)
+          @block_level -= 1
         else
           if (((_t.get_type).equal?(BLOCK)))
             __t43 = _t
@@ -684,7 +684,7 @@ module Org::Antlr::Tool
                 _t = self.attr__ret_tree
                 alts.add(a)
                 if ((@block_level).equal?(1))
-                  ((@outer_alt_num += 1) - 1)
+                  @outer_alt_num += 1
                 end
               else
                 if (_cnt46 >= 1)
@@ -693,7 +693,7 @@ module Org::Antlr::Tool
                   raise NoViableAltException.new(_t)
                 end
               end
-              ((_cnt46 += 1) - 1)
+              _cnt46 += 1
             end while (true)
             tmp33_ast_in = _t
             match(_t, EOB)
@@ -701,7 +701,7 @@ module Org::Antlr::Tool
             _t = __t43
             _t = _t.get_next_sibling
             g = @factory.build__alternative_block(alts)
-            ((@block_level -= 1) + 1)
+            @block_level -= 1
           else
             raise NoViableAltException.new(_t)
           end
@@ -741,7 +741,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt53 += 1) - 1)
+            _cnt53 += 1
           end while (true)
           if ((_t).nil?)
             _t = ASTNULL
@@ -818,7 +818,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt106 += 1) - 1)
+          _cnt106 += 1
         end while (true)
         tmp37_ast_in = _t
         match(_t, EOB)
@@ -865,7 +865,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt50 += 1) - 1)
+          _cnt50 += 1
         end while (true)
         _t = __t48
         _t = _t.get_next_sibling
@@ -1907,7 +1907,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt119 += 1) - 1)
+          _cnt119 += 1
         end while (true)
         tmp81_ast_in = _t
         match(_t, EOB)
@@ -1975,7 +1975,7 @@ module Org::Antlr::Tool
             end
             test_set_element(_t)
             _t = self.attr__ret_tree
-            ((n_alts += 1) - 1)
+            n_alts += 1
             tmp86_ast_in = _t
             match(_t, EOA)
             _t = _t.get_next_sibling
@@ -1991,7 +1991,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt129 += 1) - 1)
+          _cnt129 += 1
         end while (true)
         tmp87_ast_in = _t
         match(_t, EOB)
@@ -2187,7 +2187,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt141 += 1) - 1)
+          _cnt141 += 1
         end while (true)
         tmp99_ast_in = _t
         match(_t, EOB)

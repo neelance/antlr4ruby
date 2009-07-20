@@ -117,7 +117,7 @@ module Org::Antlr::Runtime::Tree
         while i < @hidden_tokens.size
           hidden = @hidden_tokens.get(i)
           buf.append(hidden.get_text)
-          ((i += 1) - 1)
+          i += 1
         end
       end
       node_text = self.to_s
@@ -147,7 +147,7 @@ module Org::Antlr::Runtime::Tree
       while !(self.attr_children).nil? && i < self.attr_children.size
         t = self.attr_children.get(i)
         t.__to_string_leaves(buf)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     

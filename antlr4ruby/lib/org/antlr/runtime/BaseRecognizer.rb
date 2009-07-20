@@ -109,7 +109,7 @@ module Org::Antlr::Runtime
       while !(@state.attr_rule_memo).nil? && i < @state.attr_rule_memo.attr_length
         # wipe cache
         @state.attr_rule_memo[i] = nil
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -224,7 +224,7 @@ module Org::Antlr::Runtime
         # System.err.print("[SPURIOUS] ");
         return
       end
-      ((@state.attr_syntax_errors += 1) - 1) # don't count spurious
+      @state.attr_syntax_errors += 1 # don't count spurious
       @state.attr_error_recovery = true
       display_recognition_error(self.get_token_names, e)
     end
@@ -586,7 +586,7 @@ module Org::Antlr::Runtime
             break
           end
         end
-        ((i -= 1) + 1)
+        i -= 1
       end
       return follow_set
     end
@@ -760,19 +760,19 @@ module Org::Antlr::Runtime
         while i >= 0
           t = stack[i]
           if (t.get_class_name.starts_with("org.antlr.runtime."))
-            ((i -= 1) + 1)
+            i -= 1
             next # skip support code such as this method
           end
           if ((t.get_method_name == NEXT_TOKEN_RULE_NAME))
-            ((i -= 1) + 1)
+            i -= 1
             next
           end
           if (!(t.get_class_name == recognizer_class_name))
-            ((i -= 1) + 1)
+            i -= 1
             next # must not be part of this parser
           end
           rules.add(t.get_method_name)
-          ((i -= 1) + 1)
+          i -= 1
         end
         return rules
       end
@@ -814,7 +814,7 @@ module Org::Antlr::Runtime
       i = 0
       while i < tokens.size
         strings.add((tokens.get(i)).get_text)
-        ((i += 1) - 1)
+        i += 1
       end
       return strings
     end
@@ -891,7 +891,7 @@ module Org::Antlr::Runtime
         if (!(rule_map).nil?)
           n += rule_map.size # how many input indexes are recorded?
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end

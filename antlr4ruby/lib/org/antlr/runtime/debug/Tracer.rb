@@ -67,19 +67,19 @@ module Org::Antlr::Runtime::Debug
       i = 1
       while i <= @level
         System.out.print(" ")
-        ((i += 1) - 1)
+        i += 1
       end
       System.out.println("> " + rule_name + " lookahead(1)=" + (get_input_symbol(1)).to_s)
-      ((@level += 1) - 1)
+      @level += 1
     end
     
     typesig { [String] }
     def exit_rule(rule_name)
-      ((@level -= 1) + 1)
+      @level -= 1
       i = 1
       while i <= @level
         System.out.print(" ")
-        ((i += 1) - 1)
+        i += 1
       end
       System.out.println("< " + rule_name + " lookahead(1)=" + (get_input_symbol(1)).to_s)
     end

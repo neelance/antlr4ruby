@@ -231,7 +231,7 @@ module Org::Antlr::Codegen
       while i < the_chunks.size
         o = the_chunks.get(i)
         buf.append(o)
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("translated: "+buf.toString());
       return buf.to_s
@@ -1460,7 +1460,7 @@ module Org::Antlr::Codegen
               eee = EarlyExitException.new(6, self.attr_input)
               raise eee
             end
-            ((cnt6 += 1) - 1)
+            cnt6 += 1
           end while (true)
         end
       ensure
@@ -2343,7 +2343,7 @@ module Org::Antlr::Codegen
               eee = EarlyExitException.new(24, self.attr_input)
               raise eee
             end
-            ((cnt24 += 1) - 1)
+            cnt24 += 1
           end while (true)
         end
         if ((self.attr_state.attr_backtracking).equal?(1))
@@ -2439,7 +2439,7 @@ module Org::Antlr::Codegen
               eee = EarlyExitException.new(26, self.attr_input)
               raise eee
             end
-            ((cnt26 += 1) - 1)
+            cnt26 += 1
           end while (true)
         end
       ensure
@@ -2488,7 +2488,7 @@ module Org::Antlr::Codegen
               eee = EarlyExitException.new(27, self.attr_input)
               raise eee
             end
-            ((cnt27 += 1) - 1)
+            cnt27 += 1
           end while (true)
         end
       ensure
@@ -2969,7 +2969,7 @@ module Org::Antlr::Codegen
     typesig { [] }
     # $ANTLR end synpred26_ActionTranslator
     def synpred19__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred19__action_translator_fragment # can never throw exception
@@ -2978,14 +2978,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred16__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred16__action_translator_fragment # can never throw exception
@@ -2994,14 +2994,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred25__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred25__action_translator_fragment # can never throw exception
@@ -3010,14 +3010,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred17__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred17__action_translator_fragment # can never throw exception
@@ -3026,14 +3026,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred1__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred1__action_translator_fragment # can never throw exception
@@ -3042,14 +3042,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred10__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred10__action_translator_fragment # can never throw exception
@@ -3058,14 +3058,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred24__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred24__action_translator_fragment # can never throw exception
@@ -3074,14 +3074,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred15__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred15__action_translator_fragment # can never throw exception
@@ -3090,14 +3090,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred11__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred11__action_translator_fragment # can never throw exception
@@ -3106,14 +3106,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred18__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred18__action_translator_fragment # can never throw exception
@@ -3122,14 +3122,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred21__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred21__action_translator_fragment # can never throw exception
@@ -3138,14 +3138,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred3__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred3__action_translator_fragment # can never throw exception
@@ -3154,14 +3154,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred26__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred26__action_translator_fragment # can never throw exception
@@ -3170,14 +3170,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred9__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred9__action_translator_fragment # can never throw exception
@@ -3186,14 +3186,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred2__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred2__action_translator_fragment # can never throw exception
@@ -3202,14 +3202,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred4__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred4__action_translator_fragment # can never throw exception
@@ -3218,14 +3218,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred22__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred22__action_translator_fragment # can never throw exception
@@ -3234,14 +3234,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred5__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred5__action_translator_fragment # can never throw exception
@@ -3250,14 +3250,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred6__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred6__action_translator_fragment # can never throw exception
@@ -3266,14 +3266,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred7__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred7__action_translator_fragment # can never throw exception
@@ -3282,14 +3282,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred12__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred12__action_translator_fragment # can never throw exception
@@ -3298,14 +3298,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred8__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred8__action_translator_fragment # can never throw exception
@@ -3314,14 +3314,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred13__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred13__action_translator_fragment # can never throw exception
@@ -3330,14 +3330,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred20__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred20__action_translator_fragment # can never throw exception
@@ -3346,14 +3346,14 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred14__action_translator
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred14__action_translator_fragment # can never throw exception
@@ -3362,7 +3362,7 @@ module Org::Antlr::Codegen
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
@@ -3425,7 +3425,7 @@ module Org::Antlr::Codegen
         i = 0
         while i < num_states
           DFA22_transition[i] = DFA.unpack_encoded_string(DFA22_transitionS[i])
-          ((i += 1) - 1)
+          i += 1
         end
       end
       
@@ -3501,7 +3501,7 @@ module Org::Antlr::Codegen
         i = 0
         while i < num_states
           DFA28_transition[i] = DFA.unpack_encoded_string(DFA28_transitionS[i])
-          ((i += 1) - 1)
+          i += 1
         end
       end
       

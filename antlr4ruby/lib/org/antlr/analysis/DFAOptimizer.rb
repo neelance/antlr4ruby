@@ -212,7 +212,7 @@ module Org::Antlr::Analysis
       while decision_number <= @grammar.get_number_of_decisions
         dfa = @grammar.get_lookahead_dfa(decision_number)
         optimize(dfa)
-        ((decision_number += 1) - 1)
+        decision_number += 1
       end
     end
     
@@ -266,10 +266,10 @@ module Org::Antlr::Analysis
           # System.out.println("ignoring transition "+i+" to max alt "+
           # d.dfa.getNumberOfAlts());
           d.remove_transition(i)
-          ((i -= 1) + 1) # back up one so that i++ of loop iteration stays within bounds
+          i -= 1 # back up one so that i++ of loop iteration stays within bounds
         end
         optimize_exit_branches(edge_target)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -296,10 +296,10 @@ module Org::Antlr::Analysis
           d.set_accept_state(true) # make it an accept state
           # force it to uniquely predict the originally predicted state
           d.attr_cached_uniquely_predicated_alt = edge_target.get_uniquely_predicted_alt
-          ((i -= 1) + 1) # back up one so that i++ of loop iteration stays within bounds
+          i -= 1 # back up one so that i++ of loop iteration stays within bounds
         end
         optimize_eotbranches(edge_target)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     

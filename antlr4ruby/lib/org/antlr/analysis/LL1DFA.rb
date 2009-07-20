@@ -72,7 +72,7 @@ module Org::Antlr::Analysis
         accept_alt_state.attr_cached_uniquely_predicated_alt = alt
         e = get_label_for_set(alt_look[alt].attr_token_type_set)
         s0.add_transition(accept_alt_state, e)
-        ((alt += 1) - 1)
+        alt += 1
       end
     end
     
@@ -136,7 +136,7 @@ module Org::Antlr::Analysis
               synpred = SemanticContext::TruePredicate.new
             end
             s.add_transition(pred_dfatarget, PredicateLabel.new(synpred))
-            ((i += 1) - 1)
+            i += 1
           end
         end
       end

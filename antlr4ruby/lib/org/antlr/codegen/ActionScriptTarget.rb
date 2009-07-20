@@ -120,7 +120,7 @@ module Org::Antlr::Codegen
       i = 1
       while i <= padding
         buf.append(Character.new(?0.ord))
-        ((i += 1) - 1)
+        i += 1
       end
       buf.append(digits)
     end

@@ -469,7 +469,7 @@ module Org::Antlr::Tool
     typesig { [] }
     # $ANTLR end synpred2
     def synpred2
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred2_fragment # can never throw exception
@@ -478,14 +478,14 @@ module Org::Antlr::Tool
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end
     
     typesig { [] }
     def synpred1
-      ((self.attr_state.attr_backtracking += 1) - 1)
+      self.attr_state.attr_backtracking += 1
       start = self.attr_input.mark
       begin
         synpred1_fragment # can never throw exception
@@ -494,7 +494,7 @@ module Org::Antlr::Tool
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
-      ((self.attr_state.attr_backtracking -= 1) + 1)
+      self.attr_state.attr_backtracking -= 1
       self.attr_state.attr_failed = false
       return success
     end

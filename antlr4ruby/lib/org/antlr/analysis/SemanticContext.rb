@@ -487,7 +487,7 @@ module Org::Antlr::Analysis
               buf.append("||")
             end
             buf.append(semctx.to_s)
-            ((i += 1) - 1)
+            i += 1
           end
           buf.append(")")
           return buf.to_s

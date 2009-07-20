@@ -218,14 +218,14 @@ module Org::Antlr::Tool
               while j < chars_in_token.size
                 c_i = chars_in_token.get(j)
                 System.out.print(RJava.cast_to_char(c_i.int_value))
-                ((j += 1) - 1)
+                j += 1
               end
             else
               # it's a literal
               literal = ttype_display_name.substring(1, ttype_display_name.length - 1)
               System.out.print(" " + literal)
             end
-            ((i += 1) - 1)
+            i += 1
           end
           System.out.println
         rescue JavaError => er

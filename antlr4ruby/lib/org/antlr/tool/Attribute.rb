@@ -118,7 +118,7 @@ module Org::Antlr::Tool
             break
           end
         end
-        ((i -= 1) + 1)
+        i -= 1
       end
       if (start < 0 && in_id)
         start = 0
@@ -138,7 +138,7 @@ module Org::Antlr::Tool
         if ((i_).equal?(right_edge_of_declarator))
           stop = i_ + 1
         end
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       # the name is the last ID
       @name = decl.substring(start, stop)

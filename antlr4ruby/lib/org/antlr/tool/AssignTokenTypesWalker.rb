@@ -405,7 +405,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt21 += 1) - 1)
+          _cnt21 += 1
         end while (true)
         _t = __t19
         _t = _t.get_next_sibling
@@ -459,7 +459,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt34 += 1) - 1)
+            _cnt34 += 1
           end while (true)
         end
         _t = __t31
@@ -497,7 +497,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt38 += 1) - 1)
+          _cnt38 += 1
         end while (true)
         _t = __t36
         _t = _t.get_next_sibling
@@ -556,7 +556,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt44 += 1) - 1)
+          _cnt44 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -1025,7 +1025,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt67 += 1) - 1)
+          _cnt67 += 1
         end while (true)
         tmp36_ast_in = _t
         match(_t, EOB)
@@ -1066,7 +1066,7 @@ module Org::Antlr::Tool
                 raise NoViableAltException.new(_t)
               end
             end
-            ((_cnt74 += 1) - 1)
+            _cnt74 += 1
           end while (true)
           if ((_t).nil?)
             _t = ASTNULL
@@ -1118,7 +1118,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt71 += 1) - 1)
+          _cnt71 += 1
         end while (true)
         tmp38_ast_in = _t
         match(_t, EOA)

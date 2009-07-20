@@ -643,7 +643,7 @@ module Org::Antlr::Test
       while (st.has_more_tokens)
         rule_name = st.next_token
         assert_not_null("rule " + rule_name + " expected", g.get_rule(rule_name))
-        ((n += 1) - 1)
+        n += 1
       end
       rules = g.get_rules
       # System.out.println("rules="+rules);
