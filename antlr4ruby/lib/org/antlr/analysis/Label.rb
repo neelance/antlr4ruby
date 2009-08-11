@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -392,7 +391,6 @@ module Org::Antlr::Analysis
     
     class_module.module_eval {
       typesig { [Label, Label] }
-      # 
       # public String predicatesToString() {
       # if ( semanticContext==NFAConfiguration.DEFAULT_CLAUSE_SEMANTIC_CONTEXT ) {
       # return "!other preds";

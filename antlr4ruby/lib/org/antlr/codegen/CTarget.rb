@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -189,7 +188,7 @@ module Org::Antlr::Codegen
       while i < literal.length - 1
         buf.append("0x")
         if ((literal.char_at(i)).equal?(Character.new(?\\.ord)))
-          ((i += 1) - 1) # Assume that there is a next character, this will just yield
+          i += 1 # Assume that there is a next character, this will just yield
           # invalid strings if not, which is what the input would be of course - invalid
           case (literal.char_at(i))
           when Character.new(?u.ord), Character.new(?U.ord)
@@ -213,7 +212,7 @@ module Org::Antlr::Codegen
           buf.append(JavaInteger.to_hex_string(RJava.cast_to_int(literal.char_at(i))).to_upper_case)
         end
         buf.append(", ")
-        ((i += 1) - 1)
+        i += 1
       end
       buf.append(" ANTLR3_STRING_TERMINATOR}")
       bytes = (buf.to_s).to_s

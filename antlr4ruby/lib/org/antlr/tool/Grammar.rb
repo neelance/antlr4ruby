@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -1135,7 +1134,7 @@ module Org::Antlr::Tool
       while i < synpred_rules.size
         r_ast = synpred_rules.get(i)
         @grammar_tree.add_child(r_ast)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -1255,13 +1254,13 @@ module Org::Antlr::Tool
       while i < rule_names.size
         rname = rule_names.get(i)
         match_token_rule_st.set_attribute("rules", rname)
-        ((i += 1) - 1)
+        i += 1
       end
       i_ = 0
       while i_ < delegate_names.size
         dname = delegate_names.get(i_)
         match_token_rule_st.set_attribute("rules", dname + ".Tokens")
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       # System.out.println("tokens rule: "+matchTokenRuleST.toString());
       lexer = ANTLRLexer.new(StringReader.new(match_token_rule_st.to_s))
@@ -1401,7 +1400,6 @@ module Org::Antlr::Tool
       end
       # CHECK FOR LEFT RECURSION; Make sure we can actually do analysis
       check_all_rules_for_left_recursion
-      # 
       # // was there a severe problem while sniffing the grammar?
       # if ( ErrorManager.doNotAttemptAnalysis() ) {
       # return;
@@ -1418,13 +1416,13 @@ module Org::Antlr::Tool
             if (@composite.attr_watch_nfaconversion)
               System.out.println("ignoring decision " + (decision).to_s + " within left-recursive rule " + (decision_start_state.attr_enclosing_rule.attr_name).to_s)
             end
-            ((decision += 1) - 1)
+            decision += 1
             next
           end
           if (!@external_analysis_abort && decision_start_state.get_number_of_transitions > 1)
             r = decision_start_state.attr_enclosing_rule
             if (r.attr_is_syn_pred && !@syn_pred_names_used_in_dfa.contains(r.attr_name))
-              ((decision += 1) - 1)
+              decision += 1
               next
             end
             dfa = nil
@@ -1449,7 +1447,7 @@ module Org::Antlr::Tool
               System.out.println(result)
             end
           end
-          ((decision += 1) - 1)
+          decision += 1
         end
       else
         ErrorManager.info("two-threaded DFA conversion")
@@ -1460,7 +1458,7 @@ module Org::Antlr::Tool
         t1 = NFAConversionThread.new(self, barrier, 1, midpoint)
         JavaThread.new(t1).start
         if ((midpoint).equal?((num_decisions / 2)))
-          ((midpoint += 1) - 1)
+          midpoint += 1
         end
         t2 = NFAConversionThread.new(self, barrier, midpoint, num_decisions)
         JavaThread.new(t2).start
@@ -1499,7 +1497,7 @@ module Org::Antlr::Tool
         alt_start_state = alt_left_edge.attr_transition[0].attr_target
         # System.out.println("alt "+alt+" start state = "+altStartState.stateNumber);
         alt_look[alt] = @ll1analyzer._look(alt_start_state)
-        ((alt += 1) - 1)
+        alt += 1
       end
       # compare alt i with alt j for disjointness
       decision_is_ll_1 = true
@@ -1508,7 +1506,6 @@ module Org::Antlr::Tool
         while i <= num_alts
           j = i + 1
           while j <= num_alts
-            # 
             # System.out.println("compare "+i+", "+j+": "+
             # altLook[i].toString(this)+" with "+
             # altLook[j].toString(this));
@@ -1518,9 +1515,9 @@ module Org::Antlr::Tool
               decision_is_ll_1 = false
               throw :break_outer, :thrown
             end
-            ((j += 1) - 1)
+            j += 1
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
       found_confounding_predicate = @ll1analyzer.detect_confounding_predicates(decision_start_state)
@@ -1555,7 +1552,7 @@ module Org::Antlr::Tool
       while i_ < alt_look.attr_length
         s = alt_look[i_]
         edges.add(s.attr_token_type_set)
-        ((i_ += 1) - 1)
+        i_ += 1
       end
       disjoint = make_edge_sets_disjoint(edges)
       # System.out.println("disjoint="+disjoint);
@@ -1569,18 +1566,18 @@ module Org::Antlr::Tool
           if (!ds.and(look.attr_token_type_set).is_nil)
             edge_map.map(ds, alt_)
           end
-          ((alt_ += 1) - 1)
+          alt_ += 1
         end
-        ((i__ += 1) - 1)
+        i__ += 1
       end
       # System.out.println("edge map: "+edgeMap);
       # TODO: how do we know we covered stuff?
       # build an LL(1) optimized DFA with edge for each altLook[i]
-      lookahead_dfa_ = LL1DFA.new(decision, decision_start_state, edge_map)
-      set_lookahead_dfa(decision, lookahead_dfa_)
+      lookahead_dfa = LL1DFA.new(decision, decision_start_state, edge_map)
+      set_lookahead_dfa(decision, lookahead_dfa)
       # create map from line:col to decision DFA (for ANTLRWorks)
-      update_line_column_to_lookahead_dfamap(lookahead_dfa_)
-      return lookahead_dfa_
+      update_line_column_to_lookahead_dfamap(lookahead_dfa)
+      return lookahead_dfa
     end
     
     typesig { [DFA] }
@@ -1601,7 +1598,7 @@ module Org::Antlr::Tool
         t = edges.get(e)
         if (disjoint_sets.contains(t))
           # exact set present
-          ((e += 1) - 1)
+          e += 1
           next
         end
         # compare t with set i for disjointness
@@ -1612,7 +1609,7 @@ module Org::Antlr::Tool
           s_i = disjoint_sets.get(i)
           if (t.and(s_i).is_nil)
             # nothing in common
-            ((i += 1) - 1)
+            i += 1
             next
           end
           # System.out.println(label+" collides with "+rl);
@@ -1636,12 +1633,12 @@ module Org::Antlr::Tool
             break # nothing left to add to set.  done!
           end
           t = remainder
-          ((i += 1) - 1)
+          i += 1
         end
         if (!remainder.is_nil)
           disjoint_sets.add(remainder)
         end
-        ((e += 1) - 1)
+        e += 1
       end
       return disjoint_sets.elements
     end
@@ -1709,7 +1706,7 @@ module Org::Antlr::Tool
     typesig { [] }
     # Return a new unique integer in the token type space
     def get_new_token_type
-      ((@composite.attr_max_token_type += 1) - 1)
+      @composite.attr_max_token_type += 1
       return @composite.attr_max_token_type
     end
     
@@ -1764,7 +1761,6 @@ module Org::Antlr::Tool
         return
       end
       r = Rule.new(self, rule_name, @composite.attr_rule_index, num_alts)
-      # 
       # System.out.println("defineRule("+ruleName+",modifier="+modifier+
       # "): index="+r.index+", nalts="+numAlts);
       r.attr_modifier = modifier
@@ -1774,7 +1770,7 @@ module Org::Antlr::Tool
       r.attr_arg_action_ast = arg_action_ast
       @composite.attr_rule_index_to_rule_list.set_size(@composite.attr_rule_index + 1)
       @composite.attr_rule_index_to_rule_list.set(@composite.attr_rule_index, r)
-      ((@composite.attr_rule_index += 1) - 1)
+      @composite.attr_rule_index += 1
       if (rule_name.starts_with(SYNPRED_RULE_PREFIX))
         r.attr_is_syn_pred = true
       end
@@ -1813,7 +1809,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [GrammarAST, String, GrammarAST, GrammarAST] }
-    # 
     # public Set<Rule> getRuleNamesVisitedDuringLOOK() {
     # return rulesSensitiveToOtherRules;
     # }
@@ -1909,7 +1904,7 @@ module Org::Antlr::Tool
             end
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       rule_text = buf.to_s
       # System.out.println("[["+ruleText+"]]");
@@ -1957,7 +1952,6 @@ module Org::Antlr::Tool
     typesig { [String] }
     def get_rule(rule_name)
       r = @composite.get_rule(rule_name)
-      # 
       # if ( r!=null && r.grammar != this ) {
       # System.out.println(name+".getRule("+ruleName+")="+r);
       # }
@@ -2149,15 +2143,15 @@ module Org::Antlr::Tool
           action_ast = actions.get(i)
           sniffer = ActionAnalysisLexer.new(self, r.attr_name, action_ast)
           sniffer.analyze
-          ((i += 1) - 1)
+          i += 1
         end
         # walk any named actions like @init, @after
         named_actions = r.get_actions.values
         it2 = named_actions.iterator
         while it2.has_next
-          action_ast_ = it2.next
-          sniffer_ = ActionAnalysisLexer.new(self, r.attr_name, action_ast_)
-          sniffer_.analyze
+          action_ast = it2.next
+          sniffer = ActionAnalysisLexer.new(self, r.attr_name, action_ast)
+          sniffer.analyze
         end
       end
     end
@@ -2202,7 +2196,7 @@ module Org::Antlr::Tool
         label_to_kill = kill.get(i)
         # System.out.println("kill "+labelToKill);
         rule_to_element_label_pair_map.remove(label_to_kill)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -2346,7 +2340,7 @@ module Org::Antlr::Tool
         if ((name.char_at(0)).equal?(Character.new(?\'.ord)))
           types.add(Utils.integer(t))
         end
-        ((t += 1) - 1)
+        t += 1
       end
       return types
     end
@@ -2359,7 +2353,7 @@ module Org::Antlr::Tool
       t = Label::MIN_TOKEN_TYPE
       while t <= get_max_token_type
         names.add(get_token_display_name(t))
-        ((t += 1) - 1)
+        t += 1
       end
       return names
     end
@@ -2422,11 +2416,11 @@ module Org::Antlr::Tool
         while i < last
           c = literal.char_at(i)
           if ((c).equal?(Character.new(?\\.ord)))
-            ((i += 1) - 1)
+            i += 1
             c = literal.char_at(i)
             if ((Character.to_upper_case(c)).equal?(Character.new(?U.ord)))
               # \u0000
-              ((i += 1) - 1)
+              i += 1
               unicode_chars = literal.substring(i, i + 4)
               # parse the unicode 16 bit hex value
               val = JavaInteger.parse_int(unicode_chars, 16)
@@ -2443,7 +2437,7 @@ module Org::Antlr::Tool
           else
             buf.append(c) # simple char x
           end
-          ((i += 1) - 1)
+          i += 1
         end
         # System.out.println("string: ["+buf.toString()+"]");
         return buf
@@ -2521,7 +2515,7 @@ module Org::Antlr::Tool
           begin
             br.close
           rescue IOException => ioe
-            ErrorManager.error(ErrorManager::MSG_CANNOT_CLOSE_FILE, gname, ioe_)
+            ErrorManager.error(ErrorManager::MSG_CANNOT_CLOSE_FILE, gname, ioe)
           end
         end
       end
@@ -2595,7 +2589,7 @@ module Org::Antlr::Tool
           # System.out.println("import "+tokenID+"="+tokenType);
           @composite.attr_max_token_type = Math.max(@composite.attr_max_token_type, token_type)
           define_token(token_id, token_type)
-          ((line_num += 1) - 1)
+          line_num += 1
           if (!(token).equal?(StreamTokenizer::TT_EOL))
             ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s, Utils.integer(line_num))
             while (!(tokenizer.next_token).equal?(StreamTokenizer::TT_EOL))
@@ -2959,7 +2953,7 @@ module Org::Antlr::Tool
     
     typesig { [NFAState] }
     def assign_decision_number(state)
-      ((@decision_count += 1) - 1)
+      @decision_count += 1
       state.set_decision_number(@decision_count)
       return @decision_count
     end
@@ -2994,7 +2988,7 @@ module Org::Antlr::Tool
       while d < @index_to_decision.size
         dec = @index_to_decision.get(d)
         states.add(dec.attr_start_state)
-        ((d += 1) - 1)
+        d += 1
       end
       return states
     end
@@ -3060,7 +3054,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [] }
-    # 
     # public void setDecisionOptions(int decision, Map options) {
     # Decision d = createDecision(decision);
     # d.options = options;
@@ -3094,9 +3087,9 @@ module Org::Antlr::Tool
       while i <= get_number_of_decisions
         d = get_decision(i)
         if (!(d.attr_dfa).nil? && d.attr_dfa.is_cyclic)
-          ((n += 1) - 1)
+          n += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end
@@ -3273,7 +3266,7 @@ module Org::Antlr::Tool
       n = 1
       p = decision_state
       while (!(p.attr_transition[1]).nil?)
-        ((n += 1) - 1)
+        n += 1
         p = p.attr_transition[1].attr_target
       end
       return n
@@ -3300,7 +3293,7 @@ module Org::Antlr::Tool
         if ((n).equal?(alt))
           return p
         end
-        ((n += 1) - 1)
+        n += 1
         next_ = p.attr_transition[1]
         p = nil
         if (!(next_).nil?)
@@ -3311,7 +3304,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [NFAState] }
-    # 
     # public void computeRuleFOLLOWSets() {
     # if ( getNumberOfDecisions()==0 ) {
     # createNFAs();

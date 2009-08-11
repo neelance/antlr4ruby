@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -242,7 +241,6 @@ module Org::Antlr::Tool
         if (!(visited_states).nil?)
           visited_states.add(s)
         end
-        # 
         # System.out.println("parse state "+s.stateNumber+" input="+
         # s.nfa.grammar.getTokenDisplayName(t));
         # 
@@ -250,7 +248,6 @@ module Org::Antlr::Tool
         if (s.get_decision_number > 0 && s.attr_nfa.attr_grammar.get_number_of_alts_for_decision_nfa(s) > 1)
           # decision point, must predict and jump to alt
           dfa = s.attr_nfa.attr_grammar.get_lookahead_dfa(s.get_decision_number)
-          # 
           # if ( s.nfa.grammar.type!=Grammar.LEXER ) {
           # System.out.println("decision: "+
           # dfa.getNFADecisionStartState().getDescription()+
@@ -269,7 +266,6 @@ module Org::Antlr::Tool
           end
           input.rewind(m)
           parse_alt = s.translate_display_alt_to_walk_alt(predicted_alt)
-          # 
           # if ( s.nfa.grammar.type!=Grammar.LEXER ) {
           # System.out.println("predicted alt "+predictedAlt+", parseAlt "+
           # parseAlt);
@@ -358,12 +354,12 @@ module Org::Antlr::Tool
                 raise mse
               else
                 if (label.is_semantic_predicate)
-                  fpe_ = FailedPredicateException.new(input, s.attr_enclosing_rule.attr_name, label.get_semantic_context.to_s)
+                  fpe = FailedPredicateException.new(input, s.attr_enclosing_rule.attr_name, label.get_semantic_context.to_s)
                   if (!(actions).nil?)
-                    actions.recognition_exception(fpe_)
+                    actions.recognition_exception(fpe)
                   end
                   input.consume # recover
-                  raise fpe_
+                  raise fpe
                 else
                   raise RecognitionException.new(input) # unknown error
                 end
@@ -390,7 +386,6 @@ module Org::Antlr::Tool
       eot_transition = nil
       while (!s.is_accept_state)
         catch(:next_dfa_loop) do
-          # 
           # System.out.println("DFA.predict("+s.getStateNumber()+", "+
           # dfa.getNFA().getGrammar().getTokenName(c)+")");
           # 
@@ -409,18 +404,17 @@ module Org::Antlr::Tool
             if ((t.attr_label.get_atom).equal?(Label::EOT))
               eot_transition = t
             end
-            ((i += 1) - 1)
+            i += 1
           end
           if (!(eot_transition).nil?)
             s = eot_transition.attr_target
             next
           end
-          # 
           # ErrorManager.error(ErrorManager.MSG_NO_VIABLE_DFA_ALT,
           # s,
           # dfa.nfa.grammar.getTokenName(c));
           return NFA::INVALID_ALT_NUMBER
-        end == :thrown or break
+        end
       end
       # woohoo!  We know which alt to predict
       # nothing emanates from a stop state; must terminate anyway

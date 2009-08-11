@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -84,7 +83,7 @@ module Org::Antlr::Tool
           visited_states = HashSet.new
           trace_states_looking_for_left_recursion(r.attr_start_state, visited_states, list_of_recursive_cycles)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (list_of_recursive_cycles.size > 0)
         ErrorManager.left_recursion_cycles(list_of_recursive_cycles)
@@ -122,7 +121,6 @@ module Org::Antlr::Tool
         if (@visited_during_recursion_check.contains(ref_rule_def))
           # record left-recursive rule, but don't go back in
           @grammar.attr_left_recursive_rules.add(ref_rule_def)
-          # 
           # System.out.println("already visited "+refRuleDef+", calling from "+
           # s.enclosingRule);
           add_rules_to_cycle(ref_rule_def, s.attr_enclosing_rule, list_of_recursive_cycles)
@@ -172,7 +170,7 @@ module Org::Antlr::Tool
           rules_in_cycle.add(target_rule)
           found_cycle = true
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (!found_cycle)
         cycle = HashSet.new

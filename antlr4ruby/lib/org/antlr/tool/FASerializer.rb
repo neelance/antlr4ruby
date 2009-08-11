@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -124,7 +123,7 @@ module Org::Antlr::Tool
       while i < lines.size
         line = lines.get(i)
         buf.append(line)
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end
@@ -143,7 +142,7 @@ module Org::Antlr::Tool
       end
       # assign a new state number for this node if there isn't one
       @state_number_translator.put(s, Utils.integer(@state_counter))
-      ((@state_counter += 1) - 1)
+      @state_counter += 1
       # visit nodes pointed to by each transition;
       i = 0
       while i < s.get_number_of_transitions
@@ -155,7 +154,7 @@ module Org::Antlr::Tool
         if (edge.is_a?(RuleClosureTransition))
           walk_fanormalizing_state_numbers((edge).attr_follow_state)
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -214,7 +213,7 @@ module Org::Antlr::Tool
         if (edge.is_a?(RuleClosureTransition))
           walk_serializing_fa(lines, (edge).attr_follow_state)
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     

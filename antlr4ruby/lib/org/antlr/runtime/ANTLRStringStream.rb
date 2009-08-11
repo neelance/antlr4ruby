@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -153,15 +152,14 @@ module Org::Antlr::Runtime
     def consume
       # System.out.println("prev p="+p+", c="+(char)data[p]);
       if (@p < @n)
-        ((@char_position_in_line += 1) - 1)
+        @char_position_in_line += 1
         if ((@data[@p]).equal?(Character.new(?\n.ord)))
-          # 
           # System.out.println("newline char found on line: "+line+
           # "@ pos="+charPositionInLine);
-          ((@line += 1) - 1)
+          @line += 1
           @char_position_in_line = 0
         end
-        ((@p += 1) - 1)
+        @p += 1
         # System.out.println("p moves to "+p+" (c='"+(char)data[p]+"')");
       end
     end
@@ -172,7 +170,7 @@ module Org::Antlr::Runtime
         return 0 # undefined
       end
       if (i < 0)
-        ((i += 1) - 1) # e.g., translate LA(-1) to use offset i=0; then data[p+0-1]
+        i += 1 # e.g., translate LA(-1) to use offset i=0; then data[p+0-1]
         if ((@p + i - 1) < 0)
           return CharStream::EOF # invalid; no char before first char
         end
@@ -210,7 +208,7 @@ module Org::Antlr::Runtime
         @markers = ArrayList.new
         @markers.add(nil) # depth 0 means no backtracking, leave blank
       end
-      ((@mark_depth += 1) - 1)
+      @mark_depth += 1
       state = nil
       if (@mark_depth >= @markers.size)
         state = CharStreamState.new
@@ -245,7 +243,7 @@ module Org::Antlr::Runtime
       # unwind any other markers made after m and release m
       @mark_depth = marker
       # release this marker
-      ((@mark_depth -= 1) + 1)
+      @mark_depth -= 1
     end
     
     typesig { [::Java::Int] }

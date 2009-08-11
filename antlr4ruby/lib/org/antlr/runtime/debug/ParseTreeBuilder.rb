@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -101,12 +100,12 @@ module Org::Antlr::Runtime::Debug
     typesig { [::Java::Int] }
     # Backtracking or cyclic DFA, don't want to add nodes to tree
     def enter_decision(d)
-      ((@backtracking += 1) - 1)
+      @backtracking += 1
     end
     
     typesig { [::Java::Int] }
     def exit_decision(i)
-      ((@backtracking -= 1) + 1)
+      @backtracking -= 1
     end
     
     typesig { [String, String] }

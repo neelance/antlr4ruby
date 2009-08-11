@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -86,7 +85,7 @@ module Org::Antlr::Analysis
         if (decision_start_state.get_number_of_transitions > 1)
           @grammar.create_lookahead_dfa(decision, true)
         end
-        ((decision += 1) - 1)
+        decision += 1
       end
       # now wait for others to finish
       begin

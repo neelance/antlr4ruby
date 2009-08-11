@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -219,7 +218,6 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_error(equeue, expected_message)
-      # 
       # System.out.println(equeue.infos);
       # System.out.println(equeue.warnings);
       # System.out.println(equeue.errors);
@@ -230,7 +228,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_true("no error; " + (expected_message.attr_msg_id).to_s + " expected", equeue.attr_errors.size > 0)
       assert_true("too many errors; " + (equeue.attr_errors).to_s, equeue.attr_errors.size <= 1)

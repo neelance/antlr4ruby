@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -126,10 +125,10 @@ module Org::Antlr::Runtime::Tree
         look = @input._lt(1)
         token_type = @input.get_tree_adaptor.get_type(look)
         if ((token_type).equal?(DOWN))
-          ((level += 1) - 1)
+          level += 1
         else
           if ((token_type).equal?(UP))
-            ((level -= 1) + 1)
+            level -= 1
           end
         end
       end

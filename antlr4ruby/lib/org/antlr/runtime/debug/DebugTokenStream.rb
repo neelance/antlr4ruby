@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -97,7 +96,7 @@ module Org::Antlr::Runtime::Debug
         i = a + 1
         while i < b
           @dbg.consume_hidden_token(@input.get(i))
-          ((i += 1) - 1)
+          i += 1
         end
       end
     end
@@ -109,7 +108,7 @@ module Org::Antlr::Runtime::Debug
       i = 0
       while i < first_on_channel_token_index
         @dbg.consume_hidden_token(@input.get(i))
-        ((i += 1) - 1)
+        i += 1
       end
       @initial_stream_state = false
     end

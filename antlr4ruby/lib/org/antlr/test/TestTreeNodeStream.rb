@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -177,7 +176,7 @@ module Org::Antlr::Test
         # consume til end
         stream._lt(1)
         stream.consume
-        ((k += 1) - 1)
+        k += 1
       end
       assert_equals(Token::EOF, (stream._lt(1)).get_type)
       assert_equals(Token::UP, (stream._lt(-1)).get_type)
@@ -188,7 +187,7 @@ module Org::Antlr::Test
         # consume til end
         stream._lt(1)
         stream.consume
-        ((k_ += 1) - 1)
+        k_ += 1
       end
       assert_equals(Token::EOF, (stream._lt(1)).get_type)
       assert_equals(Token::UP, (stream._lt(-1)).get_type)
@@ -214,7 +213,7 @@ module Org::Antlr::Test
         # consume til middle
         # System.out.println(((Tree)stream.LT(1)).getType());
         stream.consume
-        ((k += 1) - 1)
+        k += 1
       end
       assert_equals(107, (stream._lt(1)).get_type)
       m = stream.mark # MARK
@@ -339,7 +338,7 @@ module Org::Antlr::Test
           buf.append(" ")
           buf.append(type)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end

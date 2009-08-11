@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -162,7 +161,7 @@ module Org::Antlr::Runtime
         if (!discard)
           t.set_token_index(index)
           @tokens.add(t)
-          ((index += 1) - 1)
+          index += 1
         end
         t = @token_source.next_token
       end
@@ -180,7 +179,7 @@ module Org::Antlr::Runtime
     # Walk past any token not on the channel the parser is listening to.
     def consume
       if (@p < @tokens.size)
-        ((@p += 1) - 1)
+        @p += 1
         @p = skip_off_token_channels(@p) # leave p on valid token
       end
     end
@@ -191,7 +190,7 @@ module Org::Antlr::Runtime
     def skip_off_token_channels(i)
       n = @tokens.size
       while (i < n && !((@tokens.get(i)).get_channel).equal?(@channel))
-        ((i += 1) - 1)
+        i += 1
       end
       return i
     end
@@ -199,7 +198,7 @@ module Org::Antlr::Runtime
     typesig { [::Java::Int] }
     def skip_off_token_channels_reverse(i)
       while (i >= 0 && !((@tokens.get(i)).get_channel).equal?(@channel))
-        ((i -= 1) + 1)
+        i -= 1
       end
       return i
     end
@@ -268,7 +267,7 @@ module Org::Antlr::Runtime
         if ((types).nil? || types.member(t.get_type))
           filtered_tokens.add(t)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if ((filtered_tokens.size).equal?(0))
         filtered_tokens = nil
@@ -310,7 +309,7 @@ module Org::Antlr::Runtime
       while (n < k)
         # skip off-channel tokens
         i = skip_off_token_channels(i + 1) # leave p on valid token
-        ((n += 1) - 1)
+        n += 1
       end
       if (i >= @tokens.size)
         return Token::EOF_TOKEN
@@ -337,7 +336,7 @@ module Org::Antlr::Runtime
       while (n <= k)
         # skip off-channel tokens
         i = skip_off_token_channels_reverse(i - 1) # leave p on valid token
-        ((n += 1) - 1)
+        n += 1
       end
       if (i < 0)
         return nil
@@ -436,7 +435,7 @@ module Org::Antlr::Runtime
       while i <= stop
         t = @tokens.get(i)
         buf.append(t.get_text)
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end

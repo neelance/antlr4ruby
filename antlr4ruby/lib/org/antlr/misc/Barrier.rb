@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -63,7 +62,7 @@ module Org::Antlr::Misc
     typesig { [] }
     def wait_for_release
       synchronized(self) do
-        ((@count += 1) - 1)
+        @count += 1
         # The final thread to reach barrier resets barrier and
         # releases all threads
         if ((@count).equal?(@threshold))

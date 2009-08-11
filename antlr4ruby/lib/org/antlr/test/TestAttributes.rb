@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -2358,7 +2357,7 @@ module Org::Antlr::Test
             found_scope_set_attribute_ref = true
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_false("action translator used scopeSetAttributeRef template in comparison!", found_scope_set_attribute_ref)
       templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
@@ -2435,7 +2434,6 @@ module Org::Antlr::Test
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     # S U P P O R T
     def check_error(equeue, expected_message)
-      # 
       # System.out.println(equeue.infos);
       # System.out.println(equeue.warnings);
       # System.out.println(equeue.errors);
@@ -2446,7 +2444,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_true("no error; " + (expected_message.attr_msg_id).to_s + " expected", equeue.attr_errors.size > 0)
       assert_not_null("couldn't find expected error: " + (expected_message.attr_msg_id).to_s + " in " + (equeue).to_s, found_msg)
@@ -2469,19 +2467,19 @@ module Org::Antlr::Test
           if ((m.attr_msg_id).equal?(em.attr_msg_id) && (m.attr_arg == em.attr_arg) && (m.attr_arg2 == em.attr_arg2))
             found_msg = true
           end
-          ((j += 1) - 1)
+          j += 1
         end
         if (found_msg)
           message_expected.add(i, Boolean::TRUE)
         else
           message_expected.add(i, Boolean::FALSE)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       i_ = 0
       while i_ < equeue.attr_errors.size
         assert_true("unexpected error:" + (equeue.attr_errors.get(i_)).to_s, (message_expected.get(i_)).boolean_value)
-        ((i_ += 1) - 1)
+        i_ += 1
       end
     end
     

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -110,7 +109,6 @@ module Org::Antlr::Tool
           epsilon_target = t.attr_target
           if ((epsilon_target.attr_end_of_block_state_number).equal?(State::INVALID_STATE_NUMBER) && !(epsilon_target.attr_transition[0]).nil?)
             s.set_transition0(epsilon_target.attr_transition[0])
-            # 
             # System.out.println("### opt "+s.stateNumber+"->"+
             # epsilonTarget.transition(0).target.stateNumber);
           end
@@ -212,7 +210,7 @@ module Org::Antlr::Tool
           next_ = new_state
           transition_between_states(prev, next_, c)
           prev = last = next_
-          ((i += 1) - 1)
+          i += 1
         end
         return StateCluster.new(first, last)
       end
@@ -265,7 +263,7 @@ module Org::Antlr::Tool
     def build__semantic_predicate(pred)
       # don't count syn preds
       if (!pred.get_text.to_upper_case.starts_with(Grammar::SYNPRED_RULE_PREFIX.to_upper_case))
-        ((@nfa.attr_grammar.attr_number_of_semantic_predicates += 1) - 1)
+        @nfa.attr_grammar.attr_number_of_semantic_predicates += 1
       end
       left = new_state
       right = new_state
@@ -308,7 +306,7 @@ module Org::Antlr::Tool
           # the rule, make it hit EOF/EOT.
           build__eofstate(end_nfastate)
           # track how many rules have been invoked by another rule
-          ((number_un_invoked_rules += 1) - 1)
+          number_un_invoked_rules += 1
         end
       end
       return number_un_invoked_rules
@@ -325,7 +323,6 @@ module Org::Antlr::Tool
         label = Label::EOT
         end_.set_eottarget_state(true)
       end
-      # 
       # System.out.println("build "+nfa.grammar.getTokenDisplayName(label)+
       # " loop on end of state "+endNFAState.getDescription()+
       # " to state "+end.stateNumber);
@@ -412,12 +409,12 @@ module Org::Antlr::Tool
       alt_num = 1
       iter = alternative_state_clusters.iterator
       while iter.has_next
-        g_ = iter.next
+        g = iter.next
         # add begin NFAState for this alt connected by epsilon
         left = new_state
         left.set_description("alt " + (alt_num).to_s + " of ()")
-        transition_between_states(left, g_.attr_left, Label::EPSILON)
-        transition_between_states(g_.attr_right, block_end_nfastate, Label::EPSILON)
+        transition_between_states(left, g.attr_left, Label::EPSILON)
+        transition_between_states(g.attr_right, block_end_nfastate, Label::EPSILON)
         # Are we the first alternative?
         if ((first_alt).nil?)
           first_alt = left # track extreme left node of StateCluster
@@ -426,7 +423,7 @@ module Org::Antlr::Tool
           transition_between_states(prev_alternative, left, Label::EPSILON)
         end
         prev_alternative = left
-        ((alt_num += 1) - 1)
+        alt_num += 1
       end
       # return StateCluster pointing representing entire block
       # Points to first alt NFAState on left, block end on right
@@ -469,10 +466,10 @@ module Org::Antlr::Tool
       else
         # a decision block, add an empty alt
         last_real_alt = @nfa.attr_grammar.get_nfastate_for_alt_of_decision(a.attr_left, n)
-        empty_alt_ = new_state
-        empty_alt_.set_description("epsilon path of ()? block")
-        transition_between_states(last_real_alt, empty_alt_, Label::EPSILON)
-        transition_between_states(empty_alt_, a.attr_right, Label::EPSILON)
+        empty_alt = new_state
+        empty_alt.set_description("epsilon path of ()? block")
+        transition_between_states(last_real_alt, empty_alt, Label::EPSILON)
+        transition_between_states(empty_alt, a.attr_right, Label::EPSILON)
         # set EOB markers for Jean (I think this is redundant here)
         a.attr_left.attr_end_of_block_state_number = a.attr_right.attr_state_number
         a.attr_right.attr_decision_state_type = NFAState::RIGHT_EDGE_OF_BLOCK

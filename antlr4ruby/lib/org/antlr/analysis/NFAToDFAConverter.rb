@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -194,9 +193,9 @@ module Org::Antlr::Analysis
           alt_num = 1 # make next alt the first
         else
           closure(alt.attr_transition[0].attr_target, alt_num, initial_context, SemanticContext::EMPTY_SEMANTIC_CONTEXT, start_state, true)
-          ((alt_num += 1) - 1)
+          alt_num += 1
         end
-        ((i += 1) - 1)
+        i += 1
         # move to next alternative
         if ((alt.attr_transition[1]).nil?)
           break
@@ -297,7 +296,7 @@ module Org::Antlr::Analysis
           # to an end-of-rule state seeing it even though we'll pop
           # an invoking state off the state; don't bother to conflict
           # as this labels set is a covering approximation only.
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # System.out.println("dfa.k="+dfa.getUserMaxLookahead());
@@ -310,7 +309,6 @@ module Org::Antlr::Analysis
           # for analysis of Java grammar from 11.5s to 2s!  Wow.
           closure(t) # add any NFA states reachable via epsilon
         end
-        # 
         # System.out.println("DFA state after closure "+d+"-"+
         # label.toString(dfa.nfa.grammar)+
         # "->"+t);
@@ -323,7 +321,7 @@ module Org::Antlr::Analysis
         # that is equal to one we just computed...not sure if that's
         # ok.
         target_state.set_lookahead_depth(d.get_lookahead_depth + 1)
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("DFA after reach / closures:\n"+dfa);
       if (!d.is_resolved_with_predicates && (number_of_edges_emanating).equal?(0))
@@ -471,7 +469,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         c = configs.get(i)
         if (c.attr_single_atom_transition_emanating)
-          ((i += 1) - 1)
+          i += 1
           next # ignore NFA states w/o epsilon transitions
         end
         # System.out.println("go do reach for NFA state "+c.state);
@@ -479,7 +477,7 @@ module Org::Antlr::Analysis
         # via epsilon transitions.
         # Fill configsInClosure rather than altering d configs inline
         closure(@dfa.attr_nfa.get_state(c.attr_state), c.attr_alt, c.attr_context, c.attr_semantic_context, d, false)
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("after closure d="+d);
       d.attr_closure_busy = nil # wack all that memory used during closure
@@ -623,7 +621,6 @@ module Org::Antlr::Analysis
             d.attr_aborted_due_to_multiple_recursive_alts = true
             raise NonLLStarDecisionException.new(d.attr_dfa)
           end
-          # 
           # System.out.println("alt "+alt+" in rule "+p.enclosingRule+" dec "+d.dfa.decisionNumber+
           # " ctx: "+context);
           # System.out.println("d="+d);
@@ -632,7 +629,6 @@ module Org::Antlr::Analysis
         # if this context has hit the max recursions for p.stateNumber,
         # don't allow it to enter p.stateNumber again
         if (depth >= NFAContext::MAX_SAME_RULE_INVOCATIONS_PER_NFA_CONFIG_STACK)
-          # 
           # System.out.println("OVF state "+d);
           # System.out.println("proposed "+proposedNFAConfiguration);
           d.attr_aborted_due_to_recursion_overflow = true
@@ -662,8 +658,8 @@ module Org::Antlr::Analysis
           which_state_invoked_rule = context.attr_invoking_state
           edge_to_rule = which_state_invoked_rule.attr_transition[0]
           continue_state = edge_to_rule.attr_follow_state
-          new_context_ = context.attr_parent # "pop" invoking state
-          closure(continue_state, alt, new_context_, semantic_context, d, collect_predicates)
+          new_context = context.attr_parent # "pop" invoking state
+          closure(continue_state, alt, new_context, semantic_context, d, collect_predicates)
         # Case 3: end of rule state, nobody invoked this rule (no context)
         # Fall thru to be handled by case 4 automagically.
         # Case 4: ordinary NFA->DFA conversion case: simple epsilon transition
@@ -673,7 +669,6 @@ module Org::Antlr::Analysis
             collect_predicates_after_action = collect_predicates
             if (transition0.is_action && collect_predicates)
               collect_predicates_after_action = false
-              # 
               # if ( computingStartState ) {
               # System.out.println("found action during prediction closure "+((ActionLabel)transition0.label).actionAST.token);
               # }
@@ -701,7 +696,6 @@ module Org::Antlr::Analysis
                 # starting state's rule (i.e., context is empty)
                 walk_alt = @dfa.attr_decision_nfastart_state.translate_display_alt_to_walk_alt(alt)
                 alt_left_edge = @dfa.attr_nfa.attr_grammar.get_nfastate_for_alt_of_decision(@dfa.attr_decision_nfastart_state, walk_alt)
-                # 
                 # System.out.println("state "+p.stateNumber+" alt "+alt+" walkAlt "+walkAlt+" trans to "+transition0.target);
                 # System.out.println("DFA start state "+dfa.decisionNFAStartState.stateNumber);
                 # System.out.println("alt left edge "+altLeftEdge.stateNumber+
@@ -760,7 +754,6 @@ module Org::Antlr::Analysis
       # to 11 seconds.  Cool.  Closing ANTLR-235.
       def closure_is_busy(d, proposed_nfaconfiguration)
         return d.attr_closure_busy.contains(proposed_nfaconfiguration)
-        # 
         # int numConfigs = d.closureBusy.size();
         # // Check epsilon cycle (same state, same alt, same context)
         # for (int i = 0; i < numConfigs; i++) {
@@ -808,7 +801,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         c = configs.get(i)
         if (c.attr_resolved || c.attr_resolve_with_predicate)
-          ((i += 1) - 1)
+          i += 1
           next # the conflict resolver indicates we must leave alone
         end
         p = @dfa.attr_nfa.get_state(c.attr_state)
@@ -816,7 +809,7 @@ module Org::Antlr::Analysis
         # may have a non-epsilon edge.
         edge = p.attr_transition[0]
         if ((edge).nil? || !c.attr_single_atom_transition_emanating)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         edge_label = edge.attr_label
@@ -828,7 +821,7 @@ module Org::Antlr::Analysis
         # somebody called this rule, don't see the EOT emanating from
         # this accept state.
         if (!(c.attr_context.attr_parent).nil? && (edge_label.attr_label).equal?(Label::EOT))
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # Labels not unique at this point (not until addReachableLabels)
@@ -839,7 +832,7 @@ module Org::Antlr::Analysis
           # add NFA target to (potentially) new DFA state
           new_c = label_dfatarget.add_nfaconfiguration(edge.attr_target, c.attr_alt, c.attr_context, c.attr_semantic_context)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if ((label_dfatarget.attr_nfa_configurations.size).equal?(0))
         # kill; it's empty
@@ -867,7 +860,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         c = d.attr_nfa_configurations.get(i)
         if (c.attr_resolved || c.attr_resolve_with_predicate)
-          ((i += 1) - 1)
+          i += 1
           next # the conflict resolver indicates we must leave alone
         end
         p = @dfa.attr_nfa.get_state(c.attr_state)
@@ -882,7 +875,7 @@ module Org::Antlr::Analysis
           # System.out.println("to "+d);
           return # assume only one EOT transition
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -919,7 +912,6 @@ module Org::Antlr::Analysis
       if (!(alt).equal?(NFA::INVALID_ALT_NUMBER))
         # uniquely predicts an alt?
         d = convert_to_accept_state(d, alt)
-        # 
         # System.out.println("convert to accept; DFA "+d.dfa.decisionNumber+" state "+d.stateNumber+" uniquely predicts alt "+
         # d.getUniquelyPredictedAlt());
       else
@@ -1234,7 +1226,7 @@ module Org::Antlr::Analysis
               configuration.attr_resolved = true
             end
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
       
@@ -1334,7 +1326,7 @@ module Org::Antlr::Analysis
           if ((configuration.attr_alt).equal?(naked_alt))
             configuration.attr_semantic_context = naked_alt_pred
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
       if ((alt_to_pred_map.size).equal?(nondeterministic_alts.size))
@@ -1345,29 +1337,29 @@ module Org::Antlr::Analysis
         if (d.attr_aborted_due_to_recursion_overflow)
           d.attr_dfa.attr_probe.remove_recursive_overflow_state(d)
         end
-        num_configs_ = d.attr_nfa_configurations.size
-        i_ = 0
-        while i_ < num_configs_
-          configuration_ = d.attr_nfa_configurations.get(i_)
-          sem_ctx = alt_to_pred_map.get(Utils.integer(configuration_.attr_alt))
+        num_configs = d.attr_nfa_configurations.size
+        i = 0
+        while i < num_configs
+          configuration = d.attr_nfa_configurations.get(i)
+          sem_ctx = alt_to_pred_map.get(Utils.integer(configuration.attr_alt))
           if (!(sem_ctx).nil?)
             # resolve (first found) with pred
             # and remove alt from problem list
-            configuration_.attr_resolve_with_predicate = true
-            configuration_.attr_semantic_context = sem_ctx # reset to combined
-            alt_to_pred_map.remove(Utils.integer(configuration_.attr_alt))
+            configuration.attr_resolve_with_predicate = true
+            configuration.attr_semantic_context = sem_ctx # reset to combined
+            alt_to_pred_map.remove(Utils.integer(configuration.attr_alt))
             # notify grammar that we've used the preds contained in semCtx
             if (sem_ctx.is_syntactic_predicate)
               @dfa.attr_nfa.attr_grammar.syn_pred_used_in_dfa(@dfa, sem_ctx)
             end
           else
-            if (nondeterministic_alts.contains(Utils.integer(configuration_.attr_alt)))
+            if (nondeterministic_alts.contains(Utils.integer(configuration.attr_alt)))
               # resolve all configurations for nondeterministic alts
               # for which there is no predicate context by turning it off
-              configuration_.attr_resolved = true
+              configuration.attr_resolved = true
             end
           end
-          ((i_ += 1) - 1)
+          i += 1
         end
         return true
       end
@@ -1403,7 +1395,6 @@ module Org::Antlr::Analysis
         alt_i = it.next
         alt_to_set_of_contexts_map.put(alt_i, HashSet.new)
       end
-      # 
       # List<Label> sampleInputLabels = d.dfa.probe.getSampleNonDeterministicInputSequence(d);
       # String input = d.dfa.probe.getInputSequenceDisplay(sampleInputLabels);
       # System.out.println("sample input: "+input);
@@ -1420,19 +1411,18 @@ module Org::Antlr::Analysis
       i = 0
       while i < num_configs
         configuration = d.attr_nfa_configurations.get(i)
-        alt_i_ = Utils.integer(configuration.attr_alt)
+        alt_i = Utils.integer(configuration.attr_alt)
         # if alt is nondeterministic, combine its predicates
-        if (nondeterministic_alts.contains(alt_i_))
+        if (nondeterministic_alts.contains(alt_i))
           # if there is a predicate for this NFA configuration, OR in
           if (!(configuration.attr_semantic_context).equal?(SemanticContext::EMPTY_SEMANTIC_CONTEXT))
-            pred_set = alt_to_set_of_contexts_map.get(alt_i_)
+            pred_set = alt_to_set_of_contexts_map.get(alt_i)
             pred_set.add(configuration.attr_semantic_context)
           else
             # if no predicate, but it's part of nondeterministic alt
             # then at least one path exists not covered by a predicate.
             # must remove predicate for this alt; track incomplete alts
-            nondet_alts_with_uncovered_configuration.add(alt_i_)
-            # 
+            nondet_alts_with_uncovered_configuration.add(alt_i)
             # NFAState s = dfa.nfa.getState(configuration.state);
             # System.out.println("###\ndec "+dfa.decisionNumber+" alt "+configuration.alt+
             # " enclosing rule for nfa state not covered "+
@@ -1452,7 +1442,7 @@ module Org::Antlr::Analysis
             # }
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # For each alt, OR together all unique predicates associated with
       # all configurations
@@ -1462,13 +1452,13 @@ module Org::Antlr::Analysis
       incompletely_covered_alts = ArrayList.new
       it_ = nondeterministic_alts.iterator
       while it_.has_next
-        alt_i__ = it_.next
-        contexts_for_this_alt = alt_to_set_of_contexts_map.get(alt_i__)
-        if (nondet_alts_with_uncovered_configuration.contains(alt_i__))
+        alt_i = it_.next
+        contexts_for_this_alt = alt_to_set_of_contexts_map.get(alt_i)
+        if (nondet_alts_with_uncovered_configuration.contains(alt_i))
           # >= 1 config has no ctx
           if (contexts_for_this_alt.size > 0)
             # && at least one pred
-            incompletely_covered_alts.add(alt_i__) # this alt incompleted covered
+            incompletely_covered_alts.add(alt_i) # this alt incompleted covered
           end
           next # don't include at least 1 config has no ctx
         end
@@ -1478,10 +1468,9 @@ module Org::Antlr::Analysis
           ctx = itr_set.next
           combined_context = SemanticContext.or(combined_context, ctx)
         end
-        alt_to_predicate_context_map.put(alt_i__, combined_context)
+        alt_to_predicate_context_map.put(alt_i, combined_context)
       end
       if (incompletely_covered_alts.size > 0)
-        # 
         # System.out.println("prob in dec "+dfa.decisionNumber+" state="+d);
         # FASerializer serializer = new FASerializer(dfa.nfa.grammar);
         # String result = serializer.serialize(dfa.startState);
@@ -1493,11 +1482,10 @@ module Org::Antlr::Analysis
         # System.out.println("altToPredicateContextMap="+altToPredicateContextMap);
         i_ = 0
         while i_ < num_configs
-          configuration_ = d.attr_nfa_configurations.get(i_)
-          alt_i___ = Utils.integer(configuration_.attr_alt)
-          if (incompletely_covered_alts.contains(alt_i___) && (configuration_.attr_semantic_context).equal?(SemanticContext::EMPTY_SEMANTIC_CONTEXT))
-            s = @dfa.attr_nfa.get_state(configuration_.attr_state)
-            # 
+          configuration = d.attr_nfa_configurations.get(i_)
+          alt_i = Utils.integer(configuration.attr_alt)
+          if (incompletely_covered_alts.contains(alt_i) && (configuration.attr_semantic_context).equal?(SemanticContext::EMPTY_SEMANTIC_CONTEXT))
+            s = @dfa.attr_nfa.get_state(configuration.attr_state)
             # System.out.print("nondet config w/o context "+configuration+
             # " incident "+(s.incidentEdgeLabel!=null?s.incidentEdgeLabel.toString(dfa.nfa.grammar):null));
             # if ( s.associatedASTNode!=null ) {
@@ -1511,16 +1499,16 @@ module Org::Antlr::Analysis
               if ((s.attr_associated_astnode).nil? || (s.attr_associated_astnode.attr_token).nil?)
                 ErrorManager.internal_error("no AST/token for nonepsilon target w/o predicate")
               else
-                locations = alt_to_locations_reachable_without_predicate.get(alt_i___)
+                locations = alt_to_locations_reachable_without_predicate.get(alt_i)
                 if ((locations).nil?)
                   locations = HashSet.new
-                  alt_to_locations_reachable_without_predicate.put(alt_i___, locations)
+                  alt_to_locations_reachable_without_predicate.put(alt_i, locations)
                 end
                 locations.add(s.attr_associated_astnode.attr_token)
               end
             end
           end
-          ((i_ += 1) - 1)
+          i_ += 1
         end
         @dfa.attr_probe.report_incompletely_covered_alts(d, alt_to_locations_reachable_without_predicate)
       end
@@ -1566,7 +1554,7 @@ module Org::Antlr::Analysis
         if (c.attr_resolve_with_predicate)
           configs_with_preds.add(c)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       Collections.sort(configs_with_preds, # Sort ascending according to alt; alt i has higher precedence than i+1
       Class.new(Comparator.class == Class ? Comparator : Object) do
@@ -1600,14 +1588,14 @@ module Org::Antlr::Analysis
       # Now, we can add edges emanating from d for these preds in right order
       i_ = 0
       while i_ < pred_configs_sorted_by_alt.size
-        c_ = pred_configs_sorted_by_alt.get(i_)
-        pred_dfatarget = d.attr_dfa.get_accept_state(c_.attr_alt)
+        c = pred_configs_sorted_by_alt.get(i_)
+        pred_dfatarget = d.attr_dfa.get_accept_state(c.attr_alt)
         if ((pred_dfatarget).nil?)
           pred_dfatarget = @dfa.new_state # create if not there.
           # create a new DFA state that is a target of the predicate from d
-          pred_dfatarget.add_nfaconfiguration(@dfa.attr_nfa.get_state(c_.attr_state), c_.attr_alt, c_.attr_context, c_.attr_semantic_context)
+          pred_dfatarget.add_nfaconfiguration(@dfa.attr_nfa.get_state(c.attr_state), c.attr_alt, c.attr_context, c.attr_semantic_context)
           pred_dfatarget.set_accept_state(true)
-          @dfa.set_accept_state(c_.attr_alt, pred_dfatarget)
+          @dfa.set_accept_state(c.attr_alt, pred_dfatarget)
           existing_state = @dfa.add_state(pred_dfatarget)
           if (!(pred_dfatarget).equal?(existing_state))
             # already there...use/return the existing DFA state that
@@ -1618,8 +1606,8 @@ module Org::Antlr::Analysis
           end
         end
         # add a transition to pred target from d
-        d.add_transition(pred_dfatarget, PredicateLabel.new(c_.attr_semantic_context))
-        ((i_ += 1) - 1)
+        d.add_transition(pred_dfatarget, PredicateLabel.new(c.attr_semantic_context))
+        i_ += 1
       end
     end
     
@@ -1634,7 +1622,7 @@ module Org::Antlr::Analysis
         # node then it implies there is no call stack for
         # that configuration
         @context_trees[i] = NFAContext.new(nil, nil)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -1648,7 +1636,7 @@ module Org::Antlr::Analysis
         m = 0
         it = s.iterator
         while it.has_next
-          ((i += 1) - 1)
+          i += 1
           i_ = it.next
           if ((i).equal?(1))
             # init m with first value

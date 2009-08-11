@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -203,7 +202,7 @@ module Org::Antlr::Analysis
       end
       if (!(e).nil?)
         @transition[@num_transitions] = e
-        ((@num_transitions += 1) - 1)
+        @num_transitions += 1
         # Set the "back pointer" of the target state so that it
         # knows about the label of the incoming edge.
         label = e.attr_label

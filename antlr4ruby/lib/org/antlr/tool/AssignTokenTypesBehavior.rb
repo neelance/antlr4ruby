@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -149,7 +148,6 @@ module Org::Antlr::Tool
         # (can have optional action last)
         if (block.has_same_tree_structure(self.attr_char_alias) || block.has_same_tree_structure(self.attr_string_alias) || block.has_same_tree_structure(self.attr_char_alias2) || block.has_same_tree_structure(self.attr_string_alias2))
           @token_rule_defs.add(t.get_text)
-          # 
           # Grammar parent = grammar.composite.getDelegator(grammar);
           # boolean importedByParserOrCombined =
           # parent!=null &&
@@ -200,7 +198,6 @@ module Org::Antlr::Tool
     
     typesig { [Grammar] }
     def define_tokens(root)
-      # 
       # System.out.println("stringLiterals="+stringLiterals);
       # System.out.println("tokens="+tokens);
       # System.out.println("aliases="+aliases);
@@ -208,7 +205,6 @@ module Org::Antlr::Tool
       assign_token_idtypes(root)
       alias_token_ids_and_literals(root)
       assign_string_types(root)
-      # 
       # System.out.println("stringLiterals="+stringLiterals);
       # System.out.println("tokens="+tokens);
       # System.out.println("aliases="+aliases);
@@ -216,7 +212,6 @@ module Org::Antlr::Tool
     end
     
     typesig { [Grammar] }
-    # 
     # protected void defineStringLiteralsFromDelegates() {
     # if ( grammar.getGrammarIsMaster() && grammar.type==Grammar.COMBINED ) {
     # List<Grammar> delegates = grammar.getDelegates();
@@ -300,8 +295,8 @@ module Org::Antlr::Tool
       it_ = s.iterator
       while it_.has_next
         lit = it_.next
-        ttype_ = (@string_literals.get(lit)).int_value
-        root.define_token(lit, ttype_)
+        ttype = (@string_literals.get(lit)).int_value
+        root.define_token(lit, ttype)
       end
     end
     

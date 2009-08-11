@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -34,7 +33,6 @@ module Org::Antlr::Runtime
     }
   end
   
-  # 
   # public int specialTransition(int state, int symbol) {
   # return 0;
   # }
@@ -205,7 +203,7 @@ module Org::Antlr::Runtime
             p = 0
             while p < @transition[s].attr_length
               System.err.print((@transition[s][p]).to_s + " ")
-              ((p += 1) - 1)
+              p += 1
             end
             System.err.println
           end
@@ -267,7 +265,7 @@ module Org::Antlr::Runtime
           j = 1
           while j <= n
             data[((di += 1) - 1)] = RJava.cast_to_short(v)
-            ((j += 1) - 1)
+            j += 1
           end
           i_ += 2
         end
@@ -294,7 +292,7 @@ module Org::Antlr::Runtime
           j = 1
           while j <= n
             data[((di += 1) - 1)] = v
-            ((j += 1) - 1)
+            j += 1
           end
           i_ += 2
         end

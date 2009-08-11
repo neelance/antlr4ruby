@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -240,7 +239,7 @@ module Org::Antlr::Codegen
         else
           buf.append(RJava.cast_to_char(c))
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (quoted)
         buf.append(Character.new(?".ord))
@@ -267,7 +266,7 @@ module Org::Antlr::Codegen
       i = 1
       while i <= padding
         buf.append(Character.new(?0.ord))
-        ((i += 1) - 1)
+        i += 1
       end
       buf.append(digits)
       return buf.to_s

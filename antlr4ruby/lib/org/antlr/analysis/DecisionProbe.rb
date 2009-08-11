@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -164,7 +163,6 @@ module Org::Antlr::Analysis
     alias_method :attr_state_to_recursion_overflow_configurations_map=, :state_to_recursion_overflow_configurations_map=
     undef_method :state_to_recursion_overflow_configurations_map=
     
-    # 
     # protected Map<Integer, List<NFAConfiguration>> stateToRecursionOverflowConfigurationsMap =
     # new HashMap<Integer, List<NFAConfiguration>>();
     # 
@@ -443,7 +441,7 @@ module Org::Antlr::Analysis
       while a <= alt
         s = @dfa.attr_nfa.attr_grammar.get_nfastate_for_alt_of_decision(nfa_start, a)
         path.add(s)
-        ((a += 1) - 1)
+        a += 1
       end
       # add first state of actual alt
       alt_start = @dfa.attr_nfa.attr_grammar.get_nfastate_for_alt_of_decision(nfa_start, alt)
@@ -528,10 +526,10 @@ module Org::Antlr::Analysis
       dangling_states = get_dangling_states
       if (dangling_states.size > 0)
         # System.err.println("no emanating edges for states: "+danglingStates);
-        it_ = dangling_states.iterator
-        while it_.has_next
-          d_ = it_.next
-          ErrorManager.dangling_state(self, d_)
+        it = dangling_states.iterator
+        while it.has_next
+          d = it.next
+          ErrorManager.dangling_state(self, d)
         end
       end
       if (!@non_llstar_decision)
@@ -644,7 +642,7 @@ module Org::Antlr::Analysis
             sample_bad_state = @dfa.get_state(state_i.int_value)
             alt_to_dfastate.put(alt_i, sample_bad_state)
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
     end
@@ -680,7 +678,6 @@ module Org::Antlr::Analysis
     # Report that at least 2 alts have recursive constructs.  There is
     # no way to build a DFA so we terminated.
     def report_non_llstar_decision(dfa)
-      # 
       # System.out.println("non-LL(*) DFA "+dfa.decisionNumber+", alts: "+
       # dfa.recursiveAltSet.toList());
       @non_llstar_decision = true
@@ -769,7 +766,7 @@ module Org::Antlr::Analysis
         target_status = @state_reachable.get(edge_target.attr_state_number)
         if ((target_status).equal?(REACHABLE_BUSY))
           # avoid cycles; they say nothing
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if ((target_status).equal?(REACHABLE_YES))
@@ -779,7 +776,7 @@ module Org::Antlr::Analysis
         end
         if ((target_status).equal?(REACHABLE_NO))
           # try another transition
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # if null, target must be REACHABLE_UNKNOWN (i.e., unvisited)
@@ -788,7 +785,7 @@ module Org::Antlr::Analysis
           @state_reachable.put(s.attr_state_number, REACHABLE_YES)
           return true
         end
-        ((i += 1) - 1)
+        i += 1
       end
       @state_reachable.put(s.attr_state_number, REACHABLE_NO)
       return false # no path to targetState found.
@@ -830,7 +827,7 @@ module Org::Antlr::Analysis
           # done with this DFA state as we've found a good path to target
           return
         end
-        ((i += 1) - 1)
+        i += 1
       end
       labels.add(Label.new(Label::EPSILON)) # indicate no input found
       # this happens on a : {p1}? a | A ;
@@ -854,13 +851,11 @@ module Org::Antlr::Analysis
       # track a visit to state s at input index labelIndex if not seen
       this_state_key = get_state_label_index_key(s.attr_state_number, label_index)
       if (@states_visited_at_input_depth.contains(this_state_key))
-        # 
         # System.out.println("### already visited "+s.stateNumber+" previously at index "+
         # labelIndex);
         return false
       end
       @states_visited_at_input_depth.add(this_state_key)
-      # 
       # System.out.println("enter state "+s.stateNumber+" visited states: "+
       # statesVisitedAtInputDepth);
       # 
@@ -871,7 +866,6 @@ module Org::Antlr::Analysis
         t = s.attr_transition[i]
         edge_target = t.attr_target
         label = labels.get(label_index)
-        # 
         # System.out.println(s.stateNumber+"-"+
         # t.label.toString(dfa.nfa.grammar)+"->"+
         # edgeTarget.stateNumber+" =="+
@@ -885,12 +879,11 @@ module Org::Antlr::Analysis
             return true # return to "calling" state
           end
           path.remove(path.size - 1) # remove; didn't work out
-          ((i += 1) - 1)
+          i += 1
           next # look at the next edge
         end
         if (t.attr_label.matches(label))
           path.add(edge_target)
-          # 
           # System.out.println("found label "+
           # t.label.toString(dfa.nfa.grammar)+
           # " at state "+s.stateNumber+"; labelIndex="+labelIndex);
@@ -900,19 +893,18 @@ module Org::Antlr::Analysis
             return true
           end
           # otherwise try to match remaining input
-          found_ = get_nfapath(edge_target, label_index + 1, labels, path)
-          if (found_)
+          found = get_nfapath(edge_target, label_index + 1, labels, path)
+          if (found)
             @states_visited_at_input_depth.remove(this_state_key)
             return true
           end
-          # 
           # System.out.println("backtrack; path from "+s.stateNumber+"->"+
           # t.label.toString(dfa.nfa.grammar)+" didn't work");
           path.remove(path.size - 1) # remove; didn't work out
-          ((i += 1) - 1)
+          i += 1
           next # keep looking for a path for labels
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # System.out.println("no epsilon or matching edge; removing "+thisStateKey);
       # no edge was found matching label; is ok, some state will have it

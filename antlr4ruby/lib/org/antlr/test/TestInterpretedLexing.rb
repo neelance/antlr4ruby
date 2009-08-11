@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -41,7 +40,6 @@ module Org::Antlr::Test
     include_class_members TestInterpretedLexingImports
     
     typesig { [] }
-    # 
     # static class Tracer implements ANTLRDebugInterface {
     # Grammar g;
     # public DebugActions(Grammar g) {

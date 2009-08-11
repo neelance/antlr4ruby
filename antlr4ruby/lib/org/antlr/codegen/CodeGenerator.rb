@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2007 Terence Parr
 # All rights reserved.
@@ -284,7 +283,7 @@ module Org::Antlr::Codegen
       rescue InstantiationException => ie
         ErrorManager.error(ErrorManager::MSG_CANNOT_CREATE_TARGET_GENERATOR, target_name, ie)
       rescue IllegalAccessException => cnfe
-        ErrorManager.error(ErrorManager::MSG_CANNOT_CREATE_TARGET_GENERATOR, target_name, cnfe_)
+        ErrorManager.error(ErrorManager::MSG_CANNOT_CREATE_TARGET_GENERATOR, target_name, cnfe)
       end
     end
     
@@ -323,23 +322,23 @@ module Org::Antlr::Codegen
           ast_dbg_templates = StringTemplateGroup.load_group("ASTDbg", ast_parser_templates)
           @templates = ast_dbg_templates
         else
-          ast_templates_ = StringTemplateGroup.load_group("AST", core_templates)
-          ast_parser_templates_ = ast_templates_
+          ast_templates = StringTemplateGroup.load_group("AST", core_templates)
+          ast_parser_templates = ast_templates
           # if ( !grammar.rewriteMode() ) {
           if ((@grammar.attr_type).equal?(Grammar::TREE_PARSER))
-            ast_parser_templates_ = StringTemplateGroup.load_group("ASTTreeParser", ast_templates_)
+            ast_parser_templates = StringTemplateGroup.load_group("ASTTreeParser", ast_templates)
           else
-            ast_parser_templates_ = StringTemplateGroup.load_group("ASTParser", ast_templates_)
+            ast_parser_templates = StringTemplateGroup.load_group("ASTParser", ast_templates)
           end
           # }
-          @templates = ast_parser_templates_
+          @templates = ast_parser_templates
         end
       else
         if (!(output_option).nil? && (output_option == "template"))
           if (@debug && !(@grammar.attr_type).equal?(Grammar::LEXER))
-            dbg_templates_ = StringTemplateGroup.load_group("Dbg", core_templates)
-            @base_templates = dbg_templates_
-            st_templates = StringTemplateGroup.load_group("ST", dbg_templates_)
+            dbg_templates = StringTemplateGroup.load_group("Dbg", core_templates)
+            @base_templates = dbg_templates
+            st_templates = StringTemplateGroup.load_group("ST", dbg_templates)
             @templates = st_templates
           else
             @templates = StringTemplateGroup.load_group("ST", core_templates)
@@ -517,7 +516,6 @@ module Org::Antlr::Codegen
       rescue IOException => ioe
         ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, get_vocab_file_name, ioe)
       end
-      # 
       # System.out.println("num obj.prop refs: "+ ASTExpr.totalObjPropRefs);
       # System.out.println("num reflection lookups: "+ ASTExpr.totalReflectionLookups);
       return @output_file_st
@@ -590,7 +588,6 @@ module Org::Antlr::Codegen
     # Like Grosch I implemented local FOLLOW sets that are combined at run-time
     # upon error to avoid parsing overhead.
     def generate_local_follow(referenced_element_node, referenced_element_name, enclosing_rule_name, element_index)
-      # 
       # System.out.println("compute FOLLOW "+grammar.name+"."+referencedElementNode.toString()+
       # " for "+referencedElementName+"#"+elementIndex +" in "+
       # enclosingRuleName+
@@ -629,7 +626,7 @@ module Org::Antlr::Codegen
       while j < words.attr_length
         w = words[j]
         word_strings[j] = @target.get_target64bit_string_from_value(w)
-        ((j += 1) - 1)
+        j += 1
       end
       @recognizer_st.set_attribute("bitsets.{name,inName,bits,tokenTypes,tokenIndex}", referenced_element_name, enclosing_rule_name, word_strings, token_type_list, Utils.integer(element_index))
       @output_file_st.set_attribute("bitsets.{name,inName,bits,tokenTypes,tokenIndex}", referenced_element_name, enclosing_rule_name, word_strings, token_type_list, Utils.integer(element_index))
@@ -712,7 +709,7 @@ module Org::Antlr::Codegen
         if (!(edge.attr_label.get_atom).equal?(Label::EOT))
           state_st.set_attribute("edges", edge_st)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (found_gated_pred)
         # state has >= 1 edge with a gated pred (syn or sem)
@@ -793,7 +790,7 @@ module Org::Antlr::Codegen
         end
         e_st.set_attribute("k", Utils.integer(k))
         set_st.set_attribute("ranges", e_st)
-        ((range_number += 1) - 1)
+        range_number += 1
       end
       return set_st
     end
@@ -827,7 +824,7 @@ module Org::Antlr::Codegen
           token_name = (@target.get_target_string_literal_from_string(token_name, true)).to_s
           code.set_attribute("tokenNames", token_name)
         end
-        ((t += 1) - 1)
+        t += 1
       end
     end
     
@@ -872,9 +869,9 @@ module Org::Antlr::Codegen
       literals = @grammar.get_string_literals.iterator
       while (literals.has_next)
         literal = literals.next
-        token_type_ = @grammar.get_token_type(literal)
-        if (token_type_ >= Label::MIN_TOKEN_TYPE)
-          vocab_file_st.set_attribute("tokens.{name,type}", literal, Utils.integer(token_type_))
+        token_type = @grammar.get_token_type(literal)
+        if (token_type >= Label::MIN_TOKEN_TYPE)
+          vocab_file_st.set_attribute("tokens.{name,type}", literal, Utils.integer(token_type))
         end
       end
       return vocab_file_st
@@ -947,23 +944,23 @@ module Org::Antlr::Codegen
           c = action_text.char_at(p)
           case (c)
           when Character.new(?\'.ord)
-            ((p += 1) - 1)
+            p += 1
             while (p < n && !(action_text.char_at(p)).equal?(Character.new(?\'.ord)))
               if ((action_text.char_at(p)).equal?(Character.new(?\\.ord)) && (p + 1) < n && (action_text.char_at(p + 1)).equal?(Character.new(?\'.ord)))
-                ((p += 1) - 1) # skip escaped quote
+                p += 1 # skip escaped quote
               end
-              ((p += 1) - 1)
+              p += 1
             end
-            ((p += 1) - 1)
+            p += 1
           when Character.new(?".ord)
-            ((p += 1) - 1)
+            p += 1
             while (p < n && !(action_text.char_at(p)).equal?(Character.new(?\".ord)))
               if ((action_text.char_at(p)).equal?(Character.new(?\\.ord)) && (p + 1) < n && (action_text.char_at(p + 1)).equal?(Character.new(?\".ord)))
-                ((p += 1) - 1) # skip escaped quote
+                p += 1 # skip escaped quote
               end
-              ((p += 1) - 1)
+              p += 1
             end
-            ((p += 1) - 1)
+            p += 1
           when Character.new(?(.ord)
             p = get_list_of_arguments_from_action(action_text, p + 1, Character.new(?).ord), separator_char, args)
           when Character.new(?{.ord)
@@ -974,7 +971,7 @@ module Org::Antlr::Codegen
               # and not less followed by expr with greater than
               p = get_list_of_arguments_from_action(action_text, p + 1, Character.new(?>.ord), separator_char, args)
             else
-              ((p += 1) - 1) # treat as normal char
+              p += 1 # treat as normal char
             end
           when Character.new(?[.ord)
             p = get_list_of_arguments_from_action(action_text, p + 1, Character.new(?].ord), separator_char, args)
@@ -985,17 +982,17 @@ module Org::Antlr::Codegen
               args.add(arg.trim)
               last = p + 1
             end
-            ((p += 1) - 1)
+            p += 1
           end
         end
         if ((target_char).equal?(-1) && p <= n)
-          arg_ = action_text.substring(last, p).trim
+          arg = action_text.substring(last, p).trim
           # System.out.println("arg="+arg);
-          if (arg_.length > 0)
-            args.add(arg_.trim)
+          if (arg.length > 0)
+            args.add(arg.trim)
           end
         end
-        ((p += 1) - 1)
+        p += 1
         return p
       end
     }
@@ -1035,7 +1032,7 @@ module Org::Antlr::Codegen
       begin
         st = gen.rewrite_template(rewrite_tree)
       rescue RecognitionException => re
-        ErrorManager.error(ErrorManager::MSG_BAD_AST_STRUCTURE, re_)
+        ErrorManager.error(ErrorManager::MSG_BAD_AST_STRUCTURE, re)
       end
       return st
     end
@@ -1154,7 +1151,6 @@ module Org::Antlr::Codegen
       ext_st = @templates.get_instance_of("codeFileExtension")
       recognizer_name = @grammar.get_recognizer_name
       return recognizer_name + (ext_st.to_s).to_s
-      # 
       # String suffix = "";
       # if ( type==Grammar.COMBINED ||
       # (type==Grammar.LEXER && !grammar.implicitLexer) )
@@ -1218,7 +1214,7 @@ module Org::Antlr::Codegen
           return false
         end
         size_ += edge.attr_label.get_set.size
-        ((i += 1) - 1)
+        i += 1
       end
       if (s.get_number_of_transitions < @min_switch_alts || size_ > @max_switch_case_labels)
         return false

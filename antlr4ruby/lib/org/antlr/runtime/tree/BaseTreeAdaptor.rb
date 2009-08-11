@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -109,7 +108,7 @@ module Org::Antlr::Runtime::Tree
         child = get_child(t, i)
         new_sub_tree = dup_tree(child, t)
         add_child(new_tree, new_sub_tree)
-        ((i += 1) - 1)
+        i += 1
       end
       return new_tree
     end
@@ -281,7 +280,7 @@ module Org::Antlr::Runtime::Tree
       end
       id = @unique_node_id
       @tree_to_unique_idmap.put(node, id)
-      ((@unique_node_id += 1) - 1)
+      @unique_node_id += 1
       return id
       # GC makes these nonunique:
       # return System.identityHashCode(node);

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -87,7 +86,7 @@ module Org::Antlr::Runtime
       while i < items.size
         v = items.get(i)
         add(v.int_value)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -157,7 +156,6 @@ module Org::Antlr::Runtime
     end
     
     typesig { [::Java::Int] }
-    # 
     # Grows the set to a larger number of bits.
     # @param bit element that must fit in set
     def grow_to_include(bit)
@@ -180,12 +178,11 @@ module Org::Antlr::Runtime
       i = min_ - 1
       while i >= 0
         @bits[i] |= a.attr_bits[i]
-        ((i -= 1) + 1)
+        i -= 1
       end
     end
     
     typesig { [::Java::Int] }
-    # 
     # Sets the size of a set.
     # @param nwords how many words the new set should be
     def set_size(nwords)
@@ -226,12 +223,12 @@ module Org::Antlr::Runtime
           bit = BITS - 1
           while bit >= 0
             if (!((word & (1 << bit))).equal?(0))
-              ((deg += 1) - 1)
+              deg += 1
             end
-            ((bit -= 1) + 1)
+            bit -= 1
           end
         end
-        ((i -= 1) + 1)
+        i -= 1
       end
       return deg
     end
@@ -249,7 +246,7 @@ module Org::Antlr::Runtime
         if (!(@bits[i]).equal?(other_set.attr_bits[i]))
           return false
         end
-        ((i += 1) - 1)
+        i += 1
       end
       # make sure any extra bits are off
       if (@bits.attr_length > n)
@@ -258,16 +255,16 @@ module Org::Antlr::Runtime
           if (!(@bits[i_]).equal?(0))
             return false
           end
-          ((i_ += 1) - 1)
+          i_ += 1
         end
       else
         if (other_set.attr_bits.attr_length > n)
-          i__ = n + 1
-          while i__ < other_set.attr_bits.attr_length
-            if (!(other_set.attr_bits[i__]).equal?(0))
+          i_ = n + 1
+          while i_ < other_set.attr_bits.attr_length
+            if (!(other_set.attr_bits[i_]).equal?(0))
               return false
             end
-            ((i__ += 1) - 1)
+            i_ += 1
           end
         end
       end
@@ -302,7 +299,7 @@ module Org::Antlr::Runtime
         if (!(@bits[i]).equal?(0))
           return false
         end
-        ((i -= 1) + 1)
+        i -= 1
       end
       return true
     end
@@ -339,7 +336,7 @@ module Org::Antlr::Runtime
         if (member(i))
           elems[((en += 1) - 1)] = i
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return elems
     end
@@ -380,7 +377,7 @@ module Org::Antlr::Runtime
           end
           have_printed_an_element = true
         end
-        ((i += 1) - 1)
+        i += 1
       end
       buf.append(Character.new(?}.ord))
       return buf.to_s

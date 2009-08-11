@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -145,7 +144,6 @@ module Org::Antlr::Test
         options.add(JavaFile.new(@tmpdir, grammar_file_name).to_s)
         options_a = Array.typed(String).new(options.size) { nil }
         options.to_array(options_a)
-        # 
         # final ErrorQueue equeue = new ErrorQueue();
         # ErrorManager.setErrorListener(equeue);
         antlr = Tool.new(options_a)
@@ -160,7 +158,7 @@ module Org::Antlr::Test
             while i < equeue.attr_errors.size
               msg = equeue.attr_errors.get(i)
               System.err.println(msg)
-              ((i += 1) - 1)
+              i += 1
             end
           end
         end
@@ -223,8 +221,8 @@ module Org::Antlr::Test
           all_is_well = false
         end
       else
-        ok_ = compile(parser_name + ".java")
-        if (!ok_)
+        ok = compile(parser_name + ".java")
+        if (!ok)
           all_is_well = false
         end
       end
@@ -280,7 +278,6 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_grammar_semantics_error(equeue, expected_message)
-      # 
       # System.out.println(equeue.infos);
       # System.out.println(equeue.warnings);
       # System.out.println(equeue.errors);
@@ -292,7 +289,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_not_null("no error; " + (expected_message.attr_msg_id).to_s + " expected", found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
@@ -311,7 +308,7 @@ module Org::Antlr::Test
         if ((m.attr_msg_id).equal?(expected_message.attr_msg_id))
           found_msg = m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       assert_not_null("no error; " + (expected_message.attr_msg_id).to_s + " expected", found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
@@ -483,7 +480,7 @@ module Org::Antlr::Test
         if (files[i].ends_with(files_ending_with))
           JavaFile.new(@tmpdir + "/" + (files[i]).to_s).delete
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -506,7 +503,7 @@ module Org::Antlr::Test
         if (!(o).nil?)
           n.add(o)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return n
     end

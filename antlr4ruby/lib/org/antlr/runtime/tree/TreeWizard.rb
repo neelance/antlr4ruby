@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -322,7 +321,7 @@ module Org::Antlr::Runtime::Tree
       while ttype < token_names.attr_length
         name = token_names[ttype]
         m.put(name, ttype)
-        ((ttype += 1) - 1)
+        ttype += 1
       end
       return m
     end
@@ -371,7 +370,7 @@ module Org::Antlr::Runtime::Tree
       while i < n
         child = @adaptor.get_child(t, i)
         __index(child, m)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -469,7 +468,7 @@ module Org::Antlr::Runtime::Tree
       while i < n
         child = @adaptor.get_child(t, i)
         __visit(child, t, i, ttype, visitor)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -528,7 +527,6 @@ module Org::Antlr::Runtime::Tree
       tokenizer = TreePatternLexer.new(pattern_)
       parser = TreePatternParser.new(tokenizer, self, TreePatternTreeAdaptor.new)
       tpattern = parser.pattern
-      # 
       # System.out.println("t="+((Tree)t).toStringTree());
       # System.out.println("scant="+tpattern.toStringTree());
       matched = __parse(t, tpattern, labels)
@@ -576,7 +574,7 @@ module Org::Antlr::Runtime::Tree
         if (!__parse(child1, child2, labels))
           return false
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return true
     end
@@ -650,7 +648,7 @@ module Org::Antlr::Runtime::Tree
           if (!__equals(child1, child2, adaptor))
             return false
           end
-          ((i += 1) - 1)
+          i += 1
         end
         return true
       end

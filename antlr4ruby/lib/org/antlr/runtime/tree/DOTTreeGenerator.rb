@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -113,7 +112,6 @@ module Org::Antlr::Runtime::Tree
       to_dotdefine_nodes(tree, adaptor, tree_st)
       @node_number = 0
       to_dotdefine_edges(tree, adaptor, tree_st)
-      # 
       # if ( adaptor.getChildCount(tree)==0 ) {
       # // single node, don't do edge.
       # treeST.setAttribute("nodes", adaptor.getText(tree));
@@ -168,7 +166,7 @@ module Org::Antlr::Runtime::Tree
         node_st = get_node_st(adaptor, child)
         tree_st.set_attribute("nodes", node_st)
         to_dotdefine_nodes(child, adaptor, tree_st)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -198,7 +196,7 @@ module Org::Antlr::Runtime::Tree
         edge_st.set_attribute("childText", child_text)
         tree_st.set_attribute("edges", edge_st)
         to_dotdefine_edges(child, adaptor, tree_st)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -222,7 +220,7 @@ module Org::Antlr::Runtime::Tree
         return n_i.int_value
       else
         @node_to_number_map.put(t, @node_number)
-        ((@node_number += 1) - 1)
+        @node_number += 1
         return @node_number - 1
       end
     end

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -94,7 +93,7 @@ module Org::Antlr::Tool
           self.attr_line = rule_start.attr_associated_astnode.get_line
           self.attr_column = rule_start.attr_associated_astnode.get_column
           st.set_attribute("tokens", token_name)
-          ((i += 1) - 1)
+          i += 1
         end
       else
         # regular alt numbers, show the alts

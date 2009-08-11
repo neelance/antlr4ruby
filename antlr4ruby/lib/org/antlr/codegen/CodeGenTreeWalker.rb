@@ -1,6 +1,5 @@
 require "rjava"
  # $ANTLR 2.7.7 (2006-01-29): "codegen.g" -> "CodeGenTreeWalker.java"$
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -364,109 +363,45 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LEXER_GRAMMAR
-            __t3 = _t
-            tmp1_ast_in = _t
-            match(_t, LEXER_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t3
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t4 = _t
-            tmp2_ast_in = _t
-            match(_t, PARSER_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t4
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t5 = _t
-            tmp3_ast_in = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6 = _t
-            tmp4_ast_in = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when PARSER_GRAMMAR
-            __t4_ = _t
-            tmp2_ast_in_ = _t
-            match(_t, PARSER_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t4_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t5_ = _t
-            tmp3_ast_in_ = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6_ = _t
-            tmp4_ast_in_ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_GRAMMAR
-            __t5__ = _t
-            tmp3_ast_in__ = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6__ = _t
-            tmp4_ast_in__ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when COMBINED_GRAMMAR
-            __t6___ = _t
-            tmp4_ast_in___ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LEXER_GRAMMAR
+          __t3 = _t
+          tmp1_ast_in = _t
+          match(_t, LEXER_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t3
+          _t = _t.get_next_sibling
+        when PARSER_GRAMMAR
+          __t4 = _t
+          tmp2_ast_in = _t
+          match(_t, PARSER_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t4
+          _t = _t.get_next_sibling
+        when TREE_GRAMMAR
+          __t5 = _t
+          tmp3_ast_in = _t
+          match(_t, TREE_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t5
+          _t = _t.get_next_sibling
+        when COMBINED_GRAMMAR
+          __t6 = _t
+          tmp4_ast_in = _t
+          match(_t, COMBINED_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t6
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -490,23 +425,16 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when DOC_COMMENT
-            cmt = _t
-            match(_t, DOC_COMMENT)
-            _t = _t.get_next_sibling
-            @output_file_st.set_attribute("docComment", cmt.get_text)
-            @header_file_st.set_attribute("docComment", cmt.get_text)
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when DOC_COMMENT
+          cmt = _t
+          match(_t, DOC_COMMENT)
+          _t = _t.get_next_sibling
+          @output_file_st.set_attribute("docComment", cmt.get_text)
+          @header_file_st.set_attribute("docComment", cmt.get_text)
+        when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         @recognizer_st.set_attribute("name", @grammar.get_recognizer_name)
         @output_file_st.set_attribute("name", @grammar.get_recognizer_name)
@@ -516,83 +444,62 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            __t12 = _t
-            tmp5_ast_in = _t
-            match(_t, OPTIONS)
-            _t = _t.get_first_child
-            tmp6_ast_in = _t
-            if ((_t).nil?)
-              raise MismatchedTokenException.new
-            end
-            _t = _t.get_next_sibling
-            _t = __t12
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when OPTIONS
+          __t12 = _t
+          tmp5_ast_in = _t
+          match(_t, OPTIONS)
+          _t = _t.get_first_child
+          tmp6_ast_in = _t
+          if ((_t).nil?)
+            raise MismatchedTokenException.new
           end
+          _t = _t.get_next_sibling
+          _t = __t12
+          _t = _t.get_next_sibling
+        when TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when IMPORT
-            __t14 = _t
-            tmp7_ast_in = _t
-            match(_t, IMPORT)
-            _t = _t.get_first_child
-            tmp8_ast_in = _t
-            if ((_t).nil?)
-              raise MismatchedTokenException.new
-            end
-            _t = _t.get_next_sibling
-            _t = __t14
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKENS, RULE, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when IMPORT
+          __t14 = _t
+          tmp7_ast_in = _t
+          match(_t, IMPORT)
+          _t = _t.get_first_child
+          tmp8_ast_in = _t
+          if ((_t).nil?)
+            raise MismatchedTokenException.new
           end
+          _t = _t.get_next_sibling
+          _t = __t14
+          _t = _t.get_next_sibling
+        when TOKENS, RULE, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when TOKENS
-            __t16 = _t
-            tmp9_ast_in = _t
-            match(_t, TOKENS)
-            _t = _t.get_first_child
-            tmp10_ast_in = _t
-            if ((_t).nil?)
-              raise MismatchedTokenException.new
-            end
-            _t = _t.get_next_sibling
-            _t = __t16
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RULE, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when TOKENS
+          __t16 = _t
+          tmp9_ast_in = _t
+          match(_t, TOKENS)
+          _t = _t.get_first_child
+          tmp10_ast_in = _t
+          if ((_t).nil?)
+            raise MismatchedTokenException.new
           end
+          _t = _t.get_next_sibling
+          _t = __t16
+          _t = _t.get_next_sibling
+        when RULE, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -695,7 +602,7 @@ module Org::Antlr::Codegen
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt24 += 1) - 1)
+          _cnt24 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -742,21 +649,14 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
-            mod = (_t).equal?(ASTNULL) ? nil : _t
-            modifier(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ARG
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
+          mod = (_t).equal?(ASTNULL) ? nil : _t
+          modifier(_t)
+          _t = self.attr__ret_tree
+        when ARG
+        else
+          raise NoViableAltException.new(_t)
         end
         __t28 = _t
         tmp17_ast_in = _t
@@ -765,21 +665,14 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ARG_ACTION
-            tmp18_ast_in = _t
-            match(_t, ARG_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ARG_ACTION
+          tmp18_ast_in = _t
+          match(_t, ARG_ACTION)
+          _t = _t.get_next_sibling
+        when 3
+        else
+          raise NoViableAltException.new(_t)
         end
         _t = __t28
         _t = _t.get_next_sibling
@@ -790,68 +683,47 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ARG_ACTION
-            tmp20_ast_in = _t
-            match(_t, ARG_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ARG_ACTION
+          tmp20_ast_in = _t
+          match(_t, ARG_ACTION)
+          _t = _t.get_next_sibling
+        when 3
+        else
+          raise NoViableAltException.new(_t)
         end
         _t = __t30
         _t = _t.get_next_sibling
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            __t33 = _t
-            tmp21_ast_in = _t
-            match(_t, OPTIONS)
-            _t = _t.get_first_child
-            tmp22_ast_in = _t
-            if ((_t).nil?)
-              raise MismatchedTokenException.new
-            end
-            _t = _t.get_next_sibling
-            _t = __t33
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when OPTIONS
+          __t33 = _t
+          tmp21_ast_in = _t
+          match(_t, OPTIONS)
+          _t = _t.get_first_child
+          tmp22_ast_in = _t
+          if ((_t).nil?)
+            raise MismatchedTokenException.new
           end
+          _t = _t.get_next_sibling
+          _t = __t33
+          _t = _t.get_next_sibling
+        when BLOCK, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when SCOPE
-            rule_scope_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when SCOPE
+          rule_scope_spec(_t)
+          _t = self.attr__ret_tree
+        when BLOCK, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -902,20 +774,13 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch, LITERAL_finally
-            exception_group(_t, code)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when EOR
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_catch, LITERAL_finally
+          exception_group(_t, code)
+          _t = self.attr__ret_tree
+        when EOR
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp24_ast_in = _t
         match(_t, EOR)
@@ -958,59 +823,25 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_protected
-            tmp25_ast_in = _t
-            match(_t, LITERAL_protected)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp26_ast_in = _t
-            match(_t, LITERAL_public)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp27_ast_in = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp28_ast_in = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LITERAL_public
-            tmp26_ast_in_ = _t
-            match(_t, LITERAL_public)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp27_ast_in_ = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp28_ast_in_ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LITERAL_private
-            tmp27_ast_in__ = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp28_ast_in__ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when FRAGMENT
-            tmp28_ast_in___ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_protected
+          tmp25_ast_in = _t
+          match(_t, LITERAL_protected)
+          _t = _t.get_next_sibling
+        when LITERAL_public
+          tmp26_ast_in = _t
+          match(_t, LITERAL_public)
+          _t = _t.get_next_sibling
+        when LITERAL_private
+          tmp27_ast_in = _t
+          match(_t, LITERAL_private)
+          _t = _t.get_next_sibling
+        when FRAGMENT
+          tmp28_ast_in = _t
+          match(_t, FRAGMENT)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1033,21 +864,14 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ACTION
-            tmp30_ast_in = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3, ID
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ACTION
+          tmp30_ast_in = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+        when 3, ID
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1087,7 +911,7 @@ module Org::Antlr::Codegen
       else
         code = @templates.get_instance_of(block_template_name + "SingleAlt")
       end
-      ((@block_nesting_level += 1) - 1)
+      @block_nesting_level += 1
       code.set_attribute("blockLevel", @block_nesting_level)
       code.set_attribute("enclosingBlockLevel", @block_nesting_level - 1)
       alt = nil
@@ -1107,7 +931,7 @@ module Org::Antlr::Codegen
           sb = set_block(_t)
           _t = self.attr__ret_tree
           code.set_attribute("alts", sb)
-          ((@block_nesting_level -= 1) + 1)
+          @block_nesting_level -= 1
         else
           if (((_t.get_type).equal?(BLOCK)))
             __t45 = _t
@@ -1117,21 +941,14 @@ module Org::Antlr::Codegen
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when OPTIONS
-                tmp33_ast_in = _t
-                match(_t, OPTIONS)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ALT
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
+            case (_t.get_type)
+            when OPTIONS
+              tmp33_ast_in = _t
+              match(_t, OPTIONS)
+              _t = _t.get_next_sibling
+            when ALT
+            else
+              raise NoViableAltException.new(_t)
             end
             _cnt48 = 0
             begin
@@ -1145,7 +962,7 @@ module Org::Antlr::Codegen
                 rew = rewrite(_t)
                 _t = self.attr__ret_tree
                 if ((@block_nesting_level).equal?(RULE_BLOCK_NESTING_LEVEL))
-                  ((@outer_alt_num += 1) - 1)
+                  @outer_alt_num += 1
                 end
                 # add the rewrite code as just another element in the alt :)
                 # (unless it's a " -> ..." rewrite
@@ -1158,7 +975,7 @@ module Org::Antlr::Codegen
                 code.set_attribute("alts", alt)
                 alt.set_attribute("altNum", Utils.integer(alt_num))
                 alt.set_attribute("outerAlt", Boolean.value_of((@block_nesting_level).equal?(RULE_BLOCK_NESTING_LEVEL)))
-                ((alt_num += 1) - 1)
+                alt_num += 1
               else
                 if (_cnt48 >= 1)
                   break
@@ -1166,14 +983,14 @@ module Org::Antlr::Codegen
                   raise NoViableAltException.new(_t)
                 end
               end
-              ((_cnt48 += 1) - 1)
+              _cnt48 += 1
             end while (true)
             tmp34_ast_in = _t
             match(_t, EOB)
             _t = _t.get_next_sibling
             _t = __t45
             _t = _t.get_next_sibling
-            ((@block_nesting_level -= 1) + 1)
+            @block_nesting_level -= 1
           else
             raise NoViableAltException.new(_t)
           end
@@ -1196,57 +1013,41 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch
-            _cnt52 = 0
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(LITERAL_catch)))
-                exception_handler(_t, rule_st)
-                _t = self.attr__ret_tree
-              else
-                if (_cnt52 >= 1)
-                  break
-                else
-                  raise NoViableAltException.new(_t)
-                end
-              end
-              ((_cnt52 += 1) - 1)
-            end while (true)
+        case (_t.get_type)
+        when LITERAL_catch
+          _cnt52 = 0
+          begin
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when LITERAL_finally
-                finally_clause(_t, rule_st)
-                _t = self.attr__ret_tree
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when EOR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
+            if (((_t.get_type).equal?(LITERAL_catch)))
+              exception_handler(_t, rule_st)
+              _t = self.attr__ret_tree
+            else
+              if (_cnt52 >= 1)
+                break
               else
                 raise NoViableAltException.new(_t)
               end
             end
-            throw :break_case, :thrown
-            finally_clause(_t, rule_st)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+            _cnt52 += 1
+          end while (true)
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
           when LITERAL_finally
             finally_clause(_t, rule_st)
             _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+          when EOR
           else
             raise NoViableAltException.new(_t)
           end
+        when LITERAL_finally
+          finally_clause(_t, rule_st)
+          _t = self.attr__ret_tree
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1310,7 +1111,6 @@ module Org::Antlr::Codegen
       code = @templates.get_instance_of("alt")
       alternative_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
       a = nil
-      # 
       # // TODO: can we use Rule.altsWithRewrites???
       # if ( blockNestingLevel==RULE_BLOCK_NESTING_LEVEL ) {
       # GrammarAST aRewriteNode = #alternative.findFirstType(REWRITE);
@@ -1362,7 +1162,7 @@ module Org::Antlr::Codegen
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt61 += 1) - 1)
+          _cnt61 += 1
         end while (true)
         tmp35_ast_in = _t
         match(_t, EOA)
@@ -1427,22 +1227,15 @@ module Org::Antlr::Codegen
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                pred = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ALT, TEMPLATE, ACTION, ETC
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end == :thrown or break
+            case (_t.get_type)
+            when SEMPRED
+              pred = _t
+              match(_t, SEMPRED)
+              _t = _t.get_next_sibling
+            when ALT, TEMPLATE, ACTION, ETC
+            else
+              raise NoViableAltException.new(_t)
+            end
             alt = rewrite_alternative(_t)
             _t = self.attr__ret_tree
             _t = __t96
@@ -1542,955 +1335,131 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when ROOT
+          __t63 = _t
+          tmp41_ast_in = _t
+          match(_t, ROOT)
+          _t = _t.get_first_child
+          code = element(_t, label, tmp41_ast_in)
+          _t = self.attr__ret_tree
+          _t = __t63
+          _t = _t.get_next_sibling
+        when BANG
+          __t64 = _t
+          tmp42_ast_in = _t
+          match(_t, BANG)
+          _t = _t.get_first_child
+          code = element(_t, label, tmp42_ast_in)
+          _t = self.attr__ret_tree
+          _t = __t64
+          _t = _t.get_next_sibling
+        when NOT
+          __t65 = _t
+          n = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, NOT)
+          _t = _t.get_first_child
+          code = not_element(_t, n, label, ast_suffix)
+          _t = self.attr__ret_tree
+          _t = __t65
+          _t = _t.get_next_sibling
+        when ASSIGN
+          __t66 = _t
+          tmp43_ast_in = _t
+          match(_t, ASSIGN)
+          _t = _t.get_first_child
+          alabel = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          code = element(_t, alabel, ast_suffix)
+          _t = self.attr__ret_tree
+          _t = __t66
+          _t = _t.get_next_sibling
+        when PLUS_ASSIGN
+          __t67 = _t
+          tmp44_ast_in = _t
+          match(_t, PLUS_ASSIGN)
+          _t = _t.get_first_child
+          label2 = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          code = element(_t, label2, ast_suffix)
+          _t = self.attr__ret_tree
+          _t = __t67
+          _t = _t.get_next_sibling
+        when CHAR_RANGE
+          __t68 = _t
+          tmp45_ast_in = _t
+          match(_t, CHAR_RANGE)
+          _t = _t.get_first_child
+          a = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          b = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          _t = __t68
+          _t = _t.get_next_sibling
+          code = @templates.get_instance_of("charRangeRef")
+          low = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
+          high = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
+          code.set_attribute("a", low)
+          code.set_attribute("b", high)
+          if (!(label).nil?)
+            code.set_attribute("label", label.get_text)
+          end
+        when TREE_BEGIN
+          code = tree(_t)
+          _t = self.attr__ret_tree
+        when FORCED_ACTION, ACTION
+          code = element_action(_t)
+          _t = self.attr__ret_tree
+        when GATED_SEMPRED, SEMPRED
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when ROOT
-            __t63 = _t
-            tmp41_ast_in = _t
-            match(_t, ROOT)
-            _t = _t.get_first_child
-            code = element(_t, label, tmp41_ast_in)
-            _t = self.attr__ret_tree
-            _t = __t63
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t64 = _t
-            tmp42_ast_in = _t
-            match(_t, BANG)
-            _t = _t.get_first_child
-            code = element(_t, label, tmp42_ast_in)
-            _t = self.attr__ret_tree
-            _t = __t64
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t65 = _t
-            n = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            code = not_element(_t, n, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t65
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t66 = _t
-            tmp43_ast_in = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            alabel = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, alabel, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t66
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t67 = _t
-            tmp44_ast_in = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            label2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, label2, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t67
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t68 = _t
-            tmp45_ast_in = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            a = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            b = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t68
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("charRangeRef")
-            low = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
-            high = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
-            code.set_attribute("a", low)
-            code.set_attribute("b", high)
-            if (!(label).nil?)
-              code.set_attribute("label", label.get_text)
-            end
-            throw :break_case, :thrown
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description)
-            throw :break_case, :thrown
-            tmp46_ast_in = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when BANG
-            __t64_ = _t
-            tmp42_ast_in_ = _t
-            match(_t, BANG)
-            _t = _t.get_first_child
-            code = element(_t, label, tmp42_ast_in_)
-            _t = self.attr__ret_tree
-            _t = __t64_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t65_ = _t
-            n = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            code = not_element(_t, n, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t65_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t66_ = _t
-            tmp43_ast_in_ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            alabel = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, alabel, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t66_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t67_ = _t
-            tmp44_ast_in_ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            label2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, label2, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t67_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t68_ = _t
-            tmp45_ast_in_ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            a = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            b = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t68_
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("charRangeRef")
-            low_ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
-            high_ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
-            code.set_attribute("a", low_)
-            code.set_attribute("b", high_)
-            if (!(label).nil?)
-              code.set_attribute("label", label.get_text)
-            end
-            throw :break_case, :thrown
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description_ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description_)
-            throw :break_case, :thrown
-            tmp46_ast_in_ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in_ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in_ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when NOT
-            __t65__ = _t
-            n = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            code = not_element(_t, n, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t65__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t66__ = _t
-            tmp43_ast_in__ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            alabel = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, alabel, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t66__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t67__ = _t
-            tmp44_ast_in__ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            label2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, label2, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t67__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t68__ = _t
-            tmp45_ast_in__ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            a = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            b = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t68__
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("charRangeRef")
-            low__ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
-            high__ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
-            code.set_attribute("a", low__)
-            code.set_attribute("b", high__)
-            if (!(label).nil?)
-              code.set_attribute("label", label.get_text)
-            end
-            throw :break_case, :thrown
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description__ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description__)
-            throw :break_case, :thrown
-            tmp46_ast_in__ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in__ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in__ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when ASSIGN
-            __t66___ = _t
-            tmp43_ast_in___ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            alabel = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, alabel, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t66___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t67___ = _t
-            tmp44_ast_in___ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            label2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, label2, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t67___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t68___ = _t
-            tmp45_ast_in___ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            a = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            b = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t68___
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("charRangeRef")
-            low___ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
-            high___ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
-            code.set_attribute("a", low___)
-            code.set_attribute("b", high___)
-            if (!(label).nil?)
-              code.set_attribute("label", label.get_text)
-            end
-            throw :break_case, :thrown
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description___ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description___)
-            throw :break_case, :thrown
-            tmp46_ast_in___ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in___ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in___ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when PLUS_ASSIGN
-            __t67____ = _t
-            tmp44_ast_in____ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            label2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = element(_t, label2, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t67____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t68____ = _t
-            tmp45_ast_in____ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            a = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            b = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t68____
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("charRangeRef")
-            low____ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
-            high____ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
-            code.set_attribute("a", low____)
-            code.set_attribute("b", high____)
-            if (!(label).nil?)
-              code.set_attribute("label", label.get_text)
-            end
-            throw :break_case, :thrown
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description____ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description____)
-            throw :break_case, :thrown
-            tmp46_ast_in____ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in____ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in____ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when CHAR_RANGE
-            __t68_____ = _t
-            tmp45_ast_in_____ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            a = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            b = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t68_____
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("charRangeRef")
-            low_____ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, a.get_text)
-            high_____ = @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, b.get_text)
-            code.set_attribute("a", low_____)
-            code.set_attribute("b", high_____)
-            if (!(label).nil?)
-              code.set_attribute("label", label.get_text)
-            end
-            throw :break_case, :thrown
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description_____ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description_____)
-            throw :break_case, :thrown
-            tmp46_ast_in_____ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in_____ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in_____ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when TREE_BEGIN
-            code = tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description______ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description______)
-            throw :break_case, :thrown
-            tmp46_ast_in______ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in______ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in______ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when FORCED_ACTION, ACTION
-            code = element_action(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description_______ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description_______)
-            throw :break_case, :thrown
-            tmp46_ast_in_______ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in_______ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in_______ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when GATED_SEMPRED, SEMPRED
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                sp = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when GATED_SEMPRED
-                gsp = _t
-                match(_t, GATED_SEMPRED)
-                _t = _t.get_next_sibling
-                sp = gsp
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            code = @templates.get_instance_of("validateSemanticPredicate")
-            code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
-            description________ = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
-            code.set_attribute("description", description________)
-            throw :break_case, :thrown
-            tmp46_ast_in________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when SYN_SEMPRED
-            tmp46_ast_in_________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp47_ast_in_________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in_________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when BACKTRACK_SEMPRED
-            tmp47_ast_in__________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp48_ast_in__________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-          when EPSILON
-            tmp48_ast_in___________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
+          when SEMPRED
+            sp = _t
+            match(_t, SEMPRED)
+            _t = _t.get_next_sibling
+          when GATED_SEMPRED
+            gsp = _t
+            match(_t, GATED_SEMPRED)
+            _t = _t.get_next_sibling
+            sp = gsp
           else
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
-              code = ebnf(_t)
+            raise NoViableAltException.new(_t)
+          end
+          code = @templates.get_instance_of("validateSemanticPredicate")
+          code.set_attribute("pred", @generator.translate_action(@current_rule_name, sp))
+          description = @generator.attr_target.get_target_string_literal_from_string(sp.get_text)
+          code.set_attribute("description", description)
+        when SYN_SEMPRED
+          tmp46_ast_in = _t
+          match(_t, SYN_SEMPRED)
+          _t = _t.get_next_sibling
+        when BACKTRACK_SEMPRED
+          tmp47_ast_in = _t
+          match(_t, BACKTRACK_SEMPRED)
+          _t = _t.get_next_sibling
+        when EPSILON
+          tmp48_ast_in = _t
+          match(_t, EPSILON)
+          _t = _t.get_next_sibling
+        else
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          if ((((_t.get_type >= BLOCK && _t.get_type <= POSITIVE_CLOSURE))) && ((element_ast_in.get_set_value).nil?))
+            code = ebnf(_t)
+            _t = self.attr__ret_tree
+          else
+            if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
+              code = atom(_t, nil, label, ast_suffix)
               _t = self.attr__ret_tree
             else
-              if (((_t.get_type).equal?(BLOCK) || (_t.get_type).equal?(DOT) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(WILDCARD) || (_t.get_type).equal?(RULE_REF)))
-                code = atom(_t, nil, label, ast_suffix)
-                _t = self.attr__ret_tree
-              else
-                raise NoViableAltException.new(_t)
-              end
+              raise NoViableAltException.new(_t)
             end
           end
         end
@@ -2522,94 +1491,43 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when CHAR_LITERAL
-            assign_c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            ttype = 0
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              ttype = Grammar.get_char_value_from_grammar_char_literal(assign_c.get_text)
-            else
-              ttype = @grammar.get_token_type(assign_c.get_text)
-            end
-            elements = @grammar.complement(ttype)
-            throw :break_case, :thrown
-            assign_s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            ttype_ = 0
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              # TODO: error!
-            else
-              ttype_ = @grammar.get_token_type(assign_s.get_text)
-            end
-            elements = @grammar.complement(ttype_)
-            throw :break_case, :thrown
-            assign_t = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            ttype__ = @grammar.get_token_type(assign_t.get_text)
-            elements = @grammar.complement(ttype__)
-            throw :break_case, :thrown
-            assign_st = _t
-            match(_t, BLOCK)
-            _t = _t.get_next_sibling
-            elements = assign_st.get_set_value
-            elements = @grammar.complement(elements)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL
-            assign_s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            ttype___ = 0
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              # TODO: error!
-            else
-              ttype___ = @grammar.get_token_type(assign_s.get_text)
-            end
-            elements = @grammar.complement(ttype___)
-            throw :break_case, :thrown
-            assign_t = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            ttype____ = @grammar.get_token_type(assign_t.get_text)
-            elements = @grammar.complement(ttype____)
-            throw :break_case, :thrown
-            assign_st = _t
-            match(_t, BLOCK)
-            _t = _t.get_next_sibling
-            elements = assign_st.get_set_value
-            elements = @grammar.complement(elements)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKEN_REF
-            assign_t = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            ttype_____ = @grammar.get_token_type(assign_t.get_text)
-            elements = @grammar.complement(ttype_____)
-            throw :break_case, :thrown
-            assign_st = _t
-            match(_t, BLOCK)
-            _t = _t.get_next_sibling
-            elements = assign_st.get_set_value
-            elements = @grammar.complement(elements)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK
-            assign_st = _t
-            match(_t, BLOCK)
-            _t = _t.get_next_sibling
-            elements = assign_st.get_set_value
-            elements = @grammar.complement(elements)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when CHAR_LITERAL
+          assign_c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          ttype = 0
+          if ((@grammar.attr_type).equal?(Grammar::LEXER))
+            ttype = Grammar.get_char_value_from_grammar_char_literal(assign_c.get_text)
           else
-            raise NoViableAltException.new(_t)
+            ttype = @grammar.get_token_type(assign_c.get_text)
           end
+          elements = @grammar.complement(ttype)
+        when STRING_LITERAL
+          assign_s = _t
+          match(_t, STRING_LITERAL)
+          _t = _t.get_next_sibling
+          ttype = 0
+          if ((@grammar.attr_type).equal?(Grammar::LEXER))
+            # TODO: error!
+          else
+            ttype = @grammar.get_token_type(assign_s.get_text)
+          end
+          elements = @grammar.complement(ttype)
+        when TOKEN_REF
+          assign_t = _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_next_sibling
+          ttype = @grammar.get_token_type(assign_t.get_text)
+          elements = @grammar.complement(ttype)
+        when BLOCK
+          assign_st = _t
+          match(_t, BLOCK)
+          _t = _t.get_next_sibling
+          elements = assign_st.get_set_value
+          elements = @grammar.complement(elements)
+        else
+          raise NoViableAltException.new(_t)
         end
         code = get_token_element_st("matchSet", "set", n.get_first_child, ast_suffix, label_text)
         code.set_attribute("s", @generator.gen_set_expr(@templates, elements, 1, false))
@@ -2640,113 +1558,43 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when BLOCK
-            dfa = ebnf_ast_in.get_lookahead_dfa
-            code = block(_t, "block", dfa)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            dfa = ebnf_ast_in.get_lookahead_dfa
-            __t75 = _t
-            tmp49_ast_in = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            code = block(_t, "optionalBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t75
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            dfa = eob.get_lookahead_dfa
-            __t76 = _t
-            tmp50_ast_in = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "closureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t76
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            dfa = eob.get_lookahead_dfa
-            __t77 = _t
-            tmp51_ast_in = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "positiveClosureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t77
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONAL
-            dfa = ebnf_ast_in.get_lookahead_dfa
-            __t75_ = _t
-            tmp49_ast_in_ = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            code = block(_t, "optionalBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t75_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            dfa = eob.get_lookahead_dfa
-            __t76_ = _t
-            tmp50_ast_in_ = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "closureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t76_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            dfa = eob.get_lookahead_dfa
-            __t77_ = _t
-            tmp51_ast_in_ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "positiveClosureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t77_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CLOSURE
-            dfa = eob.get_lookahead_dfa
-            __t76__ = _t
-            tmp50_ast_in__ = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "closureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t76__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            dfa = eob.get_lookahead_dfa
-            __t77__ = _t
-            tmp51_ast_in__ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "positiveClosureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t77__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when POSITIVE_CLOSURE
-            dfa = eob.get_lookahead_dfa
-            __t77___ = _t
-            tmp51_ast_in___ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = block(_t, "positiveClosureBlock", dfa)
-            _t = self.attr__ret_tree
-            _t = __t77___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when BLOCK
+          dfa = ebnf_ast_in.get_lookahead_dfa
+          code = block(_t, "block", dfa)
+          _t = self.attr__ret_tree
+        when OPTIONAL
+          dfa = ebnf_ast_in.get_lookahead_dfa
+          __t75 = _t
+          tmp49_ast_in = _t
+          match(_t, OPTIONAL)
+          _t = _t.get_first_child
+          code = block(_t, "optionalBlock", dfa)
+          _t = self.attr__ret_tree
+          _t = __t75
+          _t = _t.get_next_sibling
+        when CLOSURE
+          dfa = eob.get_lookahead_dfa
+          __t76 = _t
+          tmp50_ast_in = _t
+          match(_t, CLOSURE)
+          _t = _t.get_first_child
+          code = block(_t, "closureBlock", dfa)
+          _t = self.attr__ret_tree
+          _t = __t76
+          _t = _t.get_next_sibling
+        when POSITIVE_CLOSURE
+          dfa = eob.get_lookahead_dfa
+          __t77 = _t
+          tmp51_ast_in = _t
+          match(_t, POSITIVE_CLOSURE)
+          _t = _t.get_first_child
+          code = block(_t, "positiveClosureBlock", dfa)
+          _t = self.attr__ret_tree
+          _t = __t77
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
         description = @grammar.grammar_tree_to_string(ebnf_ast_in, false)
         description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
@@ -2788,523 +1636,204 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when RULE_REF
+          __t85 = _t
+          r = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, RULE_REF)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when RULE_REF
-            __t85 = _t
-            r = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, RULE_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                rarg = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t85
+          when ARG_ACTION
+            rarg = _t
+            match(_t, ARG_ACTION)
             _t = _t.get_next_sibling
-            @grammar.check_rule_reference(scope, r, rarg, @current_rule_name)
-            scope_name = nil
-            if (!(scope).nil?)
-              scope_name = (scope.get_text).to_s
-            end
-            rdef = @grammar.get_rule(scope_name, r.get_text)
-            # don't insert label=r() if $label.attr not used, no ret value, ...
-            if (!rdef.get_has_return_value)
-              label_text = (nil).to_s
-            end
-            code = get_rule_element_st("ruleRef", r.get_text, r, ast_suffix, label_text)
-            code.set_attribute("rule", rdef)
-            if (!(scope).nil?)
-              # scoped rule ref
-              scope_g = @grammar.attr_composite.get_grammar(scope.get_text)
-              code.set_attribute("scope", scope_g)
-            else
-              if (!(rdef.attr_grammar).equal?(@grammar))
-                # nonlocal
-                # if rule definition is not in this grammar, it's nonlocal
-                rdef_delegates = rdef.attr_grammar.get_delegates
-                if (rdef_delegates.contains(@grammar))
-                  code.set_attribute("scope", rdef.attr_grammar)
-                else
-                  # defining grammar is not a delegate, scope all the
-                  # back to root, which has delegate methods for all
-                  # rules.  Don't use scope if we are root.
-                  if (!(@grammar).equal?(rdef.attr_grammar.attr_composite.attr_delegate_grammar_tree_root.attr_grammar))
-                    code.set_attribute("scope", rdef.attr_grammar.attr_composite.attr_delegate_grammar_tree_root.attr_grammar)
-                  end
-                end
-              end
-            end
-            if (!(rarg).nil?)
-              args = @generator.translate_action(@current_rule_name, rarg)
-              code.set_attribute("args", args)
-            end
-            i = (r.get_token).get_index
-            code.set_attribute("elementIndex", i)
-            @generator.generate_local_follow(r, r.get_text, @current_rule_name, i)
-            r.attr_code = code
-            throw :break_case, :thrown
-            __t87 = _t
-            t = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                targ = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t87
-            _t = _t.get_next_sibling
-            if (@current_alt_has_astrewrite && !(t.attr_terminal_options).nil? && !(t.attr_terminal_options.get(Grammar.attr_default_token_option)).nil?)
-              ErrorManager.grammar_error(ErrorManager::MSG_HETERO_ILLEGAL_IN_REWRITE_ALT, @grammar, ((t)).get_token, t.get_text)
-            end
-            @grammar.check_rule_reference(scope, t, targ, @current_rule_name)
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              if ((@grammar.get_token_type(t.get_text)).equal?(Label::EOF))
-                code = @templates.get_instance_of("lexerMatchEOF")
-              else
-                code = @templates.get_instance_of("lexerRuleRef")
-                if (is_list_label(label_text))
-                  code = @templates.get_instance_of("lexerRuleRefAndListLabel")
-                end
-                scope_name_ = nil
-                if (!(scope).nil?)
-                  scope_name_ = (scope.get_text).to_s
-                end
-                rdef2 = @grammar.get_rule(scope_name_, t.get_text)
-                code.set_attribute("rule", rdef2)
-                if (!(scope).nil?)
-                  # scoped rule ref
-                  scope_g_ = @grammar.attr_composite.get_grammar(scope.get_text)
-                  code.set_attribute("scope", scope_g_)
-                else
-                  if (!(rdef2.attr_grammar).equal?(@grammar))
-                    # nonlocal
-                    # if rule definition is not in this grammar, it's nonlocal
-                    code.set_attribute("scope", rdef2.attr_grammar)
-                  end
-                end
-                if (!(targ).nil?)
-                  args_ = @generator.translate_action(@current_rule_name, targ)
-                  code.set_attribute("args", args_)
-                end
-              end
-              i_ = (t.get_token).get_index
-              code.set_attribute("elementIndex", i_)
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              code = get_token_element_st("tokenRef", t.get_text, t, ast_suffix, label_text)
-              token_label = @generator.get_token_type_as_target_label(@grammar.get_token_type(t.get_text))
-              code.set_attribute("token", token_label)
-              if (!@current_alt_has_astrewrite && !(t.attr_terminal_options).nil?)
-                code.set_attribute("hetero", t.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i__ = (t.get_token).get_index
-              code.set_attribute("elementIndex", i__)
-              @generator.generate_local_follow(t, token_label, @current_rule_name, i__)
-            end
-            t.attr_code = code
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("charRef")
-              code.set_attribute("char", @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, c.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "char_literal", c, ast_suffix, label_text)
-              token_label_ = @generator.get_token_type_as_target_label(@grammar.get_token_type(c.get_text))
-              code.set_attribute("token", token_label_)
-              if (!(c.attr_terminal_options).nil?)
-                code.set_attribute("hetero", c.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i___ = (c.get_token).get_index
-              code.set_attribute("elementIndex", i___)
-              @generator.generate_local_follow(c, token_label_, @current_rule_name, i___)
-            end
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("lexerStringRef")
-              code.set_attribute("string", @generator.attr_target.get_target_string_literal_from_antlrstring_literal(@generator, s.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "string_literal", s, ast_suffix, label_text)
-              token_label__ = @generator.get_token_type_as_target_label(@grammar.get_token_type(s.get_text))
-              code.set_attribute("token", token_label__)
-              if (!(s.attr_terminal_options).nil?)
-                code.set_attribute("hetero", s.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i____ = (s.get_token).get_index
-              code.set_attribute("elementIndex", i____)
-              @generator.generate_local_follow(s, token_label__, @current_rule_name, i____)
-            end
-            throw :break_case, :thrown
-            w = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            code = get_wildcard_st(w, ast_suffix, label_text)
-            code.set_attribute("elementIndex", (w.get_token).get_index)
-            throw :break_case, :thrown
-            __t89 = _t
-            tmp52_ast_in = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp53_ast_in = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = atom(_t, tmp53_ast_in, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t89
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKEN_REF
-            __t87_ = _t
-            t = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                targ = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t87_
-            _t = _t.get_next_sibling
-            if (@current_alt_has_astrewrite && !(t.attr_terminal_options).nil? && !(t.attr_terminal_options.get(Grammar.attr_default_token_option)).nil?)
-              ErrorManager.grammar_error(ErrorManager::MSG_HETERO_ILLEGAL_IN_REWRITE_ALT, @grammar, ((t)).get_token, t.get_text)
-            end
-            @grammar.check_rule_reference(scope, t, targ, @current_rule_name)
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              if ((@grammar.get_token_type(t.get_text)).equal?(Label::EOF))
-                code = @templates.get_instance_of("lexerMatchEOF")
-              else
-                code = @templates.get_instance_of("lexerRuleRef")
-                if (is_list_label(label_text))
-                  code = @templates.get_instance_of("lexerRuleRefAndListLabel")
-                end
-                scope_name__ = nil
-                if (!(scope).nil?)
-                  scope_name__ = (scope.get_text).to_s
-                end
-                rdef2_ = @grammar.get_rule(scope_name__, t.get_text)
-                code.set_attribute("rule", rdef2_)
-                if (!(scope).nil?)
-                  # scoped rule ref
-                  scope_g__ = @grammar.attr_composite.get_grammar(scope.get_text)
-                  code.set_attribute("scope", scope_g__)
-                else
-                  if (!(rdef2_.attr_grammar).equal?(@grammar))
-                    # nonlocal
-                    # if rule definition is not in this grammar, it's nonlocal
-                    code.set_attribute("scope", rdef2_.attr_grammar)
-                  end
-                end
-                if (!(targ).nil?)
-                  args__ = @generator.translate_action(@current_rule_name, targ)
-                  code.set_attribute("args", args__)
-                end
-              end
-              i_____ = (t.get_token).get_index
-              code.set_attribute("elementIndex", i_____)
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              code = get_token_element_st("tokenRef", t.get_text, t, ast_suffix, label_text)
-              token_label___ = @generator.get_token_type_as_target_label(@grammar.get_token_type(t.get_text))
-              code.set_attribute("token", token_label___)
-              if (!@current_alt_has_astrewrite && !(t.attr_terminal_options).nil?)
-                code.set_attribute("hetero", t.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i______ = (t.get_token).get_index
-              code.set_attribute("elementIndex", i______)
-              @generator.generate_local_follow(t, token_label___, @current_rule_name, i______)
-            end
-            t.attr_code = code
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("charRef")
-              code.set_attribute("char", @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, c.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "char_literal", c, ast_suffix, label_text)
-              token_label____ = @generator.get_token_type_as_target_label(@grammar.get_token_type(c.get_text))
-              code.set_attribute("token", token_label____)
-              if (!(c.attr_terminal_options).nil?)
-                code.set_attribute("hetero", c.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i_______ = (c.get_token).get_index
-              code.set_attribute("elementIndex", i_______)
-              @generator.generate_local_follow(c, token_label____, @current_rule_name, i_______)
-            end
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("lexerStringRef")
-              code.set_attribute("string", @generator.attr_target.get_target_string_literal_from_antlrstring_literal(@generator, s.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "string_literal", s, ast_suffix, label_text)
-              token_label_____ = @generator.get_token_type_as_target_label(@grammar.get_token_type(s.get_text))
-              code.set_attribute("token", token_label_____)
-              if (!(s.attr_terminal_options).nil?)
-                code.set_attribute("hetero", s.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i________ = (s.get_token).get_index
-              code.set_attribute("elementIndex", i________)
-              @generator.generate_local_follow(s, token_label_____, @current_rule_name, i________)
-            end
-            throw :break_case, :thrown
-            w = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            code = get_wildcard_st(w, ast_suffix, label_text)
-            code.set_attribute("elementIndex", (w.get_token).get_index)
-            throw :break_case, :thrown
-            __t89_ = _t
-            tmp52_ast_in_ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp53_ast_in_ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = atom(_t, tmp53_ast_in_, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t89_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_LITERAL
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("charRef")
-              code.set_attribute("char", @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, c.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "char_literal", c, ast_suffix, label_text)
-              token_label______ = @generator.get_token_type_as_target_label(@grammar.get_token_type(c.get_text))
-              code.set_attribute("token", token_label______)
-              if (!(c.attr_terminal_options).nil?)
-                code.set_attribute("hetero", c.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i_________ = (c.get_token).get_index
-              code.set_attribute("elementIndex", i_________)
-              @generator.generate_local_follow(c, token_label______, @current_rule_name, i_________)
-            end
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("lexerStringRef")
-              code.set_attribute("string", @generator.attr_target.get_target_string_literal_from_antlrstring_literal(@generator, s.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "string_literal", s, ast_suffix, label_text)
-              token_label_______ = @generator.get_token_type_as_target_label(@grammar.get_token_type(s.get_text))
-              code.set_attribute("token", token_label_______)
-              if (!(s.attr_terminal_options).nil?)
-                code.set_attribute("hetero", s.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i__________ = (s.get_token).get_index
-              code.set_attribute("elementIndex", i__________)
-              @generator.generate_local_follow(s, token_label_______, @current_rule_name, i__________)
-            end
-            throw :break_case, :thrown
-            w = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            code = get_wildcard_st(w, ast_suffix, label_text)
-            code.set_attribute("elementIndex", (w.get_token).get_index)
-            throw :break_case, :thrown
-            __t89__ = _t
-            tmp52_ast_in__ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp53_ast_in__ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = atom(_t, tmp53_ast_in__, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t89__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((@grammar.attr_type).equal?(Grammar::LEXER))
-              code = @templates.get_instance_of("lexerStringRef")
-              code.set_attribute("string", @generator.attr_target.get_target_string_literal_from_antlrstring_literal(@generator, s.get_text))
-              if (!(label).nil?)
-                code.set_attribute("label", label_text)
-              end
-            else
-              # else it's a token type reference
-              code = get_token_element_st("tokenRef", "string_literal", s, ast_suffix, label_text)
-              token_label________ = @generator.get_token_type_as_target_label(@grammar.get_token_type(s.get_text))
-              code.set_attribute("token", token_label________)
-              if (!(s.attr_terminal_options).nil?)
-                code.set_attribute("hetero", s.attr_terminal_options.get(Grammar.attr_default_token_option))
-              end
-              i___________ = (s.get_token).get_index
-              code.set_attribute("elementIndex", i___________)
-              @generator.generate_local_follow(s, token_label________, @current_rule_name, i___________)
-            end
-            throw :break_case, :thrown
-            w = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            code = get_wildcard_st(w, ast_suffix, label_text)
-            code.set_attribute("elementIndex", (w.get_token).get_index)
-            throw :break_case, :thrown
-            __t89___ = _t
-            tmp52_ast_in___ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp53_ast_in___ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = atom(_t, tmp53_ast_in___, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t89___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when WILDCARD
-            w = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            code = get_wildcard_st(w, ast_suffix, label_text)
-            code.set_attribute("elementIndex", (w.get_token).get_index)
-            throw :break_case, :thrown
-            __t89____ = _t
-            tmp52_ast_in____ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp53_ast_in____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = atom(_t, tmp53_ast_in____, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t89____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when DOT
-            __t89_____ = _t
-            tmp52_ast_in_____ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp53_ast_in_____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            code = atom(_t, tmp53_ast_in_____, label, ast_suffix)
-            _t = self.attr__ret_tree
-            _t = __t89_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK
-            code = set(_t, label, ast_suffix)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+          when 3
           else
             raise NoViableAltException.new(_t)
           end
+          _t = __t85
+          _t = _t.get_next_sibling
+          @grammar.check_rule_reference(scope, r, rarg, @current_rule_name)
+          scope_name = nil
+          if (!(scope).nil?)
+            scope_name = (scope.get_text).to_s
+          end
+          rdef = @grammar.get_rule(scope_name, r.get_text)
+          # don't insert label=r() if $label.attr not used, no ret value, ...
+          if (!rdef.get_has_return_value)
+            label_text = (nil).to_s
+          end
+          code = get_rule_element_st("ruleRef", r.get_text, r, ast_suffix, label_text)
+          code.set_attribute("rule", rdef)
+          if (!(scope).nil?)
+            # scoped rule ref
+            scope_g = @grammar.attr_composite.get_grammar(scope.get_text)
+            code.set_attribute("scope", scope_g)
+          else
+            if (!(rdef.attr_grammar).equal?(@grammar))
+              # nonlocal
+              # if rule definition is not in this grammar, it's nonlocal
+              rdef_delegates = rdef.attr_grammar.get_delegates
+              if (rdef_delegates.contains(@grammar))
+                code.set_attribute("scope", rdef.attr_grammar)
+              else
+                # defining grammar is not a delegate, scope all the
+                # back to root, which has delegate methods for all
+                # rules.  Don't use scope if we are root.
+                if (!(@grammar).equal?(rdef.attr_grammar.attr_composite.attr_delegate_grammar_tree_root.attr_grammar))
+                  code.set_attribute("scope", rdef.attr_grammar.attr_composite.attr_delegate_grammar_tree_root.attr_grammar)
+                end
+              end
+            end
+          end
+          if (!(rarg).nil?)
+            args = @generator.translate_action(@current_rule_name, rarg)
+            code.set_attribute("args", args)
+          end
+          i = (r.get_token).get_index
+          code.set_attribute("elementIndex", i)
+          @generator.generate_local_follow(r, r.get_text, @current_rule_name, i)
+          r.attr_code = code
+        when TOKEN_REF
+          __t87 = _t
+          t = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when ARG_ACTION
+            targ = _t
+            match(_t, ARG_ACTION)
+            _t = _t.get_next_sibling
+          when 3
+          else
+            raise NoViableAltException.new(_t)
+          end
+          _t = __t87
+          _t = _t.get_next_sibling
+          if (@current_alt_has_astrewrite && !(t.attr_terminal_options).nil? && !(t.attr_terminal_options.get(Grammar.attr_default_token_option)).nil?)
+            ErrorManager.grammar_error(ErrorManager::MSG_HETERO_ILLEGAL_IN_REWRITE_ALT, @grammar, ((t)).get_token, t.get_text)
+          end
+          @grammar.check_rule_reference(scope, t, targ, @current_rule_name)
+          if ((@grammar.attr_type).equal?(Grammar::LEXER))
+            if ((@grammar.get_token_type(t.get_text)).equal?(Label::EOF))
+              code = @templates.get_instance_of("lexerMatchEOF")
+            else
+              code = @templates.get_instance_of("lexerRuleRef")
+              if (is_list_label(label_text))
+                code = @templates.get_instance_of("lexerRuleRefAndListLabel")
+              end
+              scope_name = nil
+              if (!(scope).nil?)
+                scope_name = (scope.get_text).to_s
+              end
+              rdef2 = @grammar.get_rule(scope_name, t.get_text)
+              code.set_attribute("rule", rdef2)
+              if (!(scope).nil?)
+                # scoped rule ref
+                scope_g = @grammar.attr_composite.get_grammar(scope.get_text)
+                code.set_attribute("scope", scope_g)
+              else
+                if (!(rdef2.attr_grammar).equal?(@grammar))
+                  # nonlocal
+                  # if rule definition is not in this grammar, it's nonlocal
+                  code.set_attribute("scope", rdef2.attr_grammar)
+                end
+              end
+              if (!(targ).nil?)
+                args = @generator.translate_action(@current_rule_name, targ)
+                code.set_attribute("args", args)
+              end
+            end
+            i = (t.get_token).get_index
+            code.set_attribute("elementIndex", i)
+            if (!(label).nil?)
+              code.set_attribute("label", label_text)
+            end
+          else
+            code = get_token_element_st("tokenRef", t.get_text, t, ast_suffix, label_text)
+            token_label = @generator.get_token_type_as_target_label(@grammar.get_token_type(t.get_text))
+            code.set_attribute("token", token_label)
+            if (!@current_alt_has_astrewrite && !(t.attr_terminal_options).nil?)
+              code.set_attribute("hetero", t.attr_terminal_options.get(Grammar.attr_default_token_option))
+            end
+            i = (t.get_token).get_index
+            code.set_attribute("elementIndex", i)
+            @generator.generate_local_follow(t, token_label, @current_rule_name, i)
+          end
+          t.attr_code = code
+        when CHAR_LITERAL
+          c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          if ((@grammar.attr_type).equal?(Grammar::LEXER))
+            code = @templates.get_instance_of("charRef")
+            code.set_attribute("char", @generator.attr_target.get_target_char_literal_from_antlrchar_literal(@generator, c.get_text))
+            if (!(label).nil?)
+              code.set_attribute("label", label_text)
+            end
+          else
+            # else it's a token type reference
+            code = get_token_element_st("tokenRef", "char_literal", c, ast_suffix, label_text)
+            token_label = @generator.get_token_type_as_target_label(@grammar.get_token_type(c.get_text))
+            code.set_attribute("token", token_label)
+            if (!(c.attr_terminal_options).nil?)
+              code.set_attribute("hetero", c.attr_terminal_options.get(Grammar.attr_default_token_option))
+            end
+            i = (c.get_token).get_index
+            code.set_attribute("elementIndex", i)
+            @generator.generate_local_follow(c, token_label, @current_rule_name, i)
+          end
+        when STRING_LITERAL
+          s = _t
+          match(_t, STRING_LITERAL)
+          _t = _t.get_next_sibling
+          if ((@grammar.attr_type).equal?(Grammar::LEXER))
+            code = @templates.get_instance_of("lexerStringRef")
+            code.set_attribute("string", @generator.attr_target.get_target_string_literal_from_antlrstring_literal(@generator, s.get_text))
+            if (!(label).nil?)
+              code.set_attribute("label", label_text)
+            end
+          else
+            # else it's a token type reference
+            code = get_token_element_st("tokenRef", "string_literal", s, ast_suffix, label_text)
+            token_label = @generator.get_token_type_as_target_label(@grammar.get_token_type(s.get_text))
+            code.set_attribute("token", token_label)
+            if (!(s.attr_terminal_options).nil?)
+              code.set_attribute("hetero", s.attr_terminal_options.get(Grammar.attr_default_token_option))
+            end
+            i = (s.get_token).get_index
+            code.set_attribute("elementIndex", i)
+            @generator.generate_local_follow(s, token_label, @current_rule_name, i)
+          end
+        when WILDCARD
+          w = _t
+          match(_t, WILDCARD)
+          _t = _t.get_next_sibling
+          code = get_wildcard_st(w, ast_suffix, label_text)
+          code.set_attribute("elementIndex", (w.get_token).get_index)
+        when DOT
+          __t89 = _t
+          tmp52_ast_in = _t
+          match(_t, DOT)
+          _t = _t.get_first_child
+          tmp53_ast_in = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          code = atom(_t, tmp53_ast_in, label, ast_suffix)
+          _t = self.attr__ret_tree
+          _t = __t89
+          _t = _t.get_next_sibling
+        when BLOCK
+          code = set(_t, label, ast_suffix)
+          _t = self.attr__ret_tree
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3332,7 +1861,7 @@ module Org::Antlr::Codegen
         # the child list.
         code.set_attribute("nullableChildList", "true")
       end
-      ((@rewrite_tree_nesting_level += 1) - 1)
+      @rewrite_tree_nesting_level += 1
       code.set_attribute("enclosingTreeLevel", @rewrite_tree_nesting_level - 1)
       code.set_attribute("treeLevel", @rewrite_tree_nesting_level)
       r = @grammar.get_rule(@current_rule_name)
@@ -3378,7 +1907,7 @@ module Org::Antlr::Codegen
         end while (true)
         _t = __t79
         _t = _t.get_next_sibling
-        ((@rewrite_tree_nesting_level -= 1) + 1)
+        @rewrite_tree_nesting_level -= 1
       rescue RecognitionException => ex
         report_error(ex)
         if (!(_t).nil?)
@@ -3400,33 +1929,21 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ACTION
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("execAction")
-            code.set_attribute("action", @generator.translate_action(@current_rule_name, act))
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("execForcedAction")
-            code.set_attribute("action", @generator.translate_action(@current_rule_name, act2))
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when FORCED_ACTION
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("execForcedAction")
-            code.set_attribute("action", @generator.translate_action(@current_rule_name, act2))
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ACTION
+          act = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          code = @templates.get_instance_of("execAction")
+          code.set_attribute("action", @generator.translate_action(@current_rule_name, act))
+        when FORCED_ACTION
+          act2 = _t
+          match(_t, FORCED_ACTION)
+          _t = _t.get_next_sibling
+          code = @templates.get_instance_of("execForcedAction")
+          code.set_attribute("action", @generator.translate_action(@current_rule_name, act2))
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3477,27 +1994,17 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ROOT
-            tmp55_ast_in = _t
-            match(_t, ROOT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in = _t
-            match(_t, BANG)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BANG
-            tmp56_ast_in_ = _t
-            match(_t, BANG)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ROOT
+          tmp55_ast_in = _t
+          match(_t, ROOT)
+          _t = _t.get_next_sibling
+        when BANG
+          tmp56_ast_in = _t
+          match(_t, BANG)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3521,95 +2028,34 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when CHAR_LITERAL
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            t = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93 = _t
-            tmp57_ast_in = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            c1 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c2 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t93
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKEN_REF
-            t = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93_ = _t
-            tmp57_ast_in_ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            c1 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c2 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t93_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93__ = _t
-            tmp57_ast_in__ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            c1 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c2 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t93__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_RANGE
-            __t93___ = _t
-            tmp57_ast_in___ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            c1 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c2 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t93___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when CHAR_LITERAL
+          c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+        when TOKEN_REF
+          t = _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_next_sibling
+        when STRING_LITERAL
+          s = _t
+          match(_t, STRING_LITERAL)
+          _t = _t.get_next_sibling
+        when CHAR_RANGE
+          __t93 = _t
+          tmp57_ast_in = _t
+          match(_t, CHAR_RANGE)
+          _t = _t.get_first_child
+          c1 = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          c2 = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          _t = __t93
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3641,45 +2087,34 @@ module Org::Antlr::Codegen
           if ((_t).nil?)
             _t = ASTNULL
           end
-          catch(:break_case) do
-            case (_t.get_type)
-            when OPTIONAL, CLOSURE, POSITIVE_CLOSURE, LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF, TREE_BEGIN
-              _cnt105 = 0
-              begin
-                if ((_t).nil?)
-                  _t = ASTNULL
-                end
-                if (((_t.get_type).equal?(OPTIONAL) || (_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE) || (_t.get_type).equal?(LABEL) || (_t.get_type).equal?(ACTION) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(RULE_REF) || (_t.get_type).equal?(TREE_BEGIN)))
-                  el_ast = _t
-                  el = rewrite_element(_t)
-                  _t = self.attr__ret_tree
-                  code.set_attribute("elements.{el,line,pos}", el, Utils.integer(el_ast.get_line), Utils.integer(el_ast.get_column))
+          case (_t.get_type)
+          when OPTIONAL, CLOSURE, POSITIVE_CLOSURE, LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF, TREE_BEGIN
+            _cnt105 = 0
+            begin
+              if ((_t).nil?)
+                _t = ASTNULL
+              end
+              if (((_t.get_type).equal?(OPTIONAL) || (_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE) || (_t.get_type).equal?(LABEL) || (_t.get_type).equal?(ACTION) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(RULE_REF) || (_t.get_type).equal?(TREE_BEGIN)))
+                el_ast = _t
+                el = rewrite_element(_t)
+                _t = self.attr__ret_tree
+                code.set_attribute("elements.{el,line,pos}", el, Utils.integer(el_ast.get_line), Utils.integer(el_ast.get_column))
+              else
+                if (_cnt105 >= 1)
+                  break
                 else
-                  if (_cnt105 >= 1)
-                    break
-                  else
-                    raise NoViableAltException.new(_t)
-                  end
+                  raise NoViableAltException.new(_t)
                 end
-                ((_cnt105 += 1) - 1)
-              end while (true)
-              throw :break_case, :thrown
-              tmp58_ast_in = _t
-              match(_t, EPSILON)
-              _t = _t.get_next_sibling
-              code.set_attribute("elements.{el,line,pos}", @templates.get_instance_of("rewriteEmptyAlt"), Utils.integer(a.get_line), Utils.integer(a.get_column))
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_t)
-            when EPSILON
-              tmp58_ast_in_ = _t
-              match(_t, EPSILON)
-              _t = _t.get_next_sibling
-              code.set_attribute("elements.{el,line,pos}", @templates.get_instance_of("rewriteEmptyAlt"), Utils.integer(a.get_line), Utils.integer(a.get_column))
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_t)
-            else
-              raise NoViableAltException.new(_t)
-            end
+              end
+              _cnt105 += 1
+            end while (true)
+          when EPSILON
+            tmp58_ast_in = _t
+            match(_t, EPSILON)
+            _t = _t.get_next_sibling
+            code.set_attribute("elements.{el,line,pos}", @templates.get_instance_of("rewriteEmptyAlt"), Utils.integer(a.get_line), Utils.integer(a.get_column))
+          else
+            raise NoViableAltException.new(_t)
           end
           tmp59_ast_in = _t
           match(_t, EOA)
@@ -3714,7 +2149,7 @@ module Org::Antlr::Codegen
     def rewrite_block(_t, block_template_name)
       code = nil
       rewrite_block_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      ((@rewrite_block_nesting_level += 1) - 1)
+      @rewrite_block_nesting_level += 1
       code = @templates.get_instance_of(block_template_name)
       save_current_block_st = @current_block_st
       @current_block_st = code
@@ -3736,7 +2171,7 @@ module Org::Antlr::Codegen
         _t = __t100
         _t = _t.get_next_sibling
         code.set_attribute("alt", alt)
-        ((@rewrite_block_nesting_level -= 1) + 1)
+        @rewrite_block_nesting_level -= 1
         @current_block_st = save_current_block_st
       rescue RecognitionException => ex
         report_error(ex)
@@ -3759,35 +2194,18 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF
-            code = rewrite_atom(_t, false)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = rewrite_ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = rewrite_tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONAL, CLOSURE, POSITIVE_CLOSURE
-            code = rewrite_ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            code = rewrite_tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_BEGIN
-            code = rewrite_tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF
+          code = rewrite_atom(_t, false)
+          _t = self.attr__ret_tree
+        when OPTIONAL, CLOSURE, POSITIVE_CLOSURE
+          code = rewrite_ebnf(_t)
+          _t = self.attr__ret_tree
+        when TREE_BEGIN
+          code = rewrite_tree(_t)
+          _t = self.attr__ret_tree
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3813,299 +2231,125 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when ALT
+          __t120 = _t
+          tmp63_ast_in = _t
+          match(_t, ALT)
+          _t = _t.get_first_child
+          tmp64_ast_in = _t
+          match(_t, EPSILON)
+          _t = _t.get_next_sibling
+          tmp65_ast_in = _t
+          match(_t, EOA)
+          _t = _t.get_next_sibling
+          _t = __t120
+          _t = _t.get_next_sibling
+          code = @templates.get_instance_of("rewriteEmptyTemplate")
+        when TEMPLATE
+          __t121 = _t
+          tmp66_ast_in = _t
+          match(_t, TEMPLATE)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when ALT
-            __t120 = _t
-            tmp63_ast_in = _t
-            match(_t, ALT)
-            _t = _t.get_first_child
-            tmp64_ast_in = _t
-            match(_t, EPSILON)
+          when ID
+            id = _t
+            match(_t, ID)
             _t = _t.get_next_sibling
-            tmp65_ast_in = _t
-            match(_t, EOA)
-            _t = _t.get_next_sibling
-            _t = __t120
-            _t = _t.get_next_sibling
-            code = @templates.get_instance_of("rewriteEmptyTemplate")
-            throw :break_case, :thrown
-            __t121 = _t
-            tmp66_ast_in = _t
-            match(_t, TEMPLATE)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ID
-                id = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ACTION
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            if (!(id).nil? && (id.get_text == "template"))
-              code = @templates.get_instance_of("rewriteInlineTemplate")
-            else
-              if (!(id).nil?)
-                code = @templates.get_instance_of("rewriteExternalTemplate")
-                code.set_attribute("name", id.get_text)
-              else
-                if (!(ind).nil?)
-                  # must be %({expr})(args)
-                  code = @templates.get_instance_of("rewriteIndirectTemplate")
-                  chunks = @generator.translate_action(@current_rule_name, ind)
-                  code.set_attribute("expr", chunks)
-                end
-              end
-            end
-            __t123 = _t
-            tmp67_ast_in = _t
-            match(_t, ARGLIST)
-            _t = _t.get_first_child
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(ARG)))
-                __t125 = _t
-                tmp68_ast_in = _t
-                match(_t, ARG)
-                _t = _t.get_first_child
-                arg = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                a = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                # must set alt num here rather than in define.g
-                # because actions like %foo(name={$ID.text}) aren't
-                # broken up yet into trees.
-                a.attr_outer_alt_num = @outer_alt_num
-                chunks_ = @generator.translate_action(@current_rule_name, a)
-                code.set_attribute("args.{name,value}", arg.get_text, chunks_)
-                _t = __t125
-                _t = _t.get_next_sibling
-              else
-                break
-              end
-            end while (true)
-            _t = __t123
-            _t = _t.get_next_sibling
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when DOUBLE_QUOTE_STRING_LITERAL
-                tmp69_ast_in = _t
-                match(_t, DOUBLE_QUOTE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                sl = tmp69_ast_in.get_text
-                t = sl.substring(1, sl.length - 1) # strip quotes
-                t = (@generator.attr_target.get_target_string_literal_from_string(t)).to_s
-                code.set_attribute("template", t)
-                throw :break_case, :thrown
-                tmp70_ast_in = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                sl_ = tmp70_ast_in.get_text
-                t_ = sl_.substring(2, sl_.length - 2) # strip double angle quotes
-                t_ = (@generator.attr_target.get_target_string_literal_from_string(t_)).to_s
-                code.set_attribute("template", t_)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when DOUBLE_ANGLE_STRING_LITERAL
-                tmp70_ast_in_ = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                sl__ = tmp70_ast_in_.get_text
-                t__ = sl__.substring(2, sl__.length - 2) # strip double angle quotes
-                t__ = (@generator.attr_target.get_target_string_literal_from_string(t__)).to_s
-                code.set_attribute("template", t__)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t121
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            # set alt num for same reason as ARGLIST above
-            act.attr_outer_alt_num = @outer_alt_num
-            code = @templates.get_instance_of("rewriteAction")
-            code.set_attribute("action", @generator.translate_action(@current_rule_name, act))
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TEMPLATE
-            __t121_ = _t
-            tmp66_ast_in_ = _t
-            match(_t, TEMPLATE)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ID
-                id = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ACTION
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            if (!(id).nil? && (id.get_text == "template"))
-              code = @templates.get_instance_of("rewriteInlineTemplate")
-            else
-              if (!(id).nil?)
-                code = @templates.get_instance_of("rewriteExternalTemplate")
-                code.set_attribute("name", id.get_text)
-              else
-                if (!(ind).nil?)
-                  # must be %({expr})(args)
-                  code = @templates.get_instance_of("rewriteIndirectTemplate")
-                  chunks__ = @generator.translate_action(@current_rule_name, ind)
-                  code.set_attribute("expr", chunks__)
-                end
-              end
-            end
-            __t123_ = _t
-            tmp67_ast_in_ = _t
-            match(_t, ARGLIST)
-            _t = _t.get_first_child
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(ARG)))
-                __t125_ = _t
-                tmp68_ast_in_ = _t
-                match(_t, ARG)
-                _t = _t.get_first_child
-                arg = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                a = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                # must set alt num here rather than in define.g
-                # because actions like %foo(name={$ID.text}) aren't
-                # broken up yet into trees.
-                a.attr_outer_alt_num = @outer_alt_num
-                chunks___ = @generator.translate_action(@current_rule_name, a)
-                code.set_attribute("args.{name,value}", arg.get_text, chunks___)
-                _t = __t125_
-                _t = _t.get_next_sibling
-              else
-                break
-              end
-            end while (true)
-            _t = __t123_
-            _t = _t.get_next_sibling
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when DOUBLE_QUOTE_STRING_LITERAL
-                tmp69_ast_in_ = _t
-                match(_t, DOUBLE_QUOTE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                sl___ = tmp69_ast_in_.get_text
-                t___ = sl___.substring(1, sl___.length - 1) # strip quotes
-                t___ = (@generator.attr_target.get_target_string_literal_from_string(t___)).to_s
-                code.set_attribute("template", t___)
-                throw :break_case, :thrown
-                tmp70_ast_in__ = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                sl____ = tmp70_ast_in__.get_text
-                t____ = sl____.substring(2, sl____.length - 2) # strip double angle quotes
-                t____ = (@generator.attr_target.get_target_string_literal_from_string(t____)).to_s
-                code.set_attribute("template", t____)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when DOUBLE_ANGLE_STRING_LITERAL
-                tmp70_ast_in___ = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                sl_____ = tmp70_ast_in___.get_text
-                t_____ = sl_____.substring(2, sl_____.length - 2) # strip double angle quotes
-                t_____ = (@generator.attr_target.get_target_string_literal_from_string(t_____)).to_s
-                code.set_attribute("template", t_____)
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t121_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            # set alt num for same reason as ARGLIST above
-            act.attr_outer_alt_num = @outer_alt_num
-            code = @templates.get_instance_of("rewriteAction")
-            code.set_attribute("action", @generator.translate_action(@current_rule_name, act))
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           when ACTION
-            act = _t
+            ind = _t
             match(_t, ACTION)
             _t = _t.get_next_sibling
-            # set alt num for same reason as ARGLIST above
-            act.attr_outer_alt_num = @outer_alt_num
-            code = @templates.get_instance_of("rewriteAction")
-            code.set_attribute("action", @generator.translate_action(@current_rule_name, act))
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           else
             raise NoViableAltException.new(_t)
           end
+          if (!(id).nil? && (id.get_text == "template"))
+            code = @templates.get_instance_of("rewriteInlineTemplate")
+          else
+            if (!(id).nil?)
+              code = @templates.get_instance_of("rewriteExternalTemplate")
+              code.set_attribute("name", id.get_text)
+            else
+              if (!(ind).nil?)
+                # must be %({expr})(args)
+                code = @templates.get_instance_of("rewriteIndirectTemplate")
+                chunks = @generator.translate_action(@current_rule_name, ind)
+                code.set_attribute("expr", chunks)
+              end
+            end
+          end
+          __t123 = _t
+          tmp67_ast_in = _t
+          match(_t, ARGLIST)
+          _t = _t.get_first_child
+          begin
+            if ((_t).nil?)
+              _t = ASTNULL
+            end
+            if (((_t.get_type).equal?(ARG)))
+              __t125 = _t
+              tmp68_ast_in = _t
+              match(_t, ARG)
+              _t = _t.get_first_child
+              arg = _t
+              match(_t, ID)
+              _t = _t.get_next_sibling
+              a = _t
+              match(_t, ACTION)
+              _t = _t.get_next_sibling
+              # must set alt num here rather than in define.g
+              # because actions like %foo(name={$ID.text}) aren't
+              # broken up yet into trees.
+              a.attr_outer_alt_num = @outer_alt_num
+              chunks = @generator.translate_action(@current_rule_name, a)
+              code.set_attribute("args.{name,value}", arg.get_text, chunks)
+              _t = __t125
+              _t = _t.get_next_sibling
+            else
+              break
+            end
+          end while (true)
+          _t = __t123
+          _t = _t.get_next_sibling
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when DOUBLE_QUOTE_STRING_LITERAL
+            tmp69_ast_in = _t
+            match(_t, DOUBLE_QUOTE_STRING_LITERAL)
+            _t = _t.get_next_sibling
+            sl = tmp69_ast_in.get_text
+            t = sl.substring(1, sl.length - 1) # strip quotes
+            t = (@generator.attr_target.get_target_string_literal_from_string(t)).to_s
+            code.set_attribute("template", t)
+          when DOUBLE_ANGLE_STRING_LITERAL
+            tmp70_ast_in = _t
+            match(_t, DOUBLE_ANGLE_STRING_LITERAL)
+            _t = _t.get_next_sibling
+            sl = tmp70_ast_in.get_text
+            t = sl.substring(2, sl.length - 2) # strip double angle quotes
+            t = (@generator.attr_target.get_target_string_literal_from_string(t)).to_s
+            code.set_attribute("template", t)
+          when 3
+          else
+            raise NoViableAltException.new(_t)
+          end
+          _t = __t121
+          _t = _t.get_next_sibling
+        when ACTION
+          act = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          # set alt num for same reason as ARGLIST above
+          act.attr_outer_alt_num = @outer_alt_num
+          code = @templates.get_instance_of("rewriteAction")
+          code.set_attribute("action", @generator.translate_action(@current_rule_name, act))
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -4131,390 +2375,146 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when RULE_REF
+          r = _t
+          match(_t, RULE_REF)
+          _t = _t.get_next_sibling
+          rule_ref_name = r.get_text
+          st_name = "rewriteRuleRef"
+          if (is_root)
+            st_name += "Root"
+          end
+          code = @templates.get_instance_of(st_name)
+          code.set_attribute("rule", rule_ref_name)
+          if ((@grammar.get_rule(rule_ref_name)).nil?)
+            ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_RULE_REF, @grammar, ((r)).get_token, rule_ref_name)
+            code = StringTemplate.new # blank; no code gen
+          else
+            if ((@grammar.get_rule(@current_rule_name).get_rule_refs_in_alt(rule_ref_name, @outer_alt_num)).nil?)
+              ErrorManager.grammar_error(ErrorManager::MSG_REWRITE_ELEMENT_NOT_PRESENT_ON_LHS, @grammar, ((r)).get_token, rule_ref_name)
+              code = StringTemplate.new # blank; no code gen
+            else
+              # track all rule refs as we must copy 2nd ref to rule and beyond
+              if (!@rewrite_rule_refs.contains(rule_ref_name))
+                @rewrite_rule_refs.add(rule_ref_name)
+              end
+            end
+          end
+        when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF
+          term = _t
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when RULE_REF
-            r = _t
-            match(_t, RULE_REF)
-            _t = _t.get_next_sibling
-            rule_ref_name = r.get_text
-            st_name = "rewriteRuleRef"
-            if (is_root)
-              st_name += "Root"
-            end
-            code = @templates.get_instance_of(st_name)
-            code.set_attribute("rule", rule_ref_name)
-            if ((@grammar.get_rule(rule_ref_name)).nil?)
-              ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_RULE_REF, @grammar, ((r)).get_token, rule_ref_name)
-              code = StringTemplate.new # blank; no code gen
-            else
-              if ((@grammar.get_rule(@current_rule_name).get_rule_refs_in_alt(rule_ref_name, @outer_alt_num)).nil?)
-                ErrorManager.grammar_error(ErrorManager::MSG_REWRITE_ELEMENT_NOT_PRESENT_ON_LHS, @grammar, ((r)).get_token, rule_ref_name)
-                code = StringTemplate.new # blank; no code gen
-              else
-                # track all rule refs as we must copy 2nd ref to rule and beyond
-                if (!@rewrite_rule_refs.contains(rule_ref_name))
-                  @rewrite_rule_refs.add(rule_ref_name)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            term = _t
+          when TOKEN_REF
+            __t117 = _t
+            tk = (_t).equal?(ASTNULL) ? nil : _t
+            match(_t, TOKEN_REF)
+            _t = _t.get_first_child
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when TOKEN_REF
-                __t117 = _t
-                tk = (_t).equal?(ASTNULL) ? nil : _t
-                match(_t, TOKEN_REF)
-                _t = _t.get_first_child
-                if ((_t).nil?)
-                  _t = ASTNULL
-                end
-                catch(:break_case) do
-                  case (_t.get_type)
-                  when ARG_ACTION
-                    arg = _t
-                    match(_t, ARG_ACTION)
-                    _t = _t.get_next_sibling
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  when 3
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  else
-                    raise NoViableAltException.new(_t)
-                  end
-                end
-                _t = __t117
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                cl = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                sl = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                cl = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                sl = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when STRING_LITERAL
-                sl = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            token_name = rewrite_atom_ast_in.get_text
-            st_name_ = "rewriteTokenRef"
-            rule_ = @grammar.get_rule(@current_rule_name)
-            token_refs_in_alt = rule_.get_token_refs_in_alt(@outer_alt_num)
-            create_new_node = !token_refs_in_alt.contains(token_name) || !(arg).nil?
-            hetero = nil
-            if (!(term.attr_terminal_options).nil?)
-              hetero = term.attr_terminal_options.get(Grammar.attr_default_token_option)
-            end
-            if (create_new_node)
-              st_name_ = "rewriteImaginaryTokenRef"
-            end
-            if (is_root)
-              st_name_ += "Root"
-            end
-            code = @templates.get_instance_of(st_name_)
-            code.set_attribute("hetero", hetero)
-            if (!(arg).nil?)
-              args = @generator.translate_action(@current_rule_name, arg)
-              code.set_attribute("args", args)
-            end
-            code.set_attribute("elementIndex", (rewrite_atom_ast_in.get_token).get_index)
-            ttype = @grammar.get_token_type(token_name)
-            tok = @generator.get_token_type_as_target_label(ttype)
-            code.set_attribute("token", tok)
-            if ((@grammar.get_token_type(token_name)).equal?(Label::INVALID))
-              ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_TOKEN_REF_IN_REWRITE, @grammar, ((rewrite_atom_ast_in)).get_token, token_name)
-              code = StringTemplate.new # blank; no code gen
-            end
-            throw :break_case, :thrown
-            tmp71_ast_in = _t
-            match(_t, LABEL)
-            _t = _t.get_next_sibling
-            label_name = tmp71_ast_in.get_text
-            rule__ = @grammar.get_rule(@current_rule_name)
-            pair = rule__.get_label(label_name)
-            if ((label_name == @current_rule_name))
-              # special case; ref to old value via $rule
-              if (rule__.has_rewrite(@outer_alt_num) && rule__.get_rule_refs_in_alt(@outer_alt_num).contains(label_name))
-                ErrorManager.grammar_error(ErrorManager::MSG_RULE_REF_AMBIG_WITH_RULE_IN_ALT, @grammar, ((tmp71_ast_in)).get_token, label_name)
-              end
-              label_st = @templates.get_instance_of("prevRuleRootRef")
-              code = @templates.get_instance_of("rewriteRuleLabelRef" + ((is_root ? "Root" : "")).to_s)
-              code.set_attribute("label", label_st)
+            case (_t.get_type)
+            when ARG_ACTION
+              arg = _t
+              match(_t, ARG_ACTION)
+              _t = _t.get_next_sibling
+            when 3
             else
-              if ((pair).nil?)
-                ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_LABEL_REF_IN_REWRITE, @grammar, ((tmp71_ast_in)).get_token, label_name)
-                code = StringTemplate.new
-              else
-                st_name__ = nil
-                case (pair.attr_type)
-                when Grammar::TOKEN_LABEL
-                  st_name__ = "rewriteTokenLabelRef"
-                when Grammar::RULE_LABEL
-                  st_name__ = "rewriteRuleLabelRef"
-                when Grammar::TOKEN_LIST_LABEL
-                  st_name__ = "rewriteTokenListLabelRef"
-                when Grammar::RULE_LIST_LABEL
-                  st_name__ = "rewriteRuleListLabelRef"
-                end
-                if (is_root)
-                  st_name__ += "Root"
-                end
-                code = @templates.get_instance_of(st_name__)
-                code.set_attribute("label", label_name)
-              end
+              raise NoViableAltException.new(_t)
             end
-            throw :break_case, :thrown
-            tmp72_ast_in = _t
-            match(_t, ACTION)
+            _t = __t117
             _t = _t.get_next_sibling
-            # actions in rewrite rules yield a tree object
-            act_text = tmp72_ast_in.get_text
-            chunks = @generator.translate_action(@current_rule_name, tmp72_ast_in)
-            code = @templates.get_instance_of("rewriteNodeAction" + ((is_root ? "Root" : "")).to_s)
-            code.set_attribute("action", chunks)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF
-            term_ = _t
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when TOKEN_REF
-                __t117_ = _t
-                tk = (_t).equal?(ASTNULL) ? nil : _t
-                match(_t, TOKEN_REF)
-                _t = _t.get_first_child
-                if ((_t).nil?)
-                  _t = ASTNULL
-                end
-                catch(:break_case) do
-                  case (_t.get_type)
-                  when ARG_ACTION
-                    arg = _t
-                    match(_t, ARG_ACTION)
-                    _t = _t.get_next_sibling
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  when 3
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  else
-                    raise NoViableAltException.new(_t)
-                  end
-                end
-                _t = __t117_
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                cl = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                sl = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                cl = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                sl = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when STRING_LITERAL
-                sl = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            token_name_ = rewrite_atom_ast_in.get_text
-            st_name___ = "rewriteTokenRef"
-            rule___ = @grammar.get_rule(@current_rule_name)
-            token_refs_in_alt_ = rule___.get_token_refs_in_alt(@outer_alt_num)
-            create_new_node_ = !token_refs_in_alt_.contains(token_name_) || !(arg).nil?
-            hetero_ = nil
-            if (!(term_.attr_terminal_options).nil?)
-              hetero_ = term_.attr_terminal_options.get(Grammar.attr_default_token_option)
-            end
-            if (create_new_node_)
-              st_name___ = "rewriteImaginaryTokenRef"
-            end
-            if (is_root)
-              st_name___ += "Root"
-            end
-            code = @templates.get_instance_of(st_name___)
-            code.set_attribute("hetero", hetero_)
-            if (!(arg).nil?)
-              args_ = @generator.translate_action(@current_rule_name, arg)
-              code.set_attribute("args", args_)
-            end
-            code.set_attribute("elementIndex", (rewrite_atom_ast_in.get_token).get_index)
-            ttype_ = @grammar.get_token_type(token_name_)
-            tok_ = @generator.get_token_type_as_target_label(ttype_)
-            code.set_attribute("token", tok_)
-            if ((@grammar.get_token_type(token_name_)).equal?(Label::INVALID))
-              ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_TOKEN_REF_IN_REWRITE, @grammar, ((rewrite_atom_ast_in)).get_token, token_name_)
-              code = StringTemplate.new # blank; no code gen
-            end
-            throw :break_case, :thrown
-            tmp71_ast_in_ = _t
-            match(_t, LABEL)
+          when CHAR_LITERAL
+            cl = _t
+            match(_t, CHAR_LITERAL)
             _t = _t.get_next_sibling
-            label_name_ = tmp71_ast_in_.get_text
-            rule____ = @grammar.get_rule(@current_rule_name)
-            pair_ = rule____.get_label(label_name_)
-            if ((label_name_ == @current_rule_name))
-              # special case; ref to old value via $rule
-              if (rule____.has_rewrite(@outer_alt_num) && rule____.get_rule_refs_in_alt(@outer_alt_num).contains(label_name_))
-                ErrorManager.grammar_error(ErrorManager::MSG_RULE_REF_AMBIG_WITH_RULE_IN_ALT, @grammar, ((tmp71_ast_in_)).get_token, label_name_)
-              end
-              label_st_ = @templates.get_instance_of("prevRuleRootRef")
-              code = @templates.get_instance_of("rewriteRuleLabelRef" + ((is_root ? "Root" : "")).to_s)
-              code.set_attribute("label", label_st_)
-            else
-              if ((pair_).nil?)
-                ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_LABEL_REF_IN_REWRITE, @grammar, ((tmp71_ast_in_)).get_token, label_name_)
-                code = StringTemplate.new
-              else
-                st_name____ = nil
-                case (pair_.attr_type)
-                when Grammar::TOKEN_LABEL
-                  st_name____ = "rewriteTokenLabelRef"
-                  st_name____ = "rewriteRuleLabelRef"
-                  st_name____ = "rewriteTokenListLabelRef"
-                  st_name____ = "rewriteRuleListLabelRef"
-                when Grammar::RULE_LABEL
-                  st_name____ = "rewriteRuleLabelRef"
-                  st_name____ = "rewriteTokenListLabelRef"
-                  st_name____ = "rewriteRuleListLabelRef"
-                when Grammar::TOKEN_LIST_LABEL
-                  st_name____ = "rewriteTokenListLabelRef"
-                  st_name____ = "rewriteRuleListLabelRef"
-                when Grammar::RULE_LIST_LABEL
-                  st_name____ = "rewriteRuleListLabelRef"
-                end
-                if (is_root)
-                  st_name____ += "Root"
-                end
-                code = @templates.get_instance_of(st_name____)
-                code.set_attribute("label", label_name_)
-              end
-            end
-            throw :break_case, :thrown
-            tmp72_ast_in_ = _t
-            match(_t, ACTION)
+          when STRING_LITERAL
+            sl = _t
+            match(_t, STRING_LITERAL)
             _t = _t.get_next_sibling
-            # actions in rewrite rules yield a tree object
-            act_text_ = tmp72_ast_in_.get_text
-            chunks_ = @generator.translate_action(@current_rule_name, tmp72_ast_in_)
-            code = @templates.get_instance_of("rewriteNodeAction" + ((is_root ? "Root" : "")).to_s)
-            code.set_attribute("action", chunks_)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LABEL
-            tmp71_ast_in__ = _t
-            match(_t, LABEL)
-            _t = _t.get_next_sibling
-            label_name__ = tmp71_ast_in__.get_text
-            rule_____ = @grammar.get_rule(@current_rule_name)
-            pair__ = rule_____.get_label(label_name__)
-            if ((label_name__ == @current_rule_name))
-              # special case; ref to old value via $rule
-              if (rule_____.has_rewrite(@outer_alt_num) && rule_____.get_rule_refs_in_alt(@outer_alt_num).contains(label_name__))
-                ErrorManager.grammar_error(ErrorManager::MSG_RULE_REF_AMBIG_WITH_RULE_IN_ALT, @grammar, ((tmp71_ast_in__)).get_token, label_name__)
-              end
-              label_st__ = @templates.get_instance_of("prevRuleRootRef")
-              code = @templates.get_instance_of("rewriteRuleLabelRef" + ((is_root ? "Root" : "")).to_s)
-              code.set_attribute("label", label_st__)
-            else
-              if ((pair__).nil?)
-                ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_LABEL_REF_IN_REWRITE, @grammar, ((tmp71_ast_in__)).get_token, label_name__)
-                code = StringTemplate.new
-              else
-                st_name_____ = nil
-                case (pair__.attr_type)
-                when Grammar::TOKEN_LABEL
-                  st_name_____ = "rewriteTokenLabelRef"
-                  st_name_____ = "rewriteRuleLabelRef"
-                  st_name_____ = "rewriteTokenListLabelRef"
-                  st_name_____ = "rewriteRuleListLabelRef"
-                when Grammar::RULE_LABEL
-                  st_name_____ = "rewriteRuleLabelRef"
-                  st_name_____ = "rewriteTokenListLabelRef"
-                  st_name_____ = "rewriteRuleListLabelRef"
-                when Grammar::TOKEN_LIST_LABEL
-                  st_name_____ = "rewriteTokenListLabelRef"
-                  st_name_____ = "rewriteRuleListLabelRef"
-                when Grammar::RULE_LIST_LABEL
-                  st_name_____ = "rewriteRuleListLabelRef"
-                end
-                if (is_root)
-                  st_name_____ += "Root"
-                end
-                code = @templates.get_instance_of(st_name_____)
-                code.set_attribute("label", label_name__)
-              end
-            end
-            throw :break_case, :thrown
-            tmp72_ast_in__ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            # actions in rewrite rules yield a tree object
-            act_text__ = tmp72_ast_in__.get_text
-            chunks__ = @generator.translate_action(@current_rule_name, tmp72_ast_in__)
-            code = @templates.get_instance_of("rewriteNodeAction" + ((is_root ? "Root" : "")).to_s)
-            code.set_attribute("action", chunks__)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ACTION
-            tmp72_ast_in___ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            # actions in rewrite rules yield a tree object
-            act_text___ = tmp72_ast_in___.get_text
-            chunks___ = @generator.translate_action(@current_rule_name, tmp72_ast_in___)
-            code = @templates.get_instance_of("rewriteNodeAction" + ((is_root ? "Root" : "")).to_s)
-            code.set_attribute("action", chunks___)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           else
             raise NoViableAltException.new(_t)
           end
+          token_name = rewrite_atom_ast_in.get_text
+          st_name = "rewriteTokenRef"
+          rule_ = @grammar.get_rule(@current_rule_name)
+          token_refs_in_alt = rule_.get_token_refs_in_alt(@outer_alt_num)
+          create_new_node = !token_refs_in_alt.contains(token_name) || !(arg).nil?
+          hetero = nil
+          if (!(term.attr_terminal_options).nil?)
+            hetero = term.attr_terminal_options.get(Grammar.attr_default_token_option)
+          end
+          if (create_new_node)
+            st_name = "rewriteImaginaryTokenRef"
+          end
+          if (is_root)
+            st_name += "Root"
+          end
+          code = @templates.get_instance_of(st_name)
+          code.set_attribute("hetero", hetero)
+          if (!(arg).nil?)
+            args = @generator.translate_action(@current_rule_name, arg)
+            code.set_attribute("args", args)
+          end
+          code.set_attribute("elementIndex", (rewrite_atom_ast_in.get_token).get_index)
+          ttype = @grammar.get_token_type(token_name)
+          tok = @generator.get_token_type_as_target_label(ttype)
+          code.set_attribute("token", tok)
+          if ((@grammar.get_token_type(token_name)).equal?(Label::INVALID))
+            ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_TOKEN_REF_IN_REWRITE, @grammar, ((rewrite_atom_ast_in)).get_token, token_name)
+            code = StringTemplate.new # blank; no code gen
+          end
+        when LABEL
+          tmp71_ast_in = _t
+          match(_t, LABEL)
+          _t = _t.get_next_sibling
+          label_name = tmp71_ast_in.get_text
+          rule_ = @grammar.get_rule(@current_rule_name)
+          pair = rule_.get_label(label_name)
+          if ((label_name == @current_rule_name))
+            # special case; ref to old value via $rule
+            if (rule_.has_rewrite(@outer_alt_num) && rule_.get_rule_refs_in_alt(@outer_alt_num).contains(label_name))
+              ErrorManager.grammar_error(ErrorManager::MSG_RULE_REF_AMBIG_WITH_RULE_IN_ALT, @grammar, ((tmp71_ast_in)).get_token, label_name)
+            end
+            label_st = @templates.get_instance_of("prevRuleRootRef")
+            code = @templates.get_instance_of("rewriteRuleLabelRef" + ((is_root ? "Root" : "")).to_s)
+            code.set_attribute("label", label_st)
+          else
+            if ((pair).nil?)
+              ErrorManager.grammar_error(ErrorManager::MSG_UNDEFINED_LABEL_REF_IN_REWRITE, @grammar, ((tmp71_ast_in)).get_token, label_name)
+              code = StringTemplate.new
+            else
+              st_name = nil
+              case (pair.attr_type)
+              when Grammar::TOKEN_LABEL
+                st_name = "rewriteTokenLabelRef"
+              when Grammar::RULE_LABEL
+                st_name = "rewriteRuleLabelRef"
+              when Grammar::TOKEN_LIST_LABEL
+                st_name = "rewriteTokenListLabelRef"
+              when Grammar::RULE_LIST_LABEL
+                st_name = "rewriteRuleListLabelRef"
+              end
+              if (is_root)
+                st_name += "Root"
+              end
+              code = @templates.get_instance_of(st_name)
+              code.set_attribute("label", label_name)
+            end
+          end
+        when ACTION
+          tmp72_ast_in = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          # actions in rewrite rules yield a tree object
+          act_text = tmp72_ast_in.get_text
+          chunks = @generator.translate_action(@current_rule_name, tmp72_ast_in)
+          code = @templates.get_instance_of("rewriteNodeAction" + ((is_root ? "Root" : "")).to_s)
+          code.set_attribute("action", chunks)
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -4535,89 +2535,45 @@ module Org::Antlr::Codegen
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONAL
-            __t108 = _t
-            tmp73_ast_in = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            code = rewrite_block(_t, "rewriteOptionalBlock")
-            _t = self.attr__ret_tree
-            _t = __t108
-            _t = _t.get_next_sibling
-            description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-            description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
-            code.set_attribute("description", description)
-            throw :break_case, :thrown
-            __t109 = _t
-            tmp74_ast_in = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            code = rewrite_block(_t, "rewriteClosureBlock")
-            _t = self.attr__ret_tree
-            _t = __t109
-            _t = _t.get_next_sibling
-            description_ = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-            description_ = (@generator.attr_target.get_target_string_literal_from_string(description_)).to_s
-            code.set_attribute("description", description_)
-            throw :break_case, :thrown
-            __t110 = _t
-            tmp75_ast_in = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = rewrite_block(_t, "rewritePositiveClosureBlock")
-            _t = self.attr__ret_tree
-            _t = __t110
-            _t = _t.get_next_sibling
-            description__ = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-            description__ = (@generator.attr_target.get_target_string_literal_from_string(description__)).to_s
-            code.set_attribute("description", description__)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CLOSURE
-            __t109_ = _t
-            tmp74_ast_in_ = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            code = rewrite_block(_t, "rewriteClosureBlock")
-            _t = self.attr__ret_tree
-            _t = __t109_
-            _t = _t.get_next_sibling
-            description___ = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-            description___ = (@generator.attr_target.get_target_string_literal_from_string(description___)).to_s
-            code.set_attribute("description", description___)
-            throw :break_case, :thrown
-            __t110_ = _t
-            tmp75_ast_in_ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = rewrite_block(_t, "rewritePositiveClosureBlock")
-            _t = self.attr__ret_tree
-            _t = __t110_
-            _t = _t.get_next_sibling
-            description____ = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-            description____ = (@generator.attr_target.get_target_string_literal_from_string(description____)).to_s
-            code.set_attribute("description", description____)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when POSITIVE_CLOSURE
-            __t110__ = _t
-            tmp75_ast_in__ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            code = rewrite_block(_t, "rewritePositiveClosureBlock")
-            _t = self.attr__ret_tree
-            _t = __t110__
-            _t = _t.get_next_sibling
-            description_____ = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-            description_____ = (@generator.attr_target.get_target_string_literal_from_string(description_____)).to_s
-            code.set_attribute("description", description_____)
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONAL
+          __t108 = _t
+          tmp73_ast_in = _t
+          match(_t, OPTIONAL)
+          _t = _t.get_first_child
+          code = rewrite_block(_t, "rewriteOptionalBlock")
+          _t = self.attr__ret_tree
+          _t = __t108
+          _t = _t.get_next_sibling
+          description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
+          description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+          code.set_attribute("description", description)
+        when CLOSURE
+          __t109 = _t
+          tmp74_ast_in = _t
+          match(_t, CLOSURE)
+          _t = _t.get_first_child
+          code = rewrite_block(_t, "rewriteClosureBlock")
+          _t = self.attr__ret_tree
+          _t = __t109
+          _t = _t.get_next_sibling
+          description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
+          description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+          code.set_attribute("description", description)
+        when POSITIVE_CLOSURE
+          __t110 = _t
+          tmp75_ast_in = _t
+          match(_t, POSITIVE_CLOSURE)
+          _t = _t.get_first_child
+          code = rewrite_block(_t, "rewritePositiveClosureBlock")
+          _t = self.attr__ret_tree
+          _t = __t110
+          _t = _t.get_next_sibling
+          description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
+          description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+          code.set_attribute("description", description)
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -4633,7 +2589,7 @@ module Org::Antlr::Codegen
     def rewrite_tree(_t)
       code = @templates.get_instance_of("rewriteTree")
       rewrite_tree_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      ((@rewrite_tree_nesting_level += 1) - 1)
+      @rewrite_tree_nesting_level += 1
       code.set_attribute("treeLevel", @rewrite_tree_nesting_level)
       code.set_attribute("enclosingTreeLevel", @rewrite_tree_nesting_level - 1)
       r = nil
@@ -4667,7 +2623,7 @@ module Org::Antlr::Codegen
         description = @grammar.grammar_tree_to_string(rewrite_tree_ast_in, false)
         description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
         code.set_attribute("description", description)
-        ((@rewrite_tree_nesting_level -= 1) + 1)
+        @rewrite_tree_nesting_level -= 1
       rescue RecognitionException => ex
         report_error(ex)
         if (!(_t).nil?)

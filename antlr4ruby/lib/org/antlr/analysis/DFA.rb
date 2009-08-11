@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -548,7 +547,7 @@ module Org::Antlr::Analysis
         if (!ok_to_retry_dfawith_k1)
           @probe.issue_warnings
         end
-      rescue NonLLStarDecisionException => nonLL
+      rescue NonLLStarDecisionException => non_ll
         @probe.report_non_llstar_decision(self)
         # >1 alt recurses, k=* and no auto backtrack nor manual sem/syn
         if (!ok_to_retry_dfawith_k1)
@@ -585,7 +584,7 @@ module Org::Antlr::Analysis
         # some states are unused after creation most commonly due to cycles
         # or conflict resolution.
         if ((s).nil?)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # state i is mapped to DFAState with state number set to i originally
@@ -598,9 +597,9 @@ module Org::Antlr::Analysis
         if (!already_renumbered)
           # state i is a valid state, reset it's state number
           s.attr_state_number = snum # rewrite state numbers to be 0..n-1
-          ((snum += 1) - 1)
+          snum += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (!(snum).equal?(get_number_of_states))
         ErrorManager.internal_error("DFA " + (@decision_number).to_s + ": " + (@decision_nfastart_state.get_description).to_s + " num unique states " + (get_number_of_states).to_s + "!= num renumbered states " + (snum).to_s)
@@ -651,7 +650,7 @@ module Org::Antlr::Analysis
       while i < @transition.size
         transitions_for_state = @transition.element_at(i)
         encoded.add(get_run_length_encoding(transitions_for_state))
-        ((i += 1) - 1)
+        i += 1
       end
       return encoded
     end
@@ -693,11 +692,11 @@ module Org::Antlr::Analysis
             v = empty_value
           end
           if ((i_ == v))
-            ((n += 1) - 1)
+            n += 1
           else
             break
           end
-          ((j += 1) - 1)
+          j += 1
         end
         encoded.add(@generator.attr_target.encode_int_as_char_escape(RJava.cast_to_char(n)))
         encoded.add(@generator.attr_target.encode_int_as_char_escape(RJava.cast_to_char(i_.int_value)))
@@ -761,7 +760,7 @@ module Org::Antlr::Analysis
         ss = @special_states.get(i)
         state_st = generator.generate_special_state(ss)
         @special_state_sts.add(state_st)
-        ((i += 1) - 1)
+        i += 1
       end
       # check that the tables are not messed up by encode/decode
       # 
@@ -779,7 +778,6 @@ module Org::Antlr::Analysis
     end
     
     typesig { [DFAState] }
-    # 
     # private void testEncodeDecode(List data) {
     # System.out.println("data="+data);
     # List encoded = getRunLengthEncoding(data);
@@ -836,7 +834,7 @@ module Org::Antlr::Analysis
             end
           end
         end
-        ((j += 1) - 1)
+        j += 1
       end
       if (smax < 0)
         # must be predicates or pure EOT transition; just zero out min, max
@@ -852,7 +850,6 @@ module Org::Antlr::Analysis
     
     typesig { [DFAState] }
     def create_transition_table_entry_for_state(s)
-      # 
       # System.out.println("createTransitionTableEntryForState s"+s.stateNumber+
       # " dec "+s.dfa.decisionNumber+" cyclic="+s.dfa.isCyclic());
       smax = (@max.get(s.attr_state_number)).int_value
@@ -875,14 +872,14 @@ module Org::Antlr::Analysis
             while a < atoms.attr_length
               # set the transition if the label is valid (don't do EOF)
               if (atoms[a] >= Label::MIN_CHAR_VALUE)
-                label_index_ = atoms[a] - smin # offset from 0
-                state_transitions.set(label_index_, Utils.integer(edge.attr_target.attr_state_number))
+                label_index = atoms[a] - smin # offset from 0
+                state_transitions.set(label_index, Utils.integer(edge.attr_target.attr_state_number))
               end
-              ((a += 1) - 1)
+              a += 1
             end
           end
         end
-        ((j += 1) - 1)
+        j += 1
       end
       # track unique state transition tables so we can reuse
       edge_class = @edge_transition_class_map.get(state_transitions)
@@ -893,7 +890,7 @@ module Org::Antlr::Analysis
         edge_class = Utils.integer(@edge_transition_class)
         @transition_edge_tables.set(s.attr_state_number, edge_class)
         @edge_transition_class_map.put(state_transitions, edge_class)
-        ((@edge_transition_class += 1) - 1)
+        @edge_transition_class += 1
       end
     end
     
@@ -929,11 +926,11 @@ module Org::Antlr::Analysis
                   @eof.set(s.attr_state_number, Utils.integer(edge.attr_target.attr_state_number))
                 end
               end
-              ((a += 1) - 1)
+              a += 1
             end
           end
         end
-        ((j += 1) - 1)
+        j += 1
       end
     end
     
@@ -952,14 +949,14 @@ module Org::Antlr::Analysis
           has_sem_pred = true
           break
         end
-        ((j += 1) - 1)
+        j += 1
       end
       # if has pred or too big for table, make it special
       smax = (@max.get(s.attr_state_number)).int_value
       smin = (@min.get(s.attr_state_number)).int_value
       if (has_sem_pred || smax - smin > self.attr_max_state_transitions_for_table)
         @special.set(s.attr_state_number, Utils.integer(@unique_compressed_special_state_num))
-        ((@unique_compressed_special_state_num += 1) - 1)
+        @unique_compressed_special_state_num += 1
         @special_states.add(s)
       else
         @special.set(s.attr_state_number, Utils.integer(-1)) # not special
@@ -987,7 +984,6 @@ module Org::Antlr::Analysis
       # except its state number?
       existing = @unique_states.get(d)
       if (!(existing).nil?)
-        # 
         # System.out.println("state "+d.stateNumber+" exists as state "+
         # existing.stateNumber);
         # 
@@ -996,7 +992,7 @@ module Org::Antlr::Analysis
       end
       # if not there, then add new state.
       @unique_states.put(d, d)
-      ((@number_of_states += 1) - 1)
+      @number_of_states += 1
       return d
     end
     
@@ -1004,7 +1000,7 @@ module Org::Antlr::Analysis
     def remove_state(d)
       it = @unique_states.remove(d)
       if (!(it).nil?)
-        ((@number_of_states -= 1) + 1)
+        @number_of_states -= 1
       end
     end
     
@@ -1159,18 +1155,18 @@ module Org::Antlr::Analysis
         if ((target_status).equal?(REACHABLE_BUSY))
           # avoid cycles; they say nothing
           @cyclic = true
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if ((target_status).equal?(REACHABLE_YES))
           # avoid unnecessary work
           an_edge_reaches_accept_state = true
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if ((target_status).equal?(REACHABLE_NO))
           # avoid unnecessary work
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # target must be REACHABLE_UNKNOWN (i.e., unvisited)
@@ -1179,7 +1175,7 @@ module Org::Antlr::Analysis
           # have to keep looking so don't break loop
           # must cover all states even if we find a path for this state
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (an_edge_reaches_accept_state)
         d.set_accept_state_reachable(REACHABLE_YES)
@@ -1215,7 +1211,7 @@ module Org::Antlr::Analysis
             end
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -1305,7 +1301,7 @@ module Org::Antlr::Analysis
     def new_state
       n = DFAState.new(self)
       n.attr_state_number = @state_counter
-      ((@state_counter += 1) - 1)
+      @state_counter += 1
       @states.set_size(n.attr_state_number + 1)
       @states.set(n.attr_state_number, n) # track state num to state
       return n
@@ -1336,7 +1332,7 @@ module Org::Antlr::Analysis
       i = 1
       while i <= @n_alts
         @unreachable_alts.add(Utils.integer(i))
-        ((i += 1) - 1)
+        i += 1
       end
       @alt_to_accept_state = Array.typed(DFAState).new(@n_alts + 1) { nil }
     end

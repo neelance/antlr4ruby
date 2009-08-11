@@ -1,6 +1,5 @@
 require "rjava"
  # $ANTLR 2.7.7 (2006-01-29): "assign.types.g" -> "AssignTokenTypesWalker.java"$
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -242,109 +241,45 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LEXER_GRAMMAR
-            __t3 = _t
-            tmp1_ast_in = _t
-            match(_t, LEXER_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t3
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t4 = _t
-            tmp2_ast_in = _t
-            match(_t, PARSER_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t4
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t5 = _t
-            tmp3_ast_in = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6 = _t
-            tmp4_ast_in = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when PARSER_GRAMMAR
-            __t4_ = _t
-            tmp2_ast_in_ = _t
-            match(_t, PARSER_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t4_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t5_ = _t
-            tmp3_ast_in_ = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6_ = _t
-            tmp4_ast_in_ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_GRAMMAR
-            __t5__ = _t
-            tmp3_ast_in__ = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6__ = _t
-            tmp4_ast_in__ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when COMBINED_GRAMMAR
-            __t6___ = _t
-            tmp4_ast_in___ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LEXER_GRAMMAR
+          __t3 = _t
+          tmp1_ast_in = _t
+          match(_t, LEXER_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t3
+          _t = _t.get_next_sibling
+        when PARSER_GRAMMAR
+          __t4 = _t
+          tmp2_ast_in = _t
+          match(_t, PARSER_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t4
+          _t = _t.get_next_sibling
+        when TREE_GRAMMAR
+          __t5 = _t
+          tmp3_ast_in = _t
+          match(_t, TREE_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t5
+          _t = _t.get_next_sibling
+        when COMBINED_GRAMMAR
+          __t6 = _t
+          tmp4_ast_in = _t
+          match(_t, COMBINED_GRAMMAR)
+          _t = _t.get_first_child
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t6
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -369,75 +304,47 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when DOC_COMMENT
-            cmt = _t
-            match(_t, DOC_COMMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when DOC_COMMENT
+          cmt = _t
+          match(_t, DOC_COMMENT)
+          _t = _t.get_next_sibling
+        when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            options_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          options_spec(_t)
+          _t = self.attr__ret_tree
+        when TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when IMPORT
-            delegate_grammars(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKENS, RULE, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when IMPORT
+          delegate_grammars(_t)
+          _t = self.attr__ret_tree
+        when TOKENS, RULE, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when TOKENS
-            tokens_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RULE, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when TOKENS
+          tokens_spec(_t)
+          _t = self.attr__ret_tree
+        when RULE, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -498,7 +405,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt21 += 1) - 1)
+          _cnt21 += 1
         end while (true)
         _t = __t19
         _t = _t.get_next_sibling
@@ -522,11 +429,11 @@ module Org::Antlr::Tool
         match(_t, IMPORT)
         _t = _t.get_first_child
         _cnt34 = 0
-        begin
-          if ((_t).nil?)
-            _t = ASTNULL
-          end
-          catch(:break_case) do
+        catch(:break__loop34) do
+          begin
+            if ((_t).nil?)
+              _t = ASTNULL
+            end
             case (_t.get_type)
             when ASSIGN
               __t33 = _t
@@ -541,36 +448,20 @@ module Org::Antlr::Tool
               _t = _t.get_next_sibling
               _t = __t33
               _t = _t.get_next_sibling
-              throw :break_case, :thrown
+            when ID
               tmp11_ast_in = _t
               match(_t, ID)
               _t = _t.get_next_sibling
-              throw :break_case, :thrown
-              if (_cnt34 >= 1)
-                break
-              else
-                raise NoViableAltException.new(_t)
-              end
-            when ID
-              tmp11_ast_in_ = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              throw :break_case, :thrown
-              if (_cnt34 >= 1)
-                break
-              else
-                raise NoViableAltException.new(_t)
-              end
             else
               if (_cnt34 >= 1)
-                break
+                throw :break__loop34, :thrown
               else
                 raise NoViableAltException.new(_t)
               end
             end
-          end == :thrown or break
-          ((_cnt34 += 1) - 1)
-        end while (true)
+            _cnt34 += 1
+          end while (true)
+        end
         _t = __t31
         _t = _t.get_next_sibling
       rescue RecognitionException => ex
@@ -606,7 +497,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt38 += 1) - 1)
+          _cnt38 += 1
         end while (true)
         _t = __t36
         _t = _t.get_next_sibling
@@ -665,7 +556,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt44 += 1) - 1)
+          _cnt44 += 1
         end while (true)
       rescue RecognitionException => ex
         report_error(ex)
@@ -723,69 +614,29 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ID
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            value = id.get_text
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            value = s.get_text
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            value = c.get_text
-            throw :break_case, :thrown
-            i = _t
-            match(_t, INT)
-            _t = _t.get_next_sibling
-            value = i.get_text
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            value = s.get_text
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            value = c.get_text
-            throw :break_case, :thrown
-            i = _t
-            match(_t, INT)
-            _t = _t.get_next_sibling
-            value = i.get_text
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_LITERAL
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            value = c.get_text
-            throw :break_case, :thrown
-            i = _t
-            match(_t, INT)
-            _t = _t.get_next_sibling
-            value = i.get_text
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when INT
-            i = _t
-            match(_t, INT)
-            _t = _t.get_next_sibling
-            value = i.get_text
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ID
+          id = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          value = id.get_text
+        when STRING_LITERAL
+          s = _t
+          match(_t, STRING_LITERAL)
+          _t = _t.get_next_sibling
+          value = s.get_text
+        when CHAR_LITERAL
+          c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          value = c.get_text
+        when INT
+          i = _t
+          match(_t, INT)
+          _t = _t.get_next_sibling
+          value = i.get_text
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -832,86 +683,39 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when CHAR_LITERAL
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t28 = _t
-            tmp18_ast_in = _t
-            match(_t, OR)
-            _t = _t.get_first_child
-            c1 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c2 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t28
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t29 = _t
-            tmp19_ast_in = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            c3 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c4 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t29
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OR
-            __t28_ = _t
-            tmp18_ast_in_ = _t
-            match(_t, OR)
-            _t = _t.get_first_child
-            c1 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c2 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t28_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t29_ = _t
-            tmp19_ast_in_ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            c3 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c4 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t29_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RANGE
-            __t29__ = _t
-            tmp19_ast_in__ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            c3 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            c4 = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            _t = __t29__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when CHAR_LITERAL
+          c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+        when OR
+          __t28 = _t
+          tmp18_ast_in = _t
+          match(_t, OR)
+          _t = _t.get_first_child
+          c1 = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          c2 = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          _t = __t28
+          _t = _t.get_next_sibling
+        when RANGE
+          __t29 = _t
+          tmp19_ast_in = _t
+          match(_t, RANGE)
+          _t = _t.get_first_child
+          c3 = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          c4 = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          _t = __t29
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -934,104 +738,44 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when TOKEN_REF
+          t = _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_next_sibling
+          track_token(t)
+        when ASSIGN
+          __t40 = _t
+          tmp20_ast_in = _t
+          match(_t, ASSIGN)
+          _t = _t.get_first_child
+          t2 = _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_next_sibling
+          track_token(t2)
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when TOKEN_REF
-            t = _t
-            match(_t, TOKEN_REF)
+          when STRING_LITERAL
+            s = _t
+            match(_t, STRING_LITERAL)
             _t = _t.get_next_sibling
-            track_token(t)
-            throw :break_case, :thrown
-            __t40 = _t
-            tmp20_ast_in = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            t2 = _t
-            match(_t, TOKEN_REF)
+            track_string(s)
+            alias(t2, s)
+          when CHAR_LITERAL
+            c = _t
+            match(_t, CHAR_LITERAL)
             _t = _t.get_next_sibling
-            track_token(t2)
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when STRING_LITERAL
-                s = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                track_string(s)
-                alias(t2, s)
-                throw :break_case, :thrown
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                track_string(c)
-                alias(t2, c)
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                track_string(c)
-                alias(t2, c)
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t40
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ASSIGN
-            __t40_ = _t
-            tmp20_ast_in_ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            t2 = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            track_token(t2)
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when STRING_LITERAL
-                s = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                track_string(s)
-                alias(t2, s)
-                throw :break_case, :thrown
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                track_string(c)
-                alias(t2, c)
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                track_string(c)
-                alias(t2, c)
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t40_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+            track_string(c)
+            alias(t2, c)
           else
             raise NoViableAltException.new(_t)
           end
+          _t = __t40
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1061,21 +805,14 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
-            m = (_t).equal?(ASTNULL) ? nil : _t
-            modifier(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ARG
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
+          m = (_t).equal?(ASTNULL) ? nil : _t
+          modifier(_t)
+          _t = self.attr__ret_tree
+        when ARG
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp22_ast_in = _t
         match(_t, ARG)
@@ -1083,21 +820,14 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ARG_ACTION
-            tmp23_ast_in = _t
-            match(_t, ARG_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RET
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ARG_ACTION
+          tmp23_ast_in = _t
+          match(_t, ARG_ACTION)
+          _t = _t.get_next_sibling
+        when RET
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp24_ast_in = _t
         match(_t, RET)
@@ -1105,57 +835,36 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ARG_ACTION
-            tmp25_ast_in = _t
-            match(_t, ARG_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONS, BLOCK, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ARG_ACTION
+          tmp25_ast_in = _t
+          match(_t, ARG_ACTION)
+          _t = _t.get_next_sibling
+        when OPTIONS, BLOCK, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            options_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          options_spec(_t)
+          _t = self.attr__ret_tree
+        when BLOCK, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when SCOPE
-            rule_scope_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when SCOPE
+          rule_scope_spec(_t)
+          _t = self.attr__ret_tree
+        when BLOCK, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1175,20 +884,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch, LITERAL_finally
-            exception_group(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when EOR
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_catch, LITERAL_finally
+          exception_group(_t)
+          _t = self.attr__ret_tree
+        when EOR
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp27_ast_in = _t
         match(_t, EOR)
@@ -1213,59 +915,25 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_protected
-            tmp28_ast_in = _t
-            match(_t, LITERAL_protected)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp29_ast_in = _t
-            match(_t, LITERAL_public)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp30_ast_in = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp31_ast_in = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LITERAL_public
-            tmp29_ast_in_ = _t
-            match(_t, LITERAL_public)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp30_ast_in_ = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp31_ast_in_ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LITERAL_private
-            tmp30_ast_in__ = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp31_ast_in__ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when FRAGMENT
-            tmp31_ast_in___ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_protected
+          tmp28_ast_in = _t
+          match(_t, LITERAL_protected)
+          _t = _t.get_next_sibling
+        when LITERAL_public
+          tmp29_ast_in = _t
+          match(_t, LITERAL_public)
+          _t = _t.get_next_sibling
+        when LITERAL_private
+          tmp30_ast_in = _t
+          match(_t, LITERAL_private)
+          _t = _t.get_next_sibling
+        when FRAGMENT
+          tmp31_ast_in = _t
+          match(_t, FRAGMENT)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1288,21 +956,14 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ACTION
-            tmp33_ast_in = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3, ID
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ACTION
+          tmp33_ast_in = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+        when 3, ID
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1339,20 +1000,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            options_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ALT
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          options_spec(_t)
+          _t = self.attr__ret_tree
+        when ALT
+        else
+          raise NoViableAltException.new(_t)
         end
         _cnt67 = 0
         begin
@@ -1371,7 +1025,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt67 += 1) - 1)
+          _cnt67 += 1
         end while (true)
         tmp36_ast_in = _t
         match(_t, EOB)
@@ -1395,57 +1049,41 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch
-            _cnt74 = 0
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(LITERAL_catch)))
-                exception_handler(_t)
-                _t = self.attr__ret_tree
-              else
-                if (_cnt74 >= 1)
-                  break
-                else
-                  raise NoViableAltException.new(_t)
-                end
-              end
-              ((_cnt74 += 1) - 1)
-            end while (true)
+        case (_t.get_type)
+        when LITERAL_catch
+          _cnt74 = 0
+          begin
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when LITERAL_finally
-                finally_clause(_t)
-                _t = self.attr__ret_tree
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when EOR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
+            if (((_t.get_type).equal?(LITERAL_catch)))
+              exception_handler(_t)
+              _t = self.attr__ret_tree
+            else
+              if (_cnt74 >= 1)
+                break
               else
                 raise NoViableAltException.new(_t)
               end
             end
-            throw :break_case, :thrown
-            finally_clause(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+            _cnt74 += 1
+          end while (true)
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
           when LITERAL_finally
             finally_clause(_t)
             _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+          when EOR
           else
             raise NoViableAltException.new(_t)
           end
+        when LITERAL_finally
+          finally_clause(_t)
+          _t = self.attr__ret_tree
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1480,7 +1118,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt71 += 1) - 1)
+          _cnt71 += 1
         end while (true)
         tmp38_ast_in = _t
         match(_t, EOA)
@@ -1513,79 +1151,38 @@ module Org::Antlr::Tool
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                tmp40_ast_in = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ALT, TEMPLATE, ACTION, ETC
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end == :thrown or break
+            case (_t.get_type)
+            when SEMPRED
+              tmp40_ast_in = _t
+              match(_t, SEMPRED)
+              _t = _t.get_next_sibling
+            when ALT, TEMPLATE, ACTION, ETC
+            else
+              raise NoViableAltException.new(_t)
+            end
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ALT
-                tmp41_ast_in = _t
-                match(_t, ALT)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp42_ast_in = _t
-                match(_t, TEMPLATE)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp43_ast_in = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp44_ast_in = _t
-                match(_t, ETC)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when TEMPLATE
-                tmp42_ast_in_ = _t
-                match(_t, TEMPLATE)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp43_ast_in_ = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp44_ast_in_ = _t
-                match(_t, ETC)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ACTION
-                tmp43_ast_in__ = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp44_ast_in__ = _t
-                match(_t, ETC)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ETC
-                tmp44_ast_in___ = _t
-                match(_t, ETC)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end == :thrown or break
+            case (_t.get_type)
+            when ALT
+              tmp41_ast_in = _t
+              match(_t, ALT)
+              _t = _t.get_next_sibling
+            when TEMPLATE
+              tmp42_ast_in = _t
+              match(_t, TEMPLATE)
+              _t = _t.get_next_sibling
+            when ACTION
+              tmp43_ast_in = _t
+              match(_t, ACTION)
+              _t = _t.get_next_sibling
+            when ETC
+              tmp44_ast_in = _t
+              match(_t, ETC)
+              _t = _t.get_next_sibling
+            else
+              raise NoViableAltException.new(_t)
+            end
             _t = __t82
             _t = _t.get_next_sibling
           else
@@ -1609,996 +1206,128 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ROOT
-            __t87 = _t
-            tmp45_ast_in = _t
-            match(_t, ROOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t87
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t88 = _t
-            tmp46_ast_in = _t
-            match(_t, BANG)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t88
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            atom(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t89 = _t
-            tmp47_ast_in = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t89
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t90 = _t
-            tmp48_ast_in = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t90
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t91 = _t
-            tmp49_ast_in = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t91
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t92 = _t
-            tmp50_ast_in = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93 = _t
-            tmp52_ast_in = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94 = _t
-            tmp54_ast_in = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BANG
-            __t88_ = _t
-            tmp46_ast_in_ = _t
-            match(_t, BANG)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t88_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            atom(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t89_ = _t
-            tmp47_ast_in_ = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t89_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t90_ = _t
-            tmp48_ast_in_ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t90_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t91_ = _t
-            tmp49_ast_in_ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t91_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t92_ = _t
-            tmp50_ast_in_ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in_ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93_ = _t
-            tmp52_ast_in_ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in_ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94_ = _t
-            tmp54_ast_in_ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in_ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in_ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in_ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in_ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in_ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in_ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in_ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when DOT, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF
-            atom(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t89__ = _t
-            tmp47_ast_in__ = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t89__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t90__ = _t
-            tmp48_ast_in__ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t90__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t91__ = _t
-            tmp49_ast_in__ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t91__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t92__ = _t
-            tmp50_ast_in__ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in__ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93__ = _t
-            tmp52_ast_in__ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in__ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94__ = _t
-            tmp54_ast_in__ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in__ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in__ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in__ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in__ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in__ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in__ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in__ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when NOT
-            __t89___ = _t
-            tmp47_ast_in___ = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t89___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t90___ = _t
-            tmp48_ast_in___ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t90___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t91___ = _t
-            tmp49_ast_in___ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t91___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t92___ = _t
-            tmp50_ast_in___ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in___ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93___ = _t
-            tmp52_ast_in___ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in___ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94___ = _t
-            tmp54_ast_in___ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in___ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in___ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in___ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in___ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in___ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in___ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in___ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RANGE
-            __t90____ = _t
-            tmp48_ast_in____ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t90____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t91____ = _t
-            tmp49_ast_in____ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t91____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t92____ = _t
-            tmp50_ast_in____ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93____ = _t
-            tmp52_ast_in____ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94____ = _t
-            tmp54_ast_in____ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in____ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in____ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in____ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in____ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in____ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in____ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in____ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_RANGE
-            __t91_____ = _t
-            tmp49_ast_in_____ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t)
-            _t = self.attr__ret_tree
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t91_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t92_____ = _t
-            tmp50_ast_in_____ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in_____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93_____ = _t
-            tmp52_ast_in_____ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in_____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94_____ = _t
-            tmp54_ast_in_____ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in_____ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in_____ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in_____ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in_____ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in_____ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in_____ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in_____ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ASSIGN
-            __t92______ = _t
-            tmp50_ast_in______ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            tmp51_ast_in______ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t92______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t93______ = _t
-            tmp52_ast_in______ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in______ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94______ = _t
-            tmp54_ast_in______ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in______ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in______ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in______ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in______ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in______ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in______ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in______ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when PLUS_ASSIGN
-            __t93_______ = _t
-            tmp52_ast_in_______ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            tmp53_ast_in_______ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t93_______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94_______ = _t
-            tmp54_ast_in_______ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94_______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in_______ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in_______ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in_______ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in_______ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in_______ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in_______ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in_______ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, OPTIONAL, CLOSURE, POSITIVE_CLOSURE
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94________ = _t
-            tmp54_ast_in________ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94________
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in________ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in________ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_BEGIN
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t94_________ = _t
-            tmp54_ast_in_________ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94_________
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in_________ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in_________ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in_________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in_________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in_________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in_________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in_________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when SYNPRED
-            __t94__________ = _t
-            tmp54_ast_in__________ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t94__________
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp55_ast_in__________ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in__________ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in__________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in__________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in__________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in__________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in__________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when FORCED_ACTION
-            tmp55_ast_in___________ = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp56_ast_in___________ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in___________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in___________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in___________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in___________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in___________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ACTION
-            tmp56_ast_in____________ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp57_ast_in____________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in____________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in____________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in____________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in____________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when SEMPRED
-            tmp57_ast_in_____________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp58_ast_in_____________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in_____________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in_____________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in_____________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when SYN_SEMPRED
-            tmp58_ast_in______________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp59_ast_in______________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in______________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in______________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BACKTRACK_SEMPRED
-            tmp59_ast_in_______________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp60_ast_in_______________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in_______________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when GATED_SEMPRED
-            tmp60_ast_in________________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp61_ast_in________________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when EPSILON
-            tmp61_ast_in_________________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ROOT
+          __t87 = _t
+          tmp45_ast_in = _t
+          match(_t, ROOT)
+          _t = _t.get_first_child
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t87
+          _t = _t.get_next_sibling
+        when BANG
+          __t88 = _t
+          tmp46_ast_in = _t
+          match(_t, BANG)
+          _t = _t.get_first_child
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t88
+          _t = _t.get_next_sibling
+        when DOT, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF
+          atom(_t)
+          _t = self.attr__ret_tree
+        when NOT
+          __t89 = _t
+          tmp47_ast_in = _t
+          match(_t, NOT)
+          _t = _t.get_first_child
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t89
+          _t = _t.get_next_sibling
+        when RANGE
+          __t90 = _t
+          tmp48_ast_in = _t
+          match(_t, RANGE)
+          _t = _t.get_first_child
+          atom(_t)
+          _t = self.attr__ret_tree
+          atom(_t)
+          _t = self.attr__ret_tree
+          _t = __t90
+          _t = _t.get_next_sibling
+        when CHAR_RANGE
+          __t91 = _t
+          tmp49_ast_in = _t
+          match(_t, CHAR_RANGE)
+          _t = _t.get_first_child
+          atom(_t)
+          _t = self.attr__ret_tree
+          atom(_t)
+          _t = self.attr__ret_tree
+          _t = __t91
+          _t = _t.get_next_sibling
+        when ASSIGN
+          __t92 = _t
+          tmp50_ast_in = _t
+          match(_t, ASSIGN)
+          _t = _t.get_first_child
+          tmp51_ast_in = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t92
+          _t = _t.get_next_sibling
+        when PLUS_ASSIGN
+          __t93 = _t
+          tmp52_ast_in = _t
+          match(_t, PLUS_ASSIGN)
+          _t = _t.get_first_child
+          tmp53_ast_in = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t93
+          _t = _t.get_next_sibling
+        when BLOCK, OPTIONAL, CLOSURE, POSITIVE_CLOSURE
+          ebnf(_t)
+          _t = self.attr__ret_tree
+        when TREE_BEGIN
+          tree(_t)
+          _t = self.attr__ret_tree
+        when SYNPRED
+          __t94 = _t
+          tmp54_ast_in = _t
+          match(_t, SYNPRED)
+          _t = _t.get_first_child
+          block(_t)
+          _t = self.attr__ret_tree
+          _t = __t94
+          _t = _t.get_next_sibling
+        when FORCED_ACTION
+          tmp55_ast_in = _t
+          match(_t, FORCED_ACTION)
+          _t = _t.get_next_sibling
+        when ACTION
+          tmp56_ast_in = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+        when SEMPRED
+          tmp57_ast_in = _t
+          match(_t, SEMPRED)
+          _t = _t.get_next_sibling
+        when SYN_SEMPRED
+          tmp58_ast_in = _t
+          match(_t, SYN_SEMPRED)
+          _t = _t.get_next_sibling
+        when BACKTRACK_SEMPRED
+          tmp59_ast_in = _t
+          match(_t, BACKTRACK_SEMPRED)
+          _t = _t.get_next_sibling
+        when GATED_SEMPRED
+          tmp60_ast_in = _t
+          match(_t, GATED_SEMPRED)
+          _t = _t.get_next_sibling
+        when EPSILON
+          tmp61_ast_in = _t
+          match(_t, EPSILON)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -2672,230 +1401,74 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when RULE_REF
+          __t104 = _t
+          rr = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, RULE_REF)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when RULE_REF
-            __t104 = _t
-            rr = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, RULE_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                rarg = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t104
+          when ARG_ACTION
+            rarg = _t
+            match(_t, ARG_ACTION)
             _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t106 = _t
-            t = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                targ = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t106
-            _t = _t.get_next_sibling
-            track_token(t)
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(c)
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(s)
-            throw :break_case, :thrown
-            tmp67_ast_in = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t108 = _t
-            tmp68_ast_in = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp69_ast_in = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t108
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKEN_REF
-            __t106_ = _t
-            t = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                targ = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t106_
-            _t = _t.get_next_sibling
-            track_token(t)
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(c)
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(s)
-            throw :break_case, :thrown
-            tmp67_ast_in_ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t108_ = _t
-            tmp68_ast_in_ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp69_ast_in_ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t108_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_LITERAL
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(c)
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(s)
-            throw :break_case, :thrown
-            tmp67_ast_in__ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t108__ = _t
-            tmp68_ast_in__ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp69_ast_in__ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t108__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            track_string(s)
-            throw :break_case, :thrown
-            tmp67_ast_in___ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t108___ = _t
-            tmp68_ast_in___ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp69_ast_in___ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t108___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when WILDCARD
-            tmp67_ast_in____ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t108____ = _t
-            tmp68_ast_in____ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp69_ast_in____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t108____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when DOT
-            __t108_____ = _t
-            tmp68_ast_in_____ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp69_ast_in_____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t)
-            _t = self.attr__ret_tree
-            _t = __t108_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+          when 3
           else
             raise NoViableAltException.new(_t)
           end
+          _t = __t104
+          _t = _t.get_next_sibling
+        when TOKEN_REF
+          __t106 = _t
+          t = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when ARG_ACTION
+            targ = _t
+            match(_t, ARG_ACTION)
+            _t = _t.get_next_sibling
+          when 3
+          else
+            raise NoViableAltException.new(_t)
+          end
+          _t = __t106
+          _t = _t.get_next_sibling
+          track_token(t)
+        when CHAR_LITERAL
+          c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          track_string(c)
+        when STRING_LITERAL
+          s = _t
+          match(_t, STRING_LITERAL)
+          _t = _t.get_next_sibling
+          track_string(s)
+        when WILDCARD
+          tmp67_ast_in = _t
+          match(_t, WILDCARD)
+          _t = _t.get_next_sibling
+        when DOT
+          __t108 = _t
+          tmp68_ast_in = _t
+          match(_t, DOT)
+          _t = _t.get_first_child
+          tmp69_ast_in = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          atom(_t)
+          _t = self.attr__ret_tree
+          _t = __t108
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -2914,103 +1487,39 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when BLOCK
-            block(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t96 = _t
-            tmp70_ast_in = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t96
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t97 = _t
-            tmp71_ast_in = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t97
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98 = _t
-            tmp72_ast_in = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t98
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONAL
-            __t96_ = _t
-            tmp70_ast_in_ = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t96_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t97_ = _t
-            tmp71_ast_in_ = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t97_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98_ = _t
-            tmp72_ast_in_ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t98_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CLOSURE
-            __t97__ = _t
-            tmp71_ast_in__ = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t97__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98__ = _t
-            tmp72_ast_in__ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t98__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when POSITIVE_CLOSURE
-            __t98___ = _t
-            tmp72_ast_in___ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t98___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when BLOCK
+          block(_t)
+          _t = self.attr__ret_tree
+        when OPTIONAL
+          __t96 = _t
+          tmp70_ast_in = _t
+          match(_t, OPTIONAL)
+          _t = _t.get_first_child
+          block(_t)
+          _t = self.attr__ret_tree
+          _t = __t96
+          _t = _t.get_next_sibling
+        when CLOSURE
+          __t97 = _t
+          tmp71_ast_in = _t
+          match(_t, CLOSURE)
+          _t = _t.get_first_child
+          block(_t)
+          _t = self.attr__ret_tree
+          _t = __t97
+          _t = _t.get_next_sibling
+        when POSITIVE_CLOSURE
+          __t98 = _t
+          tmp72_ast_in = _t
+          match(_t, POSITIVE_CLOSURE)
+          _t = _t.get_first_child
+          block(_t)
+          _t = self.attr__ret_tree
+          _t = __t98
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -3062,27 +1571,17 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ROOT
-            tmp74_ast_in = _t
-            match(_t, ROOT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp75_ast_in = _t
-            match(_t, BANG)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BANG
-            tmp75_ast_in_ = _t
-            match(_t, BANG)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ROOT
+          tmp74_ast_in = _t
+          match(_t, ROOT)
+          _t = _t.get_next_sibling
+        when BANG
+          tmp75_ast_in = _t
+          match(_t, BANG)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         report_error(ex)

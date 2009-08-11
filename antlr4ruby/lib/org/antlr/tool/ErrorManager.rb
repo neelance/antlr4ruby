@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -688,7 +687,6 @@ module Org::Antlr::Tool
             if (!(e).nil?)
               System.err.println("exception: " + (e).to_s)
             end
-            # 
             # if ( e!=null ) {
             # e.printStackTrace(System.err);
             # }
@@ -854,7 +852,7 @@ module Org::Antlr::Tool
             begin
               br.close
             rescue IOException => ioe
-              raw_error("cannot close message file " + file_name, ioe_)
+              raw_error("cannot close message file " + file_name, ioe)
             end
           end
         end
@@ -1040,55 +1038,55 @@ module Org::Antlr::Tool
       
       typesig { [String] }
       def info(msg)
-        ((get_error_state.attr_infos += 1) - 1)
+        get_error_state.attr_infos += 1
         get_error_listener.info(msg)
       end
       
       typesig { [::Java::Int] }
       def error(msg_id)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(ToolMessage.new(msg_id))
       end
       
       typesig { [::Java::Int, Exception] }
       def error(msg_id, e)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(ToolMessage.new(msg_id, e))
       end
       
       typesig { [::Java::Int, Object] }
       def error(msg_id, arg)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(ToolMessage.new(msg_id, arg))
       end
       
       typesig { [::Java::Int, Object, Object] }
       def error(msg_id, arg, arg2)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(ToolMessage.new(msg_id, arg, arg2))
       end
       
       typesig { [::Java::Int, Object, Exception] }
       def error(msg_id, arg, e)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(ToolMessage.new(msg_id, arg, e))
       end
       
       typesig { [::Java::Int, Object] }
       def warning(msg_id, arg)
-        ((get_error_state.attr_warnings += 1) - 1)
+        get_error_state.attr_warnings += 1
         get_error_state.attr_warning_msg_ids.add(msg_id)
         get_error_listener.warning(ToolMessage.new(msg_id, arg))
       end
       
       typesig { [DecisionProbe, DFAState] }
       def nondeterminism(probe, d)
-        ((get_error_state.attr_warnings += 1) - 1)
+        get_error_state.attr_warnings += 1
         msg = GrammarNonDeterminismMessage.new(probe, d)
         get_error_state.attr_warning_msg_ids.add(msg.attr_msg_id)
         get_error_listener.warning(msg)
@@ -1096,7 +1094,7 @@ module Org::Antlr::Tool
       
       typesig { [DecisionProbe, DFAState] }
       def dangling_state(probe, d)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         msg = GrammarDanglingStateMessage.new(probe, d)
         get_error_state.attr_error_msg_ids.add(msg.attr_msg_id)
         seen = EmitSingleError.get("danglingState")
@@ -1109,7 +1107,7 @@ module Org::Antlr::Tool
       
       typesig { [DecisionProbe] }
       def analysis_aborted(probe)
-        ((get_error_state.attr_warnings += 1) - 1)
+        get_error_state.attr_warnings += 1
         msg = GrammarAnalysisAbortedMessage.new(probe)
         get_error_state.attr_warning_msg_ids.add(msg.attr_msg_id)
         get_error_listener.warning(msg)
@@ -1117,7 +1115,7 @@ module Org::Antlr::Tool
       
       typesig { [DecisionProbe, JavaList] }
       def unreachable_alts(probe, alts)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         msg = GrammarUnreachableAltsMessage.new(probe, alts)
         get_error_state.attr_error_msg_ids.add(msg.attr_msg_id)
         get_error_listener.error(msg)
@@ -1125,7 +1123,7 @@ module Org::Antlr::Tool
       
       typesig { [DecisionProbe, DFAState, Map] }
       def insufficient_predicates(probe, d, alt_to_uncovered_locations)
-        ((get_error_state.attr_warnings += 1) - 1)
+        get_error_state.attr_warnings += 1
         msg = GrammarInsufficientPredicatesMessage.new(probe, d, alt_to_uncovered_locations)
         get_error_state.attr_warning_msg_ids.add(msg.attr_msg_id)
         get_error_listener.warning(msg)
@@ -1133,7 +1131,7 @@ module Org::Antlr::Tool
       
       typesig { [DecisionProbe] }
       def non_llstar_decision(probe)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         msg = NonRegularDecisionMessage.new(probe, probe.get_non_deterministic_alts)
         get_error_state.attr_error_msg_ids.add(msg.attr_msg_id)
         get_error_listener.error(msg)
@@ -1141,14 +1139,13 @@ module Org::Antlr::Tool
       
       typesig { [DecisionProbe, DFAState, ::Java::Int, Collection, Collection] }
       def recursion_overflow(probe, sample_bad_state, alt, target_rules, call_site_states)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         msg = RecursionOverflowMessage.new(probe, sample_bad_state, alt, target_rules, call_site_states)
         get_error_state.attr_error_msg_ids.add(msg.attr_msg_id)
         get_error_listener.error(msg)
       end
       
       typesig { [Collection] }
-      # 
       # // TODO: we can remove I think.  All detected now with cycles check.
       # public static void leftRecursion(DecisionProbe probe,
       # int alt,
@@ -1161,7 +1158,7 @@ module Org::Antlr::Tool
       # getErrorListener().warning(msg);
       # }
       def left_recursion_cycles(cycles)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         msg = LeftRecursionCyclesMessage.new(cycles)
         get_error_state.attr_error_msg_ids.add(msg.attr_msg_id)
         get_error_listener.warning(msg)
@@ -1169,7 +1166,7 @@ module Org::Antlr::Tool
       
       typesig { [::Java::Int, Grammar, Token, Object, Object] }
       def grammar_error(msg_id, g, token, arg, arg2)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         msg = GrammarSemanticsMessage.new(msg_id, g, token, arg, arg2)
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(msg)
@@ -1187,7 +1184,7 @@ module Org::Antlr::Tool
       
       typesig { [::Java::Int, Grammar, Token, Object, Object] }
       def grammar_warning(msg_id, g, token, arg, arg2)
-        ((get_error_state.attr_warnings += 1) - 1)
+        get_error_state.attr_warnings += 1
         msg = GrammarSemanticsMessage.new(msg_id, g, token, arg, arg2)
         get_error_state.attr_warning_msg_ids.add(msg_id)
         get_error_listener.warning(msg)
@@ -1205,7 +1202,7 @@ module Org::Antlr::Tool
       
       typesig { [::Java::Int, Grammar, Token, Object, Antlr::RecognitionException] }
       def syntax_error(msg_id, grammar, token, arg, re)
-        ((get_error_state.attr_errors += 1) - 1)
+        get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
         get_error_listener.error(GrammarSyntaxMessage.new(msg_id, grammar, token, arg, re))
       end
@@ -1244,7 +1241,7 @@ module Org::Antlr::Tool
           if (t.to_s.index_of("ErrorManager") < 0)
             break
           end
-          ((i += 1) - 1)
+          i += 1
         end
         location = stack[i]
         return location
@@ -1265,7 +1262,7 @@ module Org::Antlr::Tool
         i = 0
         while i < self.attr_id_to_message_template_name.attr_length
           self.attr_id_to_message_template_name[i] = "INVALID MESSAGE ID: " + (i).to_s
-          ((i += 1) - 1)
+          i += 1
         end
         # get list of fields and use it to fill in idToMessageTemplateName mapping
         fields = ErrorManager.class.get_fields
@@ -1274,7 +1271,7 @@ module Org::Antlr::Tool
           f = fields[i_]
           field_name = f.get_name
           if (!field_name.starts_with("MSG_"))
-            ((i_ += 1) - 1)
+            i_ += 1
             next
           end
           template_name = field_name.substring("MSG_".length, field_name.length)
@@ -1284,13 +1281,13 @@ module Org::Antlr::Tool
             msg_id = f.get_int(ErrorManager.class)
           rescue IllegalAccessException => iae
             System.err.println("cannot get const value for " + (f.get_name).to_s)
-            ((i_ += 1) - 1)
+            i_ += 1
             next
           end
           if (field_name.starts_with("MSG_"))
             self.attr_id_to_message_template_name[msg_id] = template_name
           end
-          ((i_ += 1) - 1)
+          i_ += 1
         end
         return true
       end
@@ -1312,7 +1309,7 @@ module Org::Antlr::Tool
               ok = false
             end
           end
-          ((i += 1) - 1)
+          i += 1
         end
         # check for special templates
         if (!self.attr_messages.is_defined("warning"))

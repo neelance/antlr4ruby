@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -181,7 +180,7 @@ module Org::Antlr::Runtime::Tree
     
     typesig { [] }
     def consume
-      ((@p += 1) - 1)
+      @p += 1
       if (@p >= @n)
         @c = EOF
       else

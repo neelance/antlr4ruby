@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -170,15 +169,15 @@ module Org::Antlr::Runtime::Tree
       if ((tree_node_type).equal?(Token::INVALID_TOKEN_TYPE))
         return nil
       end
-      node_ = nil
-      node_ = @adaptor.create(tree_node_type, text)
-      if (!(label).nil? && (node_.get_class).equal?(TreeWizard::TreePattern.class))
-        (node_).attr_label = label
+      node = nil
+      node = @adaptor.create(tree_node_type, text)
+      if (!(label).nil? && (node.get_class).equal?(TreeWizard::TreePattern.class))
+        (node).attr_label = label
       end
-      if (!(arg).nil? && (node_.get_class).equal?(TreeWizard::TreePattern.class))
-        (node_).attr_has_text_arg = true
+      if (!(arg).nil? && (node.get_class).equal?(TreeWizard::TreePattern.class))
+        (node).attr_has_text_arg = true
       end
-      return node_
+      return node
     end
     
     private

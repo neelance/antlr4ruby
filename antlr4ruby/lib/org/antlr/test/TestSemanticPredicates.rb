@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -131,7 +130,6 @@ module Org::Antlr::Test
     end
     
     typesig { [] }
-    # 
     # public void testIncompleteSemanticHoistedContextk2() throws Exception {
     # ErrorQueue equeue = new ErrorQueue();
     # ErrorManager.setErrorListener(equeue);
@@ -190,7 +188,6 @@ module Org::Antlr::Test
       end
       dfa = g.get_lookahead_dfa(1)
       assert_equals(nil, dfa) # can't analyze.
-      # 
       # String result = serializer.serialize(dfa.startState);
       # assertEquals(expecting, result);
       assert_equals("unexpected number of expected problems", 1, equeue.size)
@@ -538,39 +535,39 @@ module Org::Antlr::Test
       end
       # check nondet alts
       if (!(expecting_non_det_alts).nil?)
-        nondet_msg_ = get_non_determinism_message(equeue.attr_warnings)
-        assert_not_null("found no nondet alts; expecting: " + (str(expecting_non_det_alts)).to_s, nondet_msg_)
-        non_det_alts = nondet_msg_.attr_probe.get_non_deterministic_alts_for_state(nondet_msg_.attr_problem_state)
+        nondet_msg = get_non_determinism_message(equeue.attr_warnings)
+        assert_not_null("found no nondet alts; expecting: " + (str(expecting_non_det_alts)).to_s, nondet_msg)
+        non_det_alts = nondet_msg.attr_probe.get_non_deterministic_alts_for_state(nondet_msg.attr_problem_state)
         # compare nonDetAlts with expectingNonDetAlts
-        s_ = BitSet.new
-        s_.add_all(expecting_non_det_alts)
-        s2_ = BitSet.new
-        s2_.add_all(non_det_alts)
-        assert_equals("nondet alts mismatch", s_, s2_)
-        assert_equals("mismatch between expected hasPredHiddenByAction", has_pred_hidden_by_action, nondet_msg_.attr_problem_state.attr_dfa.attr_has_predicate_blocked_by_action)
+        s = BitSet.new
+        s.add_all(expecting_non_det_alts)
+        s2 = BitSet.new
+        s2.add_all(non_det_alts)
+        assert_equals("nondet alts mismatch", s, s2)
+        assert_equals("mismatch between expected hasPredHiddenByAction", has_pred_hidden_by_action, nondet_msg.attr_problem_state.attr_dfa.attr_has_predicate_blocked_by_action)
       else
         # not expecting any nondet alts, make sure there are none
-        nondet_msg__ = get_non_determinism_message(equeue.attr_warnings)
-        assert_null("found nondet alts, but expecting none", nondet_msg__)
+        nondet_msg = get_non_determinism_message(equeue.attr_warnings)
+        assert_null("found nondet alts, but expecting none", nondet_msg)
       end
       if (!(expecting_insufficient_pred_alts).nil?)
         insuff_pred_msg = get_grammar_insufficient_predicates_message(equeue.attr_warnings)
         assert_not_null("found no GrammarInsufficientPredicatesMessage alts; expecting: " + (str(expecting_non_det_alts)).to_s, insuff_pred_msg)
         locations = insuff_pred_msg.attr_alt_to_locations
         actual_alts = locations.key_set
-        s__ = BitSet.new
-        s__.add_all(expecting_insufficient_pred_alts)
-        s2__ = BitSet.new
-        s2__.add_all(actual_alts)
-        assert_equals("mismatch between insufficiently covered alts", s__, s2__)
+        s = BitSet.new
+        s.add_all(expecting_insufficient_pred_alts)
+        s2 = BitSet.new
+        s2.add_all(actual_alts)
+        assert_equals("mismatch between insufficiently covered alts", s, s2)
         assert_equals("mismatch between expected hasPredHiddenByAction", has_pred_hidden_by_action, insuff_pred_msg.attr_problem_state.attr_dfa.attr_has_predicate_blocked_by_action)
       else
         # not expecting any nondet alts, make sure there are none
-        nondet_msg___ = get_grammar_insufficient_predicates_message(equeue.attr_warnings)
-        if (!(nondet_msg___).nil?)
+        nondet_msg = get_grammar_insufficient_predicates_message(equeue.attr_warnings)
+        if (!(nondet_msg).nil?)
           System.out.println(equeue.attr_warnings)
         end
-        assert_null("found insufficiently covered alts, but expecting none", nondet_msg___)
+        assert_null("found insufficiently covered alts, but expecting none", nondet_msg)
       end
       assert_equals(expecting, result)
     end
@@ -583,7 +580,7 @@ module Org::Antlr::Test
         if (m.is_a?(GrammarNonDeterminismMessage))
           return m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return nil
     end
@@ -596,7 +593,7 @@ module Org::Antlr::Test
         if (m.is_a?(GrammarInsufficientPredicatesMessage))
           return m
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return nil
     end
@@ -611,7 +608,7 @@ module Org::Antlr::Test
         end
         element = elements[i]
         buf.append(element)
-        ((i += 1) - 1)
+        i += 1
       end
       return buf.to_s
     end

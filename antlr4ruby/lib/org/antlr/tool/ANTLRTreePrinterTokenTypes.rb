@@ -1,6 +1,5 @@
 require "rjava"
  # $ANTLR 2.7.7 (2006-01-29): "antlr.print.g" -> "ANTLRTreePrinter.java"$
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.

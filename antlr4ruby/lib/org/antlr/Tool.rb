@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -243,7 +242,7 @@ module Org::Antlr
               # force output into dir
               @force_all_files_to_output_dir = true
             end
-            ((i += 1) - 1)
+            i += 1
             @output_directory = (args[i]).to_s
             if (@output_directory.ends_with("/") || @output_directory.ends_with("\\"))
               @output_directory = (@output_directory.substring(0, @output_directory.length - 1)).to_s
@@ -259,13 +258,13 @@ module Org::Antlr
             if (i + 1 >= args.attr_length)
               System.err.println("missing library directory with -lib option; ignoring")
             else
-              ((i += 1) - 1)
+              i += 1
               @lib_directory = (args[i]).to_s
               if (@lib_directory.ends_with("/") || @lib_directory.ends_with("\\"))
                 @lib_directory = (@lib_directory.substring(0, @lib_directory.length - 1)).to_s
               end
-              out_dir_ = JavaFile.new(@lib_directory)
-              if (!out_dir_.exists)
+              out_dir = JavaFile.new(@lib_directory)
+              if (!out_dir.exists)
                 ErrorManager.error(ErrorManager::MSG_DIR_NOT_FOUND, @lib_directory)
                 @lib_directory = "."
               end
@@ -299,7 +298,7 @@ module Org::Antlr
                               if (i + 1 >= args.attr_length)
                                 System.err.println("missing output format with -message-format option; using default")
                               else
-                                ((i += 1) - 1)
+                                i += 1
                                 ErrorManager.set_format(args[i])
                               end
                             else
@@ -337,7 +336,7 @@ module Org::Antlr
                                                     if (i + 1 >= args.attr_length)
                                                       System.err.println("missing max inline dfa states -Xmaxinlinedfastates option; ignoring")
                                                     else
-                                                      ((i += 1) - 1)
+                                                      i += 1
                                                       CodeGenerator::MAX_ACYCLIC_DFA_STATES_INLINE = JavaInteger.parse_int(args[i])
                                                     end
                                                   else
@@ -345,7 +344,7 @@ module Org::Antlr
                                                       if (i + 1 >= args.attr_length)
                                                         System.err.println("missing max recursion with -Xm option; ignoring")
                                                       else
-                                                        ((i += 1) - 1)
+                                                        i += 1
                                                         NFAContext::MAX_SAME_RULE_INVOCATIONS_PER_NFA_CONFIG_STACK = JavaInteger.parse_int(args[i])
                                                       end
                                                     else
@@ -353,7 +352,7 @@ module Org::Antlr
                                                         if (i + 1 >= args.attr_length)
                                                           System.err.println("missing max number of edges with -Xmaxdfaedges option; ignoring")
                                                         else
-                                                          ((i += 1) - 1)
+                                                          i += 1
                                                           DFA::MAX_STATE_TRANSITIONS_FOR_TABLE = JavaInteger.parse_int(args[i])
                                                         end
                                                       else
@@ -361,7 +360,7 @@ module Org::Antlr
                                                           if (i + 1 >= args.attr_length)
                                                             System.err.println("missing max time in ms -Xconversiontimeout option; ignoring")
                                                           else
-                                                            ((i += 1) - 1)
+                                                            i += 1
                                                             DFA::MAX_TIME_PER_DFA_CREATION = JavaInteger.parse_int(args[i])
                                                           end
                                                         else
@@ -402,12 +401,11 @@ module Org::Antlr
             end
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
     typesig { [] }
-    # 
     # protected void checkForInvalidArguments(String[] args, BitSet cmdLineArgValid) {
     # // check for invalid command line args
     # for (int a = 0; a < args.length; a++) {
@@ -434,7 +432,7 @@ module Org::Antlr
             # System.out.println("output: "+outputFiles);
             # System.out.println("dependents: "+dependents);
             System.out.println(dep.get_dependencies)
-            ((i += 1) - 1)
+            i += 1
             next
           end
           grammar = get_root_grammar(grammar_file_name)
@@ -456,8 +454,8 @@ module Org::Antlr
             System.out.println(report.get_analysis_timeout_report)
           end
           if (@profile)
-            report_ = GrammarReport.new(grammar)
-            Stats.write_report(GrammarReport::GRAMMAR_STATS_FILENAME, report_.to_notify_string)
+            report = GrammarReport.new(grammar)
+            Stats.write_report(GrammarReport::GRAMMAR_STATS_FILENAME, report.to_notify_string)
           end
           # now handle the lexer if one was created for a merged spec
           lexer_grammar_str = grammar.get_lexer_grammar
@@ -500,14 +498,14 @@ module Org::Antlr
           end
         rescue IOException => e
           if (exception_when_writing_lexer_file)
-            ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, lexer_grammar_file_name, e_)
+            ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, lexer_grammar_file_name, e)
           else
             ErrorManager.error(ErrorManager::MSG_CANNOT_OPEN_FILE, grammar_file_name)
           end
         rescue Exception => e
-          ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, grammar_file_name, e__)
+          ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, grammar_file_name, e)
         end
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -563,7 +561,7 @@ module Org::Antlr
             # already processing this one
             generate_recognizer(delegate)
           end
-          ((i += 1) - 1)
+          i += 1
         end
       end
     end
@@ -574,7 +572,7 @@ module Org::Antlr
       while d <= g.get_number_of_decisions
         dfa = g.get_lookahead_dfa(d)
         if ((dfa).nil?)
-          ((d += 1) - 1)
+          d += 1
           next # not there for some reason, ignore
         end
         dot_generator = DOTGenerator.new(g)
@@ -588,7 +586,7 @@ module Org::Antlr
         rescue IOException => ioe
           ErrorManager.error(ErrorManager::MSG_CANNOT_GEN_DOT_FILE, dot_file_name, ioe)
         end
-        ((d += 1) - 1)
+        d += 1
       end
     end
     

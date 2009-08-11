@@ -1,6 +1,5 @@
 require "rjava"
  # $ANTLR 2.7.7 (2006-01-29): "define.g" -> "DefineGrammarItemsWalker.java"$
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -178,139 +177,57 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LEXER_GRAMMAR
-            __t3 = _t
-            tmp1_ast_in = _t
-            match(_t, LEXER_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::LEXER
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t3
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t4 = _t
-            tmp2_ast_in = _t
-            match(_t, PARSER_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::PARSER
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t4
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t5 = _t
-            tmp3_ast_in = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::TREE_PARSER
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6 = _t
-            tmp4_ast_in = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::COMBINED
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when PARSER_GRAMMAR
-            __t4_ = _t
-            tmp2_ast_in_ = _t
-            match(_t, PARSER_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::PARSER
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t4_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t5_ = _t
-            tmp3_ast_in_ = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::TREE_PARSER
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6_ = _t
-            tmp4_ast_in_ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::COMBINED
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_GRAMMAR
-            __t5__ = _t
-            tmp3_ast_in__ = _t
-            match(_t, TREE_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::TREE_PARSER
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t5__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t6__ = _t
-            tmp4_ast_in__ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::COMBINED
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when COMBINED_GRAMMAR
-            __t6___ = _t
-            tmp4_ast_in___ = _t
-            match(_t, COMBINED_GRAMMAR)
-            _t = _t.get_first_child
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.attr_type = Grammar::COMBINED
-            end
-            grammar_spec(_t)
-            _t = self.attr__ret_tree
-            _t = __t6___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when LEXER_GRAMMAR
+          __t3 = _t
+          tmp1_ast_in = _t
+          match(_t, LEXER_GRAMMAR)
+          _t = _t.get_first_child
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            @grammar.attr_type = Grammar::LEXER
           end
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t3
+          _t = _t.get_next_sibling
+        when PARSER_GRAMMAR
+          __t4 = _t
+          tmp2_ast_in = _t
+          match(_t, PARSER_GRAMMAR)
+          _t = _t.get_first_child
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            @grammar.attr_type = Grammar::PARSER
+          end
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t4
+          _t = _t.get_next_sibling
+        when TREE_GRAMMAR
+          __t5 = _t
+          tmp3_ast_in = _t
+          match(_t, TREE_GRAMMAR)
+          _t = _t.get_first_child
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            @grammar.attr_type = Grammar::TREE_PARSER
+          end
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t5
+          _t = _t.get_next_sibling
+        when COMBINED_GRAMMAR
+          __t6 = _t
+          tmp4_ast_in = _t
+          match(_t, COMBINED_GRAMMAR)
+          _t = _t.get_first_child
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            @grammar.attr_type = Grammar::COMBINED
+          end
+          grammar_spec(_t)
+          _t = self.attr__ret_tree
+          _t = __t6
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((self.attr_input_state.attr_guessing).equal?(0))
           finish
@@ -343,78 +260,50 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when DOC_COMMENT
-            cmt = _t
-            match(_t, DOC_COMMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when DOC_COMMENT
+          cmt = _t
+          match(_t, DOC_COMMENT)
+          _t = _t.get_next_sibling
+        when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              options_start_token = (_t).get_token
-            end
-            options_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when OPTIONS
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            options_start_token = (_t).get_token
           end
+          options_spec(_t)
+          _t = self.attr__ret_tree
+        when TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when IMPORT
-            delegate_grammars(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKENS, RULE, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when IMPORT
+          delegate_grammars(_t)
+          _t = self.attr__ret_tree
+        when TOKENS, RULE, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when TOKENS
-            tokens_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RULE, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when TOKENS
+          tokens_spec(_t)
+          _t = self.attr__ret_tree
+        when RULE, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -430,20 +319,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when AMPERSAND
-            actions(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RULE
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when AMPERSAND
+          actions(_t)
+          _t = self.attr__ret_tree
+        when RULE
+        else
+          raise NoViableAltException.new(_t)
         end
         rules(_t)
         _t = self.attr__ret_tree
@@ -528,11 +410,11 @@ module Org::Antlr::Tool
         match(_t, IMPORT)
         _t = _t.get_first_child
         _cnt28 = 0
-        begin
-          if ((_t).nil?)
-            _t = ASTNULL
-          end
-          catch(:break_case) do
+        catch(:break__loop28) do
+          begin
+            if ((_t).nil?)
+              _t = ASTNULL
+            end
             case (_t.get_type)
             when ASSIGN
               __t27 = _t
@@ -547,36 +429,20 @@ module Org::Antlr::Tool
               _t = _t.get_next_sibling
               _t = __t27
               _t = _t.get_next_sibling
-              throw :break_case, :thrown
+            when ID
               tmp11_ast_in = _t
               match(_t, ID)
               _t = _t.get_next_sibling
-              throw :break_case, :thrown
-              if (_cnt28 >= 1)
-                break
-              else
-                raise NoViableAltException.new(_t)
-              end
-            when ID
-              tmp11_ast_in_ = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              throw :break_case, :thrown
-              if (_cnt28 >= 1)
-                break
-              else
-                raise NoViableAltException.new(_t)
-              end
             else
               if (_cnt28 >= 1)
-                break
+                throw :break__loop28, :thrown
               else
                 raise NoViableAltException.new(_t)
               end
             end
-          end == :thrown or break
-          ((_cnt28 += 1) - 1)
-        end while (true)
+            _cnt28 += 1
+          end while (true)
+        end
         _t = __t25
         _t = _t.get_next_sibling
       rescue RecognitionException => ex
@@ -616,7 +482,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt32 += 1) - 1)
+          _cnt32 += 1
         end while (true)
         _t = __t30
         _t = _t.get_next_sibling
@@ -653,7 +519,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt19 += 1) - 1)
+          _cnt19 += 1
         end while (true)
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -688,7 +554,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt38 += 1) - 1)
+          _cnt38 += 1
         end while (true)
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -726,45 +592,30 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ID
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a1 = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              scope = (id1.get_text).to_s
-              name_ast = id2
-              action_ast = a1
-            end
-            throw :break_case, :thrown
-            a2 = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              scope = (nil).to_s
-              name_ast = id1
-              action_ast = a2
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ACTION
-            a2 = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              scope = (nil).to_s
-              name_ast = id1
-              action_ast = a2
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when ID
+          id2 = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          a1 = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            scope = (id1.get_text).to_s
+            name_ast = id2
+            action_ast = a1
           end
+        when ACTION
+          a2 = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            scope = (nil).to_s
+            name_ast = id1
+            action_ast = a2
+          end
+        else
+          raise NoViableAltException.new(_t)
         end
         _t = __t21
         _t = _t.get_next_sibling
@@ -796,89 +647,38 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when TOKEN_REF
+          t = _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_next_sibling
+        when ASSIGN
+          __t34 = _t
+          tmp13_ast_in = _t
+          match(_t, ASSIGN)
+          _t = _t.get_first_child
+          t2 = _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_next_sibling
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when TOKEN_REF
-            t = _t
-            match(_t, TOKEN_REF)
+          when STRING_LITERAL
+            s = _t
+            match(_t, STRING_LITERAL)
             _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t34 = _t
-            tmp13_ast_in = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            t2 = _t
-            match(_t, TOKEN_REF)
+          when CHAR_LITERAL
+            c = _t
+            match(_t, CHAR_LITERAL)
             _t = _t.get_next_sibling
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when STRING_LITERAL
-                s = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t34
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ASSIGN
-            __t34_ = _t
-            tmp13_ast_in_ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            t2 = _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_next_sibling
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when STRING_LITERAL
-                s = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                c = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t34_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           else
             raise NoViableAltException.new(_t)
           end
+          _t = __t34
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -919,20 +719,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
-            mod = (modifier(_t)).to_s
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ARG
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
+          mod = (modifier(_t)).to_s
+          _t = self.attr__ret_tree
+        when ARG
+        else
+          raise NoViableAltException.new(_t)
         end
         __t42 = _t
         tmp15_ast_in = _t
@@ -941,21 +734,14 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ARG_ACTION
-            args = _t
-            match(_t, ARG_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ARG_ACTION
+          args = _t
+          match(_t, ARG_ACTION)
+          _t = _t.get_next_sibling
+        when 3
+        else
+          raise NoViableAltException.new(_t)
         end
         _t = __t42
         _t = _t.get_next_sibling
@@ -966,41 +752,27 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ARG_ACTION
-            ret = _t
-            match(_t, ARG_ACTION)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ARG_ACTION
+          ret = _t
+          match(_t, ARG_ACTION)
+          _t = _t.get_next_sibling
+        when 3
+        else
+          raise NoViableAltException.new(_t)
         end
         _t = __t44
         _t = _t.get_next_sibling
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            options_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          options_spec(_t)
+          _t = self.attr__ret_tree
+        when BLOCK, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((self.attr_input_state.attr_guessing).equal?(0))
           name = (id.get_text).to_s
@@ -1025,20 +797,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when SCOPE
-            rule_scope_spec(_t, r)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when SCOPE
+          rule_scope_spec(_t, r)
+          _t = self.attr__ret_tree
+        when BLOCK, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1060,20 +825,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch, LITERAL_finally
-            exception_group(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when EOR
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_catch, LITERAL_finally
+          exception_group(_t)
+          _t = self.attr__ret_tree
+        when EOR
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp17_ast_in = _t
         match(_t, EOR)
@@ -1108,59 +866,25 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_protected
-            tmp18_ast_in = _t
-            match(_t, LITERAL_protected)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp19_ast_in = _t
-            match(_t, LITERAL_public)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp20_ast_in = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp21_ast_in = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LITERAL_public
-            tmp19_ast_in_ = _t
-            match(_t, LITERAL_public)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp20_ast_in_ = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp21_ast_in_ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LITERAL_private
-            tmp20_ast_in__ = _t
-            match(_t, LITERAL_private)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp21_ast_in__ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when FRAGMENT
-            tmp21_ast_in___ = _t
-            match(_t, FRAGMENT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_protected
+          tmp18_ast_in = _t
+          match(_t, LITERAL_protected)
+          _t = _t.get_next_sibling
+        when LITERAL_public
+          tmp19_ast_in = _t
+          match(_t, LITERAL_public)
+          _t = _t.get_next_sibling
+        when LITERAL_private
+          tmp20_ast_in = _t
+          match(_t, LITERAL_private)
+          _t = _t.get_next_sibling
+        when FRAGMENT
+          tmp21_ast_in = _t
+          match(_t, FRAGMENT)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -1190,26 +914,19 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ACTION
-            attrs = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              r.attr_rule_scope = @grammar.create_rule_scope(r.attr_name, attrs.attr_token)
-              r.attr_rule_scope.attr_is_dynamic_rule_scope = true
-              r.attr_rule_scope.add_attributes(attrs.get_text, Character.new(?;.ord))
-            end
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when 3, ID
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
+        case (_t.get_type)
+        when ACTION
+          attrs = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            r.attr_rule_scope = @grammar.create_rule_scope(r.attr_name, attrs.attr_token)
+            r.attr_rule_scope.attr_is_dynamic_rule_scope = true
+            r.attr_rule_scope.add_attributes(attrs.get_text, Character.new(?;.ord))
           end
+        when 3, ID
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1289,7 +1006,7 @@ module Org::Antlr::Tool
     typesig { [AST] }
     def block(_t)
       block_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      ((@block_level += 1) - 1)
+      @block_level += 1
       if ((@block_level).equal?(1))
         @outer_alt_num = 1
       end
@@ -1302,20 +1019,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            options_spec(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ALT, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          options_spec(_t)
+          _t = self.attr__ret_tree
+        when ALT, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1340,7 +1050,7 @@ module Org::Antlr::Tool
             _t = self.attr__ret_tree
             if ((self.attr_input_state.attr_guessing).equal?(0))
               if ((@block_level).equal?(1))
-                ((@outer_alt_num += 1) - 1)
+                @outer_alt_num += 1
               end
             end
           else
@@ -1350,7 +1060,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt79 += 1) - 1)
+          _cnt79 += 1
         end while (true)
         tmp24_ast_in = _t
         match(_t, EOB)
@@ -1358,7 +1068,7 @@ module Org::Antlr::Tool
         _t = __t74
         _t = _t.get_next_sibling
         if ((self.attr_input_state.attr_guessing).equal?(0))
-          ((@block_level -= 1) + 1)
+          @block_level -= 1
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -1381,57 +1091,41 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch
-            _cnt88 = 0
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(LITERAL_catch)))
-                exception_handler(_t)
-                _t = self.attr__ret_tree
-              else
-                if (_cnt88 >= 1)
-                  break
-                else
-                  raise NoViableAltException.new(_t)
-                end
-              end
-              ((_cnt88 += 1) - 1)
-            end while (true)
+        case (_t.get_type)
+        when LITERAL_catch
+          _cnt88 = 0
+          begin
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when LITERAL_finally
-                finally_clause(_t)
-                _t = self.attr__ret_tree
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when EOR
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
+            if (((_t.get_type).equal?(LITERAL_catch)))
+              exception_handler(_t)
+              _t = self.attr__ret_tree
+            else
+              if (_cnt88 >= 1)
+                break
               else
                 raise NoViableAltException.new(_t)
               end
             end
-            throw :break_case, :thrown
-            finally_clause(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+            _cnt88 += 1
+          end while (true)
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
           when LITERAL_finally
             finally_clause(_t)
             _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+          when EOR
           else
             raise NoViableAltException.new(_t)
           end
+        when LITERAL_finally
+          finally_clause(_t)
+          _t = self.attr__ret_tree
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -1463,20 +1157,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
-            modifier(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ARG
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
+          modifier(_t)
+          _t = self.attr__ret_tree
+        when ARG
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp26_ast_in = _t
         match(_t, ARG)
@@ -1487,40 +1174,26 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            tmp28_ast_in = _t
-            match(_t, OPTIONS)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, SCOPE, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          tmp28_ast_in = _t
+          match(_t, OPTIONS)
+          _t = _t.get_next_sibling
+        when BLOCK, SCOPE, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when SCOPE
-            tmp29_ast_in = _t
-            match(_t, SCOPE)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, AMPERSAND
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when SCOPE
+          tmp29_ast_in = _t
+          match(_t, SCOPE)
+          _t = _t.get_next_sibling
+        when BLOCK, AMPERSAND
+        else
+          raise NoViableAltException.new(_t)
         end
         begin
           if ((_t).nil?)
@@ -1541,21 +1214,14 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONS
-            tmp32_ast_in = _t
-            match(_t, OPTIONS)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ALT
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONS
+          tmp32_ast_in = _t
+          match(_t, OPTIONS)
+          _t = _t.get_next_sibling
+        when ALT
+        else
+          raise NoViableAltException.new(_t)
         end
         _cnt63 = 0
         begin
@@ -1579,7 +1245,7 @@ module Org::Antlr::Tool
               end
             end while (true)
             if ((self.attr_input_state.attr_guessing).equal?(0))
-              ((n += 1) - 1)
+              n += 1
             end
           else
             if (_cnt63 >= 1)
@@ -1588,7 +1254,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt63 += 1) - 1)
+          _cnt63 += 1
         end while (true)
         tmp35_ast_in = _t
         match(_t, EOB)
@@ -1598,20 +1264,13 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LITERAL_catch, LITERAL_finally
-            exception_group(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when EOR
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LITERAL_catch, LITERAL_finally
+          exception_group(_t)
+          _t = self.attr__ret_tree
+        when EOR
+        else
+          raise NoViableAltException.new(_t)
         end
         tmp36_ast_in = _t
         match(_t, EOR)
@@ -1699,7 +1358,7 @@ module Org::Antlr::Tool
               raise NoViableAltException.new(_t)
             end
           end
-          ((_cnt85 += 1) - 1)
+          _cnt85 += 1
         end while (true)
         tmp38_ast_in = _t
         match(_t, EOA)
@@ -1741,22 +1400,15 @@ module Org::Antlr::Tool
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when SEMPRED
-                pred = _t
-                match(_t, SEMPRED)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ALT, TEMPLATE, ACTION, ETC
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end == :thrown or break
+            case (_t.get_type)
+            when SEMPRED
+              pred = _t
+              match(_t, SEMPRED)
+              _t = _t.get_next_sibling
+            when ALT, TEMPLATE, ACTION, ETC
+            else
+              raise NoViableAltException.new(_t)
+            end
             rewrite_alternative(_t)
             _t = self.attr__ret_tree
             _t = __t129
@@ -1798,1385 +1450,166 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ROOT
-            __t95 = _t
-            tmp40_ast_in = _t
-            match(_t, ROOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t95
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t96 = _t
-            tmp41_ast_in = _t
-            match(_t, BANG)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t96
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t97 = _t
-            tmp42_ast_in = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t97
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98 = _t
-            tmp43_ast_in = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t98
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t99 = _t
-            tmp44_ast_in = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t99
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t100 = _t
-            tmp45_ast_in = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
+        case (_t.get_type)
+        when ROOT
+          __t95 = _t
+          tmp40_ast_in = _t
+          match(_t, ROOT)
+          _t = _t.get_first_child
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t95
+          _t = _t.get_next_sibling
+        when BANG
+          __t96 = _t
+          tmp41_ast_in = _t
+          match(_t, BANG)
+          _t = _t.get_first_child
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t96
+          _t = _t.get_next_sibling
+        when DOT, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF
+          atom(_t, nil)
+          _t = self.attr__ret_tree
+        when NOT
+          __t97 = _t
+          tmp42_ast_in = _t
+          match(_t, NOT)
+          _t = _t.get_first_child
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t97
+          _t = _t.get_next_sibling
+        when RANGE
+          __t98 = _t
+          tmp43_ast_in = _t
+          match(_t, RANGE)
+          _t = _t.get_first_child
+          atom(_t, nil)
+          _t = self.attr__ret_tree
+          atom(_t, nil)
+          _t = self.attr__ret_tree
+          _t = __t98
+          _t = _t.get_next_sibling
+        when CHAR_RANGE
+          __t99 = _t
+          tmp44_ast_in = _t
+          match(_t, CHAR_RANGE)
+          _t = _t.get_first_child
+          atom(_t, nil)
+          _t = self.attr__ret_tree
+          atom(_t, nil)
+          _t = self.attr__ret_tree
+          _t = __t99
+          _t = _t.get_next_sibling
+        when ASSIGN
+          __t100 = _t
+          tmp45_ast_in = _t
+          match(_t, ASSIGN)
+          _t = _t.get_first_child
+          id = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          el = (_t).equal?(ASTNULL) ? nil : _t
+          element(_t)
+          _t = self.attr__ret_tree
+          _t = __t100
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
+              el = el.get_first_child
+            end
+            if ((el.get_type).equal?(RULE_REF))
+              @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
+            else
+              @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
             end
-            throw :break_case, :thrown
-            __t101 = _t
-            tmp46_ast_in = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102 = _t
-            tmp47_ast_in = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BANG
-            __t96_ = _t
-            tmp41_ast_in_ = _t
-            match(_t, BANG)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t96_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t97_ = _t
-            tmp42_ast_in_ = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t97_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98_ = _t
-            tmp43_ast_in_ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t98_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t99_ = _t
-            tmp44_ast_in_ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t99_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t100_ = _t
-            tmp45_ast_in_ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100_
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
-            end
-            throw :break_case, :thrown
-            __t101_ = _t
-            tmp46_ast_in_ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102_ = _t
-            tmp47_ast_in_ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in_ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in_.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in_)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in_ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in_ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in_ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in_.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in_)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in_ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when DOT, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, WILDCARD, RULE_REF
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t97__ = _t
-            tmp42_ast_in__ = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t97__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98__ = _t
-            tmp43_ast_in__ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t98__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t99__ = _t
-            tmp44_ast_in__ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t99__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t100__ = _t
-            tmp45_ast_in__ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100__
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
-            end
-            throw :break_case, :thrown
-            __t101__ = _t
-            tmp46_ast_in__ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102__ = _t
-            tmp47_ast_in__ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in__ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in__.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in__)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in__ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in__ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in__ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in__.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in__)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in__ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when NOT
-            __t97___ = _t
-            tmp42_ast_in___ = _t
-            match(_t, NOT)
-            _t = _t.get_first_child
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t97___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t98___ = _t
-            tmp43_ast_in___ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t98___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t99___ = _t
-            tmp44_ast_in___ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t99___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t100___ = _t
-            tmp45_ast_in___ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100___
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
-            end
-            throw :break_case, :thrown
-            __t101___ = _t
-            tmp46_ast_in___ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102___ = _t
-            tmp47_ast_in___ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in___ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in___.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in___)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in___ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in___ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in___ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in___.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in___)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in___ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when RANGE
-            __t98____ = _t
-            tmp43_ast_in____ = _t
-            match(_t, RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t98____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t99____ = _t
-            tmp44_ast_in____ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t99____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t100____ = _t
-            tmp45_ast_in____ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100____
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
-            end
-            throw :break_case, :thrown
-            __t101____ = _t
-            tmp46_ast_in____ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102____ = _t
-            tmp47_ast_in____ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in____ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in____.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in____)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in____ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in____ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in____ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in____.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in____)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in____ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_RANGE
-            __t99_____ = _t
-            tmp44_ast_in_____ = _t
-            match(_t, CHAR_RANGE)
-            _t = _t.get_first_child
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            atom(_t, nil)
-            _t = self.attr__ret_tree
-            _t = __t99_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t100_____ = _t
-            tmp45_ast_in_____ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100_____
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
-            end
-            throw :break_case, :thrown
-            __t101_____ = _t
-            tmp46_ast_in_____ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102_____ = _t
-            tmp47_ast_in_____ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in_____ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in_____.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in_____)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in_____ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in_____ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in_____ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in_____.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in_____)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in_____ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ASSIGN
-            __t100______ = _t
-            tmp45_ast_in______ = _t
-            match(_t, ASSIGN)
-            _t = _t.get_first_child
-            id = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            el = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            _t = __t100______
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((el.get_type).equal?(ANTLRParser::ROOT) || (el.get_type).equal?(ANTLRParser::BANG))
-                el = el.get_first_child
-              end
-              if ((el.get_type).equal?(RULE_REF))
-                @grammar.define_rule_ref_label(@current_rule_name, id.get_token, el)
-              else
-                @grammar.define_token_ref_label(@current_rule_name, id.get_token, el)
-              end
-            end
-            throw :break_case, :thrown
-            __t101______ = _t
-            tmp46_ast_in______ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102______ = _t
-            tmp47_ast_in______ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in______ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in______.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in______)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in______ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in______ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in______ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in______.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in______)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in______ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when PLUS_ASSIGN
-            __t101_______ = _t
-            tmp46_ast_in_______ = _t
-            match(_t, PLUS_ASSIGN)
-            _t = _t.get_first_child
-            id2 = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            a2 = (_t).equal?(ASTNULL) ? nil : _t
-            element(_t)
-            _t = self.attr__ret_tree
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
-                a2 = a2.get_first_child
-              end
-              if ((a2.get_type).equal?(RULE_REF))
-                @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
-              else
-                @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
-              end
-            end
-            _t = __t101_______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102_______ = _t
-            tmp47_ast_in_______ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102_______
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in_______ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in_______.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in_______)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in_______ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in_______ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in_______ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in_______.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in_______)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in_______ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BLOCK, OPTIONAL, CLOSURE, POSITIVE_CLOSURE
-            ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102________ = _t
-            tmp47_ast_in________ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102________
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in________)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_BEGIN
-            tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t102_________ = _t
-            tmp47_ast_in_________ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102_________
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in_________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in_________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in_________)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in_________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in_________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in_________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in_________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in_________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in_________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when SYNPRED
-            __t102__________ = _t
-            tmp47_ast_in__________ = _t
-            match(_t, SYNPRED)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t102__________
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in__________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in__________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in__________)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in__________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in__________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in__________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in__________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in__________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in__________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ACTION
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in___________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in___________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in___________)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in___________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in___________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in___________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in___________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in___________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in___________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when FORCED_ACTION
-            act2 = _t
-            match(_t, FORCED_ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act2.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act2)
-            end
-            throw :break_case, :thrown
-            tmp48_ast_in____________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in____________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in____________)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in____________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in____________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in____________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in____________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in____________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in____________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when SEMPRED
-            tmp48_ast_in_____________ = _t
-            match(_t, SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp48_ast_in_____________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp48_ast_in_____________)
-            end
-            throw :break_case, :thrown
-            tmp49_ast_in_____________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in_____________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in_____________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in_____________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in_____________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in_____________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when SYN_SEMPRED
-            tmp49_ast_in______________ = _t
-            match(_t, SYN_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp50_ast_in______________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in______________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in______________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in______________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in______________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BACKTRACK_SEMPRED
-            tmp50_ast_in_______________ = _t
-            match(_t, BACKTRACK_SEMPRED)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp51_ast_in_______________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in_______________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in_______________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in_______________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when GATED_SEMPRED
-            tmp51_ast_in________________ = _t
-            match(_t, GATED_SEMPRED)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp51_ast_in________________.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp51_ast_in________________)
-            end
-            throw :break_case, :thrown
-            tmp52_ast_in________________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when EPSILON
-            tmp52_ast_in_________________ = _t
-            match(_t, EPSILON)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
           end
+        when PLUS_ASSIGN
+          __t101 = _t
+          tmp46_ast_in = _t
+          match(_t, PLUS_ASSIGN)
+          _t = _t.get_first_child
+          id2 = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          a2 = (_t).equal?(ASTNULL) ? nil : _t
+          element(_t)
+          _t = self.attr__ret_tree
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if ((a2.get_type).equal?(ANTLRParser::ROOT) || (a2.get_type).equal?(ANTLRParser::BANG))
+              a2 = a2.get_first_child
+            end
+            if ((a2.get_type).equal?(RULE_REF))
+              @grammar.define_rule_list_label(@current_rule_name, id2.get_token, a2)
+            else
+              @grammar.define_token_list_label(@current_rule_name, id2.get_token, a2)
+            end
+          end
+          _t = __t101
+          _t = _t.get_next_sibling
+        when BLOCK, OPTIONAL, CLOSURE, POSITIVE_CLOSURE
+          ebnf(_t)
+          _t = self.attr__ret_tree
+        when TREE_BEGIN
+          tree(_t)
+          _t = self.attr__ret_tree
+        when SYNPRED
+          __t102 = _t
+          tmp47_ast_in = _t
+          match(_t, SYNPRED)
+          _t = _t.get_first_child
+          block(_t)
+          _t = self.attr__ret_tree
+          _t = __t102
+          _t = _t.get_next_sibling
+        when ACTION
+          act = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            act.attr_outer_alt_num = @outer_alt_num
+            track_inline_action(act)
+          end
+        when FORCED_ACTION
+          act2 = _t
+          match(_t, FORCED_ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            act2.attr_outer_alt_num = @outer_alt_num
+            track_inline_action(act2)
+          end
+        when SEMPRED
+          tmp48_ast_in = _t
+          match(_t, SEMPRED)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            tmp48_ast_in.attr_outer_alt_num = @outer_alt_num
+            track_inline_action(tmp48_ast_in)
+          end
+        when SYN_SEMPRED
+          tmp49_ast_in = _t
+          match(_t, SYN_SEMPRED)
+          _t = _t.get_next_sibling
+        when BACKTRACK_SEMPRED
+          tmp50_ast_in = _t
+          match(_t, BACKTRACK_SEMPRED)
+          _t = _t.get_next_sibling
+        when GATED_SEMPRED
+          tmp51_ast_in = _t
+          match(_t, GATED_SEMPRED)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            tmp51_ast_in.attr_outer_alt_num = @outer_alt_num
+            track_inline_action(tmp51_ast_in)
+          end
+        when EPSILON
+          tmp52_ast_in = _t
+          match(_t, EPSILON)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -3268,306 +1701,105 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when RULE_REF
+          __t121 = _t
+          rr = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, RULE_REF)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when RULE_REF
-            __t121 = _t
-            rr = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, RULE_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                rarg = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t121
+          when ARG_ACTION
+            rarg = _t
+            match(_t, ARG_ACTION)
             _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              @grammar.alt_references_rule(@current_rule_name, scope, rr, @outer_alt_num)
-              if (!(rarg).nil?)
-                rarg.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(rarg)
-              end
-            end
-            throw :break_case, :thrown
-            __t123 = _t
-            t = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                targ = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t123
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(targ).nil?)
-                targ.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(targ)
-              end
-              if ((@grammar.attr_type).equal?(Grammar::LEXER))
-                @grammar.alt_references_rule(@current_rule_name, scope, t, @outer_alt_num)
-              else
-                @grammar.alt_references_token_id(@current_rule_name, t, @outer_alt_num)
-              end
-            end
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule_ = @grammar.get_rule(@current_rule_name)
-                if (!(rule_).nil?)
-                  rule_.track_token_reference_in_alt(c, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule__ = @grammar.get_rule(@current_rule_name)
-                if (!(rule__).nil?)
-                  rule__.track_token_reference_in_alt(s, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            tmp58_ast_in = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t125 = _t
-            tmp59_ast_in = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp60_ast_in = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t, tmp60_ast_in)
-            _t = self.attr__ret_tree
-            _t = __t125
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TOKEN_REF
-            __t123_ = _t
-            t = (_t).equal?(ASTNULL) ? nil : _t
-            match(_t, TOKEN_REF)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ARG_ACTION
-                targ = _t
-                match(_t, ARG_ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t123_
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(targ).nil?)
-                targ.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(targ)
-              end
-              if ((@grammar.attr_type).equal?(Grammar::LEXER))
-                @grammar.alt_references_rule(@current_rule_name, scope, t, @outer_alt_num)
-              else
-                @grammar.alt_references_token_id(@current_rule_name, t, @outer_alt_num)
-              end
-            end
-            throw :break_case, :thrown
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule___ = @grammar.get_rule(@current_rule_name)
-                if (!(rule___).nil?)
-                  rule___.track_token_reference_in_alt(c, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule____ = @grammar.get_rule(@current_rule_name)
-                if (!(rule____).nil?)
-                  rule____.track_token_reference_in_alt(s, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            tmp58_ast_in_ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t125_ = _t
-            tmp59_ast_in_ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp60_ast_in_ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t, tmp60_ast_in_)
-            _t = self.attr__ret_tree
-            _t = __t125_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CHAR_LITERAL
-            c = _t
-            match(_t, CHAR_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule_____ = @grammar.get_rule(@current_rule_name)
-                if (!(rule_____).nil?)
-                  rule_____.track_token_reference_in_alt(c, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule______ = @grammar.get_rule(@current_rule_name)
-                if (!(rule______).nil?)
-                  rule______.track_token_reference_in_alt(s, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            tmp58_ast_in__ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t125__ = _t
-            tmp59_ast_in__ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp60_ast_in__ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t, tmp60_ast_in__)
-            _t = self.attr__ret_tree
-            _t = __t125__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL
-            s = _t
-            match(_t, STRING_LITERAL)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(@grammar.attr_type).equal?(Grammar::LEXER))
-                rule_______ = @grammar.get_rule(@current_rule_name)
-                if (!(rule_______).nil?)
-                  rule_______.track_token_reference_in_alt(s, @outer_alt_num)
-                end
-              end
-            end
-            throw :break_case, :thrown
-            tmp58_ast_in___ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t125___ = _t
-            tmp59_ast_in___ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp60_ast_in___ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t, tmp60_ast_in___)
-            _t = self.attr__ret_tree
-            _t = __t125___
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when WILDCARD
-            tmp58_ast_in____ = _t
-            match(_t, WILDCARD)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t125____ = _t
-            tmp59_ast_in____ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp60_ast_in____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t, tmp60_ast_in____)
-            _t = self.attr__ret_tree
-            _t = __t125____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when DOT
-            __t125_____ = _t
-            tmp59_ast_in_____ = _t
-            match(_t, DOT)
-            _t = _t.get_first_child
-            tmp60_ast_in_____ = _t
-            match(_t, ID)
-            _t = _t.get_next_sibling
-            atom(_t, tmp60_ast_in_____)
-            _t = self.attr__ret_tree
-            _t = __t125_____
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
+          when 3
           else
             raise NoViableAltException.new(_t)
           end
+          _t = __t121
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            @grammar.alt_references_rule(@current_rule_name, scope, rr, @outer_alt_num)
+            if (!(rarg).nil?)
+              rarg.attr_outer_alt_num = @outer_alt_num
+              track_inline_action(rarg)
+            end
+          end
+        when TOKEN_REF
+          __t123 = _t
+          t = (_t).equal?(ASTNULL) ? nil : _t
+          match(_t, TOKEN_REF)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when ARG_ACTION
+            targ = _t
+            match(_t, ARG_ACTION)
+            _t = _t.get_next_sibling
+          when 3
+          else
+            raise NoViableAltException.new(_t)
+          end
+          _t = __t123
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if (!(targ).nil?)
+              targ.attr_outer_alt_num = @outer_alt_num
+              track_inline_action(targ)
+            end
+            if ((@grammar.attr_type).equal?(Grammar::LEXER))
+              @grammar.alt_references_rule(@current_rule_name, scope, t, @outer_alt_num)
+            else
+              @grammar.alt_references_token_id(@current_rule_name, t, @outer_alt_num)
+            end
+          end
+        when CHAR_LITERAL
+          c = _t
+          match(_t, CHAR_LITERAL)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if (!(@grammar.attr_type).equal?(Grammar::LEXER))
+              rule_ = @grammar.get_rule(@current_rule_name)
+              if (!(rule_).nil?)
+                rule_.track_token_reference_in_alt(c, @outer_alt_num)
+              end
+            end
+          end
+        when STRING_LITERAL
+          s = _t
+          match(_t, STRING_LITERAL)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if (!(@grammar.attr_type).equal?(Grammar::LEXER))
+              rule_ = @grammar.get_rule(@current_rule_name)
+              if (!(rule_).nil?)
+                rule_.track_token_reference_in_alt(s, @outer_alt_num)
+              end
+            end
+          end
+        when WILDCARD
+          tmp58_ast_in = _t
+          match(_t, WILDCARD)
+          _t = _t.get_next_sibling
+        when DOT
+          __t125 = _t
+          tmp59_ast_in = _t
+          match(_t, DOT)
+          _t = _t.get_first_child
+          tmp60_ast_in = _t
+          match(_t, ID)
+          _t = _t.get_next_sibling
+          atom(_t, tmp60_ast_in)
+          _t = self.attr__ret_tree
+          _t = __t125
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -3590,165 +1822,62 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when BLOCK
-            block(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            __t106 = _t
-            tmp61_ast_in = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            block(_t)
-            _t = self.attr__ret_tree
-            _t = __t106
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            syn_pred_matched105 = false
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE))))
-              __t105 = _t
-              syn_pred_matched105 = true
-              ((self.attr_input_state.attr_guessing += 1) - 1)
-              begin
-                dot_loop(_t)
-                _t = self.attr__ret_tree
-              rescue RecognitionException => pe
-                syn_pred_matched105 = false
-              end
-              _t = __t105
-              ((self.attr_input_state.attr_guessing -= 1) + 1)
-            end
-            if (syn_pred_matched105)
+        case (_t.get_type)
+        when BLOCK
+          block(_t)
+          _t = self.attr__ret_tree
+        when OPTIONAL
+          __t106 = _t
+          tmp61_ast_in = _t
+          match(_t, OPTIONAL)
+          _t = _t.get_first_child
+          block(_t)
+          _t = self.attr__ret_tree
+          _t = __t106
+          _t = _t.get_next_sibling
+        else
+          syn_pred_matched105 = false
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          if ((((_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE))))
+            __t105 = _t
+            syn_pred_matched105 = true
+            self.attr_input_state.attr_guessing += 1
+            begin
               dot_loop(_t)
               _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(CLOSURE)))
-                __t107 = _t
-                tmp62_ast_in = _t
-                match(_t, CLOSURE)
-                _t = _t.get_first_child
-                block(_t)
-                _t = self.attr__ret_tree
-                _t = __t107
-                _t = _t.get_next_sibling
-              else
-                if (((_t.get_type).equal?(POSITIVE_CLOSURE)))
-                  __t108 = _t
-                  tmp63_ast_in = _t
-                  match(_t, POSITIVE_CLOSURE)
-                  _t = _t.get_first_child
-                  block(_t)
-                  _t = self.attr__ret_tree
-                  _t = __t108
-                  _t = _t.get_next_sibling
-                else
-                  raise NoViableAltException.new(_t)
-                end
-              end
+            rescue RecognitionException => pe
+              syn_pred_matched105 = false
             end
-          when OPTIONAL
-            __t106_ = _t
-            tmp61_ast_in_ = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            block(_t)
+            _t = __t105
+            self.attr_input_state.attr_guessing -= 1
+          end
+          if (syn_pred_matched105)
+            dot_loop(_t)
             _t = self.attr__ret_tree
-            _t = __t106_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            syn_pred_matched105_ = false
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE))))
-              __t105_ = _t
-              syn_pred_matched105_ = true
-              ((self.attr_input_state.attr_guessing += 1) - 1)
-              begin
-                dot_loop(_t)
-                _t = self.attr__ret_tree
-              rescue RecognitionException => pe
-                syn_pred_matched105_ = false
-              end
-              _t = __t105_
-              ((self.attr_input_state.attr_guessing -= 1) + 1)
-            end
-            if (syn_pred_matched105_)
-              dot_loop(_t)
-              _t = self.attr__ret_tree
-            else
-              if (((_t.get_type).equal?(CLOSURE)))
-                __t107_ = _t
-                tmp62_ast_in_ = _t
-                match(_t, CLOSURE)
-                _t = _t.get_first_child
-                block(_t)
-                _t = self.attr__ret_tree
-                _t = __t107_
-                _t = _t.get_next_sibling
-              else
-                if (((_t.get_type).equal?(POSITIVE_CLOSURE)))
-                  __t108_ = _t
-                  tmp63_ast_in_ = _t
-                  match(_t, POSITIVE_CLOSURE)
-                  _t = _t.get_first_child
-                  block(_t)
-                  _t = self.attr__ret_tree
-                  _t = __t108_
-                  _t = _t.get_next_sibling
-                else
-                  raise NoViableAltException.new(_t)
-                end
-              end
-            end
           else
-            syn_pred_matched105__ = false
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            if ((((_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE))))
-              __t105__ = _t
-              syn_pred_matched105__ = true
-              ((self.attr_input_state.attr_guessing += 1) - 1)
-              begin
-                dot_loop(_t)
-                _t = self.attr__ret_tree
-              rescue RecognitionException => pe
-                syn_pred_matched105__ = false
-              end
-              _t = __t105__
-              ((self.attr_input_state.attr_guessing -= 1) + 1)
-            end
-            if (syn_pred_matched105__)
-              dot_loop(_t)
+            if (((_t.get_type).equal?(CLOSURE)))
+              __t107 = _t
+              tmp62_ast_in = _t
+              match(_t, CLOSURE)
+              _t = _t.get_first_child
+              block(_t)
               _t = self.attr__ret_tree
+              _t = __t107
+              _t = _t.get_next_sibling
             else
-              if (((_t.get_type).equal?(CLOSURE)))
-                __t107__ = _t
-                tmp62_ast_in__ = _t
-                match(_t, CLOSURE)
+              if (((_t.get_type).equal?(POSITIVE_CLOSURE)))
+                __t108 = _t
+                tmp63_ast_in = _t
+                match(_t, POSITIVE_CLOSURE)
                 _t = _t.get_first_child
                 block(_t)
                 _t = self.attr__ret_tree
-                _t = __t107__
+                _t = __t108
                 _t = _t.get_next_sibling
               else
-                if (((_t.get_type).equal?(POSITIVE_CLOSURE)))
-                  __t108__ = _t
-                  tmp63_ast_in__ = _t
-                  match(_t, POSITIVE_CLOSURE)
-                  _t = _t.get_first_child
-                  block(_t)
-                  _t = self.attr__ret_tree
-                  _t = __t108__
-                  _t = _t.get_next_sibling
-                else
-                  raise NoViableAltException.new(_t)
-                end
+                raise NoViableAltException.new(_t)
               end
             end
           end
@@ -3813,42 +1942,27 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when CLOSURE
-            __t111 = _t
-            tmp65_ast_in = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            dot_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t111
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t112 = _t
-            tmp66_ast_in = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            dot_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t112
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when POSITIVE_CLOSURE
-            __t112_ = _t
-            tmp66_ast_in_ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            dot_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t112_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when CLOSURE
+          __t111 = _t
+          tmp65_ast_in = _t
+          match(_t, CLOSURE)
+          _t = _t.get_first_child
+          dot_block(_t)
+          _t = self.attr__ret_tree
+          _t = __t111
+          _t = _t.get_next_sibling
+        when POSITIVE_CLOSURE
+          __t112 = _t
+          tmp66_ast_in = _t
+          match(_t, POSITIVE_CLOSURE)
+          _t = _t.get_first_child
+          dot_block(_t)
+          _t = self.attr__ret_tree
+          _t = __t112
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
         if ((self.attr_input_state.attr_guessing).equal?(0))
           opts = HashMap.new
@@ -3920,27 +2034,17 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when ROOT
-            tmp72_ast_in = _t
-            match(_t, ROOT)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp73_ast_in = _t
-            match(_t, BANG)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when BANG
-            tmp73_ast_in_ = _t
-            match(_t, BANG)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when ROOT
+          tmp72_ast_in = _t
+          match(_t, ROOT)
+          _t = _t.get_next_sibling
+        when BANG
+          tmp73_ast_in = _t
+          match(_t, BANG)
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -3972,41 +2076,31 @@ module Org::Antlr::Tool
           if ((_t).nil?)
             _t = ASTNULL
           end
-          catch(:break_case) do
-            case (_t.get_type)
-            when OPTIONAL, CLOSURE, POSITIVE_CLOSURE, LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF, TREE_BEGIN
-              _cnt138 = 0
-              begin
-                if ((_t).nil?)
-                  _t = ASTNULL
-                end
-                if (((_t.get_type).equal?(OPTIONAL) || (_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE) || (_t.get_type).equal?(LABEL) || (_t.get_type).equal?(ACTION) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(RULE_REF) || (_t.get_type).equal?(TREE_BEGIN)))
-                  rewrite_element(_t)
-                  _t = self.attr__ret_tree
+          case (_t.get_type)
+          when OPTIONAL, CLOSURE, POSITIVE_CLOSURE, LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF, TREE_BEGIN
+            _cnt138 = 0
+            begin
+              if ((_t).nil?)
+                _t = ASTNULL
+              end
+              if (((_t.get_type).equal?(OPTIONAL) || (_t.get_type).equal?(CLOSURE) || (_t.get_type).equal?(POSITIVE_CLOSURE) || (_t.get_type).equal?(LABEL) || (_t.get_type).equal?(ACTION) || (_t.get_type).equal?(STRING_LITERAL) || (_t.get_type).equal?(CHAR_LITERAL) || (_t.get_type).equal?(TOKEN_REF) || (_t.get_type).equal?(RULE_REF) || (_t.get_type).equal?(TREE_BEGIN)))
+                rewrite_element(_t)
+                _t = self.attr__ret_tree
+              else
+                if (_cnt138 >= 1)
+                  break
                 else
-                  if (_cnt138 >= 1)
-                    break
-                  else
-                    raise NoViableAltException.new(_t)
-                  end
+                  raise NoViableAltException.new(_t)
                 end
-                ((_cnt138 += 1) - 1)
-              end while (true)
-              throw :break_case, :thrown
-              tmp74_ast_in = _t
-              match(_t, EPSILON)
-              _t = _t.get_next_sibling
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_t)
-            when EPSILON
-              tmp74_ast_in_ = _t
-              match(_t, EPSILON)
-              _t = _t.get_next_sibling
-              throw :break_case, :thrown
-              raise NoViableAltException.new(_t)
-            else
-              raise NoViableAltException.new(_t)
-            end
+              end
+              _cnt138 += 1
+            end while (true)
+          when EPSILON
+            tmp74_ast_in = _t
+            match(_t, EPSILON)
+            _t = _t.get_next_sibling
+          else
+            raise NoViableAltException.new(_t)
           end
           tmp75_ast_in = _t
           match(_t, EOA)
@@ -4094,35 +2188,18 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF
-            rewrite_atom(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            rewrite_ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            rewrite_tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when OPTIONAL, CLOSURE, POSITIVE_CLOSURE
-            rewrite_ebnf(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            rewrite_tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TREE_BEGIN
-            rewrite_tree(_t)
-            _t = self.attr__ret_tree
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when LABEL, ACTION, STRING_LITERAL, CHAR_LITERAL, TOKEN_REF, RULE_REF
+          rewrite_atom(_t)
+          _t = self.attr__ret_tree
+        when OPTIONAL, CLOSURE, POSITIVE_CLOSURE
+          rewrite_ebnf(_t)
+          _t = self.attr__ret_tree
+        when TREE_BEGIN
+          rewrite_tree(_t)
+          _t = self.attr__ret_tree
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -4150,252 +2227,105 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when ALT
+          __t153 = _t
+          tmp79_ast_in = _t
+          match(_t, ALT)
+          _t = _t.get_first_child
+          tmp80_ast_in = _t
+          match(_t, EPSILON)
+          _t = _t.get_next_sibling
+          tmp81_ast_in = _t
+          match(_t, EOA)
+          _t = _t.get_next_sibling
+          _t = __t153
+          _t = _t.get_next_sibling
+        when TEMPLATE
+          __t154 = _t
+          tmp82_ast_in = _t
+          match(_t, TEMPLATE)
+          _t = _t.get_first_child
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when ALT
-            __t153 = _t
-            tmp79_ast_in = _t
-            match(_t, ALT)
-            _t = _t.get_first_child
-            tmp80_ast_in = _t
-            match(_t, EPSILON)
+          when ID
+            id = _t
+            match(_t, ID)
             _t = _t.get_next_sibling
-            tmp81_ast_in = _t
-            match(_t, EOA)
-            _t = _t.get_next_sibling
-            _t = __t153
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t154 = _t
-            tmp82_ast_in = _t
-            match(_t, TEMPLATE)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ID
-                id = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ACTION
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            __t156 = _t
-            tmp83_ast_in = _t
-            match(_t, ARGLIST)
-            _t = _t.get_first_child
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(ARG)))
-                __t158 = _t
-                tmp84_ast_in = _t
-                match(_t, ARG)
-                _t = _t.get_first_child
-                arg = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                a = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                _t = __t158
-                _t = _t.get_next_sibling
-                if ((self.attr_input_state.attr_guessing).equal?(0))
-                  a.attr_outer_alt_num = @outer_alt_num
-                  track_inline_action(a)
-                end
-              else
-                break
-              end
-            end while (true)
-            _t = __t156
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(ind).nil?)
-                ind.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(ind)
-              end
-            end
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when DOUBLE_QUOTE_STRING_LITERAL
-                tmp85_ast_in = _t
-                match(_t, DOUBLE_QUOTE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp86_ast_in = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when DOUBLE_ANGLE_STRING_LITERAL
-                tmp86_ast_in_ = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t154
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when TEMPLATE
-            __t154_ = _t
-            tmp82_ast_in_ = _t
-            match(_t, TEMPLATE)
-            _t = _t.get_first_child
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when ID
-                id = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when ACTION
-                ind = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            __t156_ = _t
-            tmp83_ast_in_ = _t
-            match(_t, ARGLIST)
-            _t = _t.get_first_child
-            begin
-              if ((_t).nil?)
-                _t = ASTNULL
-              end
-              if (((_t.get_type).equal?(ARG)))
-                __t158_ = _t
-                tmp84_ast_in_ = _t
-                match(_t, ARG)
-                _t = _t.get_first_child
-                arg = _t
-                match(_t, ID)
-                _t = _t.get_next_sibling
-                a = _t
-                match(_t, ACTION)
-                _t = _t.get_next_sibling
-                _t = __t158_
-                _t = _t.get_next_sibling
-                if ((self.attr_input_state.attr_guessing).equal?(0))
-                  a.attr_outer_alt_num = @outer_alt_num
-                  track_inline_action(a)
-                end
-              else
-                break
-              end
-            end while (true)
-            _t = __t156_
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(ind).nil?)
-                ind.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(ind)
-              end
-            end
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when DOUBLE_QUOTE_STRING_LITERAL
-                tmp85_ast_in_ = _t
-                match(_t, DOUBLE_QUOTE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp86_ast_in__ = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when DOUBLE_ANGLE_STRING_LITERAL
-                tmp86_ast_in___ = _t
-                match(_t, DOUBLE_ANGLE_STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when 3
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            _t = __t154_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            act = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           when ACTION
-            act = _t
+            ind = _t
             match(_t, ACTION)
             _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              act.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(act)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           else
             raise NoViableAltException.new(_t)
           end
+          __t156 = _t
+          tmp83_ast_in = _t
+          match(_t, ARGLIST)
+          _t = _t.get_first_child
+          begin
+            if ((_t).nil?)
+              _t = ASTNULL
+            end
+            if (((_t.get_type).equal?(ARG)))
+              __t158 = _t
+              tmp84_ast_in = _t
+              match(_t, ARG)
+              _t = _t.get_first_child
+              arg = _t
+              match(_t, ID)
+              _t = _t.get_next_sibling
+              a = _t
+              match(_t, ACTION)
+              _t = _t.get_next_sibling
+              _t = __t158
+              _t = _t.get_next_sibling
+              if ((self.attr_input_state.attr_guessing).equal?(0))
+                a.attr_outer_alt_num = @outer_alt_num
+                track_inline_action(a)
+              end
+            else
+              break
+            end
+          end while (true)
+          _t = __t156
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if (!(ind).nil?)
+              ind.attr_outer_alt_num = @outer_alt_num
+              track_inline_action(ind)
+            end
+          end
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when DOUBLE_QUOTE_STRING_LITERAL
+            tmp85_ast_in = _t
+            match(_t, DOUBLE_QUOTE_STRING_LITERAL)
+            _t = _t.get_next_sibling
+          when DOUBLE_ANGLE_STRING_LITERAL
+            tmp86_ast_in = _t
+            match(_t, DOUBLE_ANGLE_STRING_LITERAL)
+            _t = _t.get_next_sibling
+          when 3
+          else
+            raise NoViableAltException.new(_t)
+          end
+          _t = __t154
+          _t = _t.get_next_sibling
+        when ACTION
+          act = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            act.attr_outer_alt_num = @outer_alt_num
+            track_inline_action(act)
+          end
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -4430,203 +2360,66 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
+        case (_t.get_type)
+        when RULE_REF
+          tmp87_ast_in = _t
+          match(_t, RULE_REF)
+          _t = _t.get_next_sibling
+        when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
           case (_t.get_type)
-          when RULE_REF
-            tmp87_ast_in = _t
-            match(_t, RULE_REF)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
+          when TOKEN_REF
+            __t150 = _t
+            tmp88_ast_in = _t
+            match(_t, TOKEN_REF)
+            _t = _t.get_first_child
             if ((_t).nil?)
               _t = ASTNULL
             end
-            catch(:break_case) do
-              case (_t.get_type)
-              when TOKEN_REF
-                __t150 = _t
-                tmp88_ast_in = _t
-                match(_t, TOKEN_REF)
-                _t = _t.get_first_child
-                if ((_t).nil?)
-                  _t = ASTNULL
-                end
-                catch(:break_case) do
-                  case (_t.get_type)
-                  when ARG_ACTION
-                    arg = _t
-                    match(_t, ARG_ACTION)
-                    _t = _t.get_next_sibling
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  when 3
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  else
-                    raise NoViableAltException.new(_t)
-                  end
-                end
-                _t = __t150
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp89_ast_in = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp90_ast_in = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                tmp89_ast_in_ = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp90_ast_in_ = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when STRING_LITERAL
-                tmp90_ast_in__ = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
+            case (_t.get_type)
+            when ARG_ACTION
+              arg = _t
+              match(_t, ARG_ACTION)
+              _t = _t.get_next_sibling
+            when 3
+            else
+              raise NoViableAltException.new(_t)
             end
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(arg).nil?)
-                arg.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(arg)
-              end
-            end
-            throw :break_case, :thrown
-            tmp91_ast_in = _t
-            match(_t, LABEL)
+            _t = __t150
             _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp92_ast_in = _t
-            match(_t, ACTION)
+          when CHAR_LITERAL
+            tmp89_ast_in = _t
+            match(_t, CHAR_LITERAL)
             _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp92_ast_in.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp92_ast_in)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when STRING_LITERAL, CHAR_LITERAL, TOKEN_REF
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            catch(:break_case) do
-              case (_t.get_type)
-              when TOKEN_REF
-                __t150_ = _t
-                tmp88_ast_in_ = _t
-                match(_t, TOKEN_REF)
-                _t = _t.get_first_child
-                if ((_t).nil?)
-                  _t = ASTNULL
-                end
-                catch(:break_case) do
-                  case (_t.get_type)
-                  when ARG_ACTION
-                    arg = _t
-                    match(_t, ARG_ACTION)
-                    _t = _t.get_next_sibling
-                    throw :break_case, :thrown
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  when 3
-                    throw :break_case, :thrown
-                    raise NoViableAltException.new(_t)
-                  else
-                    raise NoViableAltException.new(_t)
-                  end
-                end
-                _t = __t150_
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp89_ast_in__ = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp90_ast_in___ = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when CHAR_LITERAL
-                tmp89_ast_in___ = _t
-                match(_t, CHAR_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                tmp90_ast_in____ = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              when STRING_LITERAL
-                tmp90_ast_in_____ = _t
-                match(_t, STRING_LITERAL)
-                _t = _t.get_next_sibling
-                throw :break_case, :thrown
-                raise NoViableAltException.new(_t)
-              else
-                raise NoViableAltException.new(_t)
-              end
-            end
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              if (!(arg).nil?)
-                arg.attr_outer_alt_num = @outer_alt_num
-                track_inline_action(arg)
-              end
-            end
-            throw :break_case, :thrown
-            tmp91_ast_in_ = _t
-            match(_t, LABEL)
+          when STRING_LITERAL
+            tmp90_ast_in = _t
+            match(_t, STRING_LITERAL)
             _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp92_ast_in_ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp92_ast_in_.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp92_ast_in_)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when LABEL
-            tmp91_ast_in__ = _t
-            match(_t, LABEL)
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            tmp92_ast_in__ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp92_ast_in__.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp92_ast_in__)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when ACTION
-            tmp92_ast_in___ = _t
-            match(_t, ACTION)
-            _t = _t.get_next_sibling
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              tmp92_ast_in___.attr_outer_alt_num = @outer_alt_num
-              track_inline_action(tmp92_ast_in___)
-            end
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
           else
             raise NoViableAltException.new(_t)
           end
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            if (!(arg).nil?)
+              arg.attr_outer_alt_num = @outer_alt_num
+              track_inline_action(arg)
+            end
+          end
+        when LABEL
+          tmp91_ast_in = _t
+          match(_t, LABEL)
+          _t = _t.get_next_sibling
+        when ACTION
+          tmp92_ast_in = _t
+          match(_t, ACTION)
+          _t = _t.get_next_sibling
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            tmp92_ast_in.attr_outer_alt_num = @outer_alt_num
+            track_inline_action(tmp92_ast_in)
+          end
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))
@@ -4649,71 +2442,36 @@ module Org::Antlr::Tool
         if ((_t).nil?)
           _t = ASTNULL
         end
-        catch(:break_case) do
-          case (_t.get_type)
-          when OPTIONAL
-            __t141 = _t
-            tmp93_ast_in = _t
-            match(_t, OPTIONAL)
-            _t = _t.get_first_child
-            rewrite_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t141
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t142 = _t
-            tmp94_ast_in = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            rewrite_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t142
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t143 = _t
-            tmp95_ast_in = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            rewrite_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t143
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when CLOSURE
-            __t142_ = _t
-            tmp94_ast_in_ = _t
-            match(_t, CLOSURE)
-            _t = _t.get_first_child
-            rewrite_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t142_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            __t143_ = _t
-            tmp95_ast_in_ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            rewrite_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t143_
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          when POSITIVE_CLOSURE
-            __t143__ = _t
-            tmp95_ast_in__ = _t
-            match(_t, POSITIVE_CLOSURE)
-            _t = _t.get_first_child
-            rewrite_block(_t)
-            _t = self.attr__ret_tree
-            _t = __t143__
-            _t = _t.get_next_sibling
-            throw :break_case, :thrown
-            raise NoViableAltException.new(_t)
-          else
-            raise NoViableAltException.new(_t)
-          end
+        case (_t.get_type)
+        when OPTIONAL
+          __t141 = _t
+          tmp93_ast_in = _t
+          match(_t, OPTIONAL)
+          _t = _t.get_first_child
+          rewrite_block(_t)
+          _t = self.attr__ret_tree
+          _t = __t141
+          _t = _t.get_next_sibling
+        when CLOSURE
+          __t142 = _t
+          tmp94_ast_in = _t
+          match(_t, CLOSURE)
+          _t = _t.get_first_child
+          rewrite_block(_t)
+          _t = self.attr__ret_tree
+          _t = __t142
+          _t = _t.get_next_sibling
+        when POSITIVE_CLOSURE
+          __t143 = _t
+          tmp95_ast_in = _t
+          match(_t, POSITIVE_CLOSURE)
+          _t = _t.get_first_child
+          rewrite_block(_t)
+          _t = self.attr__ret_tree
+          _t = __t143
+          _t = _t.get_next_sibling
+        else
+          raise NoViableAltException.new(_t)
         end
       rescue RecognitionException => ex
         if ((self.attr_input_state.attr_guessing).equal?(0))

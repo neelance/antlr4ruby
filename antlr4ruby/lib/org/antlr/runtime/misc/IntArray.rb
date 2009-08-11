@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -81,7 +80,7 @@ module Org::Antlr::Runtime::Misc
     typesig { [] }
     def pop
       v = @data[@p]
-      ((@p -= 1) + 1)
+      @p -= 1
       return v
     end
     

@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -387,7 +386,6 @@ module Org::Antlr::Analysis
       if ((@reachable_labels).nil?)
         @reachable_labels = OrderedHashSet.new
       end
-      # 
       # System.out.println("addReachableLabel to state "+dfa.decisionNumber+"."+stateNumber+": "+label.getSet().toString(dfa.nfa.grammar));
       # System.out.println("start of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
       # "reachableLabels="+reachableLabels.toString());
@@ -402,12 +400,11 @@ module Org::Antlr::Analysis
       i = 0
       while i < n
         rl = @reachable_labels.get(i)
-        # 
         # System.out.println("comparing ["+i+"]: "+label.toString(dfa.nfa.grammar)+" & "+
         # rl.toString(dfa.nfa.grammar)+"="+
         # intersection.toString(dfa.nfa.grammar));
         if (!Label.intersect(label, rl))
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # System.out.println(label+" collides with "+rl);
@@ -427,7 +424,6 @@ module Org::Antlr::Analysis
           new_label = Label.new(existing_minus_new_elements)
           @reachable_labels.add(new_label)
         end
-        # 
         # System.out.println("after collision, " +
         # "reachableLabels="+reachableLabels.toString());
         # 
@@ -437,17 +433,15 @@ module Org::Antlr::Analysis
           break # nothing left to add to set.  done!
         end
         t = remainder
-        ((i += 1) - 1)
+        i += 1
       end
       if (!remainder.is_nil)
-        # 
         # System.out.println("before add remainder to state "+dfa.decisionNumber+"."+stateNumber+": " +
         # "reachableLabels="+reachableLabels.toString());
         # System.out.println("remainder state "+dfa.decisionNumber+"."+stateNumber+": "+remainder.toString(dfa.nfa.grammar));
-        new_label_ = Label.new(remainder)
-        @reachable_labels.add(new_label_)
+        new_label = Label.new(remainder)
+        @reachable_labels.add(new_label)
       end
-      # 
       # System.out.println("#END of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
       # "reachableLabels="+reachableLabels.toString());
     end
@@ -512,7 +506,7 @@ module Org::Antlr::Analysis
         # in transitions out of this state, so must count those
         # configurations; i.e., don't ignore resolveWithPredicate configs
         if (configuration.attr_resolved)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         if ((alt).equal?(NFA::INVALID_ALT_NUMBER))
@@ -522,7 +516,7 @@ module Org::Antlr::Analysis
             return NFA::INVALID_ALT_NUMBER
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       @cached_uniquely_predicated_alt = alt
       return alt
@@ -545,7 +539,7 @@ module Org::Antlr::Analysis
             return NFA::INVALID_ALT_NUMBER
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return alt
     end
@@ -571,7 +565,7 @@ module Org::Antlr::Analysis
         if (configuration.attr_resolved)
           disabled.add(Utils.integer(configuration.attr_alt))
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return disabled
     end
@@ -629,16 +623,16 @@ module Org::Antlr::Analysis
         configuration = @nfa_configurations.get(i)
         state_i = Utils.integer(configuration.attr_state)
         state_to_config_list_map.map(state_i, configuration)
-        ((i += 1) - 1)
+        i += 1
       end
       # potential conflicts are states with > 1 configuration and diff alts
       states = state_to_config_list_map.key_set
       num_potential_conflicts = 0
       it = states.iterator
       while it.has_next
-        state_i_ = it.next
+        state_i = it.next
         this_state_has_potential_problem = false
-        configs_for_state = state_to_config_list_map.get(state_i_)
+        configs_for_state = state_to_config_list_map.get(state_i)
         alt = 0
         num_configs_for_state = configs_for_state.size
         i_ = 0
@@ -648,7 +642,6 @@ module Org::Antlr::Analysis
             alt = c.attr_alt
           else
             if (!(c.attr_alt).equal?(alt))
-              # 
               # System.out.println("potential conflict in state "+stateI+
               # " configs: "+configsForState);
               # 
@@ -663,18 +656,18 @@ module Org::Antlr::Analysis
               # meaning input "ab" would test preds to decide what to
               # do but it should match rule C w/o testing preds.
               if (!(@dfa.attr_nfa.attr_grammar.attr_type).equal?(Grammar::LEXER) || !(@dfa.attr_decision_nfastart_state.attr_enclosing_rule.attr_name == Grammar::ARTIFICIAL_TOKENS_RULENAME))
-                ((num_potential_conflicts += 1) - 1)
+                num_potential_conflicts += 1
                 this_state_has_potential_problem = true
               end
             end
           end
-          ((i_ += 1) - 1)
+          i_ += 1
         end
         if (!this_state_has_potential_problem)
           # remove NFA state's configurations from
           # further checking; no issues with it
           # (can't remove as it's concurrent modification; set to null)
-          state_to_config_list_map.put(state_i_, nil)
+          state_to_config_list_map.put(state_i, nil)
         end
       end
       # a fast check for potential issues; most states have none
@@ -696,20 +689,20 @@ module Org::Antlr::Analysis
       # walk each state with potential conflicting configurations
       it_ = states.iterator
       while it_.has_next
-        state_i__ = it_.next
-        configs_for_state_ = state_to_config_list_map.get(state_i__)
+        state_i = it_.next
+        configs_for_state = state_to_config_list_map.get(state_i)
         # compare each configuration pair s, t to ensure:
         # s.ctx different than t.ctx if s.alt != t.alt
-        num_configs_for_state_ = 0
-        if (!(configs_for_state_).nil?)
-          num_configs_for_state_ = configs_for_state_.size
+        num_configs_for_state = 0
+        if (!(configs_for_state).nil?)
+          num_configs_for_state = configs_for_state.size
         end
-        i__ = 0
-        while i__ < num_configs_for_state_
-          s = configs_for_state_.get(i__)
-          j = i__ + 1
-          while j < num_configs_for_state_
-            t = configs_for_state_.get(j)
+        i_ = 0
+        while i_ < num_configs_for_state
+          s = configs_for_state.get(i_)
+          j = i_ + 1
+          while j < num_configs_for_state
+            t = configs_for_state.get(j)
             # conflicts means s.ctx==t.ctx or s.ctx is a stack
             # suffix of t.ctx or vice versa (if alts differ).
             # Also a conflict if s.ctx or t.ctx is empty
@@ -717,9 +710,9 @@ module Org::Antlr::Analysis
               nondeterministic_alts.add(Utils.integer(s.attr_alt))
               nondeterministic_alts.add(Utils.integer(t.attr_alt))
             end
-            ((j += 1) - 1)
+            j += 1
           end
-          ((i__ += 1) - 1)
+          i_ += 1
         end
       end
       if ((nondeterministic_alts.size).equal?(0))
@@ -738,7 +731,7 @@ module Org::Antlr::Analysis
       while i < num_configs
         configuration = @nfa_configurations.get(i)
         alts.add(Utils.integer(configuration.attr_alt))
-        ((i += 1) - 1)
+        i += 1
       end
       if ((alts.size).equal?(0))
         return nil
@@ -758,7 +751,7 @@ module Org::Antlr::Analysis
         if (!(gated_pred_expr).nil? && configuration.attr_semantic_context.is_syntactic_predicate)
           synpreds.add(configuration.attr_semantic_context)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if ((synpreds.size).equal?(0))
         return nil
@@ -818,7 +811,7 @@ module Org::Antlr::Analysis
             end
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       if (union_of_predicates_from_all_alts.is_a?(SemanticContext::TruePredicate))
         return nil
@@ -854,7 +847,7 @@ module Org::Antlr::Analysis
           buf.append(", ")
         end
         buf.append(configuration)
-        ((i += 1) - 1)
+        i += 1
       end
       buf.append("}")
       return buf.to_s

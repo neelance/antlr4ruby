@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -118,8 +117,8 @@ module Org::Antlr::Tool
           else
             if (@probe.attr_dfa.is_tokens_rule_decision)
               # alts are token rules, convert to the names instead of numbers
-              token_name_ = @probe.get_token_name_for_tokens_rule_alt(display_alt_i.int_value)
-              st.set_attribute("conflictingTokens", token_name_)
+              token_name = @probe.get_token_name_for_tokens_rule_alt(display_alt_i.int_value)
+              st.set_attribute("conflictingTokens", token_name)
             else
               st.set_attribute("conflictingAlts", display_alt_i)
             end

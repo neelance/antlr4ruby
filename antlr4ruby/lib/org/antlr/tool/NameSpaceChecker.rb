@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -60,7 +59,7 @@ module Org::Antlr::Tool
       while i < @grammar.attr_composite.attr_rule_index_to_rule_list.size
         r = @grammar.attr_composite.attr_rule_index_to_rule_list.element_at(i)
         if ((r).nil?)
-          ((i += 1) - 1)
+          i += 1
           next
         end
         # walk all labels for Rule r
@@ -78,17 +77,17 @@ module Org::Antlr::Tool
           while j < attributes.size
             attribute = attributes.get(j)
             check_for_rule_scope_attribute_conflict(r, attribute)
-            ((j += 1) - 1)
+            j += 1
           end
         end
         check_for_rule_definition_problems(r)
         check_for_rule_argument_and_return_value_conflicts(r)
-        ((i += 1) - 1)
+        i += 1
       end
       # check all global scopes against tokens
-      it_ = @grammar.get_global_scopes.values.iterator
-      while (it_.has_next)
-        scope = it_.next
+      it = @grammar.get_global_scopes.values.iterator
+      while (it.has_next)
+        scope = it.next
         check_for_global_scope_token_conflict(scope)
       end
       # check for missing rule, tokens
@@ -160,10 +159,10 @@ module Org::Antlr::Tool
         # associated lexer rule.
         iter_ = @grammar.attr_token_idrefs.iterator
         while iter_.has_next
-          tok_ = iter_.next
-          token_id = tok_.get_text
+          tok = iter_.next
+          token_id = tok.get_text
           if (!@grammar.attr_composite.attr_lexer_rules.contains(token_id) && !(@grammar.get_token_type(token_id)).equal?(Label::EOF))
-            ErrorManager.grammar_warning(ErrorManager::MSG_NO_TOKEN_DEFINITION, @grammar, tok_, token_id)
+            ErrorManager.grammar_warning(ErrorManager::MSG_NO_TOKEN_DEFINITION, @grammar, tok, token_id)
           end
         end
       end
@@ -172,14 +171,14 @@ module Org::Antlr::Tool
       while it.has_next
         scope_ast = it.next # ^(DOT ID atom)
         scope_g = @grammar.attr_composite.get_grammar(scope_ast.get_text)
-        ref_ast_ = scope_ast.get_child(1)
-        rule_name_ = ref_ast_.get_text
+        ref_ast = scope_ast.get_child(1)
+        rule_name = ref_ast.get_text
         if ((scope_g).nil?)
-          ErrorManager.grammar_error(ErrorManager::MSG_NO_SUCH_GRAMMAR_SCOPE, @grammar, scope_ast.get_token, scope_ast.get_text, rule_name_)
+          ErrorManager.grammar_error(ErrorManager::MSG_NO_SUCH_GRAMMAR_SCOPE, @grammar, scope_ast.get_token, scope_ast.get_text, rule_name)
         else
-          rule_ = @grammar.get_rule(scope_g.attr_name, rule_name_)
-          if ((rule_).nil?)
-            ErrorManager.grammar_error(ErrorManager::MSG_NO_SUCH_RULE_IN_SCOPE, @grammar, scope_ast.get_token, scope_ast.get_text, rule_name_)
+          rule = @grammar.get_rule(scope_g.attr_name, rule_name)
+          if ((rule).nil?)
+            ErrorManager.grammar_error(ErrorManager::MSG_NO_SUCH_RULE_IN_SCOPE, @grammar, scope_ast.get_token, scope_ast.get_text, rule_name)
           end
         end
       end

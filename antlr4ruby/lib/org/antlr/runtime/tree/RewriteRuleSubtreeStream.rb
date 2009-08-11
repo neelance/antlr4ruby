@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -77,8 +76,8 @@ module Org::Antlr::Runtime::Tree
         return self.attr_adaptor.dup_node(el)
       end
       # test size above then fetch
-      el_ = __next
-      return el_
+      el = __next
+      return el
     end
     
     typesig { [Object] }

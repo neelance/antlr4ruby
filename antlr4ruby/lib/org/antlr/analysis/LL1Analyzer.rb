@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -40,7 +39,6 @@ module Org::Antlr::Analysis
     }
   end
   
-  # 
   # Created by IntelliJ IDEA.
   # User: parrt
   # Date: Dec 31, 2007
@@ -98,7 +96,6 @@ module Org::Antlr::Analysis
     end
     
     typesig { [NFAState] }
-    # 
     # public void computeRuleFIRSTSets() {
     # if ( getNumberOfDecisions()==0 ) {
     # createNFAs();
@@ -227,7 +224,6 @@ module Org::Antlr::Analysis
     
     typesig { [NFAState, ::Java::Boolean] }
     def ___first(s, chase_follow_transitions)
-      # 
       # System.out.println("_LOOK("+s+") in rule "+s.enclosingRule);
       # if ( s.transition[0] instanceof RuleClosureTransition ) {
       # System.out.println("go to rule "+((NFAState)s.transition[0].target).enclosingRule);
@@ -344,7 +340,6 @@ module Org::Antlr::Analysis
           return DETECT_PRED_FOUND
         end
       end
-      # 
       # if ( transition0.label.isSemanticPredicate() ) {
       # System.out.println("pred "+transition0.label);
       # SemanticContext ctx = transition0.label.getSemanticContext();

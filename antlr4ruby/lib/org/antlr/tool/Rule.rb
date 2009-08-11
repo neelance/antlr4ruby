@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -334,7 +333,7 @@ module Org::Antlr::Tool
       while alt <= number_of_alts
         @alt_to_token_ref_map[alt] = HashMap.new
         @alt_to_rule_ref_map[alt] = HashMap.new
-        ((alt += 1) - 1)
+        alt += 1
       end
     end
     
@@ -497,7 +496,7 @@ module Org::Antlr::Tool
             tokens.add(label)
           end
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return tokens
     end
@@ -519,7 +518,7 @@ module Org::Antlr::Tool
           m = @alt_to_rule_ref_map[i]
           rules.add_all(m.key_set)
         end
-        ((i += 1) - 1)
+        i += 1
       end
       return rules
     end
@@ -703,7 +702,7 @@ module Org::Antlr::Tool
         @grammar.attr_at_least_one_rule_memoizes = true
       end
       if ((key == "k"))
-        ((@grammar.attr_number_of_manual_lookahead_options += 1) - 1)
+        @grammar.attr_number_of_manual_lookahead_options += 1
       end
       @options.put(key, value)
       return key

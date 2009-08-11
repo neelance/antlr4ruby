@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -176,8 +175,8 @@ module Org::Antlr::Runtime::Tree
         return dup(el)
       end
       # test size above then fetch
-      el_ = __next
-      return el_
+      el = __next
+      return el
     end
     
     typesig { [] }
@@ -202,12 +201,12 @@ module Org::Antlr::Runtime::Tree
       end
       # we have elements
       if (!(@single_element).nil?)
-        ((@cursor += 1) - 1) # move cursor even for single element list
+        @cursor += 1 # move cursor even for single element list
         return to_tree(@single_element)
       end
       # must have more than one in list, pull from elements
       o = to_tree(@elements.get(@cursor))
-      ((@cursor += 1) - 1)
+      @cursor += 1
       return o
     end
     

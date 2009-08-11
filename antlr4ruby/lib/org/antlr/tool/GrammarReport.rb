@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -89,7 +88,7 @@ module Org::Antlr::Tool
         r = it.next
         if (!r.attr_name.to_upper_case.starts_with(Grammar::SYNPRED_RULE_PREFIX.to_upper_case))
           total_non_syn_pred_productions += r.attr_number_of_alts
-          ((total_non_syn_pred_rules += 1) - 1)
+          total_non_syn_pred_rules += 1
         end
       end
       buf.append(Character.new(?\t.ord))
@@ -108,23 +107,23 @@ module Org::Antlr::Tool
       while i <= @grammar.get_number_of_decisions
         d = @grammar.get_decision(i)
         if ((d.attr_dfa).nil?)
-          ((i += 1) - 1)
+          i += 1
           next
         end
-        ((num_dec += 1) - 1)
+        num_dec += 1
         if (!d.attr_dfa.is_cyclic)
           maxk = d.attr_dfa.get_max_lookahead_depth
           if ((maxk).equal?(1))
-            ((num_ll1 += 1) - 1)
+            num_ll1 += 1
           end
           depths[acyclic_index] = maxk
           acyclic_dfastates[acyclic_index] = d.attr_dfa.get_number_of_states
-          ((acyclic_index += 1) - 1)
+          acyclic_index += 1
         else
           cyclic_dfastates[cyclic_index] = d.attr_dfa.get_number_of_states
-          ((cyclic_index += 1) - 1)
+          cyclic_index += 1
         end
-        ((i += 1) - 1)
+        i += 1
       end
       buf.append(Character.new(?\t.ord))
       buf.append(num_dec)
@@ -279,7 +278,7 @@ module Org::Antlr::Tool
         i = 0
         while (st.has_more_tokens)
           fields[i] = st.next_token
-          ((i += 1) - 1)
+          i += 1
         end
         if (!(i).equal?(NUM_GRAMMAR_STATS))
           return nil

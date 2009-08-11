@@ -1,6 +1,5 @@
 require "rjava"
  # $ANTLR 2.7.7 (2006-01-29): "antlr.g" -> "ANTLRLexer.java"$
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -131,2585 +130,133 @@ module Org::Antlr::Tool
         begin
           # for char stream error handling
           begin
-            catch(:break_case) do
-              # for lexical error handling
-              case (_la(1))
-              when Character.new(?\t.ord), Character.new(?\n.ord), Character.new(?\r.ord), Character.new(?\s.ord)
-                m_ws(true)
+            # for lexical error handling
+            case (_la(1))
+            when Character.new(?\t.ord), Character.new(?\n.ord), Character.new(?\r.ord), Character.new(?\s.ord)
+              m_ws(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?/.ord)
+              m_comment(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?>.ord)
+              m_close_element_option(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?@.ord)
+              m_ampersand(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?,.ord)
+              m_comma(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(??.ord)
+              m_question(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?(.ord)
+              m_lparen(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?).ord)
+              m_rparen(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?:.ord)
+              m_colon(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?*.ord)
+              m_star(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?-.ord)
+              m_rewrite(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?;.ord)
+              m_semi(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?!.ord)
+              m_bang(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?|.ord)
+              m_or(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?~.ord)
+              m_not(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?}.ord)
+              m_rcurly(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?$.ord)
+              m_dollar(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?].ord)
+              m_stray_bracket(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?\'.ord)
+              m_char_literal(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?".ord)
+              m_double_quote_string_literal(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
+              m_int(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?[.ord)
+              m_arg_action(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?{.ord)
+              m_action(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
+              m_token_ref(true)
+              the_ret_token = self.attr__return_token
+            when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
+              m_rule_ref(true)
+              the_ret_token = self.attr__return_token
+            else
+              if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
+                m_etc(true)
                 the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_comment(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_close_element_option(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_ampersand(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_comma(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_question(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?/.ord)
-                m_comment(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_close_element_option(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_ampersand(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_comma(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_question(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?>.ord)
-                m_close_element_option(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_ampersand(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_comma(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_question(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?@.ord)
-                m_ampersand(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_comma(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_question(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?,.ord)
-                m_comma(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_question(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(??.ord)
-                m_question(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?(.ord)
-                m_lparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?).ord)
-                m_rparen(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?:.ord)
-                m_colon(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?*.ord)
-                m_star(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?-.ord)
-                m_rewrite(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?;.ord)
-                m_semi(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?!.ord)
-                m_bang(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?|.ord)
-                m_or(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?~.ord)
-                m_not(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?}.ord)
-                m_rcurly(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?$.ord)
-                m_dollar(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?].ord)
-                m_stray_bracket(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?\'.ord)
-                m_char_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?".ord)
-                m_double_quote_string_literal(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
-                m_int(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?[.ord)
-                m_arg_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?{.ord)
-                m_action(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
-                m_token_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
-                m_rule_ref(true)
-                the_ret_token = self.attr__return_token
-                throw :break_case, :thrown
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
-                  the_ret_token = self.attr__return_token
-                else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
-                    the_ret_token = self.attr__return_token
-                  else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
-                      the_ret_token = self.attr__return_token
-                    else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
-                        the_ret_token = self.attr__return_token
-                      else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
-                          the_ret_token = self.attr__return_token
-                        else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
-                            the_ret_token = self.attr__return_token
-                          else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
-                              the_ret_token = self.attr__return_token
-                            else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
-                                the_ret_token = self.attr__return_token
-                              else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
-                                  the_ret_token = self.attr__return_token
-                                else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
-                                    the_ret_token = self.attr__return_token
-                                  else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
-                                    else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
-                                    end
-                                  end
-                                end
-                              end
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
               else
-                if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && ((_la(3)).equal?(Character.new(?..ord))))
-                  m_etc(true)
+                if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
+                  m_tree_begin(true)
                   the_ret_token = self.attr__return_token
                 else
-                  if (((_la(1)).equal?(Character.new(?^.ord))) && ((_la(2)).equal?(Character.new(?(.ord))))
-                    m_tree_begin(true)
+                  if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
+                    m_plus_assign(true)
                     the_ret_token = self.attr__return_token
                   else
-                    if (((_la(1)).equal?(Character.new(?+.ord))) && ((_la(2)).equal?(Character.new(?=.ord))))
-                      m_plus_assign(true)
+                    if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
+                      m_implies(true)
                       the_ret_token = self.attr__return_token
                     else
-                      if (((_la(1)).equal?(Character.new(?=.ord))) && ((_la(2)).equal?(Character.new(?>.ord))))
-                        m_implies(true)
+                      if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
+                        m_range(true)
                         the_ret_token = self.attr__return_token
                       else
-                        if (((_la(1)).equal?(Character.new(?..ord))) && ((_la(2)).equal?(Character.new(?..ord))) && (true))
-                          m_range(true)
+                        if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
+                          m_double_angle_string_literal(true)
                           the_ret_token = self.attr__return_token
                         else
-                          if (((_la(1)).equal?(Character.new(?<.ord))) && ((_la(2)).equal?(Character.new(?<.ord))))
-                            m_double_angle_string_literal(true)
+                          if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
+                            m_open_element_option(true)
                             the_ret_token = self.attr__return_token
                           else
-                            if (((_la(1)).equal?(Character.new(?<.ord))) && (true))
-                              m_open_element_option(true)
+                            if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
+                              m_plus(true)
                               the_ret_token = self.attr__return_token
                             else
-                              if (((_la(1)).equal?(Character.new(?+.ord))) && (true))
-                                m_plus(true)
+                              if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
+                                m_assign(true)
                                 the_ret_token = self.attr__return_token
                               else
-                                if (((_la(1)).equal?(Character.new(?=.ord))) && (true))
-                                  m_assign(true)
+                                if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
+                                  m_root(true)
                                   the_ret_token = self.attr__return_token
                                 else
-                                  if (((_la(1)).equal?(Character.new(?^.ord))) && (true))
-                                    m_root(true)
+                                  if (((_la(1)).equal?(Character.new(?..ord))) && (true))
+                                    m_wildcard(true)
                                     the_ret_token = self.attr__return_token
                                   else
-                                    if (((_la(1)).equal?(Character.new(?..ord))) && (true))
-                                      m_wildcard(true)
-                                      the_ret_token = self.attr__return_token
+                                    if ((_la(1)).equal?(EOF_CHAR))
+                                      upon_eof
+                                      self.attr__return_token = make_token(Token::EOF_TYPE)
                                     else
-                                      if ((_la(1)).equal?(EOF_CHAR))
-                                        upon_eof
-                                        self.attr__return_token = make_token(Token::EOF_TYPE)
-                                      else
-                                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                                      end
+                                      raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
                                     end
                                   end
                                 end
@@ -2722,7 +269,7 @@ module Org::Antlr::Tool
                   end
                 end
               end
-            end == :thrown or break
+            end
             if ((self.attr__return_token).nil?)
               next
             end # found SKIP token
@@ -2749,80 +296,25 @@ module Org::Antlr::Tool
       _begin = self.attr_text.length
       _ttype = WS
       _save_index = 0
-      catch(:break_case) do
+      case (_la(1))
+      when Character.new(?\s.ord)
+        match(Character.new(?\s.ord))
+      when Character.new(?\t.ord)
+        match(Character.new(?\t.ord))
+      when Character.new(?\n.ord), Character.new(?\r.ord)
         case (_la(1))
-        when Character.new(?\s.ord)
-          match(Character.new(?\s.ord))
-          throw :break_case, :thrown
-          match(Character.new(?\t.ord))
-          throw :break_case, :thrown
-          catch(:break_case) do
-            case (_la(1))
-            when Character.new(?\r.ord)
-              match(Character.new(?\r.ord))
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            when Character.new(?\n.ord)
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            else
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            end
-          end
-          match(Character.new(?\n.ord))
-          if ((self.attr_input_state.attr_guessing).equal?(0))
-            newline
-          end
-          throw :break_case, :thrown
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-        when Character.new(?\t.ord)
-          match(Character.new(?\t.ord))
-          throw :break_case, :thrown
-          catch(:break_case) do
-            case (_la(1))
-            when Character.new(?\r.ord)
-              match(Character.new(?\r.ord))
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            when Character.new(?\n.ord)
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            else
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            end
-          end
-          match(Character.new(?\n.ord))
-          if ((self.attr_input_state.attr_guessing).equal?(0))
-            newline
-          end
-          throw :break_case, :thrown
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-        when Character.new(?\n.ord), Character.new(?\r.ord)
-          catch(:break_case) do
-            case (_la(1))
-            when Character.new(?\r.ord)
-              match(Character.new(?\r.ord))
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            when Character.new(?\n.ord)
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            else
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            end
-          end
-          match(Character.new(?\n.ord))
-          if ((self.attr_input_state.attr_guessing).equal?(0))
-            newline
-          end
-          throw :break_case, :thrown
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
+        when Character.new(?\r.ord)
+          match(Character.new(?\r.ord))
+        when Character.new(?\n.ord)
         else
           raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
         end
+        match(Character.new(?\n.ord))
+        if ((self.attr_input_state.attr_guessing).equal?(0))
+          newline
+        end
+      else
+        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
       end
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -2871,31 +363,24 @@ module Org::Antlr::Tool
       if ((((_la(1)).equal?(Character.new(?\s.ord))) && ((_la(2)).equal?(Character.new(?$.ord))) && ((_la(3)).equal?(Character.new(?A.ord)))))
         _m161 = mark
         syn_pred_matched161 = true
-        ((self.attr_input_state.attr_guessing += 1) - 1)
+        self.attr_input_state.attr_guessing += 1
         begin
           match(" $ANTLR")
         rescue RecognitionException => pe
           syn_pred_matched161 = false
         end
         rewind(_m161)
-        ((self.attr_input_state.attr_guessing -= 1) + 1)
+        self.attr_input_state.attr_guessing -= 1
       end
       if (syn_pred_matched161)
         match(" $ANTLR ")
         m_src(false)
-        catch(:break_case) do
-          case (_la(1))
-          when Character.new(?\r.ord)
-            match(Character.new(?\r.ord))
-            throw :break_case, :thrown
-            throw :break_case, :thrown
-            raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-          when Character.new(?\n.ord)
-            throw :break_case, :thrown
-            raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-          else
-            raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-          end
+        case (_la(1))
+        when Character.new(?\r.ord)
+          match(Character.new(?\r.ord))
+        when Character.new(?\n.ord)
+        else
+          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
         end
         match(Character.new(?\n.ord))
       else
@@ -2911,19 +396,12 @@ module Org::Antlr::Tool
               break
             end
           end while (true)
-          catch(:break_case) do
-            case (_la(1))
-            when Character.new(?\r.ord)
-              match(Character.new(?\r.ord))
-              throw :break_case, :thrown
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            when Character.new(?\n.ord)
-              throw :break_case, :thrown
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            else
-              raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-            end
+          case (_la(1))
+          when Character.new(?\r.ord)
+            match(Character.new(?\r.ord))
+          when Character.new(?\n.ord)
+          else
+            raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
           end
           match(Character.new(?\n.ord))
         else
@@ -2959,12 +437,12 @@ module Org::Antlr::Tool
           raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
         end
       end
-      begin
-        # nongreedy exit test
-        if (((_la(1)).equal?(Character.new(?*.ord))) && ((_la(2)).equal?(Character.new(?/.ord))) && (true))
-          break
-        end
-        catch(:break_case) do
+      catch(:break__loop170) do
+        begin
+          # nongreedy exit test
+          if (((_la(1)).equal?(Character.new(?*.ord))) && ((_la(2)).equal?(Character.new(?/.ord))) && (true))
+            break
+          end
           case (_la(1))
           when Character.new(?\r.ord)
             match(Character.new(?\r.ord))
@@ -2972,37 +450,20 @@ module Org::Antlr::Tool
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-            throw :break_case, :thrown
-            if ((_tokenSet_0.member(_la(1))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && ((_la(3) >= Character.new(0x0003) && _la(3) <= Character.new(0x00ff))))
-              match(_tokenSet_0)
-            else
-              break
-            end
           when Character.new(?\n.ord)
             match(Character.new(?\n.ord))
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            if ((_tokenSet_0.member(_la(1))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && ((_la(3) >= Character.new(0x0003) && _la(3) <= Character.new(0x00ff))))
-              match(_tokenSet_0)
-            else
-              break
-            end
           else
             if ((_tokenSet_0.member(_la(1))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && ((_la(3) >= Character.new(0x0003) && _la(3) <= Character.new(0x00ff))))
               match(_tokenSet_0)
             else
-              break
+              throw :break__loop170, :thrown
             end
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       match("*/")
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -3450,42 +911,25 @@ module Org::Antlr::Tool
       _ttype = CHAR_LITERAL
       _save_index = 0
       match(Character.new(?\'.ord))
-      begin
-        catch(:break_case) do
+      catch(:break__loop199) do
+        begin
           case (_la(1))
           when Character.new(?\\.ord)
             m_esc(false)
-            throw :break_case, :thrown
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-            throw :break_case, :thrown
-            if ((_tokenSet_1.member(_la(1))))
-              match_not(Character.new(?\'.ord))
-            else
-              break
-            end
           when Character.new(?\n.ord)
             match(Character.new(?\n.ord))
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            if ((_tokenSet_1.member(_la(1))))
-              match_not(Character.new(?\'.ord))
-            else
-              break
-            end
           else
             if ((_tokenSet_1.member(_la(1))))
               match_not(Character.new(?\'.ord))
             else
-              break
+              throw :break__loop199, :thrown
             end
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       match(Character.new(?\'.ord))
       if ((self.attr_input_state.attr_guessing).equal?(0))
         s = Grammar.get_unescaped_string_from_grammar_string_literal(String.new(self.attr_text.get_buffer, _begin, self.attr_text.length - _begin))
@@ -3647,29 +1091,15 @@ module Org::Antlr::Tool
       _begin = self.attr_text.length
       _ttype = XDIGIT
       _save_index = 0
-      catch(:break_case) do
-        case (_la(1))
-        when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
-          match_range(Character.new(?0.ord), Character.new(?9.ord))
-          throw :break_case, :thrown
-          match_range(Character.new(?a.ord), Character.new(?f.ord))
-          throw :break_case, :thrown
-          match_range(Character.new(?A.ord), Character.new(?F.ord))
-          throw :break_case, :thrown
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-        when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord)
-          match_range(Character.new(?a.ord), Character.new(?f.ord))
-          throw :break_case, :thrown
-          match_range(Character.new(?A.ord), Character.new(?F.ord))
-          throw :break_case, :thrown
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-        when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord)
-          match_range(Character.new(?A.ord), Character.new(?F.ord))
-          throw :break_case, :thrown
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-        else
-          raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-        end
+      case (_la(1))
+      when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
+        match_range(Character.new(?0.ord), Character.new(?9.ord))
+      when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord)
+        match_range(Character.new(?a.ord), Character.new(?f.ord))
+      when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord)
+        match_range(Character.new(?A.ord), Character.new(?F.ord))
+      else
+        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
       end
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -3711,7 +1141,7 @@ module Org::Antlr::Tool
             raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
           end
         end
-        ((_cnt212 += 1) - 1)
+        _cnt212 += 1
       end while (true)
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -3748,8 +1178,8 @@ module Org::Antlr::Tool
       _begin = self.attr_text.length
       _ttype = NESTED_ARG_ACTION
       _save_index = 0
-      begin
-        catch(:break_case) do
+      catch(:break__loop216) do
+        begin
           case (_la(1))
           when Character.new(?\r.ord)
             match(Character.new(?\r.ord))
@@ -3757,102 +1187,15 @@ module Org::Antlr::Tool
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-            throw :break_case, :thrown
-            m_action_string_literal(false)
-            throw :break_case, :thrown
-            m_action_char_literal(false)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
-              _save_index = self.attr_text.length
-              match(Character.new(?\\.ord))
-              self.attr_text.set_length(_save_index)
-              match(Character.new(?].ord))
-            else
-              if (((_la(1)).equal?(Character.new(?\\.ord))) && (_tokenSet_5.member(_la(2))))
-                match(Character.new(?\\.ord))
-                match_not(Character.new(?].ord))
-              else
-                if ((_tokenSet_6.member(_la(1))))
-                  match_not(Character.new(?].ord))
-                else
-                  break
-                end
-              end
-            end
           when Character.new(?\n.ord)
             match(Character.new(?\n.ord))
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            m_action_string_literal(false)
-            throw :break_case, :thrown
-            m_action_char_literal(false)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
-              _save_index = self.attr_text.length
-              match(Character.new(?\\.ord))
-              self.attr_text.set_length(_save_index)
-              match(Character.new(?].ord))
-            else
-              if (((_la(1)).equal?(Character.new(?\\.ord))) && (_tokenSet_5.member(_la(2))))
-                match(Character.new(?\\.ord))
-                match_not(Character.new(?].ord))
-              else
-                if ((_tokenSet_6.member(_la(1))))
-                  match_not(Character.new(?].ord))
-                else
-                  break
-                end
-              end
-            end
           when Character.new(?".ord)
             m_action_string_literal(false)
-            throw :break_case, :thrown
-            m_action_char_literal(false)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
-              _save_index = self.attr_text.length
-              match(Character.new(?\\.ord))
-              self.attr_text.set_length(_save_index)
-              match(Character.new(?].ord))
-            else
-              if (((_la(1)).equal?(Character.new(?\\.ord))) && (_tokenSet_5.member(_la(2))))
-                match(Character.new(?\\.ord))
-                match_not(Character.new(?].ord))
-              else
-                if ((_tokenSet_6.member(_la(1))))
-                  match_not(Character.new(?].ord))
-                else
-                  break
-                end
-              end
-            end
           when Character.new(?\'.ord)
             m_action_char_literal(false)
-            throw :break_case, :thrown
-            if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
-              _save_index = self.attr_text.length
-              match(Character.new(?\\.ord))
-              self.attr_text.set_length(_save_index)
-              match(Character.new(?].ord))
-            else
-              if (((_la(1)).equal?(Character.new(?\\.ord))) && (_tokenSet_5.member(_la(2))))
-                match(Character.new(?\\.ord))
-                match_not(Character.new(?].ord))
-              else
-                if ((_tokenSet_6.member(_la(1))))
-                  match_not(Character.new(?].ord))
-                else
-                  break
-                end
-              end
-            end
           else
             if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
               _save_index = self.attr_text.length
@@ -3867,13 +1210,13 @@ module Org::Antlr::Tool
                 if ((_tokenSet_6.member(_la(1))))
                   match_not(Character.new(?].ord))
                 else
-                  break
+                  throw :break__loop216, :thrown
                 end
               end
             end
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
         _token.set_text(String.new(self.attr_text.get_buffer, _begin, self.attr_text.length - _begin))
@@ -3889,42 +1232,25 @@ module Org::Antlr::Tool
       _ttype = ACTION_STRING_LITERAL
       _save_index = 0
       match(Character.new(?".ord))
-      begin
-        catch(:break_case) do
+      catch(:break__loop228) do
+        begin
           case (_la(1))
           when Character.new(?\\.ord)
             m_action_esc(false)
-            throw :break_case, :thrown
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-            throw :break_case, :thrown
-            if ((_tokenSet_4.member(_la(1))))
-              match_not(Character.new(?".ord))
-            else
-              break
-            end
           when Character.new(?\n.ord)
             match(Character.new(?\n.ord))
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            if ((_tokenSet_4.member(_la(1))))
-              match_not(Character.new(?".ord))
-            else
-              break
-            end
           else
             if ((_tokenSet_4.member(_la(1))))
               match_not(Character.new(?".ord))
             else
-              break
+              throw :break__loop228, :thrown
             end
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       match(Character.new(?".ord))
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -3941,42 +1267,25 @@ module Org::Antlr::Tool
       _ttype = ACTION_CHAR_LITERAL
       _save_index = 0
       match(Character.new(?\'.ord))
-      begin
-        catch(:break_case) do
+      catch(:break__loop225) do
+        begin
           case (_la(1))
           when Character.new(?\\.ord)
             m_action_esc(false)
-            throw :break_case, :thrown
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-            throw :break_case, :thrown
-            if ((_tokenSet_1.member(_la(1))))
-              match_not(Character.new(?\'.ord))
-            else
-              break
-            end
           when Character.new(?\n.ord)
             match(Character.new(?\n.ord))
             if ((self.attr_input_state.attr_guessing).equal?(0))
               newline
             end
-            throw :break_case, :thrown
-            if ((_tokenSet_1.member(_la(1))))
-              match_not(Character.new(?\'.ord))
-            else
-              break
-            end
           else
             if ((_tokenSet_1.member(_la(1))))
               match_not(Character.new(?\'.ord))
             else
-              break
+              throw :break__loop225, :thrown
             end
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       match(Character.new(?\'.ord))
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -4054,32 +1363,21 @@ module Org::Antlr::Tool
                   m_action_esc(false)
                 else
                   if (((_la(1)).equal?(Character.new(?\n.ord)) || (_la(1)).equal?(Character.new(?\r.ord))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && (true))
-                    catch(:break_case) do
-                      case (_la(1))
-                      when Character.new(?\r.ord)
-                        match(Character.new(?\r.ord))
-                        match(Character.new(?\n.ord))
-                        if ((self.attr_input_state.attr_guessing).equal?(0))
-                          newline
-                        end
-                        throw :break_case, :thrown
-                        match(Character.new(?\n.ord))
-                        if ((self.attr_input_state.attr_guessing).equal?(0))
-                          newline
-                        end
-                        throw :break_case, :thrown
-                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                      when Character.new(?\n.ord)
-                        match(Character.new(?\n.ord))
-                        if ((self.attr_input_state.attr_guessing).equal?(0))
-                          newline
-                        end
-                        throw :break_case, :thrown
-                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
-                      else
-                        raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
+                    case (_la(1))
+                    when Character.new(?\r.ord)
+                      match(Character.new(?\r.ord))
+                      match(Character.new(?\n.ord))
+                      if ((self.attr_input_state.attr_guessing).equal?(0))
+                        newline
                       end
-                    end == :thrown or break
+                    when Character.new(?\n.ord)
+                      match(Character.new(?\n.ord))
+                      if ((self.attr_input_state.attr_guessing).equal?(0))
+                        newline
+                      end
+                    else
+                      raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
+                    end
                   else
                     if (((_la(1) >= Character.new(0x0003) && _la(1) <= Character.new(0x00ff))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && (true))
                       match_not(EOF_CHAR)
@@ -4137,42 +1435,22 @@ module Org::Antlr::Tool
       _ttype = TOKEN_REF
       _save_index = 0
       match_range(Character.new(?A.ord), Character.new(?Z.ord))
-      begin
-        catch(:break_case) do
+      catch(:break__loop233) do
+        begin
           case (_la(1))
           when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
             match_range(Character.new(?a.ord), Character.new(?z.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?A.ord), Character.new(?Z.ord))
-            throw :break_case, :thrown
-            match(Character.new(?_.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
             match_range(Character.new(?A.ord), Character.new(?Z.ord))
-            throw :break_case, :thrown
-            match(Character.new(?_.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           when Character.new(?_.ord)
             match(Character.new(?_.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
             match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           else
-            break
+            throw :break__loop233, :thrown
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       _ttype = test_literals_table(_ttype)
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -4232,42 +1510,22 @@ module Org::Antlr::Tool
       _save_index = 0
       t = RULE_REF
       match_range(Character.new(?a.ord), Character.new(?z.ord))
-      begin
-        catch(:break_case) do
+      catch(:break__loop243) do
+        begin
           case (_la(1))
           when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
             match_range(Character.new(?a.ord), Character.new(?z.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?A.ord), Character.new(?Z.ord))
-            throw :break_case, :thrown
-            match(Character.new(?_.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
             match_range(Character.new(?A.ord), Character.new(?Z.ord))
-            throw :break_case, :thrown
-            match(Character.new(?_.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           when Character.new(?_.ord)
             match(Character.new(?_.ord))
-            throw :break_case, :thrown
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
             match_range(Character.new(?0.ord), Character.new(?9.ord))
-            throw :break_case, :thrown
-            break
           else
-            break
+            throw :break__loop243, :thrown
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       if ((self.attr_input_state.attr_guessing).equal?(0))
         t = test_literals_table(t)
       end
@@ -4286,24 +1544,18 @@ module Org::Antlr::Tool
       _begin = self.attr_text.length
       _ttype = WS_LOOP
       _save_index = 0
-      begin
-        catch(:break_case) do
+      catch(:break__loop240) do
+        begin
           case (_la(1))
           when Character.new(?\t.ord), Character.new(?\n.ord), Character.new(?\r.ord), Character.new(?\s.ord)
             m_ws(false)
-            throw :break_case, :thrown
-            m_comment(false)
-            throw :break_case, :thrown
-            break
           when Character.new(?/.ord)
             m_comment(false)
-            throw :break_case, :thrown
-            break
           else
-            break
+            throw :break__loop240, :thrown
           end
-        end == :thrown or break
-      end while (true)
+        end while (true)
+      end
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
         _token.set_text(String.new(self.attr_text.get_buffer, _begin, self.attr_text.length - _begin))
@@ -4337,7 +1589,7 @@ module Org::Antlr::Tool
         i = 1
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -4353,7 +1605,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -4377,7 +1629,7 @@ module Org::Antlr::Tool
         i = 1
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -4393,7 +1645,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -4409,7 +1661,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -4425,7 +1677,7 @@ module Org::Antlr::Tool
         i = 2
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end
@@ -4440,7 +1692,7 @@ module Org::Antlr::Tool
         i = 1
         while i <= 3
           data[i] = -1
-          ((i += 1) - 1)
+          i += 1
         end
         return data
       end

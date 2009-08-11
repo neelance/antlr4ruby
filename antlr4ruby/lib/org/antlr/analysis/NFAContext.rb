@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
@@ -283,7 +282,7 @@ module Org::Antlr::Analysis
       # System.out.println("this.context is "+sp);
       while (!(sp.attr_parent).nil?)
         if ((sp.attr_invoking_state.attr_state_number).equal?(state))
-          ((n += 1) - 1)
+          n += 1
         end
         sp = sp.attr_parent
       end
@@ -293,7 +292,6 @@ module Org::Antlr::Analysis
     typesig { [] }
     def hash_code
       return @cached_hash_code
-      # 
       # int h = 0;
       # NFAContext sp = this;
       # while ( sp.parent!=null ) {

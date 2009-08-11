@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -374,7 +373,7 @@ module Org::Antlr::Runtime::Tree
       i = 1
       while i <= k - n
         next # get at least k-depth lookahead nodes
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -405,14 +404,13 @@ module Org::Antlr::Runtime::Tree
     typesig { [] }
     # Satisfy IntStream interface
     def consume
-      # 
       # System.out.println("consume: currentNode="+currentNode.getType()+
       # " childIndex="+currentChildIndex+
       # " nodeIndex="+absoluteNodeIndex);
       # 
       # make sure there is something in lookahead buf, which might call next()
       fill(1)
-      ((@absolute_node_index += 1) - 1)
+      @absolute_node_index += 1
       @previous_node = @lookahead[@head] # track previous node before moving on
       @head = (@head + 1) % @lookahead.attr_length
     end
@@ -435,7 +433,7 @@ module Org::Antlr::Runtime::Tree
         @markers = ArrayList.new
         @markers.add(nil) # depth 0 means no backtracking, leave blank
       end
-      ((@mark_depth += 1) - 1)
+      @mark_depth += 1
       state = nil
       if (@mark_depth >= @markers.size)
         state = TreeWalkState.new_local(self)
@@ -456,8 +454,8 @@ module Org::Antlr::Runtime::Tree
       k = 1
       while k <= n
         state.attr_lookahead[i] = _lt(k)
-        ((k += 1) - 1)
-        ((i += 1) - 1)
+        k += 1
+        i += 1
       end
       @last_marker = @mark_depth
       return @mark_depth
@@ -468,7 +466,7 @@ module Org::Antlr::Runtime::Tree
       # unwind any other markers made after marker and release marker
       @mark_depth = marker
       # release this marker
-      ((@mark_depth -= 1) + 1)
+      @mark_depth -= 1
     end
     
     typesig { [::Java::Int] }
@@ -492,7 +490,7 @@ module Org::Antlr::Runtime::Tree
       @head = @tail = 0 # wack lookahead buffer and then refill
       while @tail < state.attr_lookahead.attr_length
         @lookahead[@tail] = state.attr_lookahead[@tail]
-        ((@tail += 1) - 1)
+        @tail += 1
       end
       release(marker)
     end
@@ -637,7 +635,7 @@ module Org::Antlr::Runtime::Tree
           return
         end
         @current_child_index = (@index_stack.pop).int_value
-        ((@current_child_index += 1) - 1) # move to next child
+        @current_child_index += 1 # move to next child
         if (@current_child_index >= @adaptor.get_child_count(@current_node))
           if (!@adaptor.is_nil(@current_node))
             add_navigation_node(Token::UP)
@@ -728,7 +726,7 @@ module Org::Antlr::Runtime::Tree
       while c < n
         child = @adaptor.get_child(p, c)
         to_string_work(child, stop, buf)
-        ((c += 1) - 1)
+        c += 1
       end
       if (n > 0 && !@adaptor.is_nil(p))
         buf.append(" ")

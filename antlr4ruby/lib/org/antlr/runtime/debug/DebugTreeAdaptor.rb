@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -113,7 +112,7 @@ module Org::Antlr::Runtime::Debug
         child = @adaptor.get_child(t, i)
         simulate_tree_construction(child)
         @dbg.add_child(t, child)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     

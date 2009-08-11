@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -337,7 +336,7 @@ module Org::Antlr::Tool
         end
       end
       if ((key == "k"))
-        ((grammar.attr_number_of_manual_lookahead_options += 1) - 1)
+        grammar.attr_number_of_manual_lookahead_options += 1
       end
       options.put(key, value)
       return key
@@ -470,7 +469,7 @@ module Org::Antlr::Tool
         if ((n).equal?(i))
           return t
         end
-        ((n += 1) - 1)
+        n += 1
         t = t.get_next_sibling
       end
       return nil
@@ -496,7 +495,7 @@ module Org::Antlr::Tool
       while (!(t).nil?)
         array[i] = t
         t = t.get_next_sibling
-        ((i += 1) - 1)
+        i += 1
       end
       return array
     end

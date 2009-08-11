@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -196,7 +195,7 @@ module Org::Antlr::Runtime
           recover(mte)
           raise mte
         end
-        ((i += 1) - 1)
+        i += 1
         @input.consume
         self.attr_state.attr_failed = false
       end
@@ -308,8 +307,8 @@ module Org::Antlr::Runtime
               msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting set " + (mse.attr_expecting).to_s
             else
               if (e.is_a?(MismatchedSetException))
-                mse_ = e
-                msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting set " + (mse_.attr_expecting).to_s
+                mse = e
+                msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting set " + (mse.attr_expecting).to_s
               else
                 if (e.is_a?(MismatchedRangeException))
                   mre = e

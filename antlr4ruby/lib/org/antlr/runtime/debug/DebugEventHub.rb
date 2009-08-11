@@ -1,6 +1,5 @@
 require "rjava"
 
-# 
 # [The "BSD licence"]
 # Copyright (c) 2005-2008 Terence Parr
 # All rights reserved.
@@ -86,7 +85,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.enter_rule(grammar_file_name, rule_name)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -96,7 +95,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.exit_rule(grammar_file_name, rule_name)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -106,7 +105,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.enter_alt(alt)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -116,7 +115,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.enter_sub_rule(decision_number)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -126,7 +125,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.exit_sub_rule(decision_number)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -136,7 +135,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.enter_decision(decision_number)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -146,7 +145,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.exit_decision(decision_number)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -156,7 +155,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.location(line, pos)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -166,7 +165,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.consume_token(token)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -176,7 +175,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.consume_hidden_token(token)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -186,7 +185,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener._lt(index, t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -196,7 +195,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.mark(index)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -206,7 +205,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.rewind(index)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -216,7 +215,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.rewind
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -226,7 +225,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.begin_backtrack(level)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -236,7 +235,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.end_backtrack(level, successful)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -246,7 +245,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.recognition_exception(e)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -256,7 +255,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.begin_resync
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -266,7 +265,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.end_resync
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -276,7 +275,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.semantic_predicate(result, predicate)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -286,7 +285,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.commence
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -296,7 +295,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.terminate
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -307,7 +306,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.consume_node(t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -317,7 +316,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener._lt(index, t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -328,7 +327,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.nil_node(t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -338,7 +337,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.error_node(t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -348,7 +347,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.create_node(t)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -358,7 +357,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.create_node(node, token)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -368,7 +367,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.become_root(new_root, old_root)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -378,7 +377,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.add_child(root, child)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
@@ -388,7 +387,7 @@ module Org::Antlr::Runtime::Debug
       while i < @listeners.size
         listener = @listeners.get(i)
         listener.set_token_boundaries(t, token_start_index, token_stop_index)
-        ((i += 1) - 1)
+        i += 1
       end
     end
     
