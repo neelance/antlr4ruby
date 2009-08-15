@@ -77,14 +77,14 @@ module Org::Antlr::Codegen
     def encode_int_as_char_escape(v)
       # encode as hex
       if (v <= 255)
-        return "\\x" + (JavaInteger.to_hex_string(v | 0x100).substring(1, 3)).to_s
+        return "\\x" + RJava.cast_to_string(JavaInteger.to_hex_string(v | 0x100).substring(1, 3))
       end
       if (v <= 0x7fff)
         hex = JavaInteger.to_hex_string(v | 0x10000).substring(1, 5)
         return "\\u" + hex
       end
       if (v > 0xffff)
-        System.err.println("Warning: character literal out of range for ActionScript target " + (v).to_s)
+        System.err.println("Warning: character literal out of range for ActionScript target " + RJava.cast_to_string(v))
         return ""
       end
       buf = StringBuffer.new("\\u80")
@@ -114,7 +114,7 @@ module Org::Antlr::Codegen
     
     typesig { [StringBuffer, String] }
     def write_hex_with_padding(buf, digits)
-      digits = (digits.to_upper_case).to_s
+      digits = RJava.cast_to_string(digits.to_upper_case)
       padding = 8 - digits.length
       # pad left with zeros
       i = 1

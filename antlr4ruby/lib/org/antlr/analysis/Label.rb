@@ -202,7 +202,7 @@ module Org::Antlr::Analysis
           if (a.is_set)
             @label_set.add_all(a.get_set)
           else
-            raise IllegalStateException.new("can't add element to Label of type " + (@label).to_s)
+            raise IllegalStateException.new("can't add element to Label of type " + RJava.cast_to_string(@label))
           end
         end
         return
@@ -214,12 +214,12 @@ module Org::Antlr::Analysis
           if (a.is_set)
             @label_set.add_all(a.get_set)
           else
-            raise IllegalStateException.new("can't add element to Label of type " + (@label).to_s)
+            raise IllegalStateException.new("can't add element to Label of type " + RJava.cast_to_string(@label))
           end
         end
         return
       end
-      raise IllegalStateException.new("can't add element to Label of type " + (@label).to_s)
+      raise IllegalStateException.new("can't add element to Label of type " + RJava.cast_to_string(@label))
     end
     
     typesig { [] }
@@ -294,7 +294,7 @@ module Org::Antlr::Analysis
       end
       if (is_set)
         # matches if intersection non-nil
-        return !get_set.and(set).is_nil
+        return !get_set.and_(set).is_nil
       end
       return false
     end
@@ -321,7 +321,7 @@ module Org::Antlr::Analysis
     
     typesig { [Object] }
     # TODO: do we care about comparing set {A} with atom A? Doesn't now.
-    def equals(o)
+    def ==(o)
       if ((o).nil?)
         return false
       end
@@ -413,7 +413,7 @@ module Org::Antlr::Analysis
         if (!label_is_set && !edge_is_set && (edge_label.attr_label).equal?(label.attr_label))
           has_intersection = true
         else
-          if (label_is_set && edge_is_set && !edge_label.get_set.and(label.get_set).is_nil)
+          if (label_is_set && edge_is_set && !edge_label.get_set.and_(label.get_set).is_nil)
             has_intersection = true
           else
             if (label_is_set && !edge_is_set && label.get_set.member(edge_label.attr_label))

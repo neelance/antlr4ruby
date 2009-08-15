@@ -63,11 +63,11 @@ module Org::Antlr::Codegen
             s = JavaInteger.to_s(c, 16)
             # put leading zeroes in front of the thing..
             while (s.length < 4)
-              s = (Character.new(?0.ord)).to_s + s
+              s = RJava.cast_to_string(Character.new(?0.ord)) + s
             end
             return "\\u" + s
           else
-            return "\\" + (JavaInteger.to_s(c, 8)).to_s
+            return "\\" + RJava.cast_to_string(JavaInteger.to_s(c, 8))
           end
         else
           return String.value_of(RJava.cast_to_char(c))
@@ -95,7 +95,7 @@ module Org::Antlr::Codegen
     typesig { [Tool, CodeGenerator, Grammar, StringTemplate, String] }
     def gen_recognizer_header_file(tool, generator, grammar, header_file_st, ext_name)
       templates = generator.get_templates
-      generator.write(header_file_st, (grammar.attr_name).to_s + ext_name)
+      generator.write(header_file_st, RJava.cast_to_string(grammar.attr_name) + ext_name)
     end
     
     typesig { [CodeGenerator, String] }
@@ -113,10 +113,10 @@ module Org::Antlr::Codegen
       else
         if (!((c & 0x80)).equal?(0))
           # if in char mode prevent sign extensions
-          return "" + (c).to_s
+          return "" + RJava.cast_to_string(c)
         end
       end
-      return prefix + (escape_char(c)).to_s + "'"
+      return prefix + RJava.cast_to_string(escape_char(c)) + "'"
     end
     
     typesig { [CodeGenerator, String] }
@@ -132,7 +132,7 @@ module Org::Antlr::Codegen
       if (codegen.attr_grammar.get_max_char_value > 255)
         prefix = "L\""
       end
-      return prefix + (escape_string(buf.to_s)).to_s + "\""
+      return prefix + RJava.cast_to_string(escape_string(buf.to_s)) + "\""
     end
     
     typesig { [CodeGenerator] }

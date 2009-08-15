@@ -222,7 +222,7 @@ module Org::Antlr::Runtime::Tree
         typesig { [] }
         def to_s
           if (!(@label).nil?)
-            return "%" + @label + ":" + (super).to_s
+            return "%" + @label + ":" + RJava.cast_to_string(super)
           else
             return super
           end
@@ -408,7 +408,7 @@ module Org::Antlr::Runtime::Tree
       parser = TreePatternParser.new(tokenizer, self, TreePatternTreeAdaptor.new)
       tpattern = parser.pattern
       # don't allow invalid patterns
-      if ((tpattern).nil? || tpattern.is_nil || (tpattern.get_class).equal?(WildcardTreePattern.class))
+      if ((tpattern).nil? || tpattern.is_nil || (tpattern.get_class).equal?(WildcardTreePattern))
         return nil
       end
       root_token_type = tpattern.get_type
@@ -483,7 +483,7 @@ module Org::Antlr::Runtime::Tree
       parser = TreePatternParser.new(tokenizer, self, TreePatternTreeAdaptor.new)
       tpattern = parser.pattern
       # don't allow invalid patterns
-      if ((tpattern).nil? || tpattern.is_nil || (tpattern.get_class).equal?(WildcardTreePattern.class))
+      if ((tpattern).nil? || tpattern.is_nil || (tpattern.get_class).equal?(WildcardTreePattern))
         return
       end
       labels = HashMap.new # reused for each _parse
@@ -549,7 +549,7 @@ module Org::Antlr::Runtime::Tree
         return false
       end
       # check roots (wildcard matches anything)
-      if (!(t2.get_class).equal?(WildcardTreePattern.class))
+      if (!(t2.get_class).equal?(WildcardTreePattern))
         if (!(@adaptor.get_type(t1)).equal?(t2.get_type))
           return false
         end
@@ -609,7 +609,7 @@ module Org::Antlr::Runtime::Tree
       # 
       # I cannot rely on the tree node's equals() implementation as I make
       # no constraints at all on the node types nor interface etc...
-      def equals(t1, t2, adaptor)
+      def ==(t1, t2, adaptor)
         return __equals(t1, t2, adaptor)
       end
     }
@@ -617,7 +617,7 @@ module Org::Antlr::Runtime::Tree
     typesig { [Object, Object] }
     # Compare type, structure, and text of two trees, assuming adaptor in
     # this instance of a TreeWizard.
-    def equals(t1, t2)
+    def ==(t1, t2)
       return __equals(t1, t2, @adaptor)
     end
     

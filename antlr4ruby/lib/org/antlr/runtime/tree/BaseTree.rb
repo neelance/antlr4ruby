@@ -300,10 +300,10 @@ module Org::Antlr::Runtime::Tree
     typesig { [Tree, ::Java::Int] }
     def sanity_check_parent_and_child_indexes(parent, i)
       if (!(parent).equal?(self.get_parent))
-        raise IllegalStateException.new("parents don't match; expected " + (parent).to_s + " found " + (self.get_parent).to_s)
+        raise IllegalStateException.new("parents don't match; expected " + RJava.cast_to_string(parent) + " found " + RJava.cast_to_string(self.get_parent))
       end
       if (!(i).equal?(self.get_child_index))
-        raise IllegalStateException.new("child indexes don't match; expected " + (i).to_s + " found " + (self.get_child_index).to_s)
+        raise IllegalStateException.new("child indexes don't match; expected " + RJava.cast_to_string(i) + " found " + RJava.cast_to_string(self.get_child_index))
       end
       n = self.get_child_count
       c = 0

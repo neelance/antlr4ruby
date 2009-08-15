@@ -430,7 +430,7 @@ module Org::Antlr::Tool
       # print as good of a message as we can, given that we do not have
       # a Lexer object and, hence, cannot call the routine to get a
       # decent error message.
-      System.err.println("problem matching token at " + (cs.get_line).to_s + ":" + (cs.get_char_position_in_line).to_s + " " + (re).to_s)
+      System.err.println("problem matching token at " + RJava.cast_to_string(cs.get_line) + ":" + RJava.cast_to_string(cs.get_char_position_in_line) + " " + RJava.cast_to_string(re))
     end
     
     typesig { [] }

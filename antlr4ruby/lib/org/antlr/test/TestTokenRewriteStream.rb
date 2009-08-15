@@ -139,13 +139,13 @@ module Org::Antlr::Test
       result = tokens.to_original_string
       expecting = "x = 3 * 0;"
       assert_equals(expecting, result)
-      result = (tokens.to_s).to_s
+      result = RJava.cast_to_string(tokens.to_s)
       expecting = "x = 0;"
       assert_equals(expecting, result)
-      result = (tokens.to_s(0, 9)).to_s
+      result = RJava.cast_to_string(tokens.to_s(0, 9))
       expecting = "x = 0;"
       assert_equals(expecting, result)
-      result = (tokens.to_s(4, 8)).to_s
+      result = RJava.cast_to_string(tokens.to_s(4, 8))
       expecting = "0"
       assert_equals(expecting, result)
     end
@@ -163,26 +163,26 @@ module Org::Antlr::Test
       expecting = "x = 3 * 0 + 2 * 0;"
       assert_equals(expecting, result)
       tokens.replace(4, 8, "0") # replace 3 * 0 with 0
-      result = (tokens.to_s).to_s
+      result = RJava.cast_to_string(tokens.to_s)
       expecting = "x = 0 + 2 * 0;"
       assert_equals(expecting, result)
-      result = (tokens.to_s(0, 17)).to_s
+      result = RJava.cast_to_string(tokens.to_s(0, 17))
       expecting = "x = 0 + 2 * 0;"
       assert_equals(expecting, result)
-      result = (tokens.to_s(4, 8)).to_s
+      result = RJava.cast_to_string(tokens.to_s(4, 8))
       expecting = "0"
       assert_equals(expecting, result)
-      result = (tokens.to_s(0, 8)).to_s
+      result = RJava.cast_to_string(tokens.to_s(0, 8))
       expecting = "x = 0"
       assert_equals(expecting, result)
-      result = (tokens.to_s(12, 16)).to_s
+      result = RJava.cast_to_string(tokens.to_s(12, 16))
       expecting = "2 * 0"
       assert_equals(expecting, result)
       tokens.insert_after(17, "// comment")
-      result = (tokens.to_s(12, 17)).to_s
+      result = RJava.cast_to_string(tokens.to_s(12, 17))
       expecting = "2 * 0;// comment"
       assert_equals(expecting, result)
-      result = (tokens.to_s(0, 8)).to_s # try again after insert at end
+      result = RJava.cast_to_string(tokens.to_s(0, 8)) # try again after insert at end
       expecting = "x = 0"
       assert_equals(expecting, result)
     end

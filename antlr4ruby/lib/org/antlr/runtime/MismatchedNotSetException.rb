@@ -49,7 +49,7 @@ module Org::Antlr::Runtime
     
     typesig { [] }
     def to_s
-      return "MismatchedNotSetException(" + (get_unexpected_type).to_s + "!=" + (self.attr_expecting).to_s + ")"
+      return "MismatchedNotSetException(" + RJava.cast_to_string(get_unexpected_type) + "!=" + RJava.cast_to_string(self.attr_expecting) + ")"
     end
     
     private

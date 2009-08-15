@@ -275,7 +275,7 @@ module Org::Antlr::Analysis
       if (@states_with_syntactically_ambiguous_alts_set.size > 0)
         it = @states_with_syntactically_ambiguous_alts_set.iterator
         while (it.has_next)
-          d = it.next
+          d = it.next_
           if (!@states_resolved_with_semantic_predicates_set.contains(d))
             return false
           end
@@ -397,7 +397,7 @@ module Org::Antlr::Analysis
       buf = StringBuffer.new
       it = labels.iterator
       while it.has_next
-        label = it.next
+        label = it.next_
         buf.append(label.to_s(g))
         if (it.has_next && !(g.attr_type).equal?(Grammar::LEXER))
           buf.append(Character.new(?\s.ord))
@@ -506,7 +506,7 @@ module Org::Antlr::Analysis
       if (problem_states.size > 0)
         it = problem_states.iterator
         while (it.has_next && !@dfa.attr_nfa.attr_grammar._nfato_dfaconversion_externally_aborted)
-          d = it.next
+          d = it.next_
           insufficient_alt_to_locations = get_incompletely_covered_alts(d)
           if (!(insufficient_alt_to_locations).nil? && insufficient_alt_to_locations.size > 0)
             ErrorManager.insufficient_predicates(self, d, insufficient_alt_to_locations)
@@ -528,7 +528,7 @@ module Org::Antlr::Analysis
         # System.err.println("no emanating edges for states: "+danglingStates);
         it = dangling_states.iterator
         while it.has_next
-          d = it.next
+          d = it.next_
           ErrorManager.dangling_state(self, d)
         end
       end
@@ -602,7 +602,7 @@ module Org::Antlr::Analysis
       Collections.sort(sorted_alts)
       alts_it = sorted_alts.iterator
       while alts_it.has_next
-        alt_i = alts_it.next
+        alt_i = alts_it.next_
         target_to_call_site_map = alt_to_target_to_call_sites_map.get(alt_i)
         target_rules = target_to_call_site_map.key_set
         call_site_states = target_to_call_site_map.values
@@ -615,7 +615,7 @@ module Org::Antlr::Analysis
     def compute_alt_to_problem_maps(dfa_states_unaliased, configurations_map, alt_to_target_to_call_sites_map, alt_to_dfastate)
       it = dfa_states_unaliased.iterator
       while it.has_next
-        state_i = it.next
+        state_i = it.next_
         # walk this DFA's config list
         configs = configurations_map.get(state_i)
         i = 0
@@ -652,7 +652,7 @@ module Org::Antlr::Analysis
       dfa_states_unaliased = HashSet.new
       it = dfa_states_with_recursion_problems.iterator
       while it.has_next
-        state_i = it.next
+        state_i = it.next_
         d = @dfa.get_state(state_i.int_value)
         dfa_states_unaliased.add(Utils.integer(d.attr_state_number))
       end

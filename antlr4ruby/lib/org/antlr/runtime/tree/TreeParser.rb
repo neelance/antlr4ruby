@@ -99,7 +99,7 @@ module Org::Antlr::Runtime::Tree
     
     typesig { [IntStream, RecognitionException, ::Java::Int, BitSet] }
     def get_missing_symbol(input, e, expected_token_type, follow)
-      token_text = "<missing " + (get_token_names[expected_token_type]).to_s + ">"
+      token_text = "<missing " + RJava.cast_to_string(get_token_names[expected_token_type]) + ">"
       return CommonTree.new(CommonToken.new(expected_token_type, token_text))
     end
     
@@ -148,7 +148,7 @@ module Org::Antlr::Runtime::Tree
     # always intended for the programmer because the parser built
     # the input tree not the user.
     def get_error_header(e)
-      return (get_grammar_file_name).to_s + ": node from " + ((e.attr_approximate_line_info ? "after " : "")).to_s + "line " + (e.attr_line).to_s + ":" + (e.attr_char_position_in_line).to_s
+      return RJava.cast_to_string(get_grammar_file_name) + ": node from " + RJava.cast_to_string((e.attr_approximate_line_info ? "after " : "")) + "line " + RJava.cast_to_string(e.attr_line) + ":" + RJava.cast_to_string(e.attr_char_position_in_line)
     end
     
     typesig { [RecognitionException, Array.typed(String)] }

@@ -130,7 +130,7 @@ module Org::Antlr::Runtime::Tree
         if (!(@ttype).equal?(TreePatternLexer::ID))
           return nil
         end
-        label = (@tokenizer.attr_sval.to_s).to_s
+        label = RJava.cast_to_string(@tokenizer.attr_sval.to_s)
         @ttype = @tokenizer.next_token
         if (!(@ttype).equal?(TreePatternLexer::COLON))
           return nil
@@ -154,13 +154,13 @@ module Org::Antlr::Runtime::Tree
       token_name = @tokenizer.attr_sval.to_s
       @ttype = @tokenizer.next_token
       if ((token_name == "nil"))
-        return @adaptor.nil
+        return @adaptor.nil_
       end
       text = token_name
       # check for arg
       arg = nil
       if ((@ttype).equal?(TreePatternLexer::ARG))
-        arg = (@tokenizer.attr_sval.to_s).to_s
+        arg = RJava.cast_to_string(@tokenizer.attr_sval.to_s)
         text = arg
         @ttype = @tokenizer.next_token
       end
@@ -171,10 +171,10 @@ module Org::Antlr::Runtime::Tree
       end
       node = nil
       node = @adaptor.create(tree_node_type, text)
-      if (!(label).nil? && (node.get_class).equal?(TreeWizard::TreePattern.class))
+      if (!(label).nil? && (node.get_class).equal?(TreeWizard::TreePattern))
         (node).attr_label = label
       end
-      if (!(arg).nil? && (node.get_class).equal?(TreeWizard::TreePattern.class))
+      if (!(arg).nil? && (node.get_class).equal?(TreeWizard::TreePattern))
         (node).attr_has_text_arg = true
       end
       return node

@@ -88,7 +88,7 @@ module Org::Antlr::Tool
         disabled_alts = @probe.get_disabled_alternatives(@problem_state)
         it = disabled_alts.iterator
         while it.has_next
-          alt_i = it.next
+          alt_i = it.next_
           token_name = @probe.get_token_name_for_tokens_rule_alt(alt_i.int_value)
           # reset the line/col to the token definition (pick last one)
           rule_start = @probe.attr_dfa.attr_nfa.attr_grammar.get_rule_start_state(token_name)
@@ -106,7 +106,7 @@ module Org::Antlr::Tool
       if (!(nondet_alts).nil?)
         iter = nondet_alts.iterator
         while iter.has_next
-          display_alt_i = iter.next
+          display_alt_i = iter.next_
           if (DecisionProbe.attr_verbose)
             trace_path_alt = nfa_start.translate_display_alt_to_walk_alt(display_alt_i.int_value)
             if ((first_alt).equal?(0))

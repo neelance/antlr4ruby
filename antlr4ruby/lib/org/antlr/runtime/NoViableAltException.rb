@@ -77,9 +77,9 @@ module Org::Antlr::Runtime
     typesig { [] }
     def to_s
       if (self.attr_input.is_a?(CharStream))
-        return "NoViableAltException('" + (RJava.cast_to_char(get_unexpected_type)).to_s + "'@[" + @grammar_decision_description + "])"
+        return "NoViableAltException('" + RJava.cast_to_string(RJava.cast_to_char(get_unexpected_type)) + "'@[" + @grammar_decision_description + "])"
       else
-        return "NoViableAltException(" + (get_unexpected_type).to_s + "@[" + @grammar_decision_description + "])"
+        return "NoViableAltException(" + RJava.cast_to_string(get_unexpected_type) + "@[" + @grammar_decision_description + "])"
       end
     end
     

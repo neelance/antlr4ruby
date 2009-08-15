@@ -360,7 +360,7 @@ module Org::Antlr::Tool
       keys = options.key_set
       it = keys.iterator
       while it.has_next
-        option_name = it.next
+        option_name = it.next_
         stored = set_block_option(grammar, option_name, options.get(option_name))
         if ((stored).nil?)
           it.remove
@@ -524,7 +524,7 @@ module Org::Antlr::Tool
     typesig { [Object] }
     # Make nodes unique based upon Token so we can add them to a Set; if
     # not a GrammarAST, check type.
-    def equals(ast)
+    def ==(ast)
       if ((self).equal?(ast))
         return true
       end

@@ -141,7 +141,7 @@ module Org::Antlr::Analysis
     # the state|alt|ctx could be the same and have two different
     # semantic contexts, but might as well define equals to be
     # everything.
-    def equals(o)
+    def ==(o)
       if ((o).nil?)
         return false
       end

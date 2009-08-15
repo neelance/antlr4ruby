@@ -264,7 +264,7 @@ module Org::Antlr::Test
         
         typesig { [Object, Object, ::Java::Int, Map] }
         define_method :visit do |t, parent, child_index, labels|
-          elements.add((Adaptor.get_text(t)).to_s + "@" + ((!(parent).nil? ? Adaptor.get_text(parent) : "nil")).to_s + "[" + (child_index).to_s + "]")
+          elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]")
         end
         
         typesig { [] }
@@ -292,7 +292,7 @@ module Org::Antlr::Test
         
         typesig { [Object, Object, ::Java::Int, Map] }
         define_method :visit do |t, parent, child_index, labels|
-          elements.add((Adaptor.get_text(t)).to_s + "@" + ((!(parent).nil? ? Adaptor.get_text(parent) : "nil")).to_s + "[" + (child_index).to_s + "]")
+          elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]")
         end
         
         typesig { [] }
@@ -348,7 +348,7 @@ module Org::Antlr::Test
         
         typesig { [Object, Object, ::Java::Int, Map] }
         define_method :visit do |t, parent, child_index, labels|
-          elements.add((Adaptor.get_text(t)).to_s + "@" + ((!(parent).nil? ? Adaptor.get_text(parent) : "nil")).to_s + "[" + (child_index).to_s + "]")
+          elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]")
         end
         
         typesig { [] }
@@ -376,7 +376,7 @@ module Org::Antlr::Test
         
         typesig { [Object, Object, ::Java::Int, Map] }
         define_method :visit do |t, parent, child_index, labels|
-          elements.add((Adaptor.get_text(t)).to_s + "@" + ((!(parent).nil? ? Adaptor.get_text(parent) : "nil")).to_s + "[" + (child_index).to_s + "]" + (labels.get("a")).to_s + "&" + (labels.get("b")).to_s)
+          elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]" + RJava.cast_to_string(labels.get("a")) + "&" + RJava.cast_to_string(labels.get("b")))
         end
         
         typesig { [] }

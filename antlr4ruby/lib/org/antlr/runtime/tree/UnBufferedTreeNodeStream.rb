@@ -372,7 +372,7 @@ module Org::Antlr::Runtime::Tree
       # System.out.println("we have "+n+" nodes; need "+(k-n));
       i = 1
       while i <= k - n
-        next # get at least k-depth lookahead nodes
+        next_ # get at least k-depth lookahead nodes
         i += 1
       end
     end
@@ -542,7 +542,7 @@ module Org::Antlr::Runtime::Tree
     # Ugh.  This mechanism is much more complicated than a recursive
     # solution, but it's the only way to provide nodes on-demand instead
     # of walking once completely through and buffering up the nodes. :(
-    def next
+    def next_
       # already walked entire tree; nothing to return
       if ((@current_node).nil?)
         add_lookahead(@eof)
@@ -710,7 +710,7 @@ module Org::Antlr::Runtime::Tree
       if (!@adaptor.is_nil(p))
         text = @adaptor.get_text(p)
         if ((text).nil?)
-          text = " " + (String.value_of(@adaptor.get_type(p))).to_s
+          text = " " + RJava.cast_to_string(String.value_of(@adaptor.get_type(p)))
         end
         buf.append(text) # ask the node to go to string
       end

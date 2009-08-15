@@ -474,7 +474,7 @@ module Org::Antlr::Test
       g.set_code_generator(generator)
       generator.gen_recognizer
       # $a is ambig; is it previous root or ref to a ref in alt?
-      assert_equals("unexpected errors: " + (equeue).to_s, 1, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 1, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -811,9 +811,9 @@ module Org::Antlr::Test
         end
         i += 1
       end
-      assert_true("no error; " + (expected_message.attr_msg_id).to_s + " expected", equeue.attr_errors.size > 0)
-      assert_true("too many errors; " + (equeue.attr_errors).to_s, equeue.attr_errors.size <= 1)
-      assert_not_null("couldn't find expected error: " + (expected_message.attr_msg_id).to_s, found_msg)
+      assert_true("no error; " + RJava.cast_to_string(expected_message.attr_msg_id) + " expected", equeue.attr_errors.size > 0)
+      assert_true("too many errors; " + RJava.cast_to_string(equeue.attr_errors), equeue.attr_errors.size <= 1)
+      assert_not_null("couldn't find expected error: " + RJava.cast_to_string(expected_message.attr_msg_id), found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
       assert_equals(expected_message.attr_arg, found_msg.attr_arg)
       assert_equals(expected_message.attr_arg2, found_msg.attr_arg2)

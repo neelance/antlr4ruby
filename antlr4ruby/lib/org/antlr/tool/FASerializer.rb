@@ -183,17 +183,17 @@ module Org::Antlr::Tool
             buf.append("->")
           else
             if (edge.is_semantic_predicate)
-              buf.append("-{" + (edge.attr_label.get_semantic_context).to_s + "}?->")
+              buf.append("-{" + RJava.cast_to_string(edge.attr_label.get_semantic_context) + "}?->")
             else
               preds_str = ""
               if (edge.attr_target.is_a?(DFAState))
                 # look for gated predicates; don't add gated to simple sempred edges
                 preds = (edge.attr_target).get_gated_predicates_in_nfaconfigurations
                 if (!(preds).nil?)
-                  preds_str = "&&{" + (preds.gen_expr(@grammar.attr_generator, @grammar.attr_generator.get_templates, nil).to_s).to_s + "}?"
+                  preds_str = "&&{" + RJava.cast_to_string(preds.gen_expr(@grammar.attr_generator, @grammar.attr_generator.get_templates, nil).to_s) + "}?"
                 end
               end
-              buf.append("-" + (edge.attr_label.to_s(@grammar)).to_s + preds_str + "->")
+              buf.append("-" + RJava.cast_to_string(edge.attr_label.to_s(@grammar)) + preds_str + "->")
             end
           end
         end
@@ -219,12 +219,12 @@ module Org::Antlr::Tool
     
     typesig { [::Java::Int, State] }
     def get_state_string(n, s)
-      state_str = ".s" + (n).to_s
+      state_str = ".s" + RJava.cast_to_string(n)
       if (s.is_accept_state)
         if (s.is_a?(DFAState))
-          state_str = ":s" + (n).to_s + "=>" + ((s).get_uniquely_predicted_alt).to_s
+          state_str = ":s" + RJava.cast_to_string(n) + "=>" + RJava.cast_to_string((s).get_uniquely_predicted_alt)
         else
-          state_str = ":s" + (n).to_s
+          state_str = ":s" + RJava.cast_to_string(n)
         end
       end
       return state_str

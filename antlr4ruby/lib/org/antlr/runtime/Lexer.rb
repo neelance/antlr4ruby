@@ -39,7 +39,9 @@ module Org::Antlr::Runtime
   # of speed.
   class Lexer < LexerImports.const_get :BaseRecognizer
     include_class_members LexerImports
-    include TokenSource
+    overload_protected {
+      include TokenSource
+    }
     
     # Where is the lexer drawing characters from?
     attr_accessor :input
@@ -288,33 +290,33 @@ module Org::Antlr::Runtime
       msg = nil
       if (e.is_a?(MismatchedTokenException))
         mte = e
-        msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting " + (get_char_error_display(mte.attr_expecting)).to_s
+        msg = "mismatched character " + RJava.cast_to_string(get_char_error_display(e.attr_c)) + " expecting " + RJava.cast_to_string(get_char_error_display(mte.attr_expecting))
       else
         if (e.is_a?(NoViableAltException))
           nvae = e
           # for development, can add "decision=<<"+nvae.grammarDecisionDescription+">>"
           # and "(decision="+nvae.decisionNumber+") and
           # "state "+nvae.stateNumber
-          msg = "no viable alternative at character " + (get_char_error_display(e.attr_c)).to_s
+          msg = "no viable alternative at character " + RJava.cast_to_string(get_char_error_display(e.attr_c))
         else
           if (e.is_a?(EarlyExitException))
             eee = e
             # for development, can add "(decision="+eee.decisionNumber+")"
-            msg = "required (...)+ loop did not match anything at character " + (get_char_error_display(e.attr_c)).to_s
+            msg = "required (...)+ loop did not match anything at character " + RJava.cast_to_string(get_char_error_display(e.attr_c))
           else
             if (e.is_a?(MismatchedNotSetException))
               mse = e
-              msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting set " + (mse.attr_expecting).to_s
+              msg = "mismatched character " + RJava.cast_to_string(get_char_error_display(e.attr_c)) + " expecting set " + RJava.cast_to_string(mse.attr_expecting)
             else
               if (e.is_a?(MismatchedSetException))
                 mse = e
-                msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting set " + (mse.attr_expecting).to_s
+                msg = "mismatched character " + RJava.cast_to_string(get_char_error_display(e.attr_c)) + " expecting set " + RJava.cast_to_string(mse.attr_expecting)
               else
                 if (e.is_a?(MismatchedRangeException))
                   mre = e
-                  msg = "mismatched character " + (get_char_error_display(e.attr_c)).to_s + " expecting set " + (get_char_error_display(mre.attr_a)).to_s + ".." + (get_char_error_display(mre.attr_b)).to_s
+                  msg = "mismatched character " + RJava.cast_to_string(get_char_error_display(e.attr_c)) + " expecting set " + RJava.cast_to_string(get_char_error_display(mre.attr_a)) + ".." + RJava.cast_to_string(get_char_error_display(mre.attr_b))
                 else
-                  msg = (super(e, token_names)).to_s
+                  msg = RJava.cast_to_string(super(e, token_names))
                 end
               end
             end
@@ -353,13 +355,13 @@ module Org::Antlr::Runtime
     
     typesig { [String, ::Java::Int] }
     def trace_in(rule_name, rule_index)
-      input_symbol = ((RJava.cast_to_char(@input._lt(1)))).to_s + " line=" + (get_line).to_s + ":" + (get_char_position_in_line).to_s
+      input_symbol = RJava.cast_to_string((RJava.cast_to_char(@input._lt(1)))) + " line=" + RJava.cast_to_string(get_line) + ":" + RJava.cast_to_string(get_char_position_in_line)
       super(rule_name, rule_index, input_symbol)
     end
     
     typesig { [String, ::Java::Int] }
     def trace_out(rule_name, rule_index)
-      input_symbol = ((RJava.cast_to_char(@input._lt(1)))).to_s + " line=" + (get_line).to_s + ":" + (get_char_position_in_line).to_s
+      input_symbol = RJava.cast_to_string((RJava.cast_to_char(@input._lt(1)))) + " line=" + RJava.cast_to_string(get_line) + ":" + RJava.cast_to_string(get_char_position_in_line)
       super(rule_name, rule_index, input_symbol)
     end
     

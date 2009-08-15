@@ -173,7 +173,7 @@ module Org::Antlr::Test
       recog_st = generator.gen_recognizer
       code = recog_st.to_s
       assert_true("not expecting label", code.index_of("x=b();") < 0)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -555,7 +555,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "B.g", importer)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/B.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/B.g", composite)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
       expected_token_idto_type_map = "[SEMI=4]"
@@ -564,7 +564,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -577,7 +577,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "B.g", importer)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/B.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/B.g", composite)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
       expected_token_idto_type_map = "[SEMI=4]"
@@ -586,7 +586,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [Grammar, String, String, String] }
@@ -611,8 +611,8 @@ module Org::Antlr::Test
           rule_labels.add(label_name)
         end
       end
-      assert_true("token += labels mismatch; " + (token_labels).to_s + "!=" + (r.attr_token_list_labels).to_s, (!(token_labels).nil? && !(r.attr_token_list_labels).nil?) || ((token_labels).nil? && (r.attr_token_list_labels).nil?))
-      assert_true("rule += labels mismatch; " + (rule_labels).to_s + "!=" + (r.attr_rule_list_labels).to_s, (!(rule_labels).nil? && !(r.attr_rule_list_labels).nil?) || ((rule_labels).nil? && (r.attr_rule_list_labels).nil?))
+      assert_true("token += labels mismatch; " + RJava.cast_to_string(token_labels) + "!=" + RJava.cast_to_string(r.attr_token_list_labels), (!(token_labels).nil? && !(r.attr_token_list_labels).nil?) || ((token_labels).nil? && (r.attr_token_list_labels).nil?))
+      assert_true("rule += labels mismatch; " + RJava.cast_to_string(rule_labels) + "!=" + RJava.cast_to_string(r.attr_rule_list_labels), (!(rule_labels).nil? && !(r.attr_rule_list_labels).nil?) || ((rule_labels).nil? && (r.attr_rule_list_labels).nil?))
       if (!(token_labels).nil?)
         assert_equals(token_labels, r.attr_token_list_labels.key_set)
       end
@@ -634,7 +634,7 @@ module Org::Antlr::Test
       # make sure there are not any others (other than <EOF> etc...)
       iter = tokens.iterator
       while iter.has_next
-        token_name = iter.next
+        token_name = iter.next_
         assert_true("unexpected token name " + token_name, g.get_token_type(token_name) < Label::MIN_TOKEN_TYPE)
       end
       # make sure all expected rules are there
@@ -648,7 +648,7 @@ module Org::Antlr::Test
       rules = g.get_rules
       # System.out.println("rules="+rules);
       # make sure there are no extra rules
-      assert_equals("number of rules mismatch; expecting " + (n).to_s + "; found " + (rules.size).to_s, n, rules.size)
+      assert_equals("number of rules mismatch; expecting " + RJava.cast_to_string(n) + "; found " + RJava.cast_to_string(rules.size), n, rules.size)
     end
     
     private

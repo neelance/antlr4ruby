@@ -91,7 +91,7 @@ module Org::Antlr::Analysis
       self.attr_unreachable_alts = nil
       it = edge_map.key_set.iterator
       while it.has_next
-        edge = it.next
+        edge = it.next_
         alts = edge_map.get(edge)
         Collections.sort(alts) # make sure alts are attempted in order
         # System.out.println(edge+" -> "+alts);

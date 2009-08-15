@@ -56,7 +56,7 @@ module Org::Antlr::Tool
       super(msg_id, arg, nil)
     end
     
-    typesig { [::Java::Int, Exception] }
+    typesig { [::Java::Int, JavaThrowable] }
     def initialize(msg_id, e)
       super(msg_id)
       self.attr_e = e
@@ -67,7 +67,7 @@ module Org::Antlr::Tool
       super(msg_id, arg, arg2)
     end
     
-    typesig { [::Java::Int, Object, Exception] }
+    typesig { [::Java::Int, Object, JavaThrowable] }
     def initialize(msg_id, arg, e)
       super(msg_id, arg, nil)
       self.attr_e = e

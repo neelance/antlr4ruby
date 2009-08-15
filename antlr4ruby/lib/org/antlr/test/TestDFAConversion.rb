@@ -301,7 +301,7 @@ module Org::Antlr::Test
       assert_equals(expected_rules, rule_names(left_recursive))
       g.create_lookahead_dfas(false)
       msg = equeue.attr_warnings.get(0)
-      assert_true("expecting left recursion cycles; found " + (msg.get_class.get_name).to_s, msg.is_a?(LeftRecursionCyclesMessage))
+      assert_true("expecting left recursion cycles; found " + RJava.cast_to_string(msg.get_class.get_name), msg.is_a?(LeftRecursionCyclesMessage))
       cycles_msg = msg
       # cycle of [a, b]
       result = cycles_msg.attr_cycles
@@ -349,7 +349,7 @@ module Org::Antlr::Test
       assert_equals(expected_rules, rule_names(left_recursive))
       g.create_lookahead_dfas(false)
       msg = equeue.attr_warnings.get(0)
-      assert_true("expecting left recursion cycles; found " + (msg.get_class.get_name).to_s, msg.is_a?(LeftRecursionCyclesMessage))
+      assert_true("expecting left recursion cycles; found " + RJava.cast_to_string(msg.get_class.get_name), msg.is_a?(LeftRecursionCyclesMessage))
       cycles_msg = msg
       # cycle of [a, b]
       result = cycles_msg.attr_cycles
@@ -398,7 +398,7 @@ module Org::Antlr::Test
       end.new_local(self)
       assert_equals(expected_rules, rule_names(left_recursive))
       msg = equeue.attr_warnings.get(0)
-      assert_true("expecting left recursion cycles; found " + (msg.get_class.get_name).to_s, msg.is_a?(LeftRecursionCyclesMessage))
+      assert_true("expecting left recursion cycles; found " + RJava.cast_to_string(msg.get_class.get_name), msg.is_a?(LeftRecursionCyclesMessage))
       cycles_msg = msg
       # cycle of [a, b]
       result = cycles_msg.attr_cycles
@@ -498,7 +498,7 @@ module Org::Antlr::Test
       g.set_code_generator(generator)
       generator.gen_recognizer
       msg = equeue.attr_warnings.get(0)
-      assert_true("expecting no start rules; found " + (msg.get_class.get_name).to_s, msg.is_a?(GrammarSemanticsMessage))
+      assert_true("expecting no start rules; found " + RJava.cast_to_string(msg.get_class.get_name), msg.is_a?(GrammarSemanticsMessage))
     end
     
     typesig { [] }
@@ -1054,7 +1054,7 @@ module Org::Antlr::Test
         g.create_lookahead_dfas(false)
       end
       msg = get_recursion_overflow_message(equeue.attr_errors)
-      assert_true("missing expected recursion overflow msg" + (msg).to_s, !(msg).nil?)
+      assert_true("missing expected recursion overflow msg" + RJava.cast_to_string(msg), !(msg).nil?)
       assert_equals("target rules mismatch", expected_target_rules.to_s, msg.attr_target_rules.to_s)
       assert_equals("mismatched alt", expected_alt, msg.attr_alt)
     end
@@ -1072,11 +1072,11 @@ module Org::Antlr::Test
       generator = CodeGenerator.new(new_tool, g, "Java")
       g.set_code_generator(generator)
       if (!(equeue.size).equal?(expecting_num_warnings))
-        System.err.println("Warnings issued: " + (equeue).to_s)
+        System.err.println("Warnings issued: " + RJava.cast_to_string(equeue))
       end
       assert_equals("unexpected number of expected problems", expecting_num_warnings, equeue.size)
       dfa = g.get_lookahead_dfa(decision)
-      assert_not_null("no DFA for decision " + (decision).to_s, dfa)
+      assert_not_null("no DFA for decision " + RJava.cast_to_string(decision), dfa)
       serializer = FASerializer.new(g)
       result = serializer.serialize(dfa.attr_start_state)
       unreachable_alts = dfa.get_unreachable_alts
@@ -1094,7 +1094,7 @@ module Org::Antlr::Test
       if (!(expecting_ambig_input).nil?)
         # first, find nondet message
         msg = equeue.attr_warnings.get(0)
-        assert_true("expecting nondeterminism; found " + (msg.get_class.get_name).to_s, msg.is_a?(GrammarNonDeterminismMessage))
+        assert_true("expecting nondeterminism; found " + RJava.cast_to_string(msg.get_class.get_name), msg.is_a?(GrammarNonDeterminismMessage))
         nondet_msg = get_non_determinism_message(equeue.attr_warnings)
         labels = nondet_msg.attr_probe.get_sample_non_deterministic_input_sequence(nondet_msg.attr_problem_state)
         input = nondet_msg.attr_probe.get_input_sequence_display(labels)
@@ -1119,7 +1119,7 @@ module Org::Antlr::Test
         s2 = BitSet.new
         s2.add_all(non_det_alts)
         assert_equals("nondet alts mismatch", s, s2)
-        assert_true("found no nondet alts; expecting: " + (str(expecting_non_det_alts)).to_s, !(nondet_msg).nil? || !(rec_msg).nil?)
+        assert_true("found no nondet alts; expecting: " + RJava.cast_to_string(str(expecting_non_det_alts)), !(nondet_msg).nil? || !(rec_msg).nil?)
       else
         # not expecting any nondet alts, make sure there are none
         nondet_msg = get_non_determinism_message(equeue.attr_warnings)

@@ -154,7 +154,7 @@ module Org::Antlr::Tool
           # (parent.type==Grammar.LEXER||parent.type==Grammar.PARSER);
           if ((self.attr_grammar.attr_type).equal?(Grammar::COMBINED) || (self.attr_grammar.attr_type).equal?(Grammar::LEXER))
             # only call this rule an alias if combined or lexer
-            alias(t, block.get_first_child.get_first_child)
+            alias_(t, block.get_first_child.get_first_child)
           end
         end
       end
@@ -162,7 +162,7 @@ module Org::Antlr::Tool
     end
     
     typesig { [GrammarAST, GrammarAST] }
-    def alias(t, s)
+    def alias_(t, s)
       token_id = t.get_text
       literal = s.get_text
       prev_alias_literal_id = @aliases_reverse_index.get(literal)
@@ -233,7 +233,7 @@ module Org::Antlr::Tool
       s = @string_literals.key_set
       it = s.iterator
       while it.has_next
-        lit = it.next
+        lit = it.next_
         old_type_i = @string_literals.get(lit)
         old_type = old_type_i.int_value
         if (old_type < Label::MIN_TOKEN_TYPE)
@@ -256,7 +256,7 @@ module Org::Antlr::Tool
       s = @aliases.key_set
       it = s.iterator
       while it.has_next
-        token_id = it.next
+        token_id = it.next_
         literal = @aliases.get(token_id)
         if ((literal.char_at(0)).equal?(Character.new(?\'.ord)) && !(@string_literals.get(literal)).nil?)
           @string_literals.put(literal, @tokens.get(token_id))
@@ -275,7 +275,7 @@ module Org::Antlr::Tool
       s = @tokens.key_set
       it = s.iterator
       while it.has_next
-        token_id = it.next
+        token_id = it.next_
         if ((@tokens.get(token_id)).equal?(UNASSIGNED))
           @tokens.put(token_id, Utils.integer(root.get_new_token_type))
         end
@@ -287,14 +287,14 @@ module Org::Antlr::Tool
       s = @tokens.key_set
       it = s.iterator
       while it.has_next
-        token_id = it.next
+        token_id = it.next_
         ttype = (@tokens.get(token_id)).int_value
         root.define_token(token_id, ttype)
       end
       s = @string_literals.key_set
       it_ = s.iterator
       while it_.has_next
-        lit = it_.next
+        lit = it_.next_
         ttype = (@string_literals.get(lit)).int_value
         root.define_token(lit, ttype)
       end

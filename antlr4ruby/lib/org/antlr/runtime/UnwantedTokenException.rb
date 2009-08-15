@@ -55,14 +55,14 @@ module Org::Antlr::Runtime
     
     typesig { [] }
     def to_s
-      exp = ", expected " + (self.attr_expecting).to_s
+      exp = ", expected " + RJava.cast_to_string(self.attr_expecting)
       if ((self.attr_expecting).equal?(Token::INVALID_TOKEN_TYPE))
         exp = ""
       end
       if ((self.attr_token).nil?)
-        return "UnwantedTokenException(found=" + (nil).to_s + exp + ")"
+        return "UnwantedTokenException(found=" + RJava.cast_to_string(nil) + exp + ")"
       end
-      return "UnwantedTokenException(found=" + (self.attr_token.get_text).to_s + exp + ")"
+      return "UnwantedTokenException(found=" + RJava.cast_to_string(self.attr_token.get_text) + exp + ")"
     end
     
     private

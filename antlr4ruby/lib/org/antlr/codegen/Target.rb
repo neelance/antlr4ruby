@@ -195,8 +195,8 @@ module Org::Antlr::Codegen
     # around the incoming literal.  Just flip the quotes and replace
     # double quotes with \"
     def get_target_string_literal_from_antlrstring_literal(generator, literal)
-      literal = (Utils.replace(literal, "\\\"", "\"")).to_s # \" to " to normalize
-      literal = (Utils.replace(literal, "\"", "\\\"")).to_s # " to \" to escape all
+      literal = RJava.cast_to_string(Utils.replace(literal, "\\\"", "\"")) # \" to " to normalize
+      literal = RJava.cast_to_string(Utils.replace(literal, "\"", "\\\"")) # " to \" to escape all
       buf = StringBuffer.new(literal)
       buf.set_char_at(0, Character.new(?".ord))
       buf.set_char_at(literal.length - 1, Character.new(?".ord))
@@ -260,7 +260,7 @@ module Org::Antlr::Codegen
       buf = StringBuffer.new(num_hex_digits + 2)
       buf.append("0x")
       digits = Long.to_hex_string(word)
-      digits = (digits.to_upper_case).to_s
+      digits = RJava.cast_to_string(digits.to_upper_case)
       padding = num_hex_digits - digits.length
       # pad left with zeros
       i = 1
@@ -275,7 +275,7 @@ module Org::Antlr::Codegen
     typesig { [::Java::Int] }
     def encode_int_as_char_escape(v)
       if (v <= 127)
-        return "\\" + (JavaInteger.to_octal_string(v)).to_s
+        return "\\" + RJava.cast_to_string(JavaInteger.to_octal_string(v))
       end
       hex = JavaInteger.to_hex_string(v | 0x10000).substring(1, 5)
       return "\\u" + hex

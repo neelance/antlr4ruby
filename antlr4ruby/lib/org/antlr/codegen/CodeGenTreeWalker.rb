@@ -59,7 +59,9 @@ module Org::Antlr::Codegen
   # June 15, 2004
   class CodeGenTreeWalker < Antlr::TreeParser
     include_class_members CodeGenTreeWalkerImports
-    include CodeGenTreeWalkerTokenTypes
+    overload_protected {
+      include CodeGenTreeWalkerTokenTypes
+    }
     
     class_module.module_eval {
       const_set_lazy(:RULE_BLOCK_NESTING_LEVEL) { 0 }
@@ -127,7 +129,7 @@ module Org::Antlr::Codegen
           token = (ex).attr_token
         end
       end
-      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "codegen: " + (ex.to_s).to_s, ex)
+      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "codegen: " + RJava.cast_to_string(ex.to_s), ex)
     end
     
     typesig { [String] }
@@ -197,7 +199,7 @@ module Org::Antlr::Codegen
       r = @grammar.get_rule(@current_rule_name)
       if ((@grammar.build_ast || suffix.length > 0) && (label).nil? && ((r).nil? || !r.attr_is_syn_pred))
         # we will need a label to do the AST or tracking, make one
-        label = (@generator.create_unique_label(rule_target_name)).to_s
+        label = RJava.cast_to_string(@generator.create_unique_label(rule_target_name))
         label_tok = CommonToken.new(ANTLRParser::ID, label)
         @grammar.define_rule_ref_label(@current_rule_name, label_tok, element_ast)
       end
@@ -216,7 +218,7 @@ module Org::Antlr::Codegen
       # unless we're in a synpred rule.
       r = @grammar.get_rule(@current_rule_name)
       if ((@grammar.build_ast || suffix.length > 0) && (label).nil? && ((r).nil? || !r.attr_is_syn_pred))
-        label = (@generator.create_unique_label(element_name)).to_s
+        label = RJava.cast_to_string(@generator.create_unique_label(element_name))
         label_tok = CommonToken.new(ANTLRParser::ID, label)
         @grammar.define_token_ref_label(@current_rule_name, label_tok, element_ast)
       end
@@ -285,13 +287,13 @@ module Org::Antlr::Codegen
       refs.each do |t|
         label = nil
         if ((t.get_type).equal?(ANTLRParser::RULE_REF))
-          label = (t.get_text).to_s
+          label = RJava.cast_to_string(t.get_text)
         else
           if ((t.get_type).equal?(ANTLRParser::LABEL))
-            label = (t.get_text).to_s
+            label = RJava.cast_to_string(t.get_text)
           else
             # must be char or string literal
-            label = (@generator.get_token_type_as_target_label(@grammar.get_token_type(t.get_text))).to_s
+            label = RJava.cast_to_string(@generator.get_token_type_as_target_label(@grammar.get_token_type(t.get_text)))
           end
         end
         labels.add(label)
@@ -344,7 +346,7 @@ module Org::Antlr::Codegen
       @output_file_st = output_file_st
       @header_file_st = header_file_st
       super_class = g.get_option("superClass")
-      @output_option = (g.get_option("output")).to_s
+      @output_option = RJava.cast_to_string(g.get_option("output"))
       recognizer_st.set_attribute("superClass", super_class)
       if (!(g.attr_type).equal?(Grammar::LEXER))
         recognizer_st.set_attribute("ASTLabelType", g.get_option("ASTLabelType"))
@@ -644,7 +646,7 @@ module Org::Antlr::Codegen
         id = _t
         match(_t, ID)
         _t = _t.get_next_sibling
-        r = (id.get_text).to_s
+        r = RJava.cast_to_string(id.get_text)
         @current_rule_name = r
         if ((_t).nil?)
           _t = ASTNULL
@@ -740,7 +742,7 @@ module Org::Antlr::Codegen
         b = block(_t, "ruleBlock", dfa)
         _t = self.attr__ret_tree
         description = @grammar.grammar_tree_to_string(rule_ast_in.get_first_child_with_type(BLOCK), false)
-        description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+        description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
         b.set_attribute("description", description)
         # do not generate lexer rules in combined grammar
         st_name = nil
@@ -766,7 +768,7 @@ module Org::Antlr::Codegen
         code.set_attribute("ruleDescriptor", rule_descr)
         memo = @grammar.get_block_option(rule_ast_in, "memoize")
         if ((memo).nil?)
-          memo = (@grammar.get_option("memoize")).to_s
+          memo = RJava.cast_to_string(@grammar.get_option("memoize"))
         end
         if (!(memo).nil? && (memo == "true") && ((st_name == "rule") || (st_name == "lexerRule")))
           code.set_attribute("memoize", Boolean.value_of(!(memo).nil? && (memo == "true")))
@@ -792,8 +794,8 @@ module Org::Antlr::Codegen
             naked = (r == Grammar::ARTIFICIAL_TOKENS_RULENAME) || (!(mod).nil? && (mod.get_text == Grammar::FRAGMENT_RULE_MODIFIER))
             code.set_attribute("nakedBlock", Boolean.value_of(naked))
           else
-            description = (@grammar.grammar_tree_to_string(rule_ast_in, false)).to_s
-            description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+            description = RJava.cast_to_string(@grammar.grammar_tree_to_string(rule_ast_in, false))
+            description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
             code.set_attribute("description", description)
           end
           the_rule = @grammar.get_rule(r)
@@ -1130,7 +1132,7 @@ module Org::Antlr::Codegen
         @current_alt_has_astrewrite = r.has_rewrite(@outer_alt_num)
       end
       description = @grammar.grammar_tree_to_string(alternative_ast_in, false)
-      description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+      description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
       code.set_attribute("description", description)
       code.set_attribute("treeLevel", @rewrite_tree_nesting_level)
       if (!@current_alt_has_astrewrite && @grammar.build_ast)
@@ -1247,7 +1249,7 @@ module Org::Antlr::Codegen
               pred_chunks = @generator.translate_action(@current_rule_name, pred)
             end
             description = @grammar.grammar_tree_to_string(r, false)
-            description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+            description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
             code.set_attribute("alts.{pred,alt,description}", pred_chunks, alt, description)
             pred = nil
           else
@@ -1484,7 +1486,7 @@ module Org::Antlr::Codegen
       elements = nil
       label_text = nil
       if (!(label).nil?)
-        label_text = (label.get_text).to_s
+        label_text = RJava.cast_to_string(label.get_text)
       end
       begin
         # for error handling
@@ -1597,7 +1599,7 @@ module Org::Antlr::Codegen
           raise NoViableAltException.new(_t)
         end
         description = @grammar.grammar_tree_to_string(ebnf_ast_in, false)
-        description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+        description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
         code.set_attribute("description", description)
       rescue RecognitionException => ex
         report_error(ex)
@@ -1622,7 +1624,7 @@ module Org::Antlr::Codegen
       w = nil
       label_text = nil
       if (!(label).nil?)
-        label_text = (label.get_text).to_s
+        label_text = RJava.cast_to_string(label.get_text)
       end
       if (!(@grammar.attr_type).equal?(Grammar::LEXER) && ((atom_ast_in.get_type).equal?(RULE_REF) || (atom_ast_in.get_type).equal?(TOKEN_REF) || (atom_ast_in.get_type).equal?(CHAR_LITERAL) || (atom_ast_in.get_type).equal?(STRING_LITERAL)))
         enc_rule = @grammar.get_rule((atom_ast_in).attr_enclosing_rule_name)
@@ -1659,12 +1661,12 @@ module Org::Antlr::Codegen
           @grammar.check_rule_reference(scope, r, rarg, @current_rule_name)
           scope_name = nil
           if (!(scope).nil?)
-            scope_name = (scope.get_text).to_s
+            scope_name = RJava.cast_to_string(scope.get_text)
           end
           rdef = @grammar.get_rule(scope_name, r.get_text)
           # don't insert label=r() if $label.attr not used, no ret value, ...
           if (!rdef.get_has_return_value)
-            label_text = (nil).to_s
+            label_text = RJava.cast_to_string(nil)
           end
           code = get_rule_element_st("ruleRef", r.get_text, r, ast_suffix, label_text)
           code.set_attribute("rule", rdef)
@@ -1730,7 +1732,7 @@ module Org::Antlr::Codegen
               end
               scope_name = nil
               if (!(scope).nil?)
-                scope_name = (scope.get_text).to_s
+                scope_name = RJava.cast_to_string(scope.get_text)
               end
               rdef2 = @grammar.get_rule(scope_name, t.get_text)
               code.set_attribute("rule", rdef2)
@@ -1962,7 +1964,7 @@ module Org::Antlr::Codegen
       s = nil
       label_text = nil
       if (!(label).nil?)
-        label_text = (label.get_text).to_s
+        label_text = RJava.cast_to_string(label.get_text)
       end
       begin
         # for error handling
@@ -2324,7 +2326,7 @@ module Org::Antlr::Codegen
             _t = _t.get_next_sibling
             sl = tmp69_ast_in.get_text
             t = sl.substring(1, sl.length - 1) # strip quotes
-            t = (@generator.attr_target.get_target_string_literal_from_string(t)).to_s
+            t = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(t))
             code.set_attribute("template", t)
           when DOUBLE_ANGLE_STRING_LITERAL
             tmp70_ast_in = _t
@@ -2332,7 +2334,7 @@ module Org::Antlr::Codegen
             _t = _t.get_next_sibling
             sl = tmp70_ast_in.get_text
             t = sl.substring(2, sl.length - 2) # strip double angle quotes
-            t = (@generator.attr_target.get_target_string_literal_from_string(t)).to_s
+            t = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(t))
             code.set_attribute("template", t)
           when 3
           else
@@ -2479,7 +2481,7 @@ module Org::Antlr::Codegen
               ErrorManager.grammar_error(ErrorManager::MSG_RULE_REF_AMBIG_WITH_RULE_IN_ALT, @grammar, ((tmp71_ast_in)).get_token, label_name)
             end
             label_st = @templates.get_instance_of("prevRuleRootRef")
-            code = @templates.get_instance_of("rewriteRuleLabelRef" + ((is_root ? "Root" : "")).to_s)
+            code = @templates.get_instance_of("rewriteRuleLabelRef" + RJava.cast_to_string((is_root ? "Root" : "")))
             code.set_attribute("label", label_st)
           else
             if ((pair).nil?)
@@ -2511,7 +2513,7 @@ module Org::Antlr::Codegen
           # actions in rewrite rules yield a tree object
           act_text = tmp72_ast_in.get_text
           chunks = @generator.translate_action(@current_rule_name, tmp72_ast_in)
-          code = @templates.get_instance_of("rewriteNodeAction" + ((is_root ? "Root" : "")).to_s)
+          code = @templates.get_instance_of("rewriteNodeAction" + RJava.cast_to_string((is_root ? "Root" : "")))
           code.set_attribute("action", chunks)
         else
           raise NoViableAltException.new(_t)
@@ -2546,7 +2548,7 @@ module Org::Antlr::Codegen
           _t = __t108
           _t = _t.get_next_sibling
           description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-          description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+          description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
           code.set_attribute("description", description)
         when CLOSURE
           __t109 = _t
@@ -2558,7 +2560,7 @@ module Org::Antlr::Codegen
           _t = __t109
           _t = _t.get_next_sibling
           description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-          description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+          description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
           code.set_attribute("description", description)
         when POSITIVE_CLOSURE
           __t110 = _t
@@ -2570,7 +2572,7 @@ module Org::Antlr::Codegen
           _t = __t110
           _t = _t.get_next_sibling
           description = @grammar.grammar_tree_to_string(rewrite_ebnf_ast_in, false)
-          description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+          description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
           code.set_attribute("description", description)
         else
           raise NoViableAltException.new(_t)
@@ -2621,7 +2623,7 @@ module Org::Antlr::Codegen
         _t = __t112
         _t = _t.get_next_sibling
         description = @grammar.grammar_tree_to_string(rewrite_tree_ast_in, false)
-        description = (@generator.attr_target.get_target_string_literal_from_string(description)).to_s
+        description = RJava.cast_to_string(@generator.attr_target.get_target_string_literal_from_string(description))
         code.set_attribute("description", description)
         @rewrite_tree_nesting_level -= 1
       rescue RecognitionException => ex

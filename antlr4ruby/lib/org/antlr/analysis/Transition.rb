@@ -94,7 +94,7 @@ module Org::Antlr::Analysis
     end
     
     typesig { [Object] }
-    def equals(o)
+    def ==(o)
       other = o
       return (@label == other.attr_label) && (@target == other.attr_target)
     end
@@ -107,7 +107,7 @@ module Org::Antlr::Analysis
     
     typesig { [] }
     def to_s
-      return (@label).to_s + "->" + (@target.attr_state_number).to_s
+      return RJava.cast_to_string(@label) + "->" + RJava.cast_to_string(@target.attr_state_number)
     end
     
     private

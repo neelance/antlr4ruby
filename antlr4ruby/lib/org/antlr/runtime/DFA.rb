@@ -117,23 +117,23 @@ module Org::Antlr::Runtime
     # an exception upon error.
     def predict(input)
       if (DEBUG)
-        System.err.println("Enter DFA.predict for decision " + (@decision_number).to_s)
+        System.err.println("Enter DFA.predict for decision " + RJava.cast_to_string(@decision_number))
       end
       mark_ = input.mark # remember where decision started in input
       s = 0 # we always start at s0
       begin
         while (true)
           if (DEBUG)
-            System.err.println("DFA " + (@decision_number).to_s + " state " + (s).to_s + " LA(1)=" + (RJava.cast_to_char(input._la(1))).to_s + "(" + (input._la(1)).to_s + "), index=" + (input.index).to_s)
+            System.err.println("DFA " + RJava.cast_to_string(@decision_number) + " state " + RJava.cast_to_string(s) + " LA(1)=" + RJava.cast_to_string(RJava.cast_to_char(input._la(1))) + "(" + RJava.cast_to_string(input._la(1)) + "), index=" + RJava.cast_to_string(input.index))
           end
           special_state = @special[s]
           if (special_state >= 0)
             if (DEBUG)
-              System.err.println("DFA " + (@decision_number).to_s + " state " + (s).to_s + " is special state " + (special_state).to_s)
+              System.err.println("DFA " + RJava.cast_to_string(@decision_number) + " state " + RJava.cast_to_string(s) + " is special state " + RJava.cast_to_string(special_state))
             end
             s = special_state_transition(special_state, input)
             if (DEBUG)
-              System.err.println("DFA " + (@decision_number).to_s + " returns from special state " + (special_state).to_s + " to " + (s).to_s)
+              System.err.println("DFA " + RJava.cast_to_string(@decision_number) + " returns from special state " + RJava.cast_to_string(special_state) + " to " + RJava.cast_to_string(s))
             end
             if ((s).equal?(-1))
               no_viable_alt(s, input)
@@ -144,7 +144,7 @@ module Org::Antlr::Runtime
           end
           if (@accept[s] >= 1)
             if (DEBUG)
-              System.err.println("accept; predict " + (@accept[s]).to_s + " from state " + (s).to_s)
+              System.err.println("accept; predict " + RJava.cast_to_string(@accept[s]) + " from state " + RJava.cast_to_string(s))
             end
             return @accept[s]
           end
@@ -190,19 +190,19 @@ module Org::Antlr::Runtime
           if ((c).equal?(RJava.cast_to_char(Token::EOF)) && @eof[s] >= 0)
             # EOF Transition to accept state?
             if (DEBUG)
-              System.err.println("accept via EOF; predict " + (@accept[@eof[s]]).to_s + " from " + (@eof[s]).to_s)
+              System.err.println("accept via EOF; predict " + RJava.cast_to_string(@accept[@eof[s]]) + " from " + RJava.cast_to_string(@eof[s]))
             end
             return @accept[@eof[s]]
           end
           # not in range and not EOF/EOT, must be invalid symbol
           if (DEBUG)
-            System.err.println("min[" + (s).to_s + "]=" + (@min[s]).to_s)
-            System.err.println("max[" + (s).to_s + "]=" + (@max[s]).to_s)
-            System.err.println("eot[" + (s).to_s + "]=" + (@eot[s]).to_s)
-            System.err.println("eof[" + (s).to_s + "]=" + (@eof[s]).to_s)
+            System.err.println("min[" + RJava.cast_to_string(s) + "]=" + RJava.cast_to_string(@min[s]))
+            System.err.println("max[" + RJava.cast_to_string(s) + "]=" + RJava.cast_to_string(@max[s]))
+            System.err.println("eot[" + RJava.cast_to_string(s) + "]=" + RJava.cast_to_string(@eot[s]))
+            System.err.println("eof[" + RJava.cast_to_string(s) + "]=" + RJava.cast_to_string(@eof[s]))
             p = 0
             while p < @transition[s].attr_length
-              System.err.print((@transition[s][p]).to_s + " ")
+              System.err.print(RJava.cast_to_string(@transition[s][p]) + " ")
               p += 1
             end
             System.err.println

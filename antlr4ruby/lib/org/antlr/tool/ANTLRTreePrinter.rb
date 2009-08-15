@@ -52,7 +52,9 @@ module Org::Antlr::Tool
   # August 19, 2003
   class ANTLRTreePrinter < Antlr::TreeParser
     include_class_members ANTLRTreePrinterImports
-    include ANTLRTreePrinterTokenTypes
+    overload_protected {
+      include ANTLRTreePrinterTokenTypes
+    }
     
     attr_accessor :grammar
     alias_method :attr_grammar, :grammar
@@ -87,7 +89,7 @@ module Org::Antlr::Tool
           token = (ex).attr_token
         end
       end
-      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "antlr.print: " + (ex.to_s).to_s, ex)
+      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "antlr.print: " + RJava.cast_to_string(ex.to_s), ex)
     end
     
     class_module.module_eval {
@@ -266,7 +268,7 @@ module Org::Antlr::Tool
           arg = _t
           match(_t, ARG_ACTION)
           _t = _t.get_next_sibling
-          out("[" + (arg.get_text).to_s + "]")
+          out("[" + RJava.cast_to_string(arg.get_text) + "]")
         when 3
         else
           raise NoViableAltException.new(_t)
@@ -285,7 +287,7 @@ module Org::Antlr::Tool
           ret = _t
           match(_t, ARG_ACTION)
           _t = _t.get_next_sibling
-          out(" returns [" + (ret.get_text).to_s + "]")
+          out(" returns [" + RJava.cast_to_string(ret.get_text) + "]")
         when 3
         else
           raise NoViableAltException.new(_t)
@@ -474,7 +476,7 @@ module Org::Antlr::Tool
           id = _t
           match(_t, ID)
           _t = _t.get_next_sibling
-          out((id.get_text).to_s + "=")
+          out(RJava.cast_to_string(id.get_text) + "=")
           element(_t)
           _t = self.attr__ret_tree
           _t = __t112
@@ -487,7 +489,7 @@ module Org::Antlr::Tool
           id2 = _t
           match(_t, ID)
           _t = _t.get_next_sibling
-          out((id2.get_text).to_s + "+=")
+          out(RJava.cast_to_string(id2.get_text) + "+=")
           element(_t)
           _t = self.attr__ret_tree
           _t = __t113
@@ -594,7 +596,7 @@ module Org::Antlr::Tool
           tmp23_ast_in = _t
           match(_t, SEMPRED)
           _t = _t.get_next_sibling
-          out(" {" + (tmp23_ast_in.get_text).to_s + "}?")
+          out(" {" + RJava.cast_to_string(tmp23_ast_in.get_text) + "}?")
         when ALT, TEMPLATE, ACTION, ETC
         else
           raise NoViableAltException.new(_t)
@@ -618,7 +620,7 @@ module Org::Antlr::Tool
           tmp25_ast_in = _t
           match(_t, ACTION)
           _t = _t.get_next_sibling
-          out(" {" + (tmp25_ast_in.get_text).to_s + "}")
+          out(" {" + RJava.cast_to_string(tmp25_ast_in.get_text) + "}")
         else
           raise NoViableAltException.new(_t)
         end
@@ -643,7 +645,7 @@ module Org::Antlr::Tool
         id = _t
         match(_t, ID)
         _t = _t.get_next_sibling
-        out(gtype + "grammar " + (id.get_text).to_s)
+        out(gtype + "grammar " + RJava.cast_to_string(id.get_text))
         if ((_t).nil?)
           _t = ASTNULL
         end
@@ -652,7 +654,7 @@ module Org::Antlr::Tool
           cmt = _t
           match(_t, DOC_COMMENT)
           _t = _t.get_next_sibling
-          out((cmt.get_text).to_s + "\n")
+          out(RJava.cast_to_string(cmt.get_text) + "\n")
         when OPTIONS, TOKENS, RULE, SCOPE, IMPORT, AMPERSAND
         else
           raise NoViableAltException.new(_t)
@@ -800,39 +802,37 @@ module Org::Antlr::Tool
         match(_t, IMPORT)
         _t = _t.get_first_child
         _cnt36 = 0
-        catch(:break__loop36) do
-          begin
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            case (_t.get_type)
-            when ASSIGN
-              __t35 = _t
-              tmp31_ast_in = _t
-              match(_t, ASSIGN)
-              _t = _t.get_first_child
-              tmp32_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              tmp33_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              _t = __t35
-              _t = _t.get_next_sibling
-            when ID
-              tmp34_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
+        begin
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when ASSIGN
+            __t35 = _t
+            tmp31_ast_in = _t
+            match(_t, ASSIGN)
+            _t = _t.get_first_child
+            tmp32_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+            tmp33_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+            _t = __t35
+            _t = _t.get_next_sibling
+          when ID
+            tmp34_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+          else
+            if (_cnt36 >= 1)
+              break
             else
-              if (_cnt36 >= 1)
-                throw :break__loop36, :thrown
-              else
-                raise NoViableAltException.new(_t)
-              end
+              raise NoViableAltException.new(_t)
             end
-            _cnt36 += 1
-          end while (true)
-        end
+          end
+          _cnt36 += 1
+        end while (true)
         _t = __t33
         _t = _t.get_next_sibling
       rescue RecognitionException => ex
@@ -973,23 +973,23 @@ module Org::Antlr::Tool
           a1 = _t
           match(_t, ACTION)
           _t = _t.get_next_sibling
-          scope = (id1.get_text).to_s
-          name = (a1.get_text).to_s
-          action_ = (a1.get_text).to_s
+          scope = RJava.cast_to_string(id1.get_text)
+          name = RJava.cast_to_string(a1.get_text)
+          action_ = RJava.cast_to_string(a1.get_text)
         when ACTION
           a2 = _t
           match(_t, ACTION)
           _t = _t.get_next_sibling
-          scope = (nil).to_s
-          name = (id1.get_text).to_s
-          action_ = (a2.get_text).to_s
+          scope = RJava.cast_to_string(nil)
+          name = RJava.cast_to_string(id1.get_text)
+          action_ = RJava.cast_to_string(a2.get_text)
         else
           raise NoViableAltException.new(_t)
         end
         _t = __t23
         _t = _t.get_next_sibling
         if (@show_actions)
-          out("@" + ((!(scope).nil? ? scope + "::" : "")).to_s + name + action_)
+          out("@" + RJava.cast_to_string((!(scope).nil? ? scope + "::" : "")) + name + action_)
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1013,7 +1013,7 @@ module Org::Antlr::Tool
         id = _t
         match(_t, ID)
         _t = _t.get_next_sibling
-        out((id.get_text).to_s + "=")
+        out(RJava.cast_to_string(id.get_text) + "=")
         option_value(_t)
         _t = self.attr__ret_tree
         _t = __t30
@@ -1225,7 +1225,7 @@ module Org::Antlr::Tool
         _t = __t60
         _t = _t.get_next_sibling
         if (@show_actions)
-          out("@" + (id.get_text).to_s + "{" + (a.get_text).to_s + "}")
+          out("@" + RJava.cast_to_string(id.get_text) + "{" + RJava.cast_to_string(a.get_text) + "}")
         end
       rescue RecognitionException => ex
         report_error(ex)
@@ -1512,12 +1512,12 @@ module Org::Antlr::Tool
           id = _t
           match(_t, ID)
           _t = _t.get_next_sibling
-          out(" " + (id.get_text).to_s)
+          out(" " + RJava.cast_to_string(id.get_text))
         when ACTION
           ind = _t
           match(_t, ACTION)
           _t = _t.get_next_sibling
-          out(" ({" + (ind.get_text).to_s + "})")
+          out(" ({" + RJava.cast_to_string(ind.get_text) + "})")
         else
           raise NoViableAltException.new(_t)
         end
@@ -1538,7 +1538,7 @@ module Org::Antlr::Tool
             arg = _t
             match(_t, ID)
             _t = _t.get_next_sibling
-            out((arg.get_text).to_s + "=")
+            out(RJava.cast_to_string(arg.get_text) + "=")
             a = _t
             match(_t, ACTION)
             _t = _t.get_next_sibling
@@ -1560,12 +1560,12 @@ module Org::Antlr::Tool
           tmp66_ast_in = _t
           match(_t, DOUBLE_QUOTE_STRING_LITERAL)
           _t = _t.get_next_sibling
-          out(" " + (tmp66_ast_in.get_text).to_s)
+          out(" " + RJava.cast_to_string(tmp66_ast_in.get_text))
         when DOUBLE_ANGLE_STRING_LITERAL
           tmp67_ast_in = _t
           match(_t, DOUBLE_ANGLE_STRING_LITERAL)
           _t = _t.get_next_sibling
-          out(" " + (tmp67_ast_in.get_text).to_s)
+          out(" " + RJava.cast_to_string(tmp67_ast_in.get_text))
         when 3
         else
           raise NoViableAltException.new(_t)
@@ -1612,7 +1612,7 @@ module Org::Antlr::Tool
               rarg = _t
               match(_t, ARG_ACTION)
               _t = _t.get_next_sibling
-              out("[" + (rarg.to_s).to_s + "]")
+              out("[" + RJava.cast_to_string(rarg.to_s) + "]")
             when 3, BANG, ROOT
             else
               raise NoViableAltException.new(_t)
@@ -1644,7 +1644,7 @@ module Org::Antlr::Tool
               targ = _t
               match(_t, ARG_ACTION)
               _t = _t.get_next_sibling
-              out("[" + (targ.to_s).to_s + "]")
+              out("[" + RJava.cast_to_string(targ.to_s) + "]")
             when 3, BANG, ROOT
             else
               raise NoViableAltException.new(_t)
@@ -1727,7 +1727,7 @@ module Org::Antlr::Tool
           tmp73_ast_in = _t
           match(_t, LABEL)
           _t = _t.get_next_sibling
-          out(" $" + (tmp73_ast_in.get_text).to_s)
+          out(" $" + RJava.cast_to_string(tmp73_ast_in.get_text))
         when DOT
           __t137 = _t
           tmp74_ast_in = _t
@@ -1736,7 +1736,7 @@ module Org::Antlr::Tool
           tmp75_ast_in = _t
           match(_t, ID)
           _t = _t.get_next_sibling
-          out((tmp75_ast_in.get_text).to_s + ".")
+          out(RJava.cast_to_string(tmp75_ast_in.get_text) + ".")
           atom(_t)
           _t = self.attr__ret_tree
           _t = __t137

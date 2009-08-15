@@ -54,7 +54,7 @@ module Org::Antlr::Test
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
       expecting = " 101"
-      found = (stream.to_s).to_s
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     
@@ -70,7 +70,7 @@ module Org::Antlr::Test
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
       expecting = " 101 2 102 2 103 3 104 3"
-      found = (stream.to_s).to_s
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     
@@ -89,7 +89,7 @@ module Org::Antlr::Test
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
       expecting = " 101 2 102 2 103 3 104 3 105"
-      found = (stream.to_s).to_s
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     
@@ -104,7 +104,7 @@ module Org::Antlr::Test
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
       expecting = " 101 102 103"
-      found = (stream.to_s).to_s
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     
@@ -117,7 +117,7 @@ module Org::Antlr::Test
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
       expecting = " 101"
-      found = (stream.to_s).to_s
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     
@@ -130,7 +130,7 @@ module Org::Antlr::Test
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
       expecting = " 101 2 102 3"
-      found = (stream.to_s).to_s
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     

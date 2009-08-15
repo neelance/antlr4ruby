@@ -79,8 +79,8 @@ module Org::Antlr::Analysis
     end
     
     typesig { [LookaheadSet] }
-    def or(other)
-      return LookaheadSet.new(@token_type_set.or(other.attr_token_type_set))
+    def or_(other)
+      return LookaheadSet.new(@token_type_set.or_(other.attr_token_type_set))
     end
     
     typesig { [LookaheadSet] }
@@ -95,7 +95,7 @@ module Org::Antlr::Analysis
     
     typesig { [LookaheadSet] }
     def intersection(s)
-      i = @token_type_set.and(s.attr_token_type_set)
+      i = @token_type_set.and_(s.attr_token_type_set)
       intersection = LookaheadSet.new(i)
       return intersection
     end
@@ -116,7 +116,7 @@ module Org::Antlr::Analysis
     end
     
     typesig { [Object] }
-    def equals(other)
+    def ==(other)
       return (@token_type_set == (other).attr_token_type_set)
     end
     

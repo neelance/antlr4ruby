@@ -86,7 +86,7 @@ module Org::Antlr::Test
         
         typesig { [] }
         def to_s
-          return ((!(self.attr_token).nil? ? self.attr_token.get_text : "")).to_s + "<V>"
+          return RJava.cast_to_string((!(self.attr_token).nil? ? self.attr_token.get_text : "")) + "<V>"
         end
         
         private
@@ -103,7 +103,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_two_children_of_nil_root
-      root_0 = @adaptor.nil
+      root_0 = @adaptor.nil_
       t = V.new(101, 2)
       u = V.new(CommonToken.new(102, "102"))
       @adaptor.add_child(root_0, t)
@@ -269,8 +269,8 @@ module Org::Antlr::Test
     typesig { [] }
     def test_become_root6
       # emulates construction of ^(5 6)
-      root_0 = @adaptor.nil
-      root_1 = @adaptor.nil
+      root_0 = @adaptor.nil_
+      root_1 = @adaptor.nil_
       root_1 = @adaptor.become_root(CommonTree.new(CommonToken.new(5)), root_1)
       @adaptor.add_child(root_1, CommonTree.new(CommonToken.new(6)))
       @adaptor.add_child(root_0, root_1)
@@ -349,7 +349,7 @@ module Org::Antlr::Test
       t.add_child(CommonTree.new(CommonToken.new(99, "b")))
       t.add_child(CommonTree.new(CommonToken.new(99, "c")))
       t.add_child(CommonTree.new(CommonToken.new(99, "d")))
-      new_children = @adaptor.nil
+      new_children = @adaptor.nil_
       new_children.add_child(CommonTree.new(CommonToken.new(99, "x")))
       new_children.add_child(CommonTree.new(CommonToken.new(99, "y")))
       t.replace_children(0, 0, new_children)
@@ -364,7 +364,7 @@ module Org::Antlr::Test
       t.add_child(CommonTree.new(CommonToken.new(99, "b")))
       t.add_child(CommonTree.new(CommonToken.new(99, "c")))
       t.add_child(CommonTree.new(CommonToken.new(99, "d")))
-      new_children = @adaptor.nil
+      new_children = @adaptor.nil_
       new_children.add_child(CommonTree.new(CommonToken.new(99, "x")))
       new_children.add_child(CommonTree.new(CommonToken.new(99, "y")))
       t.replace_children(2, 2, new_children)
@@ -379,7 +379,7 @@ module Org::Antlr::Test
       t.add_child(CommonTree.new(CommonToken.new(99, "b")))
       t.add_child(CommonTree.new(CommonToken.new(99, "c")))
       t.add_child(CommonTree.new(CommonToken.new(99, "d")))
-      new_children = @adaptor.nil
+      new_children = @adaptor.nil_
       new_children.add_child(CommonTree.new(CommonToken.new(99, "x")))
       new_children.add_child(CommonTree.new(CommonToken.new(99, "y")))
       t.replace_children(1, 1, new_children)
@@ -433,7 +433,7 @@ module Org::Antlr::Test
       t.add_child(CommonTree.new(CommonToken.new(99, "b")))
       t.add_child(CommonTree.new(CommonToken.new(99, "c")))
       t.add_child(CommonTree.new(CommonToken.new(99, "d")))
-      new_children = @adaptor.nil
+      new_children = @adaptor.nil_
       new_children.add_child(CommonTree.new(CommonToken.new(99, "x")))
       new_children.add_child(CommonTree.new(CommonToken.new(99, "y")))
       t.replace_children(0, 2, new_children)

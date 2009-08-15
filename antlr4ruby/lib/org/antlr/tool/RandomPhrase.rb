@@ -85,11 +85,11 @@ module Org::Antlr::Tool
             break
           end
           if (Debug)
-            System.out.println("state " + (state).to_s)
+            System.out.println("state " + RJava.cast_to_string(state))
           end
           if ((state.get_number_of_transitions).equal?(0))
             if (Debug)
-              System.out.println("dangling state: " + (state).to_s)
+              System.out.println("dangling state: " + RJava.cast_to_string(state))
             end
             return
           end
@@ -97,7 +97,7 @@ module Org::Antlr::Tool
           if (state.is_accept_state)
             invoking_state = rule_invocation_stack.pop
             if (Debug)
-              System.out.println("pop invoking state " + (invoking_state).to_s)
+              System.out.println("pop invoking state " + RJava.cast_to_string(invoking_state))
             end
             # System.out.println("leave "+state.enclosingRule.name);
             invoking_transition = invoking_state.attr_transition[0]
@@ -111,7 +111,7 @@ module Org::Antlr::Tool
             if (t0.is_a?(RuleClosureTransition))
               rule_invocation_stack.push(state)
               if (Debug)
-                System.out.println("push state " + (state).to_s)
+                System.out.println("push state " + RJava.cast_to_string(state))
               end
               # System.out.println("call "+((RuleClosureTransition)t0).rule.name);
               # System.out.println("stack depth="+ruleInvocationStack.size());
@@ -132,7 +132,7 @@ module Org::Antlr::Tool
           n = g.get_number_of_alts_for_decision_nfa(state)
           random_alt = self.attr_random.next_int(n) + 1
           if (Debug)
-            System.out.println("randomAlt=" + (random_alt).to_s)
+            System.out.println("randomAlt=" + RJava.cast_to_string(random_alt))
           end
           alt_start_state = g.get_nfastate_for_alt_of_decision(state, random_alt)
           t = alt_start_state.attr_transition[0]
@@ -204,7 +204,7 @@ module Org::Antlr::Tool
           # System.out.println("lexer:\n"+lexer);
           token_types = ArrayList.new(100)
           random_phrase(parser, token_types, start_rule)
-          System.out.println("token types=" + (token_types).to_s)
+          System.out.println("token types=" + RJava.cast_to_string(token_types))
           i = 0
           while i < token_types.size
             ttype_i = token_types.get(i)
@@ -229,10 +229,10 @@ module Org::Antlr::Tool
           end
           System.out.println
         rescue JavaError => er
-          System.err.println("Error walking " + grammar_file_name + " rule " + start_rule + " seed " + (seed).to_s)
+          System.err.println("Error walking " + grammar_file_name + " rule " + start_rule + " seed " + RJava.cast_to_string(seed))
           er.print_stack_trace(System.err)
-        rescue Exception => e
-          System.err.println("Exception walking " + grammar_file_name + " rule " + start_rule + " seed " + (seed).to_s)
+        rescue JavaException => e
+          System.err.println("Exception walking " + grammar_file_name + " rule " + start_rule + " seed " + RJava.cast_to_string(seed))
           e.print_stack_trace(System.err)
         end
       end

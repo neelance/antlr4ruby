@@ -119,7 +119,7 @@ module Org::Antlr::Test
         end
         ret = process.exit_value
         return (ret).equal?(0)
-      rescue Exception => e
+      rescue JavaException => e
         System.err.println("can't exec compilation")
         e.print_stack_trace(System.err)
         return false
@@ -153,7 +153,7 @@ module Org::Antlr::Test
           equeue = listener
           if (equeue.attr_errors.size > 0)
             all_is_well = false
-            System.err.println("antlr reports errors from " + (options).to_s)
+            System.err.println("antlr reports errors from " + RJava.cast_to_string(options))
             i = 0
             while i < equeue.attr_errors.size
               msg = equeue.attr_errors.get(i)
@@ -162,9 +162,9 @@ module Org::Antlr::Test
             end
           end
         end
-      rescue Exception => e
+      rescue JavaException => e
         all_is_well = false
-        System.err.println("problems building grammar: " + (e).to_s)
+        System.err.println("problems building grammar: " + RJava.cast_to_string(e))
         e.print_stack_trace(System.err)
       end
       return all_is_well
@@ -251,7 +251,7 @@ module Org::Antlr::Test
       compile("Test.java")
       begin
         args = Array.typed(String).new(["java", "-classpath", @tmpdir + PathSep + CLASSPATH, "Test", JavaFile.new(@tmpdir, "input").get_absolute_path])
-        cmd_line = "java -classpath " + CLASSPATH + PathSep + @tmpdir + " Test " + (JavaFile.new(@tmpdir, "input").get_absolute_path).to_s
+        cmd_line = "java -classpath " + CLASSPATH + PathSep + @tmpdir + " Test " + RJava.cast_to_string(JavaFile.new(@tmpdir, "input").get_absolute_path)
         # System.out.println("execParser: "+cmdLine);
         @stderr = nil
         process_ = Runtime.get_runtime.exec(args, nil, JavaFile.new(@tmpdir))
@@ -263,13 +263,13 @@ module Org::Antlr::Test
         stdout_vacuum.join
         stderr_vacuum.join
         output = nil
-        output = (stdout_vacuum.to_s).to_s
+        output = RJava.cast_to_string(stdout_vacuum.to_s)
         if (stderr_vacuum.to_s.length > 0)
           @stderr = stderr_vacuum.to_s
-          System.err.println("exec stderrVacuum: " + (stderr_vacuum).to_s)
+          System.err.println("exec stderrVacuum: " + RJava.cast_to_string(stderr_vacuum))
         end
         return output
-      rescue Exception => e
+      rescue JavaException => e
         System.err.println("can't exec recognizer")
         e.print_stack_trace(System.err)
       end
@@ -291,7 +291,7 @@ module Org::Antlr::Test
         end
         i += 1
       end
-      assert_not_null("no error; " + (expected_message.attr_msg_id).to_s + " expected", found_msg)
+      assert_not_null("no error; " + RJava.cast_to_string(expected_message.attr_msg_id) + " expected", found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
       assert_equals(expected_message.attr_arg, found_msg.attr_arg)
       if (!(equeue.size).equal?(1))
@@ -310,7 +310,7 @@ module Org::Antlr::Test
         end
         i += 1
       end
-      assert_not_null("no error; " + (expected_message.attr_msg_id).to_s + " expected", found_msg)
+      assert_not_null("no error; " + RJava.cast_to_string(expected_message.attr_msg_id) + " expected", found_msg)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
       assert_equals(expected_message.attr_arg, found_msg.attr_arg)
     end
@@ -359,7 +359,7 @@ module Org::Antlr::Test
             while (!(line).nil?)
               @buf.append(line)
               @buf.append(Character.new(?\n.ord))
-              line = (@in.read_line).to_s
+              line = RJava.cast_to_string(@in.read_line)
             end
           rescue IOException => ioe
             System.err.println("can't read output from process")
@@ -478,7 +478,7 @@ module Org::Antlr::Test
       i = 0
       while !(files).nil? && i < files.attr_length
         if (files[i].ends_with(files_ending_with))
-          JavaFile.new(@tmpdir + "/" + (files[i]).to_s).delete
+          JavaFile.new(@tmpdir + "/" + RJava.cast_to_string(files[i])).delete
         end
         i += 1
       end
@@ -513,9 +513,9 @@ module Org::Antlr::Test
       n = ArrayList.new
       iterator = elements.key_set.iterator
       while (iterator.has_next)
-        token_id = iterator.next
+        token_id = iterator.next_
         if (elements.get(token_id) >= Label::MIN_TOKEN_TYPE)
-          n.add(token_id + "=" + (elements.get(token_id)).to_s)
+          n.add(token_id + "=" + RJava.cast_to_string(elements.get(token_id)))
         end
       end
       Collections.sort(n)
@@ -527,7 +527,7 @@ module Org::Antlr::Test
       @tmpdir = nil
       @stderr = nil
       super()
-      @tmpdir = JavaFile.new(System.get_property("java.io.tmpdir"), "antlr-" + (System.current_time_millis).to_s).get_absolute_path
+      @tmpdir = JavaFile.new(System.get_property("java.io.tmpdir"), "antlr-" + RJava.cast_to_string(System.current_time_millis)).get_absolute_path
     end
     
     private

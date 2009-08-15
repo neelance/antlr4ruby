@@ -59,7 +59,7 @@ module Org::Antlr::Runtime
     
     typesig { [] }
     def to_s
-      return "MismatchedTreeNodeException(" + (get_unexpected_type).to_s + "!=" + (@expecting).to_s + ")"
+      return "MismatchedTreeNodeException(" + RJava.cast_to_string(get_unexpected_type) + "!=" + RJava.cast_to_string(@expecting) + ")"
     end
     
     private

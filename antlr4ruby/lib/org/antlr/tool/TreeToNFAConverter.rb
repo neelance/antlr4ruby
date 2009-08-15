@@ -50,7 +50,9 @@ module Org::Antlr::Tool
   # Build an NFA from a tree representing an ANTLR grammar.
   class TreeToNFAConverter < Antlr::TreeParser
     include_class_members TreeToNFAConverterImports
-    include TreeToNFAConverterTokenTypes
+    overload_protected {
+      include TreeToNFAConverterTokenTypes
+    }
     
     # Factory used to create nodes and submachines
     attr_accessor :factory
@@ -157,7 +159,7 @@ module Org::Antlr::Tool
           token = (ex).attr_token
         end
       end
-      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "buildnfa: " + (ex.to_s).to_s, ex)
+      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "buildnfa: " + RJava.cast_to_string(ex.to_s), ex)
     end
     
     typesig { [] }
@@ -424,7 +426,7 @@ module Org::Antlr::Tool
         id = _t
         match(_t, ID)
         _t = _t.get_next_sibling
-        r = (id.get_text).to_s
+        r = RJava.cast_to_string(id.get_text)
         @current_rule_name = r
         @factory.attr_current_rule = @grammar.get_locally_defined_rule(r)
         if ((_t).nil?)
@@ -1533,7 +1535,7 @@ module Org::Antlr::Tool
           end
           g = @factory.build__astar(b)
           # track the loop back / exit decision point
-          b.attr_right.set_description("()* loopback of " + (@grammar.grammar_tree_to_string(ebnf_ast_in, false)).to_s)
+          b.attr_right.set_description("()* loopback of " + RJava.cast_to_string(@grammar.grammar_tree_to_string(ebnf_ast_in, false)))
           d = @grammar.assign_decision_number(b.attr_right)
           @grammar.set_decision_nfa(d, b.attr_right)
           @grammar.set_decision_block_ast(d, blk)
@@ -1559,7 +1561,7 @@ module Org::Antlr::Tool
           g = @factory.build__aplus(b)
           # don't make a decision on left edge, can reuse loop end decision
           # track the loop back / exit decision point
-          b.attr_right.set_description("()+ loopback of " + (@grammar.grammar_tree_to_string(ebnf_ast_in, false)).to_s)
+          b.attr_right.set_description("()+ loopback of " + RJava.cast_to_string(@grammar.grammar_tree_to_string(ebnf_ast_in, false)))
           d = @grammar.assign_decision_number(b.attr_right)
           @grammar.set_decision_nfa(d, b.attr_right)
           @grammar.set_decision_block_ast(d, blk)

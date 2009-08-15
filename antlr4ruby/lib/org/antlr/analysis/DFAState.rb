@@ -413,7 +413,7 @@ module Org::Antlr::Analysis
         # Replace existing s_i with intersection since we
         # know that will always be a non nil character class
         s_i = rl.get_set
-        intersection = s_i.and(t)
+        intersection = s_i.and_(t)
         @reachable_labels.set(i, Label.new(intersection))
         # Compute s_i-t to see what is in current set and not in incoming
         existing_minus_new_elements = s_i.subtract(t)
@@ -480,7 +480,7 @@ module Org::Antlr::Analysis
     # Cannot test the DFA state numbers here because in DFA.addState we need
     # to know if any other state exists that has this exact set of NFA
     # configurations.  The DFAState state number is irrelevant.
-    def equals(o)
+    def ==(o)
       # compare set of NFA configurations in this set with other
       other = o
       return (@nfa_configurations == other.attr_nfa_configurations)
@@ -630,7 +630,7 @@ module Org::Antlr::Analysis
       num_potential_conflicts = 0
       it = states.iterator
       while it.has_next
-        state_i = it.next
+        state_i = it.next_
         this_state_has_potential_problem = false
         configs_for_state = state_to_config_list_map.get(state_i)
         alt = 0
@@ -689,7 +689,7 @@ module Org::Antlr::Analysis
       # walk each state with potential conflicting configurations
       it_ = states.iterator
       while it_.has_next
-        state_i = it_.next
+        state_i = it_.next_
         configs_for_state = state_to_config_list_map.get(state_i)
         # compare each configuration pair s, t to ensure:
         # s.ctx different than t.ctx if s.alt != t.alt
@@ -807,7 +807,7 @@ module Org::Antlr::Analysis
             if ((union_of_predicates_from_all_alts).nil?)
               union_of_predicates_from_all_alts = gated_pred_expr
             else
-              union_of_predicates_from_all_alts = SemanticContext.or(union_of_predicates_from_all_alts, gated_pred_expr)
+              union_of_predicates_from_all_alts = SemanticContext.or_(union_of_predicates_from_all_alts, gated_pred_expr)
             end
           end
         end
@@ -839,7 +839,7 @@ module Org::Antlr::Analysis
     # Print all NFA states plus what alts they predict
     def to_s
       buf = StringBuffer.new
-      buf.append((self.attr_state_number).to_s + ":{")
+      buf.append(RJava.cast_to_string(self.attr_state_number) + ":{")
       i = 0
       while i < @nfa_configurations.size
         configuration = @nfa_configurations.get(i)

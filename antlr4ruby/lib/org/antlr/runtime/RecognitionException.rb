@@ -63,7 +63,7 @@ module Org::Antlr::Runtime
   # perhaps print an entire line of input not just a single token, for example.
   # Better to just say the recognizer had a problem and then let the parser
   # figure out a fancy report.
-  class RecognitionException < RecognitionExceptionImports.const_get :Exception
+  class RecognitionException < RecognitionExceptionImports.const_get :JavaException
     include_class_members RecognitionExceptionImports
     
     # What input stream did the error occur in?

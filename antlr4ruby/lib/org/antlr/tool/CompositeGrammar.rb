@@ -434,7 +434,7 @@ module Org::Antlr::Tool
       rules = get_all_imported_rules(g)
       it = rules.iterator
       while it.has_next
-        r = it.next
+        r = it.next_
         local_rule = g.get_locally_defined_rule(r.attr_name)
         # if locally defined or it's not local but synpred, don't make
         # a delegation method
@@ -461,7 +461,7 @@ module Org::Antlr::Tool
         # name as been seen.  (can't use removeAll; wrong hashcode/equals on Rule)
         it = delegate.get_rules.iterator
         while it.has_next
-          r = it.next
+          r = it.next_
           if (!rule_names.contains(r.attr_name))
             rule_names.add(r.attr_name) # track that we've seen this
             rules.add(r)

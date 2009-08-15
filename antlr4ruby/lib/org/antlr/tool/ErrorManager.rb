@@ -624,7 +624,7 @@ module Org::Antlr::Tool
           typesig { [String] }
           define_method :info do |msg|
             if (format_wants_single_line_message)
-              msg = (msg.replace_all("\n", " ")).to_s
+              msg = RJava.cast_to_string(msg.replace_all("\n", " "))
             end
             System.err.println(msg)
           end
@@ -633,7 +633,7 @@ module Org::Antlr::Tool
           define_method :error do |msg|
             output_msg = msg.to_s
             if (format_wants_single_line_message)
-              output_msg = (output_msg.replace_all("\n", " ")).to_s
+              output_msg = RJava.cast_to_string(output_msg.replace_all("\n", " "))
             end
             System.err.println(output_msg)
           end
@@ -642,7 +642,7 @@ module Org::Antlr::Tool
           define_method :warning do |msg|
             output_msg = msg.to_s
             if (format_wants_single_line_message)
-              output_msg = (output_msg.replace_all("\n", " ")).to_s
+              output_msg = RJava.cast_to_string(output_msg.replace_all("\n", " "))
             end
             System.err.println(output_msg)
           end
@@ -651,7 +651,7 @@ module Org::Antlr::Tool
           define_method :error do |msg|
             output_msg = msg.to_s
             if (format_wants_single_line_message)
-              output_msg = (output_msg.replace_all("\n", " ")).to_s
+              output_msg = RJava.cast_to_string(output_msg.replace_all("\n", " "))
             end
             System.err.println(output_msg)
           end
@@ -681,11 +681,11 @@ module Org::Antlr::Tool
           include_class_members ErrorManager
           include StringTemplateErrorListener if StringTemplateErrorListener.class == Module
           
-          typesig { [String, Exception] }
+          typesig { [String, JavaThrowable] }
           define_method :error do |s, e|
             System.err.println("ErrorManager init error: " + s)
             if (!(e).nil?)
-              System.err.println("exception: " + (e).to_s)
+              System.err.println("exception: " + RJava.cast_to_string(e))
             end
             # if ( e!=null ) {
             # e.printStackTrace(System.err);
@@ -727,7 +727,7 @@ module Org::Antlr::Tool
           include_class_members ErrorManager
           include StringTemplateErrorListener if StringTemplateErrorListener.class == Module
           
-          typesig { [String, Exception] }
+          typesig { [String, JavaThrowable] }
           define_method :error do |s, e|
           end
           
@@ -763,7 +763,7 @@ module Org::Antlr::Tool
           include_class_members ErrorManager
           include StringTemplateErrorListener if StringTemplateErrorListener.class == Module
           
-          typesig { [String, Exception] }
+          typesig { [String, JavaThrowable] }
           define_method :error do |s, e|
             if (e.is_a?(InvocationTargetException))
               e = (e).get_target_exception
@@ -827,7 +827,7 @@ module Org::Antlr::Tool
         cl = JavaThread.current_thread.get_context_class_loader
         is = cl.get_resource_as_stream(file_name)
         if ((is).nil?)
-          cl = ErrorManager.class.get_class_loader
+          cl = ErrorManager.get_class_loader
           is = cl.get_resource_as_stream(file_name)
         end
         if ((is).nil? && (language == Locale::US.get_language))
@@ -843,7 +843,7 @@ module Org::Antlr::Tool
         br = nil
         begin
           br = BufferedReader.new(InputStreamReader.new(is))
-          self.attr_messages = StringTemplateGroup.new(br, AngleBracketTemplateLexer.class, self.attr_init_stlistener)
+          self.attr_messages = StringTemplateGroup.new(br, AngleBracketTemplateLexer, self.attr_init_stlistener)
           br.close
         rescue IOException => ioe
           raw_error("error reading message file " + file_name, ioe)
@@ -877,7 +877,7 @@ module Org::Antlr::Tool
         cl = JavaThread.current_thread.get_context_class_loader
         is = cl.get_resource_as_stream(file_name)
         if ((is).nil?)
-          cl = ErrorManager.class.get_class_loader
+          cl = ErrorManager.get_class_loader
           is = cl.get_resource_as_stream(file_name)
         end
         if ((is).nil? && (format_name == "antlr"))
@@ -893,7 +893,7 @@ module Org::Antlr::Tool
         br = nil
         begin
           br = BufferedReader.new(InputStreamReader.new(is))
-          self.attr_format = StringTemplateGroup.new(br, AngleBracketTemplateLexer.class, self.attr_init_stlistener)
+          self.attr_format = StringTemplateGroup.new(br, AngleBracketTemplateLexer, self.attr_init_stlistener)
         ensure
           begin
             if (!(br).nil?)
@@ -980,7 +980,7 @@ module Org::Antlr::Tool
             return self.attr_messages.get_instance_of("error").to_s
           end
         end
-        assert_true(false, "Assertion failed! Message ID " + (msg_id).to_s + " created but is not present in errorMsgIDs or warningMsgIDs.")
+        assert_true(false, "Assertion failed! Message ID " + RJava.cast_to_string(msg_id) + " created but is not present in errorMsgIDs or warningMsgIDs.")
         return ""
       end
       
@@ -1049,7 +1049,7 @@ module Org::Antlr::Tool
         get_error_listener.error(ToolMessage.new(msg_id))
       end
       
-      typesig { [::Java::Int, Exception] }
+      typesig { [::Java::Int, JavaThrowable] }
       def error(msg_id, e)
         get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
@@ -1070,7 +1070,7 @@ module Org::Antlr::Tool
         get_error_listener.error(ToolMessage.new(msg_id, arg, arg2))
       end
       
-      typesig { [::Java::Int, Object, Exception] }
+      typesig { [::Java::Int, Object, JavaThrowable] }
       def error(msg_id, arg, e)
         get_error_state.attr_errors += 1
         get_error_state.attr_error_msg_ids.add(msg_id)
@@ -1098,10 +1098,10 @@ module Org::Antlr::Tool
         msg = GrammarDanglingStateMessage.new(probe, d)
         get_error_state.attr_error_msg_ids.add(msg.attr_msg_id)
         seen = EmitSingleError.get("danglingState")
-        if (!seen.contains((d.attr_dfa.attr_decision_number).to_s + "|" + (d.get_alt_set).to_s))
+        if (!seen.contains(RJava.cast_to_string(d.attr_dfa.attr_decision_number) + "|" + RJava.cast_to_string(d.get_alt_set)))
           get_error_listener.error(msg)
           # we've seen this decision and this alt set; never again
-          seen.add((d.attr_dfa.attr_decision_number).to_s + "|" + (d.get_alt_set).to_s)
+          seen.add(RJava.cast_to_string(d.attr_dfa.attr_decision_number) + "|" + RJava.cast_to_string(d.get_alt_set))
         end
       end
       
@@ -1207,31 +1207,31 @@ module Org::Antlr::Tool
         get_error_listener.error(GrammarSyntaxMessage.new(msg_id, grammar, token, arg, re))
       end
       
-      typesig { [Object, Exception] }
+      typesig { [Object, JavaThrowable] }
       def internal_error(error, e)
         location = get_last_non_error_manager_code_location(e)
-        msg = "Exception " + (e).to_s + "@" + (location).to_s + ": " + (error).to_s
+        msg = "Exception " + RJava.cast_to_string(e) + "@" + RJava.cast_to_string(location) + ": " + RJava.cast_to_string(error)
         error(MSG_INTERNAL_ERROR, msg)
       end
       
       typesig { [Object] }
       def internal_error(error_)
-        location = get_last_non_error_manager_code_location(Exception.new)
-        msg = (location).to_s + ": " + (error_).to_s
+        location = get_last_non_error_manager_code_location(JavaException.new)
+        msg = RJava.cast_to_string(location) + ": " + RJava.cast_to_string(error_)
         error(MSG_INTERNAL_ERROR, msg)
       end
       
       typesig { [] }
       def do_not_attempt_analysis
-        return !get_error_state.attr_error_msg_ids.and(ERRORS_FORCING_NO_ANALYSIS).is_nil
+        return !get_error_state.attr_error_msg_ids.and_(ERRORS_FORCING_NO_ANALYSIS).is_nil
       end
       
       typesig { [] }
       def do_not_attempt_code_gen
-        return do_not_attempt_analysis || !get_error_state.attr_error_msg_ids.and(ERRORS_FORCING_NO_CODEGEN).is_nil
+        return do_not_attempt_analysis || !get_error_state.attr_error_msg_ids.and_(ERRORS_FORCING_NO_CODEGEN).is_nil
       end
       
-      typesig { [Exception] }
+      typesig { [JavaThrowable] }
       # Return first non ErrorManager code location for generating messages
       def get_last_non_error_manager_code_location(e)
         stack = e.get_stack_trace
@@ -1261,11 +1261,11 @@ module Org::Antlr::Tool
         # make sure a message exists, even if it's just to indicate a problem
         i = 0
         while i < self.attr_id_to_message_template_name.attr_length
-          self.attr_id_to_message_template_name[i] = "INVALID MESSAGE ID: " + (i).to_s
+          self.attr_id_to_message_template_name[i] = "INVALID MESSAGE ID: " + RJava.cast_to_string(i)
           i += 1
         end
         # get list of fields and use it to fill in idToMessageTemplateName mapping
-        fields = ErrorManager.class.get_fields
+        fields = ErrorManager.get_fields
         i_ = 0
         while i_ < fields.attr_length
           f = fields[i_]
@@ -1278,9 +1278,9 @@ module Org::Antlr::Tool
           msg_id = 0
           begin
             # get the constant value from this class object
-            msg_id = f.get_int(ErrorManager.class)
+            msg_id = f.get_int(ErrorManager)
           rescue IllegalAccessException => iae
-            System.err.println("cannot get const value for " + (f.get_name).to_s)
+            System.err.println("cannot get const value for " + RJava.cast_to_string(f.get_name))
             i_ += 1
             next
           end
@@ -1297,7 +1297,7 @@ module Org::Antlr::Tool
       # template exists for each one from the locale's group.
       def verify_messages
         ok = true
-        fields = ErrorManager.class.get_fields
+        fields = ErrorManager.get_fields
         i = 0
         while i < fields.attr_length
           f = fields[i]
@@ -1305,7 +1305,7 @@ module Org::Antlr::Tool
           template_name = field_name.substring("MSG_".length, field_name.length)
           if (field_name.starts_with("MSG_"))
             if (!self.attr_messages.is_defined(template_name))
-              System.err.println("Message " + template_name + " in locale " + (self.attr_locale).to_s + " not found")
+              System.err.println("Message " + template_name + " in locale " + RJava.cast_to_string(self.attr_locale) + " not found")
               ok = false
             end
           end
@@ -1313,11 +1313,11 @@ module Org::Antlr::Tool
         end
         # check for special templates
         if (!self.attr_messages.is_defined("warning"))
-          System.err.println("Message template 'warning' not found in locale " + (self.attr_locale).to_s)
+          System.err.println("Message template 'warning' not found in locale " + RJava.cast_to_string(self.attr_locale))
           ok = false
         end
         if (!self.attr_messages.is_defined("error"))
-          System.err.println("Message template 'error' not found in locale " + (self.attr_locale).to_s)
+          System.err.println("Message template 'error' not found in locale " + RJava.cast_to_string(self.attr_locale))
           ok = false
         end
         return ok
@@ -1349,7 +1349,7 @@ module Org::Antlr::Tool
         System.err.println(msg)
       end
       
-      typesig { [String, Exception] }
+      typesig { [String, JavaThrowable] }
       def raw_error(msg, e)
         raw_error(msg)
         e.print_stack_trace(System.err)

@@ -928,7 +928,7 @@ module Org::Antlr::Tool
       @generator = nil
       @name_space_checker = NameSpaceChecker.new(self)
       @ll1analyzer = LL1Analyzer.new(self)
-      @lexer_grammar_st = StringTemplate.new("lexer grammar <name>;\n" + "<if(options)>" + "options {\n" + "  <options:{<it.name>=<it.value>;<\\n>}>\n" + "}<\\n>\n" + "<endif>\n" + "<if(imports)>import <imports; separator=\", \">;<endif>\n" + "<actionNames,actions:{n,a|@<n> {<a>}\n}>\n" + "<literals:{<it.ruleName> : <it.literal> ;\n}>\n" + "<rules>", AngleBracketTemplateLexer.class)
+      @lexer_grammar_st = StringTemplate.new("lexer grammar <name>;\n" + "<if(options)>" + "options {\n" + "  <options:{<it.name>=<it.value>;<\\n>}>\n" + "}<\\n>\n" + "<endif>\n" + "<if(imports)>import <imports; separator=\", \">;<endif>\n" + "<actionNames,actions:{n,a|@<n> {<a>}\n}>\n" + "<literals:{<it.ruleName> : <it.literal> ;\n}>\n" + "<rules>", AngleBracketTemplateLexer)
       @file_name = nil
       @dfacreation_wall_clock_time_in_ms = 0
       @number_of_semantic_predicates = 0
@@ -990,7 +990,7 @@ module Org::Antlr::Tool
       @generator = nil
       @name_space_checker = NameSpaceChecker.new(self)
       @ll1analyzer = LL1Analyzer.new(self)
-      @lexer_grammar_st = StringTemplate.new("lexer grammar <name>;\n" + "<if(options)>" + "options {\n" + "  <options:{<it.name>=<it.value>;<\\n>}>\n" + "}<\\n>\n" + "<endif>\n" + "<if(imports)>import <imports; separator=\", \">;<endif>\n" + "<actionNames,actions:{n,a|@<n> {<a>}\n}>\n" + "<literals:{<it.ruleName> : <it.literal> ;\n}>\n" + "<rules>", AngleBracketTemplateLexer.class)
+      @lexer_grammar_st = StringTemplate.new("lexer grammar <name>;\n" + "<if(options)>" + "options {\n" + "  <options:{<it.name>=<it.value>;<\\n>}>\n" + "}<\\n>\n" + "<endif>\n" + "<if(imports)>import <imports; separator=\", \">;<endif>\n" + "<actionNames,actions:{n,a|@<n> {<a>}\n}>\n" + "<literals:{<it.ruleName> : <it.literal> ;\n}>\n" + "<rules>", AngleBracketTemplateLexer)
       @file_name = nil
       @dfacreation_wall_clock_time_in_ms = 0
       @number_of_semantic_predicates = 0
@@ -1056,7 +1056,7 @@ module Org::Antlr::Tool
           ErrorManager.error(ErrorManager::MSG_FILENAME_EXTENSION_ERROR, @file_name)
           only_file_name_no_suffix = only_file_name + GRAMMAR_FILE_EXTENSION
         else
-          only_file_name_no_suffix = (only_file_name.substring(0, last_dot)).to_s
+          only_file_name_no_suffix = RJava.cast_to_string(only_file_name.substring(0, last_dot))
         end
         if (!(name == only_file_name_no_suffix))
           ErrorManager.error(ErrorManager::MSG_FILE_AND_GRAMMAR_NAME_DIFFER, name, @file_name)
@@ -1187,7 +1187,7 @@ module Org::Antlr::Tool
       if (!(@options).nil?)
         option_names = @options.key_set.iterator
         while (option_names.has_next)
-          option_name = option_names.next
+          option_name = option_names.next_
           if (!DoNotCopyOptionsToLexer.contains(option_name))
             value = @options.get(option_name)
             @lexer_grammar_st.set_attribute("options.{name,value}", option_name, value)
@@ -1219,10 +1219,10 @@ module Org::Antlr::Tool
           buf.append(Character.new(?_.ord))
         end
         buf.append(@name)
-        qualified_name = (buf.to_s).to_s
+        qualified_name = RJava.cast_to_string(buf.to_s)
       end
       if ((@type).equal?(Grammar::COMBINED) || ((@type).equal?(Grammar::LEXER) && @implicit_lexer))
-        suffix = (Grammar.attr_grammar_type_to_file_name_suffix[@type]).to_s
+        suffix = RJava.cast_to_string(Grammar.attr_grammar_type_to_file_name_suffix[@type])
       end
       return qualified_name + suffix
     end
@@ -1245,9 +1245,9 @@ module Org::Antlr::Tool
     def add_artificial_match_tokens_rule(grammar_ast, rule_names, delegate_names, filter_mode)
       match_token_rule_st = nil
       if (filter_mode)
-        match_token_rule_st = StringTemplate.new(ARTIFICIAL_TOKENS_RULENAME + " options {k=1; backtrack=true;} : <rules; separator=\"|\">;", AngleBracketTemplateLexer.class)
+        match_token_rule_st = StringTemplate.new(ARTIFICIAL_TOKENS_RULENAME + " options {k=1; backtrack=true;} : <rules; separator=\"|\">;", AngleBracketTemplateLexer)
       else
-        match_token_rule_st = StringTemplate.new(ARTIFICIAL_TOKENS_RULENAME + " : <rules; separator=\"|\">;", AngleBracketTemplateLexer.class)
+        match_token_rule_st = StringTemplate.new(ARTIFICIAL_TOKENS_RULENAME + " : <rules; separator=\"|\">;", AngleBracketTemplateLexer)
       end
       # Now add token rule references
       i = 0
@@ -1277,14 +1277,14 @@ module Org::Antlr::Tool
       begin
         parser.rule
         if (Tool.attr_internal_option_print_grammar_tree)
-          System.out.println("Tokens rule: " + (parser.get_ast.to_string_tree).to_s)
+          System.out.println("Tokens rule: " + RJava.cast_to_string(parser.get_ast.to_string_tree))
         end
         p = grammar_ast
         while (!(p.get_type).equal?(ANTLRParser::LEXER_GRAMMAR))
           p = p.get_next_sibling
         end
         p.add_child(parser.get_ast)
-      rescue Exception => e
+      rescue JavaException => e
         ErrorManager.error(ErrorManager::MSG_ERROR_CREATING_ARTIFICIAL_RULE, e)
       end
       return parser.get_ast
@@ -1302,7 +1302,7 @@ module Org::Antlr::Tool
       is_lexer = (@grammar_tree.get_type).equal?(ANTLRParser::LEXER_GRAMMAR)
       it = pred_names.iterator
       while it.has_next
-        synpred_name = it.next
+        synpred_name = it.next_
         fragment_ast = name_to_synpred_astmap.get(synpred_name)
         rule_ast = parser.create_simple_rule_ast(synpred_name, fragment_ast, is_lexer)
         rules.add(rule_ast)
@@ -1342,7 +1342,7 @@ module Org::Antlr::Tool
       rules = get_rules
       itr = rules.iterator
       while itr.has_next
-        r = itr.next
+        r = itr.next_
         rule_name = r.attr_name
         rule_begin_state = @factory.new_state
         rule_begin_state.set_description("rule " + rule_name + " start")
@@ -1414,7 +1414,7 @@ module Org::Antlr::Tool
           if (@left_recursive_rules.contains(decision_start_state.attr_enclosing_rule))
             # don't bother to process decisions within left recursive rules.
             if (@composite.attr_watch_nfaconversion)
-              System.out.println("ignoring decision " + (decision).to_s + " within left-recursive rule " + (decision_start_state.attr_enclosing_rule.attr_name).to_s)
+              System.out.println("ignoring decision " + RJava.cast_to_string(decision) + " within left-recursive rule " + RJava.cast_to_string(decision_start_state.attr_enclosing_rule.attr_name))
             end
             decision += 1
             next
@@ -1432,7 +1432,7 @@ module Org::Antlr::Tool
             end
             if ((dfa).nil?)
               if (@composite.attr_watch_nfaconversion)
-                System.out.println("decision " + (decision).to_s + " not suitable for LL(1)-optimized DFA analysis")
+                System.out.println("decision " + RJava.cast_to_string(decision) + " not suitable for LL(1)-optimized DFA analysis")
               end
               dfa = create_lookahead_dfa(decision, wack_temp_structures)
             end
@@ -1441,7 +1441,7 @@ module Org::Antlr::Tool
               set_lookahead_dfa(decision, nil)
             end
             if (Tool.attr_internal_option_print_dfa)
-              System.out.println("DFA d=" + (decision).to_s)
+              System.out.println("DFA d=" + RJava.cast_to_string(decision))
               serializer = FASerializer.new(@nfa.attr_grammar)
               result = serializer.serialize(dfa.attr_start_state)
               System.out.println(result)
@@ -1482,7 +1482,7 @@ module Org::Antlr::Tool
       r = d.attr_start_state.attr_enclosing_rule
       decision_start_state = get_decision_nfastart_state(decision)
       if (@composite.attr_watch_nfaconversion)
-        System.out.println("--------------------\nattempting LL(1) DFA (d=" + (decision_start_state.get_decision_number).to_s + ") for " + (decision_start_state.get_description).to_s)
+        System.out.println("--------------------\nattempting LL(1) DFA (d=" + RJava.cast_to_string(decision_start_state.get_decision_number) + ") for " + RJava.cast_to_string(decision_start_state.get_description))
       end
       if (r.attr_is_syn_pred && !@syn_pred_names_used_in_dfa.contains(enclosing_rule))
         return nil
@@ -1524,7 +1524,7 @@ module Org::Antlr::Tool
       if (decision_is_ll_1 && !found_confounding_predicate)
         # build an LL(1) optimized DFA with edge for each altLook[i]
         if (NFAToDFAConverter.attr_debug)
-          System.out.println("decision " + (decision).to_s + " is simple LL(1)")
+          System.out.println("decision " + RJava.cast_to_string(decision) + " is simple LL(1)")
         end
         lookahead_dfa = LL1DFA.new(decision, decision_start_state, alt_look)
         set_lookahead_dfa(decision, lookahead_dfa)
@@ -1563,7 +1563,7 @@ module Org::Antlr::Tool
         alt_ = 1
         while alt_ < alt_look.attr_length
           look = alt_look[alt_]
-          if (!ds.and(look.attr_token_type_set).is_nil)
+          if (!ds.and_(look.attr_token_type_set).is_nil)
             edge_map.map(ds, alt_)
           end
           alt_ += 1
@@ -1585,7 +1585,7 @@ module Org::Antlr::Tool
       decision_ast = @nfa.attr_grammar.get_decision_block_ast(lookahead_dfa.attr_decision_number)
       line = decision_ast.get_line
       col = decision_ast.get_column
-      @line_column_to_lookahead_dfamap.put(StringBuffer.new.append((line).to_s + ":").append(col).to_s, lookahead_dfa)
+      @line_column_to_lookahead_dfamap.put(StringBuffer.new.append(RJava.cast_to_string(line) + ":").append(col).to_s, lookahead_dfa)
     end
     
     typesig { [JavaList] }
@@ -1607,7 +1607,7 @@ module Org::Antlr::Tool
         i = 0
         while i < num_disjoint_elements
           s_i = disjoint_sets.get(i)
-          if (t.and(s_i).is_nil)
+          if (t.and_(s_i).is_nil)
             # nothing in common
             i += 1
             next
@@ -1617,7 +1617,7 @@ module Org::Antlr::Tool
           # (ignoring s_i-t if nil; don't put in list)
           # Replace existing s_i with intersection since we
           # know that will always be a non nil character class
-          intersection = s_i.and(t)
+          intersection = s_i.and_(t)
           disjoint_sets.set(i, intersection)
           # Compute s_i-t to see what is in current set and not in incoming
           existing_minus_new_elements = s_i.subtract(t)
@@ -1653,7 +1653,7 @@ module Org::Antlr::Tool
       start_dfa = 0
       stop_dfa = 0
       if (@composite.attr_watch_nfaconversion)
-        System.out.println("--------------------\nbuilding lookahead DFA (d=" + (decision_start_state.get_decision_number).to_s + ") for " + (decision_start_state.get_description).to_s)
+        System.out.println("--------------------\nbuilding lookahead DFA (d=" + RJava.cast_to_string(decision_start_state.get_decision_number) + ") for " + RJava.cast_to_string(decision_start_state.get_description))
         start_dfa = System.current_time_millis
       end
       lookahead_dfa = DFA.new(decision, decision_start_state)
@@ -1667,14 +1667,14 @@ module Org::Antlr::Tool
         # TODO: clean up synPredNamesUsedInDFA also (harder)
         d.attr_block_ast.set_block_option(self, "k", Utils.integer(1))
         if (@composite.attr_watch_nfaconversion)
-          System.out.print("trying decision " + (decision).to_s + " again with k=1; reason: " + (lookahead_dfa.get_reason_for_failure).to_s)
+          System.out.print("trying decision " + RJava.cast_to_string(decision) + " again with k=1; reason: " + RJava.cast_to_string(lookahead_dfa.get_reason_for_failure))
         end
         lookahead_dfa = nil # make sure other memory is "free" before redoing
         lookahead_dfa = DFA.new(decision, decision_start_state)
       end
       if (lookahead_dfa.analysis_timed_out)
         # did analysis bug out?
-        ErrorManager.internal_error("could not even do k=1 for decision " + (decision).to_s + "; reason: " + (lookahead_dfa.get_reason_for_failure).to_s)
+        ErrorManager.internal_error("could not even do k=1 for decision " + RJava.cast_to_string(decision) + "; reason: " + RJava.cast_to_string(lookahead_dfa.get_reason_for_failure))
       end
       set_lookahead_dfa(decision, lookahead_dfa)
       if (wack_temp_structures)
@@ -1686,7 +1686,7 @@ module Org::Antlr::Tool
       update_line_column_to_lookahead_dfamap(lookahead_dfa)
       if (@composite.attr_watch_nfaconversion)
         stop_dfa = System.current_time_millis
-        System.out.println("cost: " + (lookahead_dfa.get_number_of_states).to_s + " states, " + (RJava.cast_to_int((stop_dfa - start_dfa))).to_s + " ms")
+        System.out.println("cost: " + RJava.cast_to_string(lookahead_dfa.get_number_of_states) + " states, " + RJava.cast_to_string(RJava.cast_to_int((stop_dfa - start_dfa))) + " ms")
       end
       # System.out.println("after create DFA; synPredNamesUsedInDFA="+synPredNamesUsedInDFA);
       return lookahead_dfa
@@ -1783,7 +1783,7 @@ module Org::Antlr::Tool
       if ((@name_to_synpred_astmap).nil?)
         @name_to_synpred_astmap = LinkedHashMap.new
       end
-      pred_name = SYNPRED_RULE_PREFIX + ((@name_to_synpred_astmap.size + 1)).to_s + "_" + @name
+      pred_name = SYNPRED_RULE_PREFIX + RJava.cast_to_string((@name_to_synpred_astmap.size + 1)) + "_" + @name
       block_ast.set_tree_enclosing_rule_name_deeply(pred_name)
       @name_to_synpred_astmap.put(pred_name, block_ast)
       return pred_name
@@ -1818,7 +1818,7 @@ module Org::Antlr::Tool
     # grammars, make sure header action propogates down to all delegates.
     def define_named_action(ampersand_ast, scope, name_ast, action_ast)
       if ((scope).nil?)
-        scope = (get_default_action_scope(@type)).to_s
+        scope = RJava.cast_to_string(get_default_action_scope(@type))
       end
       # System.out.println("@"+scope+"::"+nameAST.getText()+"{"+actionAST.getText()+"}");
       action_name = name_ast.get_text
@@ -2111,7 +2111,7 @@ module Org::Antlr::Tool
       labels = HashSet.new
       it = rewrite_elements.iterator
       while it.has_next
-        el = it.next
+        el = it.next_
         if ((el.get_type).equal?(ANTLRParser::LABEL))
           label_name = el.get_text
           enclosing_rule = get_locally_defined_rule(el.attr_enclosing_rule_name)
@@ -2135,7 +2135,7 @@ module Org::Antlr::Tool
       rules = get_rules
       it = rules.iterator
       while it.has_next
-        r = it.next
+        r = it.next_
         # walk all actions within the rule elements, args, and exceptions
         actions = r.get_inline_actions
         i = 0
@@ -2149,7 +2149,7 @@ module Org::Antlr::Tool
         named_actions = r.get_actions.values
         it2 = named_actions.iterator
         while it2.has_next
-          action_ast = it2.next
+          action_ast = it2.next_
           sniffer = ActionAnalysisLexer.new(self, r.attr_name, action_ast)
           sniffer.analyze
         end
@@ -2166,7 +2166,7 @@ module Org::Antlr::Tool
       rules = @name_to_rule_map.key_set
       it = rules.iterator
       while it.has_next
-        rule_name = it.next
+        rule_name = it.next_
         r = get_rule(rule_name)
         remove_useless_labels(r.get_rule_labels)
         remove_useless_labels(r.get_rule_list_labels)
@@ -2184,7 +2184,7 @@ module Org::Antlr::Tool
       kill = ArrayList.new
       labelit = labels.iterator
       while labelit.has_next
-        pair = labelit.next
+        pair = labelit.next_
         refd_rule = get_rule(pair.attr_element_ref.get_text)
         if (!(refd_rule).nil? && !refd_rule.get_has_return_value && !pair.attr_action_references_label)
           # System.out.println(pair.label.getText()+" is useless");
@@ -2429,7 +2429,7 @@ module Org::Antlr::Tool
             else
               if (Character.is_digit(c))
                 ErrorManager.error(ErrorManager::MSG_SYNTAX_ERROR, "invalid char literal: " + literal)
-                buf.append("\\" + (RJava.cast_to_char(c)).to_s)
+                buf.append("\\" + RJava.cast_to_string(RJava.cast_to_char(c)))
               else
                 buf.append(RJava.cast_to_char(self.attr_antlrliteral_escaped_char_value[c])) # normal \x escape
               end
@@ -2457,7 +2457,7 @@ module Org::Antlr::Tool
       imported_token_ids = import_from_gr.get_token_ids
       it = imported_token_ids.iterator
       while it.has_next
-        token_id = it.next
+        token_id = it.next_
         token_type = import_from_gr.get_token_type(token_id)
         @composite.attr_max_token_type = Math.max(@composite.attr_max_token_type, token_type)
         if (token_type >= Label::MIN_TOKEN_TYPE)
@@ -2556,12 +2556,12 @@ module Org::Antlr::Tool
         while (!(token).equal?(StreamTokenizer::TT_EOF))
           token_id = nil
           if ((token).equal?(StreamTokenizer::TT_WORD))
-            token_id = (tokenizer.attr_sval).to_s
+            token_id = RJava.cast_to_string(tokenizer.attr_sval)
           else
             if ((token).equal?(Character.new(?\'.ord)))
-              token_id = "'" + (tokenizer.attr_sval).to_s + "'"
+              token_id = "'" + RJava.cast_to_string(tokenizer.attr_sval) + "'"
             else
-              ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s, Utils.integer(line_num))
+              ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + RJava.cast_to_string(CodeGenerator::VOCAB_FILE_EXTENSION), Utils.integer(line_num))
               while (!(tokenizer.next_token).equal?(StreamTokenizer::TT_EOL))
               end
               token = tokenizer.next_token
@@ -2570,7 +2570,7 @@ module Org::Antlr::Tool
           end
           token = tokenizer.next_token
           if (!(token).equal?(Character.new(?=.ord)))
-            ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s, Utils.integer(line_num))
+            ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + RJava.cast_to_string(CodeGenerator::VOCAB_FILE_EXTENSION), Utils.integer(line_num))
             while (!(tokenizer.next_token).equal?(StreamTokenizer::TT_EOL))
             end
             token = tokenizer.next_token
@@ -2578,7 +2578,7 @@ module Org::Antlr::Tool
           end
           token = tokenizer.next_token # skip '='
           if (!(token).equal?(StreamTokenizer::TT_NUMBER))
-            ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s, Utils.integer(line_num))
+            ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + RJava.cast_to_string(CodeGenerator::VOCAB_FILE_EXTENSION), Utils.integer(line_num))
             while (!(tokenizer.next_token).equal?(StreamTokenizer::TT_EOL))
             end
             token = tokenizer.next_token
@@ -2591,7 +2591,7 @@ module Org::Antlr::Tool
           define_token(token_id, token_type)
           line_num += 1
           if (!(token).equal?(StreamTokenizer::TT_EOL))
-            ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s, Utils.integer(line_num))
+            ErrorManager.error(ErrorManager::MSG_TOKENS_FILE_SYNTAX_ERROR, vocab_name + RJava.cast_to_string(CodeGenerator::VOCAB_FILE_EXTENSION), Utils.integer(line_num))
             while (!(tokenizer.next_token).equal?(StreamTokenizer::TT_EOL))
             end
             token = tokenizer.next_token
@@ -2604,7 +2604,7 @@ module Org::Antlr::Tool
         ErrorManager.error(ErrorManager::MSG_CANNOT_FIND_TOKENS_FILE, full_file)
       rescue IOException => ioe
         ErrorManager.error(ErrorManager::MSG_ERROR_READING_TOKENS_FILE, full_file, ioe)
-      rescue Exception => e
+      rescue JavaException => e
         ErrorManager.error(ErrorManager::MSG_ERROR_READING_TOKENS_FILE, full_file, e)
       end
       return @composite.attr_max_token_type
@@ -2623,18 +2623,18 @@ module Org::Antlr::Tool
       # faux label?
       else
         if (ttype < 0)
-          token_name = (@composite.attr_type_to_token_list.get(Label::NUM_FAUX_LABELS + ttype)).to_s
+          token_name = RJava.cast_to_string(@composite.attr_type_to_token_list.get(Label::NUM_FAUX_LABELS + ttype))
         else
           # compute index in typeToTokenList for ttype
           index = ttype - 1 # normalize to 0..n-1
           index += Label::NUM_FAUX_LABELS # jump over faux tokens
           if (index < @composite.attr_type_to_token_list.size)
-            token_name = (@composite.attr_type_to_token_list.get(index)).to_s
+            token_name = RJava.cast_to_string(@composite.attr_type_to_token_list.get(index))
             if (!(token_name).nil? && token_name.starts_with(AUTO_GENERATED_TOKEN_NAME_PREFIX))
-              token_name = (@composite.attr_type_to_string_literal_list.get(ttype)).to_s
+              token_name = RJava.cast_to_string(@composite.attr_type_to_string_literal_list.get(ttype))
             end
           else
-            token_name = (String.value_of(ttype)).to_s
+            token_name = RJava.cast_to_string(String.value_of(ttype))
           end
         end
       end
@@ -2717,7 +2717,7 @@ module Org::Antlr::Tool
       keys = options.key_set
       it = keys.iterator
       while it.has_next
-        option_name = it.next
+        option_name = it.next_
         option_value = options.get(option_name)
         stored = set_option(option_name, option_value, options_start_token)
         if ((stored).nil?)
@@ -2781,7 +2781,7 @@ module Org::Antlr::Tool
       decision_nfastart_state = get_decision_nfastart_state(decision)
       auto_backtrack = get_block_option(decision_nfastart_state.attr_associated_astnode, "backtrack")
       if ((auto_backtrack).nil?)
-        auto_backtrack = (@nfa.attr_grammar.get_option("backtrack")).to_s
+        auto_backtrack = RJava.cast_to_string(@nfa.attr_grammar.get_option("backtrack"))
       end
       return !(auto_backtrack).nil? && (auto_backtrack == "true")
     end
@@ -3030,11 +3030,11 @@ module Org::Antlr::Tool
     # This is not particularly fast as it walks entire line:col->DFA map
     # looking for a prefix of "line:".
     def get_lookahead_dfacolumns_for_line_in_file(line)
-      prefix = (line).to_s + ":"
+      prefix = RJava.cast_to_string(line) + ":"
       columns = ArrayList.new
       iter = @line_column_to_lookahead_dfamap.key_set.iterator
       while iter.has_next
-        key = iter.next
+        key = iter.next_
         if (key.starts_with(prefix))
           columns.add(JavaInteger.value_of(key.substring(prefix.length)))
         end
@@ -3045,7 +3045,7 @@ module Org::Antlr::Tool
     typesig { [::Java::Int, ::Java::Int] }
     # Useful for ANTLRWorks to map position in file to the DFA for display
     def get_lookahead_dfafrom_position_in_file(line, col)
-      return @line_column_to_lookahead_dfamap.get(StringBuffer.new.append((line).to_s + ":").append(col).to_s)
+      return @line_column_to_lookahead_dfamap.get(StringBuffer.new.append(RJava.cast_to_string(line) + ":").append(col).to_s)
     end
     
     typesig { [] }
@@ -3178,7 +3178,7 @@ module Org::Antlr::Tool
       # 12/09/2005: I changed so everything is single quotes
       def get_antlrchar_literal_for_char(c)
         if (c < Label::MIN_CHAR_VALUE)
-          ErrorManager.internal_error("invalid char value " + (c).to_s)
+          ErrorManager.internal_error("invalid char value " + RJava.cast_to_string(c))
           return "'<INVALID>'"
         end
         if (c < self.attr_antlrliteral_char_value_escape.attr_length && !(self.attr_antlrliteral_char_value_escape[c]).nil?)
@@ -3294,10 +3294,10 @@ module Org::Antlr::Tool
           return p
         end
         n += 1
-        next_ = p.attr_transition[1]
+        next__ = p.attr_transition[1]
         p = nil
-        if (!(next_).nil?)
-          p = next_.attr_target
+        if (!(next__).nil?)
+          p = next__.attr_target
         end
       end
       return nil
@@ -3356,7 +3356,7 @@ module Org::Antlr::Tool
     # decent token type label.  For now it's just T<type>.  Actually,
     # if there is an aliased name from tokens like PLUS='+', use it.
     def compute_token_name_from_literal(token_type, literal)
-      return AUTO_GENERATED_TOKEN_NAME_PREFIX + (token_type).to_s
+      return AUTO_GENERATED_TOKEN_NAME_PREFIX + RJava.cast_to_string(token_type)
     end
     
     typesig { [] }
@@ -3373,9 +3373,9 @@ module Org::Antlr::Tool
     def grammar_tree_to_string(t, show_actions)
       s = nil
       begin
-        s = (t.get_line).to_s + ":" + (t.get_column).to_s + ": "
-        s += (ANTLRTreePrinter.new.to_s(t, self, show_actions)).to_s
-      rescue Exception => e
+        s = RJava.cast_to_string(t.get_line) + ":" + RJava.cast_to_string(t.get_column) + ": "
+        s += RJava.cast_to_string(ANTLRTreePrinter.new.to_s(t, self, show_actions))
+      rescue JavaException => e
         s = "<invalid or missing tree structure>"
       end
       return s

@@ -69,8 +69,8 @@ module Org::Antlr::Test
       expecting = buf.to_s
       found = to_nodes_only_string(stream)
       assert_equals(expecting, found)
-      expecting = (buf2.to_s).to_s
-      found = (stream.to_s).to_s
+      expecting = RJava.cast_to_string(buf2.to_s)
+      found = RJava.cast_to_string(stream.to_s)
       assert_equals(expecting, found)
     end
     

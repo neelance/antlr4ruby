@@ -77,7 +77,7 @@ module Org::Antlr::Runtime
       if ((expected_token_type).equal?(Token::EOF))
         token_text = "<missing EOF>"
       else
-        token_text = "<missing " + (get_token_names[expected_token_type]).to_s + ">"
+        token_text = "<missing " + RJava.cast_to_string(get_token_names[expected_token_type]) + ">"
       end
       t = CommonToken.new(expected_token_type, token_text)
       current = (input)._lt(1)

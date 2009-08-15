@@ -80,7 +80,7 @@ module Org::Antlr::Runtime::Tree
         end
         
         typesig { [] }
-        def next
+        def next_
           current = @i
           @i += 1
           if (current < self.attr_nodes.size)
@@ -540,7 +540,7 @@ module Org::Antlr::Runtime::Tree
       end
       # System.out.println("stop: "+stop);
       if (start.is_a?(CommonTree))
-        System.out.print("toString: " + ((start).get_token).to_s + ", ")
+        System.out.print("toString: " + RJava.cast_to_string((start).get_token) + ", ")
       else
         System.out.println(start)
       end
@@ -580,7 +580,7 @@ module Org::Antlr::Runtime::Tree
       while (!(t).equal?(stop))
         text = @adaptor.get_text(t)
         if ((text).nil?)
-          text = " " + (String.value_of(@adaptor.get_type(t))).to_s
+          text = " " + RJava.cast_to_string(String.value_of(@adaptor.get_type(t)))
         end
         buf.append(text)
         i += 1
@@ -589,7 +589,7 @@ module Org::Antlr::Runtime::Tree
       # include stop node too
       text = @adaptor.get_text(stop)
       if ((text).nil?)
-        text = " " + (String.value_of(@adaptor.get_type(stop))).to_s
+        text = " " + RJava.cast_to_string(String.value_of(@adaptor.get_type(stop)))
       end
       buf.append(text)
       return buf.to_s

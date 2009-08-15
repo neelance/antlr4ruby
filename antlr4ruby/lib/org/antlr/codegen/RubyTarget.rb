@@ -38,7 +38,7 @@ module Org::Antlr::Codegen
     
     typesig { [CodeGenerator, String] }
     def get_target_char_literal_from_antlrchar_literal(generator, literal)
-      literal = (literal.substring(1, literal.length - 1)).to_s
+      literal = RJava.cast_to_string(literal.substring(1, literal.length - 1))
       result = "?"
       if ((literal == "\\"))
         result += "\\\\"
@@ -47,7 +47,7 @@ module Org::Antlr::Codegen
           result += "\\s"
         else
           if (literal.starts_with("\\u"))
-            result = "0x" + (literal.substring(2)).to_s
+            result = "0x" + RJava.cast_to_string(literal.substring(2))
           else
             result += literal
           end

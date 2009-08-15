@@ -77,7 +77,7 @@ module Org::Antlr::Test
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T;}\n" + "a : ^(ID INT) -> ^(INT ID) | INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "abc 34")
       assert_equals("(34 abc)\n", found)
-      found = (exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "34")).to_s
+      found = RJava.cast_to_string(exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "34"))
       assert_equals("34\n", found)
     end
     
@@ -241,7 +241,7 @@ module Org::Antlr::Test
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "a : ^(ID INT) -> ^(ID[\"ick\"] INT)\n" + "  | INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "abc 34")
       assert_equals("(ick 34)\n", found)
-      found = (exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "34")).to_s
+      found = RJava.cast_to_string(exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "34"))
       assert_equals("34\n", found)
     end
     

@@ -48,7 +48,9 @@ module Org::Antlr::Tool
   
   class DefineGrammarItemsWalker < Antlr::TreeParser
     include_class_members DefineGrammarItemsWalkerImports
-    include DefineGrammarItemsWalkerTokenTypes
+    overload_protected {
+      include DefineGrammarItemsWalkerTokenTypes
+    }
     
     attr_accessor :grammar
     alias_method :attr_grammar, :grammar
@@ -102,7 +104,7 @@ module Org::Antlr::Tool
           token = (ex).attr_token
         end
       end
-      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "define: " + (ex.to_s).to_s, ex)
+      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "define: " + RJava.cast_to_string(ex.to_s), ex)
     end
     
     typesig { [] }
@@ -410,39 +412,37 @@ module Org::Antlr::Tool
         match(_t, IMPORT)
         _t = _t.get_first_child
         _cnt28 = 0
-        catch(:break__loop28) do
-          begin
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            case (_t.get_type)
-            when ASSIGN
-              __t27 = _t
-              tmp8_ast_in = _t
-              match(_t, ASSIGN)
-              _t = _t.get_first_child
-              tmp9_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              tmp10_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              _t = __t27
-              _t = _t.get_next_sibling
-            when ID
-              tmp11_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
+        begin
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when ASSIGN
+            __t27 = _t
+            tmp8_ast_in = _t
+            match(_t, ASSIGN)
+            _t = _t.get_first_child
+            tmp9_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+            tmp10_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+            _t = __t27
+            _t = _t.get_next_sibling
+          when ID
+            tmp11_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+          else
+            if (_cnt28 >= 1)
+              break
             else
-              if (_cnt28 >= 1)
-                throw :break__loop28, :thrown
-              else
-                raise NoViableAltException.new(_t)
-              end
+              raise NoViableAltException.new(_t)
             end
-            _cnt28 += 1
-          end while (true)
-        end
+          end
+          _cnt28 += 1
+        end while (true)
         _t = __t25
         _t = _t.get_next_sibling
       rescue RecognitionException => ex
@@ -601,7 +601,7 @@ module Org::Antlr::Tool
           match(_t, ACTION)
           _t = _t.get_next_sibling
           if ((self.attr_input_state.attr_guessing).equal?(0))
-            scope = (id1.get_text).to_s
+            scope = RJava.cast_to_string(id1.get_text)
             name_ast = id2
             action_ast = a1
           end
@@ -610,7 +610,7 @@ module Org::Antlr::Tool
           match(_t, ACTION)
           _t = _t.get_next_sibling
           if ((self.attr_input_state.attr_guessing).equal?(0))
-            scope = (nil).to_s
+            scope = RJava.cast_to_string(nil)
             name_ast = id1
             action_ast = a2
           end
@@ -721,7 +721,7 @@ module Org::Antlr::Tool
         end
         case (_t.get_type)
         when FRAGMENT, LITERAL_protected, LITERAL_public, LITERAL_private
-          mod = (modifier(_t)).to_s
+          mod = RJava.cast_to_string(modifier(_t))
           _t = self.attr__ret_tree
         when ARG
         else
@@ -775,7 +775,7 @@ module Org::Antlr::Tool
           raise NoViableAltException.new(_t)
         end
         if ((self.attr_input_state.attr_guessing).equal?(0))
-          name = (id.get_text).to_s
+          name = RJava.cast_to_string(id.get_text)
           @current_rule_name = name
           if (Character.is_upper_case(name.char_at(0)) && (@grammar.attr_type).equal?(Grammar::COMBINED))
             # a merged grammar spec, track lexer rules and send to another grammar
@@ -860,7 +860,7 @@ module Org::Antlr::Tool
     def modifier(_t)
       mod = nil
       modifier_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
-      mod = (modifier_ast_in.get_text).to_s
+      mod = RJava.cast_to_string(modifier_ast_in.get_text)
       begin
         # for error handling
         if ((_t).nil?)

@@ -164,7 +164,7 @@ module Org::Antlr::Runtime
       # compute what can follow this grammar element reference
       if (follow.member(Token::EOR_TOKEN_TYPE))
         viable_tokens_following_this_rule = compute_context_sensitive_rule_follow
-        follow = follow.or(viable_tokens_following_this_rule)
+        follow = follow.or_(viable_tokens_following_this_rule)
         if (@state.attr__fsp >= 0)
           # remove EOR if we're not the start symbol
           follow.remove(Token::EOR_TOKEN_TYPE)
@@ -266,9 +266,9 @@ module Org::Antlr::Runtime
         if ((ute.attr_expecting).equal?(Token::EOF))
           token_name = "EOF"
         else
-          token_name = (token_names[ute.attr_expecting]).to_s
+          token_name = RJava.cast_to_string(token_names[ute.attr_expecting])
         end
-        msg = "extraneous input " + (get_token_error_display(ute.get_unexpected_token)).to_s + " expecting " + token_name
+        msg = "extraneous input " + RJava.cast_to_string(get_token_error_display(ute.get_unexpected_token)) + " expecting " + token_name
       else
         if (e.is_a?(MissingTokenException))
           mte = e
@@ -276,9 +276,9 @@ module Org::Antlr::Runtime
           if ((mte.attr_expecting).equal?(Token::EOF))
             token_name = "EOF"
           else
-            token_name = (token_names[mte.attr_expecting]).to_s
+            token_name = RJava.cast_to_string(token_names[mte.attr_expecting])
           end
-          msg = "missing " + token_name + " at " + (get_token_error_display(e.attr_token)).to_s
+          msg = "missing " + token_name + " at " + RJava.cast_to_string(get_token_error_display(e.attr_token))
         else
           if (e.is_a?(MismatchedTokenException))
             mte = e
@@ -286,9 +286,9 @@ module Org::Antlr::Runtime
             if ((mte.attr_expecting).equal?(Token::EOF))
               token_name = "EOF"
             else
-              token_name = (token_names[mte.attr_expecting]).to_s
+              token_name = RJava.cast_to_string(token_names[mte.attr_expecting])
             end
-            msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting " + token_name
+            msg = "mismatched input " + RJava.cast_to_string(get_token_error_display(e.attr_token)) + " expecting " + token_name
           else
             if (e.is_a?(MismatchedTreeNodeException))
               mtne = e
@@ -296,33 +296,33 @@ module Org::Antlr::Runtime
               if ((mtne.attr_expecting).equal?(Token::EOF))
                 token_name = "EOF"
               else
-                token_name = (token_names[mtne.attr_expecting]).to_s
+                token_name = RJava.cast_to_string(token_names[mtne.attr_expecting])
               end
-              msg = "mismatched tree node: " + (mtne.attr_node).to_s + " expecting " + token_name
+              msg = "mismatched tree node: " + RJava.cast_to_string(mtne.attr_node) + " expecting " + token_name
             else
               if (e.is_a?(NoViableAltException))
                 nvae = e
                 # for development, can add "decision=<<"+nvae.grammarDecisionDescription+">>"
                 # and "(decision="+nvae.decisionNumber+") and
                 # "state "+nvae.stateNumber
-                msg = "no viable alternative at input " + (get_token_error_display(e.attr_token)).to_s
+                msg = "no viable alternative at input " + RJava.cast_to_string(get_token_error_display(e.attr_token))
               else
                 if (e.is_a?(EarlyExitException))
                   eee = e
                   # for development, can add "(decision="+eee.decisionNumber+")"
-                  msg = "required (...)+ loop did not match anything at input " + (get_token_error_display(e.attr_token)).to_s
+                  msg = "required (...)+ loop did not match anything at input " + RJava.cast_to_string(get_token_error_display(e.attr_token))
                 else
                   if (e.is_a?(MismatchedSetException))
                     mse = e
-                    msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting set " + (mse.attr_expecting).to_s
+                    msg = "mismatched input " + RJava.cast_to_string(get_token_error_display(e.attr_token)) + " expecting set " + RJava.cast_to_string(mse.attr_expecting)
                   else
                     if (e.is_a?(MismatchedNotSetException))
                       mse = e
-                      msg = "mismatched input " + (get_token_error_display(e.attr_token)).to_s + " expecting set " + (mse.attr_expecting).to_s
+                      msg = "mismatched input " + RJava.cast_to_string(get_token_error_display(e.attr_token)) + " expecting set " + RJava.cast_to_string(mse.attr_expecting)
                     else
                       if (e.is_a?(FailedPredicateException))
                         fpe = e
-                        msg = "rule " + (fpe.attr_rule_name).to_s + " failed predicate: {" + (fpe.attr_predicate_text).to_s + "}?"
+                        msg = "rule " + RJava.cast_to_string(fpe.attr_rule_name) + " failed predicate: {" + RJava.cast_to_string(fpe.attr_predicate_text) + "}?"
                       end
                     end
                   end
@@ -349,7 +349,7 @@ module Org::Antlr::Runtime
     typesig { [RecognitionException] }
     # What is the error header, normally line/character position information?
     def get_error_header(e)
-      return "line " + (e.attr_line).to_s + ":" + (e.attr_char_position_in_line).to_s
+      return "line " + RJava.cast_to_string(e.attr_line) + ":" + RJava.cast_to_string(e.attr_char_position_in_line)
     end
     
     typesig { [Token] }
@@ -366,12 +366,12 @@ module Org::Antlr::Runtime
         if ((t.get_type).equal?(Token::EOF))
           s = "<EOF>"
         else
-          s = "<" + (t.get_type).to_s + ">"
+          s = "<" + RJava.cast_to_string(t.get_type) + ">"
         end
       end
-      s = (s.replace_all("\n", "\\\\n")).to_s
-      s = (s.replace_all("\r", "\\\\r")).to_s
-      s = (s.replace_all("\t", "\\\\t")).to_s
+      s = RJava.cast_to_string(s.replace_all("\n", "\\\\n"))
+      s = RJava.cast_to_string(s.replace_all("\r", "\\\\r"))
+      s = RJava.cast_to_string(s.replace_all("\t", "\\\\t"))
       return "'" + s + "'"
     end
     
@@ -741,11 +741,11 @@ module Org::Antlr::Runtime
     # error recovery.
     def get_rule_invocation_stack
       parser_class_name = get_class.get_name
-      return get_rule_invocation_stack(Exception.new, parser_class_name)
+      return get_rule_invocation_stack(JavaThrowable.new, parser_class_name)
     end
     
     class_module.module_eval {
-      typesig { [Exception, String] }
+      typesig { [JavaThrowable, String] }
       # A more general version of getRuleInvocationStack where you can
       # pass in, for example, a RecognitionException to get it's rule
       # stack trace.  This routine is shared with all recognizers, hence,
@@ -870,10 +870,10 @@ module Org::Antlr::Runtime
     def memoize(input, rule_index, rule_start_index)
       stop_token_index = @state.attr_failed ? MEMO_RULE_FAILED : input.index - 1
       if ((@state.attr_rule_memo).nil?)
-        System.err.println("!!!!!!!!! memo array is null for " + (get_grammar_file_name).to_s)
+        System.err.println("!!!!!!!!! memo array is null for " + RJava.cast_to_string(get_grammar_file_name))
       end
       if (rule_index >= @state.attr_rule_memo.attr_length)
-        System.err.println("!!!!!!!!! memo size is " + (@state.attr_rule_memo.attr_length).to_s + ", but rule index is " + (rule_index).to_s)
+        System.err.println("!!!!!!!!! memo size is " + RJava.cast_to_string(@state.attr_rule_memo.attr_length) + ", but rule index is " + RJava.cast_to_string(rule_index))
       end
       if (!(@state.attr_rule_memo[rule_index]).nil?)
         @state.attr_rule_memo[rule_index].put(rule_start_index, stop_token_index)
@@ -898,24 +898,24 @@ module Org::Antlr::Runtime
     
     typesig { [String, ::Java::Int, Object] }
     def trace_in(rule_name, rule_index, input_symbol)
-      System.out.print("enter " + rule_name + " " + (input_symbol).to_s)
+      System.out.print("enter " + rule_name + " " + RJava.cast_to_string(input_symbol))
       if (@state.attr_failed)
-        System.out.println(" failed=" + (@state.attr_failed).to_s)
+        System.out.println(" failed=" + RJava.cast_to_string(@state.attr_failed))
       end
       if (@state.attr_backtracking > 0)
-        System.out.print(" backtracking=" + (@state.attr_backtracking).to_s)
+        System.out.print(" backtracking=" + RJava.cast_to_string(@state.attr_backtracking))
       end
       System.out.println
     end
     
     typesig { [String, ::Java::Int, Object] }
     def trace_out(rule_name, rule_index, input_symbol)
-      System.out.print("exit " + rule_name + " " + (input_symbol).to_s)
+      System.out.print("exit " + rule_name + " " + RJava.cast_to_string(input_symbol))
       if (@state.attr_failed)
-        System.out.println(" failed=" + (@state.attr_failed).to_s)
+        System.out.println(" failed=" + RJava.cast_to_string(@state.attr_failed))
       end
       if (@state.attr_backtracking > 0)
-        System.out.print(" backtracking=" + (@state.attr_backtracking).to_s)
+        System.out.print(" backtracking=" + RJava.cast_to_string(@state.attr_backtracking))
       end
       System.out.println
     end

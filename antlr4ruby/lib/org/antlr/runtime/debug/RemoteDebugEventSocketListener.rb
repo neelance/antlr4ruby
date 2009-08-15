@@ -261,9 +261,9 @@ module Org::Antlr::Runtime::Debug
         def to_s
           channel_str = ""
           if (!(@channel).equal?(Token::DEFAULT_CHANNEL))
-            channel_str = ",channel=" + (@channel).to_s
+            channel_str = ",channel=" + RJava.cast_to_string(@channel)
           end
-          return "[" + (get_text).to_s + "/<" + (@type).to_s + ">" + channel_str + "," + (@line).to_s + ":" + (get_char_position_in_line).to_s + ",@" + (@index).to_s + "]"
+          return "[" + RJava.cast_to_string(get_text) + "/<" + RJava.cast_to_string(@type) + ">" + channel_str + "," + RJava.cast_to_string(@line) + ":" + RJava.cast_to_string(get_char_position_in_line) + ",@" + RJava.cast_to_string(@index) + "]"
         end
         
         private
@@ -412,13 +412,13 @@ module Org::Antlr::Runtime::Debug
     def event_handler
       begin
         handshake
-        @event = (@in.read_line).to_s
+        @event = RJava.cast_to_string(@in.read_line)
         while (!(@event).nil?)
           dispatch(@event)
           ack
-          @event = (@in.read_line).to_s
+          @event = RJava.cast_to_string(@in.read_line)
         end
-      rescue Exception => e
+      rescue JavaException => e
         System.err.println(e)
         e.print_stack_trace(System.err)
       ensure
@@ -439,7 +439,7 @@ module Org::Antlr::Runtime::Debug
         isr = InputStreamReader.new(is, "UTF8")
         @in = BufferedReader.new(isr)
         success = true
-      rescue Exception => e
+      rescue JavaException => e
         System.err.println(e)
       end
       return success
@@ -454,7 +454,7 @@ module Org::Antlr::Runtime::Debug
         @out = nil
         @channel.close
         @channel = nil
-      rescue Exception => e
+      rescue JavaException => e
         System.err.println(e)
         e.print_stack_trace(System.err)
       ensure
@@ -482,10 +482,10 @@ module Org::Antlr::Runtime::Debug
     def handshake
       antlr_line = @in.read_line
       antlr_elements = get_event_elements(antlr_line)
-      @version = (antlr_elements[1]).to_s
+      @version = RJava.cast_to_string(antlr_elements[1])
       grammar_line = @in.read_line
       grammar_elements = get_event_elements(grammar_line)
-      @grammar_file_name = (grammar_elements[1]).to_s
+      @grammar_file_name = RJava.cast_to_string(grammar_elements[1])
       ack
       @listener.commence # inform listener after handshake
     end
@@ -579,13 +579,13 @@ module Org::Antlr::Runtime::Debug
                                         e.attr_char_position_in_line = JavaInteger.parse_int(pos_s)
                                         @listener.recognition_exception(e)
                                       rescue ClassNotFoundException => cnfe
-                                        System.err.println("can't find class " + (cnfe).to_s)
+                                        System.err.println("can't find class " + RJava.cast_to_string(cnfe))
                                         cnfe.print_stack_trace(System.err)
                                       rescue InstantiationException => ie
-                                        System.err.println("can't instantiate class " + (ie).to_s)
+                                        System.err.println("can't instantiate class " + RJava.cast_to_string(ie))
                                         ie.print_stack_trace(System.err)
                                       rescue IllegalAccessException => iae
-                                        System.err.println("can't access class " + (iae).to_s)
+                                        System.err.println("can't access class " + RJava.cast_to_string(iae))
                                         iae.print_stack_trace(System.err)
                                       end
                                     else
@@ -601,7 +601,7 @@ module Org::Antlr::Runtime::Debug
                                             if ((elements[0] == "semanticPredicate"))
                                               result = Boolean.value_of(elements[1])
                                               predicate_text = elements[2]
-                                              predicate_text = (un_escape_newlines(predicate_text)).to_s
+                                              predicate_text = RJava.cast_to_string(un_escape_newlines(predicate_text))
                                               @listener.semantic_predicate(result.boolean_value, predicate_text)
                                             else
                                               if ((elements[0] == "consumeNode"))
@@ -617,7 +617,7 @@ module Org::Antlr::Runtime::Debug
                                                     id = JavaInteger.parse_int(elements[1])
                                                     type = JavaInteger.parse_int(elements[2])
                                                     text = elements[3]
-                                                    text = (un_escape_newlines(text)).to_s
+                                                    text = RJava.cast_to_string(un_escape_newlines(text))
                                                     node = ProxyTree.new(id, type, -1, -1, -1, text)
                                                     @listener.create_node(node)
                                                   else
@@ -639,7 +639,7 @@ module Org::Antlr::Runtime::Debug
                                                           id = JavaInteger.parse_int(elements[1])
                                                           type = JavaInteger.parse_int(elements[2])
                                                           text = elements[3]
-                                                          text = (un_escape_newlines(text)).to_s
+                                                          text = RJava.cast_to_string(un_escape_newlines(text))
                                                           node = ProxyTree.new(id, type, -1, -1, -1, text)
                                                           @listener.error_node(node)
                                                         else
@@ -702,7 +702,7 @@ module Org::Antlr::Runtime::Debug
       char_position_in_line = JavaInteger.parse_int(elements[offset + 3])
       token_index = JavaInteger.parse_int(elements[offset + 4])
       text = elements[offset + 5]
-      text = (un_escape_newlines(text)).to_s
+      text = RJava.cast_to_string(un_escape_newlines(text))
       return ProxyTree.new(id, type, token_line, char_position_in_line, token_index, text)
     end
     
@@ -714,7 +714,7 @@ module Org::Antlr::Runtime::Debug
       line_s = elements[offset + 3]
       pos_s = elements[offset + 4]
       text = elements[offset + 5]
-      text = (un_escape_newlines(text)).to_s
+      text = RJava.cast_to_string(un_escape_newlines(text))
       index = JavaInteger.parse_int(index_s)
       t = ProxyToken.new(index, JavaInteger.parse_int(type_s), JavaInteger.parse_int(channel_s), JavaInteger.parse_int(line_s), JavaInteger.parse_int(pos_s), text)
       return t
@@ -747,7 +747,7 @@ module Org::Antlr::Runtime::Debug
           # Note that the string is terminated by \n not end quote.
           # Easier to parse that way.
           event_without_string = event.substring(0, first_quote_index)
-          str = (event.substring(first_quote_index + 1, event.length)).to_s
+          str = RJava.cast_to_string(event.substring(first_quote_index + 1, event.length))
           event = event_without_string
         end
         st = StringTokenizer.new(event, " \t", false)
@@ -763,7 +763,7 @@ module Org::Antlr::Runtime::Debug
         if (!(str).nil?)
           elements[i] = str
         end
-      rescue Exception => e
+      rescue JavaException => e
         e.print_stack_trace(System.err)
       end
       return elements
@@ -772,9 +772,9 @@ module Org::Antlr::Runtime::Debug
     typesig { [String] }
     def un_escape_newlines(txt)
       # this unescape is slow but easy to understand
-      txt = (txt.replace_all("%0A", "\n")).to_s # unescape \n
-      txt = (txt.replace_all("%0D", "\r")).to_s # unescape \r
-      txt = (txt.replace_all("%25", "%")).to_s # undo escaped escape chars
+      txt = RJava.cast_to_string(txt.replace_all("%0A", "\n")) # unescape \n
+      txt = RJava.cast_to_string(txt.replace_all("%0D", "\r")) # unescape \r
+      txt = RJava.cast_to_string(txt.replace_all("%25", "%")) # undo escaped escape chars
       return txt
     end
     

@@ -73,7 +73,9 @@ module Org::Antlr::Tool
   # 2005
   class ANTLRParser < Antlr::LLkParser
     include_class_members ANTLRParserImports
-    include ANTLRTokenTypes
+    overload_protected {
+      include ANTLRTokenTypes
+    }
     
     attr_accessor :grammar
     alias_method :attr_grammar, :grammar
@@ -123,7 +125,7 @@ module Org::Antlr::Tool
       # if they want backtracking and it's not a lexer rule in combined grammar
       auto_backtrack = @grammar.get_block_option(@current_block_ast, "backtrack")
       if ((auto_backtrack).nil?)
-        auto_backtrack = (@grammar.get_option("backtrack")).to_s
+        auto_backtrack = RJava.cast_to_string(@grammar.get_option("backtrack"))
       end
       if (!(auto_backtrack).nil? && (auto_backtrack == "true") && !((@gtype).equal?(COMBINED_GRAMMAR) && Character.is_upper_case(@current_rule_name.char_at(0))) && !(alt.get_first_child.get_type).equal?(SYN_SEMPRED))
         # duplicate alt and make a synpred block around that dup'd alt
@@ -175,7 +177,7 @@ module Org::Antlr::Tool
       rescue TokenStreamException => tse
         ErrorManager.internal_error("can't get token???", tse)
       end
-      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "antlr: " + (ex.to_s).to_s, ex)
+      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "antlr: " + RJava.cast_to_string(ex.to_s), ex)
     end
     
     typesig { [GrammarAST] }
@@ -262,7 +264,7 @@ module Org::Antlr::Tool
       opt = nil
       options_start_token = nil
       opts = nil
-      set_astnode_class(GrammarAST.class)
+      set_astnode_class(GrammarAST)
       set_astnode_class("org.antlr.tool.GrammarAST")
       self.attr_ast_factory = # set to factory that sets enclosing rule
       Class.new(ASTFactory.class == Class ? ASTFactory : Object) do
@@ -988,7 +990,7 @@ module Org::Antlr::Tool
         end
         id
         rule_name_ast = self.attr_return_ast
-        @current_rule_name = (rule_name_ast.get_text).to_s
+        @current_rule_name = RJava.cast_to_string(rule_name_ast.get_text)
         if ((@gtype).equal?(LEXER_GRAMMAR) && (p4_ast).nil?)
           @grammar.attr_lexer_rule_names_in_combined.add(@current_rule_name)
         end
@@ -1080,7 +1082,7 @@ module Org::Antlr::Tool
         root.set_line(start_line)
         root.attr_block_options = opts
         rule_ast = self.attr_ast_factory.make((ASTArray.new(11)).add(root).add(rule_name_ast).add(modifier).add(self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(ARG, "ARG")).add(aa_ast))).add(self.attr_ast_factory.make((ASTArray.new(2)).add(self.attr_ast_factory.create(RET, "RET")).add(rt_ast))).add(opt).add(scopes_ast).add(a_ast).add(blk).add(ex_ast).add(eor))
-        @current_rule_name = (nil).to_s
+        @current_rule_name = RJava.cast_to_string(nil)
         current_ast.attr_root = rule_ast
         current_ast.attr_child = !(rule_ast).nil? && !(rule_ast.get_first_child).nil? ? rule_ast.get_first_child : rule_ast
         current_ast.advance_child_to_end
@@ -2390,7 +2392,7 @@ module Org::Antlr::Tool
             id
             i2_ast = self.attr_return_ast
             self.attr_ast_factory.add_astchild(current_ast, self.attr_return_ast)
-            buf.append("." + (i2_ast.get_text).to_s)
+            buf.append("." + RJava.cast_to_string(i2_ast.get_text))
           else
             break
           end

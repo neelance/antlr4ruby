@@ -46,7 +46,7 @@ module Org::Antlr::Codegen
     
     typesig { [StringBuffer, String] }
     def write_hex_with_padding(buf, digits)
-      digits = (digits.to_upper_case).to_s
+      digits = RJava.cast_to_string(digits.to_upper_case)
       padding = 8 - digits.length
       # pad left with zeros
       i = 1

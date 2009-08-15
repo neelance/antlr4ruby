@@ -62,7 +62,7 @@ module Org::Antlr::Misc
     typesig { [IntSet] }
     # Return the intersection of this set with the argument, creating
     # a new set.
-    def and(a)
+    def and_(a)
       raise NotImplementedError
     end
     
@@ -72,7 +72,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [IntSet] }
-    def or(a)
+    def or_(a)
       raise NotImplementedError
     end
     
@@ -94,7 +94,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [Object] }
-    def equals(obj)
+    def ==(obj)
       raise NotImplementedError
     end
     

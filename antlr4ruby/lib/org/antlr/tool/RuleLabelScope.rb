@@ -155,7 +155,7 @@ module Org::Antlr::Tool
     typesig { [Rule, Token] }
     def initialize(referenced_rule, action_token)
       @referenced_rule = nil
-      super("ref_" + (referenced_rule.attr_name).to_s, action_token)
+      super("ref_" + RJava.cast_to_string(referenced_rule.attr_name), action_token)
       @referenced_rule = referenced_rule
     end
     

@@ -197,7 +197,7 @@ module Org::Antlr::Analysis
     typesig { [NFAState] }
     def _look(s)
       if (NFAToDFAConverter.attr_debug)
-        System.out.println("> LOOK(" + (s).to_s + ")")
+        System.out.println("> LOOK(" + RJava.cast_to_string(s) + ")")
       end
       @look_busy.clear
       look = ___first(s, true)
@@ -217,7 +217,7 @@ module Org::Antlr::Analysis
         end
       end
       if (NFAToDFAConverter.attr_debug)
-        System.out.println("< LOOK(" + (s).to_s + ")=" + (look.to_s(@grammar)).to_s)
+        System.out.println("< LOOK(" + RJava.cast_to_string(s) + ")=" + RJava.cast_to_string(look.to_s(@grammar)))
       end
       return look
     end
@@ -429,7 +429,7 @@ module Org::Antlr::Analysis
         p1 = __get_predicates(transition1.attr_target, alt_start_state)
       end
       # join this&following-right|following-down
-      return SemanticContext.and(p, SemanticContext.or(p0, p1))
+      return SemanticContext.and_(p, SemanticContext.or_(p0, p1))
     end
     
     private

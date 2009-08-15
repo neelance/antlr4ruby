@@ -174,7 +174,7 @@ module Org::Antlr::Codegen
               while j < indent
                 if (!Character.is_whitespace(text.char_at(j)))
                   # should do real error reporting here...
-                  System.err.println("Warning: badly indented line " + (line_no).to_s + " in action:")
+                  System.err.println("Warning: badly indented line " + RJava.cast_to_string(line_no) + " in action:")
                   System.err.println(text)
                   break
                 end
@@ -184,7 +184,7 @@ module Org::Antlr::Codegen
             else
               if (text.trim.length > 0)
                 # should do real error reporting here...
-                System.err.println("Warning: badly indented line " + (line_no).to_s + " in action:")
+                System.err.println("Warning: badly indented line " + RJava.cast_to_string(line_no) + " in action:")
                 System.err.println(text)
               end
             end

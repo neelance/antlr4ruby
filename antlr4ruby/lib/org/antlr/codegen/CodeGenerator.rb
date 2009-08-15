@@ -295,7 +295,7 @@ module Org::Antlr::Codegen
       # System.out.println("targets="+templateDirs.toString());
       loader = CommonGroupLoader.new(template_dirs, ErrorManager.get_string_template_error_listener)
       StringTemplateGroup.register_group_loader(loader)
-      StringTemplateGroup.register_default_lexer(AngleBracketTemplateLexer.class)
+      StringTemplateGroup.register_default_lexer(AngleBracketTemplateLexer)
       # first load main language template
       core_templates = StringTemplateGroup.load_group(language)
       @base_templates = core_templates
@@ -529,11 +529,11 @@ module Org::Antlr::Codegen
       action_scope_key_set = actions.key_set
       it = action_scope_key_set.iterator
       while it.has_next
-        scope = it.next
+        scope = it.next_
         if (!@target.is_valid_action_scope(@grammar.attr_type, scope))
           # get any action from the scope to get error location
           scope_actions = actions.get(scope)
-          action_ast = scope_actions.values.iterator.next
+          action_ast = scope_actions.values.iterator.next_
           ErrorManager.grammar_error(ErrorManager::MSG_INVALID_ACTION_SCOPE, @grammar, action_ast.get_token, scope, @grammar.get_grammar_type_string)
         end
       end
@@ -546,7 +546,7 @@ module Org::Antlr::Codegen
       action_scope_key_set = actions.key_set
       it = action_scope_key_set.iterator
       while it.has_next
-        scope = it.next
+        scope = it.next_
         scope_actions = actions.get(scope)
         translate_action_attribute_references_for_single_scope(nil, scope_actions)
       end
@@ -557,12 +557,12 @@ module Org::Antlr::Codegen
     def translate_action_attribute_references_for_single_scope(r, scope_actions)
       rule_name = nil
       if (!(r).nil?)
-        rule_name = (r.attr_name).to_s
+        rule_name = RJava.cast_to_string(r.attr_name)
       end
       action_name_set = scope_actions.key_set
       name_it = action_name_set.iterator
       while name_it.has_next
-        name = name_it.next
+        name = name_it.next_
         action_ast = scope_actions.get(name)
         chunks = translate_action(rule_name, action_ast)
         scope_actions.put(name, chunks) # replace with translation
@@ -656,7 +656,7 @@ module Org::Antlr::Codegen
         @header_file_st.set_attribute("cyclicDFAs", dfa)
         decision_st = @templates.get_instance_of("dfaDecision")
         description = dfa.get_nfadecision_start_state.get_description
-        description = (@target.get_target_string_literal_from_string(description)).to_s
+        description = RJava.cast_to_string(@target.get_target_string_literal_from_string(description))
         if (!(description).nil?)
           decision_st.set_attribute("description", description)
         end
@@ -771,7 +771,7 @@ module Org::Antlr::Codegen
       iter = iset.get_intervals.iterator
       range_number = 1
       while (iter.has_next)
-        i = iter.next
+        i = iter.next_
         a = i.attr_a
         b = i.attr_b
         e_st = nil
@@ -804,7 +804,7 @@ module Org::Antlr::Codegen
       # make constants for the token types
       token_ids = @grammar.get_token_ids.iterator
       while (token_ids.has_next)
-        token_id = token_ids.next
+        token_id = token_ids.next_
         token_type = @grammar.get_token_type(token_id)
         if ((token_type).equal?(Label::EOF) || token_type >= Label::MIN_TOKEN_TYPE)
           # don't do FAUX labels 'cept EOF
@@ -821,7 +821,7 @@ module Org::Antlr::Codegen
       while t <= @grammar.get_max_token_type
         token_name = @grammar.get_token_display_name(t)
         if (!(token_name).nil?)
-          token_name = (@target.get_target_string_literal_from_string(token_name, true)).to_s
+          token_name = RJava.cast_to_string(@target.get_target_string_literal_from_string(token_name, true))
           code.set_attribute("tokenNames", token_name)
         end
         t += 1
@@ -854,12 +854,12 @@ module Org::Antlr::Codegen
     # 
     # This is independent of the target language; used by antlr internally
     def gen_token_vocab_output
-      vocab_file_st = StringTemplate.new(VocabFilePattern, AngleBracketTemplateLexer.class)
+      vocab_file_st = StringTemplate.new(VocabFilePattern, AngleBracketTemplateLexer)
       vocab_file_st.set_name("vocab-file")
       # make constants for the token names
       token_ids = @grammar.get_token_ids.iterator
       while (token_ids.has_next)
-        token_id = token_ids.next
+        token_id = token_ids.next_
         token_type = @grammar.get_token_type(token_id)
         if (token_type >= Label::MIN_TOKEN_TYPE)
           vocab_file_st.set_attribute("tokens.{name,type}", token_id, Utils.integer(token_type))
@@ -868,7 +868,7 @@ module Org::Antlr::Codegen
       # now dump the strings
       literals = @grammar.get_string_literals.iterator
       while (literals.has_next)
-        literal = literals.next
+        literal = literals.next_
         token_type = @grammar.get_token_type(literal)
         if (token_type >= Label::MIN_TOKEN_TYPE)
           vocab_file_st.set_attribute("tokens.{name,type}", literal, Utils.integer(token_type))
@@ -935,7 +935,7 @@ module Org::Antlr::Codegen
         if ((action_text).nil?)
           return -1
         end
-        action_text = (action_text.replace_all("//.*\n", "")).to_s
+        action_text = RJava.cast_to_string(action_text.replace_all("//.*\n", ""))
         n = action_text.length
         # System.out.println("actionText@"+start+"->"+(char)targetChar+"="+actionText.substring(start,n));
         p = start
@@ -1019,7 +1019,7 @@ module Org::Antlr::Codegen
         parser.rewrite_template
       rescue RecognitionException => re
         ErrorManager.grammar_error(ErrorManager::MSG_INVALID_TEMPLATE_ACTION, @grammar, action_token, template_action_text)
-      rescue Exception => tse
+      rescue JavaException => tse
         ErrorManager.internal_error("can't parse template action", tse)
       end
       rewrite_tree = parser.get_ast
@@ -1070,7 +1070,7 @@ module Org::Antlr::Codegen
         # $rulelabel.attr or $ruleref.attr; must be unknown attr
         refd_rule_name = x
         if (!(label).nil?)
-          refd_rule_name = (enclosing_rule.get_rule_label(x).attr_referenced_rule_name).to_s
+          refd_rule_name = RJava.cast_to_string(enclosing_rule.get_rule_label(x).attr_referenced_rule_name)
         end
         refd_rule = @grammar.get_rule(refd_rule_name)
         scope = refd_rule.get_attribute_scope(y)
@@ -1150,7 +1150,7 @@ module Org::Antlr::Codegen
     def get_recognizer_file_name(name, type)
       ext_st = @templates.get_instance_of("codeFileExtension")
       recognizer_name = @grammar.get_recognizer_name
-      return recognizer_name + (ext_st.to_s).to_s
+      return recognizer_name + RJava.cast_to_string(ext_st.to_s)
       # String suffix = "";
       # if ( type==Grammar.COMBINED ||
       # (type==Grammar.LEXER && !grammar.implicitLexer) )
@@ -1167,7 +1167,7 @@ module Org::Antlr::Codegen
       if (@grammar.is_built_from_string)
         return nil
       end
-      return (@grammar.attr_name).to_s + VOCAB_FILE_EXTENSION
+      return RJava.cast_to_string(@grammar.attr_name) + VOCAB_FILE_EXTENSION
     end
     
     typesig { [StringTemplate, String] }

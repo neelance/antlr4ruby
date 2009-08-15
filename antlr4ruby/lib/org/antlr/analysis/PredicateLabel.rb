@@ -70,7 +70,7 @@ module Org::Antlr::Analysis
     end
     
     typesig { [Object] }
-    def equals(o)
+    def ==(o)
       if ((o).nil?)
         return false
       end
@@ -95,7 +95,7 @@ module Org::Antlr::Analysis
     
     typesig { [] }
     def to_s
-      return "{" + (@semantic_context).to_s + "}?"
+      return "{" + RJava.cast_to_string(@semantic_context) + "}?"
     end
     
     typesig { [Grammar] }

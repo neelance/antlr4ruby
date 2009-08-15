@@ -136,7 +136,7 @@ module Org::Antlr::Runtime
     
     typesig { [BitSet] }
     # return this | a in a new set
-    def or(a)
+    def or_(a)
       if ((a).nil?)
         return self
       end
@@ -234,7 +234,7 @@ module Org::Antlr::Runtime
     end
     
     typesig { [Object] }
-    def equals(other)
+    def ==(other)
       if ((other).nil? || !(other.is_a?(BitSet)))
         return false
       end

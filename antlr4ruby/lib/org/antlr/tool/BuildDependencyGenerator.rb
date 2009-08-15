@@ -150,7 +150,7 @@ module Org::Antlr::Tool
       if (@generator.get_templates.is_defined("headerFile"))
         header_ext_st = @generator.get_templates.get_instance_of("headerFileExtension")
         suffix = Grammar.attr_grammar_type_to_file_name_suffix[@grammar.attr_type]
-        file_name = (@grammar.attr_name).to_s + suffix + (header_ext_st.to_s).to_s
+        file_name = RJava.cast_to_string(@grammar.attr_name) + suffix + RJava.cast_to_string(header_ext_st.to_s)
         files.add(JavaFile.new(output_dir, file_name))
       end
       if ((@grammar.attr_type).equal?(Grammar::COMBINED))
@@ -158,11 +158,11 @@ module Org::Antlr::Tool
         # don't add T__.g (just a temp file)
         ext_st = @generator.get_templates.get_instance_of("codeFileExtension")
         suffix = Grammar.attr_grammar_type_to_file_name_suffix[Grammar::LEXER]
-        lexer = (@grammar.attr_name).to_s + suffix + (ext_st.to_s).to_s
+        lexer = RJava.cast_to_string(@grammar.attr_name) + suffix + RJava.cast_to_string(ext_st.to_s)
         files.add(JavaFile.new(output_dir, lexer))
         # TLexer.h
         if (!(header_ext_st).nil?)
-          header = (@grammar.attr_name).to_s + suffix + (header_ext_st.to_s).to_s
+          header = RJava.cast_to_string(@grammar.attr_name) + suffix + RJava.cast_to_string(header_ext_st.to_s)
           files.add(JavaFile.new(output_dir, header))
         end
         # for combined, don't generate TLexer.tokens
@@ -226,7 +226,7 @@ module Org::Antlr::Tool
       cl = JavaThread.current_thread.get_context_class_loader
       is = cl.get_resource_as_stream(file_name)
       if ((is).nil?)
-        cl = ErrorManager.class.get_class_loader
+        cl = ErrorManager.get_class_loader
         is = cl.get_resource_as_stream(file_name)
       end
       if ((is).nil?)
@@ -236,7 +236,7 @@ module Org::Antlr::Tool
       br = nil
       begin
         br = BufferedReader.new(InputStreamReader.new(is))
-        @templates = StringTemplateGroup.new(br, AngleBracketTemplateLexer.class)
+        @templates = StringTemplateGroup.new(br, AngleBracketTemplateLexer)
         br.close
       rescue IOException => ioe
         ErrorManager.internal_error("error reading dependency templates file " + file_name, ioe)
@@ -259,9 +259,9 @@ module Org::Antlr::Tool
         if (output_dir.index_of(Character.new(?\s.ord)) >= 0)
           # has spaces?
           esc_spaces = Utils.replace(output_dir.to_s, " ", "\\ ")
-          return esc_spaces + (JavaFile.attr_separator).to_s + file_name
+          return esc_spaces + RJava.cast_to_string(JavaFile.attr_separator) + file_name
         else
-          return output_dir + (JavaFile.attr_separator).to_s + file_name
+          return output_dir + RJava.cast_to_string(JavaFile.attr_separator) + file_name
         end
       end
     end

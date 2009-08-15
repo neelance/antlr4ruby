@@ -62,7 +62,7 @@ module Org::Antlr::Test
       generator.gen_recognizer # forces load of templates
       translator = ActionTranslator.new(generator, "a", Antlr::CommonToken.new(ANTLRParser::ACTION, action), 1)
       raw_translation = translator.translate
-      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
+      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer)
       action_st = StringTemplate.new(templates, raw_translation)
       found = action_st.to_s
       assert_no_errors(equeue)
@@ -82,7 +82,7 @@ module Org::Antlr::Test
       generator.gen_recognizer # forces load of templates
       translator = ActionTranslator.new(generator, "a", Antlr::CommonToken.new(ANTLRParser::ACTION, action), 1)
       raw_translation = translator.translate
-      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
+      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer)
       action_st = StringTemplate.new(templates, raw_translation)
       found = action_st.to_s
       assert_no_errors(equeue)
@@ -102,7 +102,7 @@ module Org::Antlr::Test
       generator.gen_recognizer # forces load of templates
       translator = ActionTranslator.new(generator, "a", Antlr::CommonToken.new(ANTLRParser::ACTION, action), 1)
       raw_translation = translator.translate
-      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
+      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer)
       action_st = StringTemplate.new(templates, raw_translation)
       found = action_st.to_s
       assert_no_errors(equeue)
@@ -122,7 +122,7 @@ module Org::Antlr::Test
       generator.gen_recognizer # forces load of templates
       translator = ActionTranslator.new(generator, "a", Antlr::CommonToken.new(ANTLRParser::ACTION, action), 1)
       raw_translation = translator.translate
-      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
+      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer)
       action_st = StringTemplate.new(templates, raw_translation)
       found = action_st.to_s
       assert_no_errors(equeue)
@@ -142,7 +142,7 @@ module Org::Antlr::Test
       generator.gen_recognizer # forces load of templates
       translator = ActionTranslator.new(generator, "a", Antlr::CommonToken.new(ANTLRParser::ACTION, action), 1)
       raw_translation = translator.translate
-      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
+      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer)
       action_st = StringTemplate.new(templates, raw_translation)
       found = action_st.to_s
       assert_no_errors(equeue)
@@ -162,7 +162,7 @@ module Org::Antlr::Test
       generator.gen_recognizer # forces load of templates
       translator = ActionTranslator.new(generator, "a", Antlr::CommonToken.new(ANTLRParser::ACTION, action), 1)
       raw_translation = translator.translate
-      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer.class)
+      templates = StringTemplateGroup.new(".", AngleBracketTemplateLexer)
       action_st = StringTemplate.new(templates, raw_translation)
       found = action_st.to_s
       assert_no_errors(equeue)
@@ -230,9 +230,9 @@ module Org::Antlr::Test
         end
         i += 1
       end
-      assert_true("no error; " + (expected_message.attr_msg_id).to_s + " expected", equeue.attr_errors.size > 0)
-      assert_true("too many errors; " + (equeue.attr_errors).to_s, equeue.attr_errors.size <= 1)
-      assert_true("couldn't find expected error: " + (expected_message.attr_msg_id).to_s, !(found_msg).nil?)
+      assert_true("no error; " + RJava.cast_to_string(expected_message.attr_msg_id) + " expected", equeue.attr_errors.size > 0)
+      assert_true("too many errors; " + RJava.cast_to_string(equeue.attr_errors), equeue.attr_errors.size <= 1)
+      assert_true("couldn't find expected error: " + RJava.cast_to_string(expected_message.attr_msg_id), !(found_msg).nil?)
       assert_true("error is not a GrammarSemanticsMessage", found_msg.is_a?(GrammarSemanticsMessage))
       assert_equals(expected_message.attr_arg, found_msg.attr_arg)
       assert_equals(expected_message.attr_arg2, found_msg.attr_arg2)
@@ -241,7 +241,7 @@ module Org::Antlr::Test
     typesig { [ErrorQueue] }
     # S U P P O R T
     def assert_no_errors(equeue)
-      assert_true("unexpected errors: " + (equeue).to_s, (equeue.attr_errors.size).equal?(0))
+      assert_true("unexpected errors: " + RJava.cast_to_string(equeue), (equeue.attr_errors.size).equal?(0))
     end
     
     typesig { [] }

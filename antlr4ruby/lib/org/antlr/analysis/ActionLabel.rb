@@ -63,7 +63,7 @@ module Org::Antlr::Analysis
     
     typesig { [] }
     def to_s
-      return "{" + (@action_ast).to_s + "}"
+      return "{" + RJava.cast_to_string(@action_ast) + "}"
     end
     
     typesig { [Grammar] }

@@ -102,10 +102,10 @@ module Org::Antlr::Runtime::Tree
         if (((@stop).get_type).equal?(Token::EOF))
           j = (@input).size
         end
-        bad_text = ((@input).to_s(i, j)).to_s
+        bad_text = RJava.cast_to_string((@input).to_s(i, j))
       else
         if (@start.is_a?(Tree))
-          bad_text = ((@input).to_s(@start, @stop)).to_s
+          bad_text = RJava.cast_to_string((@input).to_s(@start, @stop))
         else
           # people should subclass if they alter the tree type so this
           # next one is for sure correct.
@@ -118,21 +118,21 @@ module Org::Antlr::Runtime::Tree
     typesig { [] }
     def to_s
       if (@trapped_exception.is_a?(MissingTokenException))
-        return "<missing type: " + ((@trapped_exception).get_missing_type).to_s + ">"
+        return "<missing type: " + RJava.cast_to_string((@trapped_exception).get_missing_type) + ">"
       else
         if (@trapped_exception.is_a?(UnwantedTokenException))
-          return "<extraneous: " + ((@trapped_exception).get_unexpected_token).to_s + ", resync=" + (get_text).to_s + ">"
+          return "<extraneous: " + RJava.cast_to_string((@trapped_exception).get_unexpected_token) + ", resync=" + RJava.cast_to_string(get_text) + ">"
         else
           if (@trapped_exception.is_a?(MismatchedTokenException))
-            return "<mismatched token: " + (@trapped_exception.attr_token).to_s + ", resync=" + (get_text).to_s + ">"
+            return "<mismatched token: " + RJava.cast_to_string(@trapped_exception.attr_token) + ", resync=" + RJava.cast_to_string(get_text) + ">"
           else
             if (@trapped_exception.is_a?(NoViableAltException))
-              return "<unexpected: " + (@trapped_exception.attr_token).to_s + ", resync=" + (get_text).to_s + ">"
+              return "<unexpected: " + RJava.cast_to_string(@trapped_exception.attr_token) + ", resync=" + RJava.cast_to_string(get_text) + ">"
             end
           end
         end
       end
-      return "<error: " + (get_text).to_s + ">"
+      return "<error: " + RJava.cast_to_string(get_text) + ">"
     end
     
     private

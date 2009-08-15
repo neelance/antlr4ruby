@@ -241,7 +241,7 @@ module Org::Antlr::Codegen
     def translate_action(action)
       rname = nil
       if (!(@enclosing_rule).nil?)
-        rname = (@enclosing_rule.attr_name).to_s
+        rname = RJava.cast_to_string(@enclosing_rule.attr_name)
       end
       translator = ActionTranslator.new(@generator, rname, Antlr::CommonToken.new(ANTLRParser::ACTION, action), @outer_alt_num)
       return translator.translate_to_chunks
@@ -468,7 +468,7 @@ module Org::Antlr::Codegen
           scope = @enclosing_rule.get_local_attribute_scope((!(y).nil? ? y.get_text : nil))
           if (scope.attr_is_predefined_rule_scope)
             if (((!(y).nil? ? y.get_text : nil) == "st") || ((!(y).nil? ? y.get_text : nil) == "tree"))
-              st = template("ruleSetPropertyRef_" + ((!(y).nil? ? y.get_text : nil)).to_s)
+              st = template("ruleSetPropertyRef_" + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
               @grammar.reference_rule_label_predefined_attribute((!(x).nil? ? x.get_text : nil))
               st.set_attribute("scope", (!(x).nil? ? x.get_text : nil))
               st.set_attribute("attr", (!(y).nil? ? y.get_text : nil))
@@ -544,7 +544,7 @@ module Org::Antlr::Codegen
           st = nil
           scope = @enclosing_rule.get_local_attribute_scope((!(y).nil? ? y.get_text : nil))
           if (scope.attr_is_predefined_rule_scope)
-            st = template("rulePropertyRef_" + ((!(y).nil? ? y.get_text : nil)).to_s)
+            st = template("rulePropertyRef_" + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
             @grammar.reference_rule_label_predefined_attribute((!(x).nil? ? x.get_text : nil))
             st.set_attribute("scope", (!(x).nil? ? x.get_text : nil))
             st.set_attribute("attr", (!(y).nil? ? y.get_text : nil))
@@ -675,13 +675,13 @@ module Org::Antlr::Codegen
           if ((@enclosing_rule.get_token_label((!(x).nil? ? x.get_text : nil))).nil?)
             # $tokenref.attr  gotta get old label or compute new one
             check_element_ref_uniqueness((!(x).nil? ? x.get_text : nil), true)
-            label = (@enclosing_rule.get_element_label((!(x).nil? ? x.get_text : nil), @outer_alt_num, @generator)).to_s
+            label = RJava.cast_to_string(@enclosing_rule.get_element_label((!(x).nil? ? x.get_text : nil), @outer_alt_num, @generator))
             if ((label).nil?)
-              ErrorManager.grammar_error(ErrorManager::MSG_FORWARD_ELEMENT_REF, @grammar, @action_token, "$" + ((!(x).nil? ? x.get_text : nil)).to_s + "." + ((!(y).nil? ? y.get_text : nil)).to_s)
-              label = ((!(x).nil? ? x.get_text : nil)).to_s
+              ErrorManager.grammar_error(ErrorManager::MSG_FORWARD_ELEMENT_REF, @grammar, @action_token, "$" + RJava.cast_to_string((!(x).nil? ? x.get_text : nil)) + "." + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
+              label = RJava.cast_to_string((!(x).nil? ? x.get_text : nil))
             end
           end
-          st = template("tokenLabelPropertyRef_" + ((!(y).nil? ? y.get_text : nil)).to_s)
+          st = template("tokenLabelPropertyRef_" + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
           st.set_attribute("scope", label)
           st.set_attribute("attr", AttributeScope.attr_token_scope.get_attribute((!(y).nil? ? y.get_text : nil)))
         end
@@ -749,9 +749,9 @@ module Org::Antlr::Codegen
         end
         if ((self.attr_state.attr_backtracking).equal?(1))
           pair = @enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil))
-          refd_rule_name = ((!(x).nil? ? x.get_text : nil)).to_s
+          refd_rule_name = RJava.cast_to_string((!(x).nil? ? x.get_text : nil))
           if (!(pair).nil?)
-            refd_rule_name = (pair.attr_referenced_rule_name).to_s
+            refd_rule_name = RJava.cast_to_string(pair.attr_referenced_rule_name)
           end
         end
         if (!((!(@enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil))).nil? || is_rule_ref_in_alt((!(x).nil? ? x.get_text : nil))) && !(get_rule_label_attribute(!(@enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil))).nil? ? @enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil)).attr_referenced_rule_name : (!(x).nil? ? x.get_text : nil), (!(y).nil? ? y.get_text : nil))).nil?))
@@ -810,9 +810,9 @@ module Org::Antlr::Codegen
         end
         if ((self.attr_state.attr_backtracking).equal?(1))
           pair = @enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil))
-          refd_rule_name = ((!(x).nil? ? x.get_text : nil)).to_s
+          refd_rule_name = RJava.cast_to_string((!(x).nil? ? x.get_text : nil))
           if (!(pair).nil?)
-            refd_rule_name = (pair.attr_referenced_rule_name).to_s
+            refd_rule_name = RJava.cast_to_string(pair.attr_referenced_rule_name)
           end
         end
         if (!((!(@enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil))).nil? || is_rule_ref_in_alt((!(x).nil? ? x.get_text : nil))) && !(get_rule_label_attribute(!(@enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil))).nil? ? @enclosing_rule.get_rule_label((!(x).nil? ? x.get_text : nil)).attr_referenced_rule_name : (!(x).nil? ? x.get_text : nil), (!(y).nil? ? y.get_text : nil))).nil?))
@@ -827,23 +827,23 @@ module Org::Antlr::Codegen
           if ((pair).nil?)
             # $ruleref.attr  gotta get old label or compute new one
             check_element_ref_uniqueness((!(x).nil? ? x.get_text : nil), false)
-            label = (@enclosing_rule.get_element_label((!(x).nil? ? x.get_text : nil), @outer_alt_num, @generator)).to_s
+            label = RJava.cast_to_string(@enclosing_rule.get_element_label((!(x).nil? ? x.get_text : nil), @outer_alt_num, @generator))
             if ((label).nil?)
-              ErrorManager.grammar_error(ErrorManager::MSG_FORWARD_ELEMENT_REF, @grammar, @action_token, "$" + ((!(x).nil? ? x.get_text : nil)).to_s + "." + ((!(y).nil? ? y.get_text : nil)).to_s)
-              label = ((!(x).nil? ? x.get_text : nil)).to_s
+              ErrorManager.grammar_error(ErrorManager::MSG_FORWARD_ELEMENT_REF, @grammar, @action_token, "$" + RJava.cast_to_string((!(x).nil? ? x.get_text : nil)) + "." + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
+              label = RJava.cast_to_string((!(x).nil? ? x.get_text : nil))
             end
           end
           st = nil
           refd_rule = @grammar.get_rule(refd_rule_name)
           scope = refd_rule.get_local_attribute_scope((!(y).nil? ? y.get_text : nil))
           if (scope.attr_is_predefined_rule_scope)
-            st = template("ruleLabelPropertyRef_" + ((!(y).nil? ? y.get_text : nil)).to_s)
+            st = template("ruleLabelPropertyRef_" + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
             @grammar.reference_rule_label_predefined_attribute(refd_rule_name)
             st.set_attribute("scope", label)
             st.set_attribute("attr", (!(y).nil? ? y.get_text : nil))
           else
             if (scope.attr_is_predefined_lexer_rule_scope)
-              st = template("lexerRuleLabelPropertyRef_" + ((!(y).nil? ? y.get_text : nil)).to_s)
+              st = template("lexerRuleLabelPropertyRef_" + RJava.cast_to_string((!(y).nil? ? y.get_text : nil)))
               @grammar.reference_rule_label_predefined_attribute(refd_rule_name)
               st.set_attribute("scope", label)
               st.set_attribute("attr", (!(y).nil? ? y.get_text : nil))
@@ -1047,7 +1047,7 @@ module Org::Antlr::Codegen
           scope = @enclosing_rule.get_local_attribute_scope((!(id4).nil? ? id4.get_text : nil))
           if (scope.attr_is_predefined_rule_scope)
             if (((!(id4).nil? ? id4.get_text : nil) == "tree") || ((!(id4).nil? ? id4.get_text : nil) == "st"))
-              st = template("ruleSetPropertyRef_" + ((!(id4).nil? ? id4.get_text : nil)).to_s)
+              st = template("ruleSetPropertyRef_" + RJava.cast_to_string((!(id4).nil? ? id4.get_text : nil)))
               @grammar.reference_rule_label_predefined_attribute(@enclosing_rule.attr_name)
               st.set_attribute("scope", @enclosing_rule.attr_name)
               st.set_attribute("attr", (!(id4).nil? ? id4.get_text : nil))
@@ -1103,13 +1103,13 @@ module Org::Antlr::Codegen
           st = nil
           scope = @enclosing_rule.get_local_attribute_scope((!(id5).nil? ? id5.get_text : nil))
           if (scope.attr_is_predefined_rule_scope)
-            st = template("rulePropertyRef_" + ((!(id5).nil? ? id5.get_text : nil)).to_s)
+            st = template("rulePropertyRef_" + RJava.cast_to_string((!(id5).nil? ? id5.get_text : nil)))
             @grammar.reference_rule_label_predefined_attribute(@enclosing_rule.attr_name)
             st.set_attribute("scope", @enclosing_rule.attr_name)
             st.set_attribute("attr", (!(id5).nil? ? id5.get_text : nil))
           else
             if (scope.attr_is_predefined_lexer_rule_scope)
-              st = template("lexerRulePropertyRef_" + ((!(id5).nil? ? id5.get_text : nil)).to_s)
+              st = template("lexerRulePropertyRef_" + RJava.cast_to_string((!(id5).nil? ? id5.get_text : nil)))
               st.set_attribute("scope", @enclosing_rule.attr_name)
               st.set_attribute("attr", (!(id5).nil? ? id5.get_text : nil))
             else
@@ -1427,42 +1427,40 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:635:4: (~ ']' )+
         # ActionTranslator.g:635:4: (~ ']' )+
         cnt6 = 0
-        catch(:break_loop6) do
-          begin
-            alt6 = 2
-            la6_0 = self.attr_input._la(1)
-            if (((la6_0 >= Character.new(0x0000) && la6_0 <= Character.new(?\\.ord)) || (la6_0 >= Character.new(?^.ord) && la6_0 <= Character.new(0xFFFE))))
-              alt6 = 1
-            end
-            case (alt6)
-            when 1
-              # ActionTranslator.g:635:5: ~ ']'
-              if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?\\.ord)) || (self.attr_input._la(1) >= Character.new(?^.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
-                self.attr_input.consume
-                self.attr_state.attr_failed = false
-              else
-                if (self.attr_state.attr_backtracking > 0)
-                  self.attr_state.attr_failed = true
-                  return
-                end
-                mse = MismatchedSetException.new(nil, self.attr_input)
-                recover(mse)
-                raise mse
-              end
+        begin
+          alt6 = 2
+          la6_0 = self.attr_input._la(1)
+          if (((la6_0 >= Character.new(0x0000) && la6_0 <= Character.new(?\\.ord)) || (la6_0 >= Character.new(?^.ord) && la6_0 <= Character.new(0xFFFE))))
+            alt6 = 1
+          end
+          case (alt6)
+          when 1
+            # ActionTranslator.g:635:5: ~ ']'
+            if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?\\.ord)) || (self.attr_input._la(1) >= Character.new(?^.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
+              self.attr_input.consume
+              self.attr_state.attr_failed = false
             else
-              if (cnt6 >= 1)
-                throw :break_loop6, :thrown
-              end
               if (self.attr_state.attr_backtracking > 0)
                 self.attr_state.attr_failed = true
                 return
               end
-              eee = EarlyExitException.new(6, self.attr_input)
-              raise eee
+              mse = MismatchedSetException.new(nil, self.attr_input)
+              recover(mse)
+              raise mse
             end
-            cnt6 += 1
-          end while (true)
-        end
+          else
+            if (cnt6 >= 1)
+              break
+            end
+            if (self.attr_state.attr_backtracking > 0)
+              self.attr_state.attr_failed = true
+              return
+            end
+            eee = EarlyExitException.new(6, self.attr_input)
+            raise eee
+          end
+          cnt6 += 1
+        end while (true)
       ensure
       end
     end
@@ -1549,44 +1547,42 @@ module Org::Antlr::Codegen
           if (self.attr_state.attr_failed)
             return
           end
-          catch(:break_loop9) do
-            # ActionTranslator.g:657:25: ( ',' ( WS )? ARG )*
-            begin
-              alt9 = 2
-              la9_0 = self.attr_input._la(1)
-              if (((la9_0).equal?(Character.new(?,.ord))))
-                alt9 = 1
+          # ActionTranslator.g:657:25: ( ',' ( WS )? ARG )*
+          begin
+            alt9 = 2
+            la9_0 = self.attr_input._la(1)
+            if (((la9_0).equal?(Character.new(?,.ord))))
+              alt9 = 1
+            end
+            case (alt9)
+            when 1
+              # ActionTranslator.g:657:26: ',' ( WS )? ARG
+              match(Character.new(?,.ord))
+              if (self.attr_state.attr_failed)
+                return
               end
-              case (alt9)
+              # ActionTranslator.g:657:30: ( WS )?
+              alt8 = 2
+              la8_0 = self.attr_input._la(1)
+              if (((la8_0 >= Character.new(?\t.ord) && la8_0 <= Character.new(?\n.ord)) || (la8_0).equal?(Character.new(?\r.ord)) || (la8_0).equal?(Character.new(?\s.ord))))
+                alt8 = 1
+              end
+              case (alt8)
               when 1
-                # ActionTranslator.g:657:26: ',' ( WS )? ARG
-                match(Character.new(?,.ord))
+                # ActionTranslator.g:657:30: WS
+                m_ws
                 if (self.attr_state.attr_failed)
                   return
                 end
-                # ActionTranslator.g:657:30: ( WS )?
-                alt8 = 2
-                la8_0 = self.attr_input._la(1)
-                if (((la8_0 >= Character.new(?\t.ord) && la8_0 <= Character.new(?\n.ord)) || (la8_0).equal?(Character.new(?\r.ord)) || (la8_0).equal?(Character.new(?\s.ord))))
-                  alt8 = 1
-                end
-                case (alt8)
-                when 1
-                  # ActionTranslator.g:657:30: WS
-                  m_ws
-                  if (self.attr_state.attr_failed)
-                    return
-                  end
-                end
-                m_arg
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              else
-                throw :break_loop9, :thrown
               end
-            end while (true)
-          end == :thrown or break
+              m_arg
+              if (self.attr_state.attr_failed)
+                return
+              end
+            else
+              break
+            end
+          end while (true)
           # ActionTranslator.g:657:40: ( WS )?
           alt10 = 2
           la10_0 = self.attr_input._la(1)
@@ -1610,7 +1606,7 @@ module Org::Antlr::Codegen
           action = get_text.substring(1, get_text.length)
           rule_name = "<outside-of-rule>"
           if (!(@enclosing_rule).nil?)
-            rule_name = (@enclosing_rule.attr_name).to_s
+            rule_name = RJava.cast_to_string(@enclosing_rule.attr_name)
           end
           st = @generator.translate_template_constructor(rule_name, @outer_alt_num, @action_token, action)
           if (!(st).nil?)
@@ -1677,44 +1673,42 @@ module Org::Antlr::Codegen
           if (self.attr_state.attr_failed)
             return
           end
-          catch(:break_loop14) do
-            # ActionTranslator.g:678:37: ( ',' ( WS )? ARG )*
-            begin
-              alt14 = 2
-              la14_0 = self.attr_input._la(1)
-              if (((la14_0).equal?(Character.new(?,.ord))))
-                alt14 = 1
+          # ActionTranslator.g:678:37: ( ',' ( WS )? ARG )*
+          begin
+            alt14 = 2
+            la14_0 = self.attr_input._la(1)
+            if (((la14_0).equal?(Character.new(?,.ord))))
+              alt14 = 1
+            end
+            case (alt14)
+            when 1
+              # ActionTranslator.g:678:38: ',' ( WS )? ARG
+              match(Character.new(?,.ord))
+              if (self.attr_state.attr_failed)
+                return
               end
-              case (alt14)
+              # ActionTranslator.g:678:42: ( WS )?
+              alt13 = 2
+              la13_0 = self.attr_input._la(1)
+              if (((la13_0 >= Character.new(?\t.ord) && la13_0 <= Character.new(?\n.ord)) || (la13_0).equal?(Character.new(?\r.ord)) || (la13_0).equal?(Character.new(?\s.ord))))
+                alt13 = 1
+              end
+              case (alt13)
               when 1
-                # ActionTranslator.g:678:38: ',' ( WS )? ARG
-                match(Character.new(?,.ord))
+                # ActionTranslator.g:678:42: WS
+                m_ws
                 if (self.attr_state.attr_failed)
                   return
                 end
-                # ActionTranslator.g:678:42: ( WS )?
-                alt13 = 2
-                la13_0 = self.attr_input._la(1)
-                if (((la13_0 >= Character.new(?\t.ord) && la13_0 <= Character.new(?\n.ord)) || (la13_0).equal?(Character.new(?\r.ord)) || (la13_0).equal?(Character.new(?\s.ord))))
-                  alt13 = 1
-                end
-                case (alt13)
-                when 1
-                  # ActionTranslator.g:678:42: WS
-                  m_ws
-                  if (self.attr_state.attr_failed)
-                    return
-                  end
-                end
-                m_arg
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              else
-                throw :break_loop14, :thrown
               end
-            end while (true)
-          end == :thrown or break
+              m_arg
+              if (self.attr_state.attr_failed)
+                return
+              end
+            else
+              break
+            end
+          end while (true)
           # ActionTranslator.g:678:52: ( WS )?
           alt15 = 2
           la15_0 = self.attr_input._la(1)
@@ -1829,7 +1823,7 @@ module Org::Antlr::Codegen
         if ((self.attr_state.attr_backtracking).equal?(1))
           st = template("actionSetAttribute")
           action = (!(a).nil? ? a.get_text : nil)
-          action = (action.substring(1, action.length - 1)).to_s # stuff inside {...}
+          action = RJava.cast_to_string(action.substring(1, action.length - 1)) # stuff inside {...}
           st.set_attribute("st", translate_action(action))
           st.set_attribute("attrName", (!(id7).nil? ? id7.get_text : nil))
           st.set_attribute("expr", translate_action((!(expr).nil? ? expr.get_text : nil)))
@@ -1928,34 +1922,32 @@ module Org::Antlr::Codegen
           recover(mse)
           raise mse
         end
-        catch(:break_loop19) do
-          # ActionTranslator.g:727:9: (~ ';' )*
-          begin
-            alt19 = 2
-            la19_0 = self.attr_input._la(1)
-            if (((la19_0 >= Character.new(0x0000) && la19_0 <= Character.new(?:.ord)) || (la19_0 >= Character.new(?<.ord) && la19_0 <= Character.new(0xFFFE))))
-              alt19 = 1
-            end
-            case (alt19)
-            when 1
-              # ActionTranslator.g:727:10: ~ ';'
-              if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?:.ord)) || (self.attr_input._la(1) >= Character.new(?<.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
-                self.attr_input.consume
-                self.attr_state.attr_failed = false
-              else
-                if (self.attr_state.attr_backtracking > 0)
-                  self.attr_state.attr_failed = true
-                  return
-                end
-                mse = MismatchedSetException.new(nil, self.attr_input)
-                recover(mse)
-                raise mse
-              end
+        # ActionTranslator.g:727:9: (~ ';' )*
+        begin
+          alt19 = 2
+          la19_0 = self.attr_input._la(1)
+          if (((la19_0 >= Character.new(0x0000) && la19_0 <= Character.new(?:.ord)) || (la19_0 >= Character.new(?<.ord) && la19_0 <= Character.new(0xFFFE))))
+            alt19 = 1
+          end
+          case (alt19)
+          when 1
+            # ActionTranslator.g:727:10: ~ ';'
+            if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?:.ord)) || (self.attr_input._la(1) >= Character.new(?<.ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
+              self.attr_input.consume
+              self.attr_state.attr_failed = false
             else
-              throw :break_loop19, :thrown
+              if (self.attr_state.attr_backtracking > 0)
+                self.attr_state.attr_failed = true
+                return
+              end
+              mse = MismatchedSetException.new(nil, self.attr_input)
+              recover(mse)
+              raise mse
             end
-          end while (true)
-        end
+          else
+            break
+          end
+        end while (true)
       ensure
       end
     end
@@ -1982,7 +1974,7 @@ module Org::Antlr::Codegen
         if ((self.attr_state.attr_backtracking).equal?(1))
           st = template("actionStringConstructor")
           action = (!(a).nil? ? a.get_text : nil)
-          action = (action.substring(1, action.length - 1)).to_s # stuff inside {...}
+          action = RJava.cast_to_string(action.substring(1, action.length - 1)) # stuff inside {...}
           st.set_attribute("stringExpr", translate_action(action))
         end
         self.attr_state.attr_type = _type
@@ -2001,30 +1993,28 @@ module Org::Antlr::Codegen
         if (self.attr_state.attr_failed)
           return
         end
-        catch(:break_loop20) do
-          # ActionTranslator.g:744:8: ( options {greedy=false; } : . )*
-          begin
+        # ActionTranslator.g:744:8: ( options {greedy=false; } : . )*
+        begin
+          alt20 = 2
+          la20_0 = self.attr_input._la(1)
+          if (((la20_0).equal?(Character.new(?}.ord))))
             alt20 = 2
-            la20_0 = self.attr_input._la(1)
-            if (((la20_0).equal?(Character.new(?}.ord))))
-              alt20 = 2
-            else
-              if (((la20_0 >= Character.new(0x0000) && la20_0 <= Character.new(?|.ord)) || (la20_0 >= Character.new(?~.ord) && la20_0 <= Character.new(0xFFFE))))
-                alt20 = 1
-              end
+          else
+            if (((la20_0 >= Character.new(0x0000) && la20_0 <= Character.new(?|.ord)) || (la20_0 >= Character.new(?~.ord) && la20_0 <= Character.new(0xFFFE))))
+              alt20 = 1
             end
-            case (alt20)
-            when 1
-              # ActionTranslator.g:744:33: .
-              match_any
-              if (self.attr_state.attr_failed)
-                return
-              end
-            else
-              throw :break_loop20, :thrown
+          end
+          case (alt20)
+          when 1
+            # ActionTranslator.g:744:33: .
+            match_any
+            if (self.attr_state.attr_failed)
+              return
             end
-          end while (true)
-        end
+          else
+            break
+          end
+        end while (true)
         match(Character.new(?}.ord))
         if (self.attr_state.attr_failed)
           return
@@ -2231,65 +2221,63 @@ module Org::Antlr::Codegen
           if (self.attr_state.attr_failed)
             return
           end
-          catch(:break_loop22) do
-            # ActionTranslator.g:778:8: ( ID | '.' | '(' | ')' | ',' | '{' | '}' | '\"' )*
-            begin
-              alt22 = 9
-              alt22 = @dfa22.predict(self.attr_input)
-              case (alt22)
-              when 1
-                # ActionTranslator.g:778:9: ID
-                m_id
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 2
-                # ActionTranslator.g:778:12: '.'
-                match(Character.new(?..ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 3
-                # ActionTranslator.g:778:16: '('
-                match(Character.new(?(.ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 4
-                # ActionTranslator.g:778:20: ')'
-                match(Character.new(?).ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 5
-                # ActionTranslator.g:778:24: ','
-                match(Character.new(?,.ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 6
-                # ActionTranslator.g:778:28: '{'
-                match(Character.new(?{.ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 7
-                # ActionTranslator.g:778:32: '}'
-                match(Character.new(?}.ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              when 8
-                # ActionTranslator.g:778:36: '\"'
-                match(Character.new(?\".ord))
-                if (self.attr_state.attr_failed)
-                  return
-                end
-              else
-                throw :break_loop22, :thrown
+          # ActionTranslator.g:778:8: ( ID | '.' | '(' | ')' | ',' | '{' | '}' | '\"' )*
+          begin
+            alt22 = 9
+            alt22 = @dfa22.predict(self.attr_input)
+            case (alt22)
+            when 1
+              # ActionTranslator.g:778:9: ID
+              m_id
+              if (self.attr_state.attr_failed)
+                return
               end
-            end while (true)
-          end == :thrown or break
+            when 2
+              # ActionTranslator.g:778:12: '.'
+              match(Character.new(?..ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            when 3
+              # ActionTranslator.g:778:16: '('
+              match(Character.new(?(.ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            when 4
+              # ActionTranslator.g:778:20: ')'
+              match(Character.new(?).ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            when 5
+              # ActionTranslator.g:778:24: ','
+              match(Character.new(?,.ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            when 6
+              # ActionTranslator.g:778:28: '{'
+              match(Character.new(?{.ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            when 7
+              # ActionTranslator.g:778:32: '}'
+              match(Character.new(?}.ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            when 8
+              # ActionTranslator.g:778:36: '\"'
+              match(Character.new(?\".ord))
+              if (self.attr_state.attr_failed)
+                return
+              end
+            else
+              break
+            end
+          end while (true)
           if ((self.attr_state.attr_backtracking).equal?(1))
             @chunks.add(get_text)
             ErrorManager.grammar_error(ErrorManager::MSG_INVALID_TEMPLATE_ACTION, @grammar, @action_token, get_text)
@@ -2310,42 +2298,40 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:788:7: (~ ( '$' | '%' | '\\\\' ) )+
         # ActionTranslator.g:788:7: (~ ( '$' | '%' | '\\\\' ) )+
         cnt24 = 0
-        catch(:break_loop24) do
-          begin
-            alt24 = 2
-            la24_0 = self.attr_input._la(1)
-            if (((la24_0 >= Character.new(0x0000) && la24_0 <= Character.new(?#.ord)) || (la24_0 >= Character.new(?&.ord) && la24_0 <= Character.new(?[.ord)) || (la24_0 >= Character.new(?].ord) && la24_0 <= Character.new(0xFFFE))))
-              alt24 = 1
-            end
-            case (alt24)
-            when 1
-              # ActionTranslator.g:788:7: ~ ( '$' | '%' | '\\\\' )
-              if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?#.ord)) || (self.attr_input._la(1) >= Character.new(?&.ord) && self.attr_input._la(1) <= Character.new(?[.ord)) || (self.attr_input._la(1) >= Character.new(?].ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
-                self.attr_input.consume
-                self.attr_state.attr_failed = false
-              else
-                if (self.attr_state.attr_backtracking > 0)
-                  self.attr_state.attr_failed = true
-                  return
-                end
-                mse = MismatchedSetException.new(nil, self.attr_input)
-                recover(mse)
-                raise mse
-              end
+        begin
+          alt24 = 2
+          la24_0 = self.attr_input._la(1)
+          if (((la24_0 >= Character.new(0x0000) && la24_0 <= Character.new(?#.ord)) || (la24_0 >= Character.new(?&.ord) && la24_0 <= Character.new(?[.ord)) || (la24_0 >= Character.new(?].ord) && la24_0 <= Character.new(0xFFFE))))
+            alt24 = 1
+          end
+          case (alt24)
+          when 1
+            # ActionTranslator.g:788:7: ~ ( '$' | '%' | '\\\\' )
+            if ((self.attr_input._la(1) >= Character.new(0x0000) && self.attr_input._la(1) <= Character.new(?#.ord)) || (self.attr_input._la(1) >= Character.new(?&.ord) && self.attr_input._la(1) <= Character.new(?[.ord)) || (self.attr_input._la(1) >= Character.new(?].ord) && self.attr_input._la(1) <= Character.new(0xFFFE)))
+              self.attr_input.consume
+              self.attr_state.attr_failed = false
             else
-              if (cnt24 >= 1)
-                throw :break_loop24, :thrown
-              end
               if (self.attr_state.attr_backtracking > 0)
                 self.attr_state.attr_failed = true
                 return
               end
-              eee = EarlyExitException.new(24, self.attr_input)
-              raise eee
+              mse = MismatchedSetException.new(nil, self.attr_input)
+              recover(mse)
+              raise mse
             end
-            cnt24 += 1
-          end while (true)
-        end
+          else
+            if (cnt24 >= 1)
+              break
+            end
+            if (self.attr_state.attr_backtracking > 0)
+              self.attr_state.attr_failed = true
+              return
+            end
+            eee = EarlyExitException.new(24, self.attr_input)
+            raise eee
+          end
+          cnt24 += 1
+        end while (true)
         if ((self.attr_state.attr_backtracking).equal?(1))
           @chunks.add(get_text)
         end
@@ -2373,34 +2359,32 @@ module Org::Antlr::Codegen
           recover(mse)
           raise mse
         end
-        catch(:break_loop25) do
-          # ActionTranslator.g:792:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-          begin
-            alt25 = 2
-            la25_0 = self.attr_input._la(1)
-            if (((la25_0 >= Character.new(?0.ord) && la25_0 <= Character.new(?9.ord)) || (la25_0 >= Character.new(?A.ord) && la25_0 <= Character.new(?Z.ord)) || (la25_0).equal?(Character.new(?_.ord)) || (la25_0 >= Character.new(?a.ord) && la25_0 <= Character.new(?z.ord))))
-              alt25 = 1
-            end
-            case (alt25)
-            when 1
-              # ActionTranslator.g:
-              if ((self.attr_input._la(1) >= Character.new(?0.ord) && self.attr_input._la(1) <= Character.new(?9.ord)) || (self.attr_input._la(1) >= Character.new(?A.ord) && self.attr_input._la(1) <= Character.new(?Z.ord)) || (self.attr_input._la(1)).equal?(Character.new(?_.ord)) || (self.attr_input._la(1) >= Character.new(?a.ord) && self.attr_input._la(1) <= Character.new(?z.ord)))
-                self.attr_input.consume
-                self.attr_state.attr_failed = false
-              else
-                if (self.attr_state.attr_backtracking > 0)
-                  self.attr_state.attr_failed = true
-                  return
-                end
-                mse = MismatchedSetException.new(nil, self.attr_input)
-                recover(mse)
-                raise mse
-              end
+        # ActionTranslator.g:792:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+        begin
+          alt25 = 2
+          la25_0 = self.attr_input._la(1)
+          if (((la25_0 >= Character.new(?0.ord) && la25_0 <= Character.new(?9.ord)) || (la25_0 >= Character.new(?A.ord) && la25_0 <= Character.new(?Z.ord)) || (la25_0).equal?(Character.new(?_.ord)) || (la25_0 >= Character.new(?a.ord) && la25_0 <= Character.new(?z.ord))))
+            alt25 = 1
+          end
+          case (alt25)
+          when 1
+            # ActionTranslator.g:
+            if ((self.attr_input._la(1) >= Character.new(?0.ord) && self.attr_input._la(1) <= Character.new(?9.ord)) || (self.attr_input._la(1) >= Character.new(?A.ord) && self.attr_input._la(1) <= Character.new(?Z.ord)) || (self.attr_input._la(1)).equal?(Character.new(?_.ord)) || (self.attr_input._la(1) >= Character.new(?a.ord) && self.attr_input._la(1) <= Character.new(?z.ord)))
+              self.attr_input.consume
+              self.attr_state.attr_failed = false
             else
-              throw :break_loop25, :thrown
+              if (self.attr_state.attr_backtracking > 0)
+                self.attr_state.attr_failed = true
+                return
+              end
+              mse = MismatchedSetException.new(nil, self.attr_input)
+              recover(mse)
+              raise mse
             end
-          end while (true)
-        end
+          else
+            break
+          end
+        end while (true)
       ensure
       end
     end
@@ -2414,34 +2398,32 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:796:7: ( '0' .. '9' )+
         # ActionTranslator.g:796:7: ( '0' .. '9' )+
         cnt26 = 0
-        catch(:break_loop26) do
-          begin
-            alt26 = 2
-            la26_0 = self.attr_input._la(1)
-            if (((la26_0 >= Character.new(?0.ord) && la26_0 <= Character.new(?9.ord))))
-              alt26 = 1
+        begin
+          alt26 = 2
+          la26_0 = self.attr_input._la(1)
+          if (((la26_0 >= Character.new(?0.ord) && la26_0 <= Character.new(?9.ord))))
+            alt26 = 1
+          end
+          case (alt26)
+          when 1
+            # ActionTranslator.g:796:7: '0' .. '9'
+            match_range(Character.new(?0.ord), Character.new(?9.ord))
+            if (self.attr_state.attr_failed)
+              return
             end
-            case (alt26)
-            when 1
-              # ActionTranslator.g:796:7: '0' .. '9'
-              match_range(Character.new(?0.ord), Character.new(?9.ord))
-              if (self.attr_state.attr_failed)
-                return
-              end
-            else
-              if (cnt26 >= 1)
-                throw :break_loop26, :thrown
-              end
-              if (self.attr_state.attr_backtracking > 0)
-                self.attr_state.attr_failed = true
-                return
-              end
-              eee = EarlyExitException.new(26, self.attr_input)
-              raise eee
+          else
+            if (cnt26 >= 1)
+              break
             end
-            cnt26 += 1
-          end while (true)
-        end
+            if (self.attr_state.attr_backtracking > 0)
+              self.attr_state.attr_failed = true
+              return
+            end
+            eee = EarlyExitException.new(26, self.attr_input)
+            raise eee
+          end
+          cnt26 += 1
+        end while (true)
       ensure
       end
     end
@@ -2455,42 +2437,40 @@ module Org::Antlr::Codegen
         # ActionTranslator.g:800:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
         # ActionTranslator.g:800:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
         cnt27 = 0
-        catch(:break_loop27) do
-          begin
-            alt27 = 2
-            la27_0 = self.attr_input._la(1)
-            if (((la27_0 >= Character.new(?\t.ord) && la27_0 <= Character.new(?\n.ord)) || (la27_0).equal?(Character.new(?\r.ord)) || (la27_0).equal?(Character.new(?\s.ord))))
-              alt27 = 1
-            end
-            case (alt27)
-            when 1
-              # ActionTranslator.g:
-              if ((self.attr_input._la(1) >= Character.new(?\t.ord) && self.attr_input._la(1) <= Character.new(?\n.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\r.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\s.ord)))
-                self.attr_input.consume
-                self.attr_state.attr_failed = false
-              else
-                if (self.attr_state.attr_backtracking > 0)
-                  self.attr_state.attr_failed = true
-                  return
-                end
-                mse = MismatchedSetException.new(nil, self.attr_input)
-                recover(mse)
-                raise mse
-              end
+        begin
+          alt27 = 2
+          la27_0 = self.attr_input._la(1)
+          if (((la27_0 >= Character.new(?\t.ord) && la27_0 <= Character.new(?\n.ord)) || (la27_0).equal?(Character.new(?\r.ord)) || (la27_0).equal?(Character.new(?\s.ord))))
+            alt27 = 1
+          end
+          case (alt27)
+          when 1
+            # ActionTranslator.g:
+            if ((self.attr_input._la(1) >= Character.new(?\t.ord) && self.attr_input._la(1) <= Character.new(?\n.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\r.ord)) || (self.attr_input._la(1)).equal?(Character.new(?\s.ord)))
+              self.attr_input.consume
+              self.attr_state.attr_failed = false
             else
-              if (cnt27 >= 1)
-                throw :break_loop27, :thrown
-              end
               if (self.attr_state.attr_backtracking > 0)
                 self.attr_state.attr_failed = true
                 return
               end
-              eee = EarlyExitException.new(27, self.attr_input)
-              raise eee
+              mse = MismatchedSetException.new(nil, self.attr_input)
+              recover(mse)
+              raise mse
             end
-            cnt27 += 1
-          end while (true)
-        end
+          else
+            if (cnt27 >= 1)
+              break
+            end
+            if (self.attr_state.attr_backtracking > 0)
+              self.attr_state.attr_failed = true
+              return
+            end
+            eee = EarlyExitException.new(27, self.attr_input)
+            raise eee
+          end
+          cnt27 += 1
+        end while (true)
       ensure
       end
     end
@@ -2974,7 +2954,7 @@ module Org::Antlr::Codegen
       begin
         synpred19__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -2990,7 +2970,7 @@ module Org::Antlr::Codegen
       begin
         synpred16__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3006,7 +2986,7 @@ module Org::Antlr::Codegen
       begin
         synpred25__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3022,7 +3002,7 @@ module Org::Antlr::Codegen
       begin
         synpred17__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3038,7 +3018,7 @@ module Org::Antlr::Codegen
       begin
         synpred1__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3054,7 +3034,7 @@ module Org::Antlr::Codegen
       begin
         synpred10__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3070,7 +3050,7 @@ module Org::Antlr::Codegen
       begin
         synpred24__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3086,7 +3066,7 @@ module Org::Antlr::Codegen
       begin
         synpred15__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3102,7 +3082,7 @@ module Org::Antlr::Codegen
       begin
         synpred11__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3118,7 +3098,7 @@ module Org::Antlr::Codegen
       begin
         synpred18__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3134,7 +3114,7 @@ module Org::Antlr::Codegen
       begin
         synpred21__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3150,7 +3130,7 @@ module Org::Antlr::Codegen
       begin
         synpred3__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3166,7 +3146,7 @@ module Org::Antlr::Codegen
       begin
         synpred26__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3182,7 +3162,7 @@ module Org::Antlr::Codegen
       begin
         synpred9__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3198,7 +3178,7 @@ module Org::Antlr::Codegen
       begin
         synpred2__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3214,7 +3194,7 @@ module Org::Antlr::Codegen
       begin
         synpred4__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3230,7 +3210,7 @@ module Org::Antlr::Codegen
       begin
         synpred22__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3246,7 +3226,7 @@ module Org::Antlr::Codegen
       begin
         synpred5__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3262,7 +3242,7 @@ module Org::Antlr::Codegen
       begin
         synpred6__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3278,7 +3258,7 @@ module Org::Antlr::Codegen
       begin
         synpred7__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3294,7 +3274,7 @@ module Org::Antlr::Codegen
       begin
         synpred12__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3310,7 +3290,7 @@ module Org::Antlr::Codegen
       begin
         synpred8__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3326,7 +3306,7 @@ module Org::Antlr::Codegen
       begin
         synpred13__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3342,7 +3322,7 @@ module Org::Antlr::Codegen
       begin
         synpred20__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3358,7 +3338,7 @@ module Org::Antlr::Codegen
       begin
         synpred14__action_translator_fragment # can never throw exception
       rescue RecognitionException => re
-        System.err.println("impossible: " + (re).to_s)
+        System.err.println("impossible: " + RJava.cast_to_string(re))
       end
       success = !self.attr_state.attr_failed
       self.attr_input.rewind(start)
@@ -3421,7 +3401,7 @@ module Org::Antlr::Codegen
       
       when_class_loaded do
         num_states = DFA22_transitionS.attr_length
-        const_set :DFA22_transition, Array.typed(::Java::Short).new(num_states) { 0 }
+        const_set :DFA22_transition, Array.typed(Array.typed(::Java::Short)).new(num_states) { nil }
         i = 0
         while i < num_states
           DFA22_transition[i] = DFA.unpack_encoded_string(DFA22_transitionS[i])
@@ -3497,7 +3477,7 @@ module Org::Antlr::Codegen
       
       when_class_loaded do
         num_states = DFA28_transitionS.attr_length
-        const_set :DFA28_transition, Array.typed(::Java::Short).new(num_states) { 0 }
+        const_set :DFA28_transition, Array.typed(Array.typed(::Java::Short)).new(num_states) { nil }
         i = 0
         while i < num_states
           DFA28_transition[i] = DFA.unpack_encoded_string(DFA28_transitionS[i])

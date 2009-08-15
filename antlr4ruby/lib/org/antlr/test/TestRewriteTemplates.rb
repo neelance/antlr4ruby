@@ -156,7 +156,7 @@ module Org::Antlr::Test
       generator = CodeGenerator.new(antlr, g, "Java")
       g.set_code_generator(generator)
       generator.gen_recognizer
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_warnings.size)
     end
     
     typesig { [] }
@@ -169,7 +169,7 @@ module Org::Antlr::Test
       generator = CodeGenerator.new(antlr, g, "Java")
       g.set_code_generator(generator)
       generator.gen_recognizer
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_warnings.size)
     end
     
     typesig { [] }
@@ -182,7 +182,7 @@ module Org::Antlr::Test
       generator = CodeGenerator.new(antlr, g, "Java")
       g.set_code_generator(generator)
       generator.gen_recognizer
-      assert_equals("unexpected errors: " + (equeue).to_s, 2, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 2, equeue.attr_warnings.size)
     end
     
     typesig { [] }
@@ -195,7 +195,7 @@ module Org::Antlr::Test
       generator = CodeGenerator.new(antlr, g, "Java")
       g.set_code_generator(generator)
       generator.gen_recognizer
-      assert_equals("unexpected errors: " + (equeue).to_s, 2, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 2, equeue.attr_warnings.size)
     end
     
     typesig { [] }

@@ -126,11 +126,11 @@ module Org::Antlr::Misc
           # walk set and add each interval
           iter = other.attr_intervals.iterator
           while iter.has_next
-            i = iter.next
+            i = iter.next_
             self.or_in_place(BitSet.range(i.attr_a, i.attr_b))
           end
         else
-          raise IllegalArgumentException.new("can't add " + (set.get_class.get_name).to_s + " to BitSet")
+          raise IllegalArgumentException.new("can't add " + RJava.cast_to_string(set.get_class.get_name) + " to BitSet")
         end
       end
     end
@@ -155,7 +155,7 @@ module Org::Antlr::Misc
       end
       it = elements.iterator
       while (it.has_next)
-        o = it.next
+        o = it.next_
         if (!(o.is_a?(JavaInteger)))
           raise IllegalArgumentException.new
         end
@@ -174,7 +174,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [IntSet] }
-    def and(a)
+    def and_(a)
       s = self.clone
       s.and_in_place(a)
       return s
@@ -257,7 +257,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [Object] }
-    def equals(other)
+    def ==(other)
       if ((other).nil? || !(other.is_a?(BitSet)))
         return false
       end
@@ -400,7 +400,7 @@ module Org::Antlr::Misc
         s = BitSet.new
         iter = elements.iterator
         while (iter.has_next)
-          el = iter.next
+          el = iter.next_
           s.add(el.int_value)
         end
         return s
@@ -419,7 +419,7 @@ module Org::Antlr::Misc
           s.add_all(set)
           return s
         end
-        raise IllegalArgumentException.new("can't create BitSet from " + (set.get_class.get_name).to_s)
+        raise IllegalArgumentException.new("can't create BitSet from " + RJava.cast_to_string(set.get_class.get_name))
       end
       
       typesig { [Map] }
@@ -442,7 +442,7 @@ module Org::Antlr::Misc
     
     typesig { [IntSet] }
     # return this | a in a new set
-    def or(a)
+    def or_(a)
       if ((a).nil?)
         return self
       end
@@ -506,7 +506,7 @@ module Org::Antlr::Misc
       if ((a).nil?)
         return false
       end
-      return (self.and(a) == self)
+      return (self.and_(a) == self)
     end
     
     typesig { [BitSet] }
@@ -609,12 +609,12 @@ module Org::Antlr::Misc
             str += separator
           end
           if (i >= vocabulary.size)
-            str += "'" + (RJava.cast_to_char(i)).to_s + "'"
+            str += "'" + RJava.cast_to_string(RJava.cast_to_char(i)) + "'"
           else
             if ((vocabulary.get(i)).nil?)
-              str += "'" + (RJava.cast_to_char(i)).to_s + "'"
+              str += "'" + RJava.cast_to_string(RJava.cast_to_char(i)) + "'"
             else
-              str += (vocabulary.get(i)).to_s
+              str += RJava.cast_to_string(vocabulary.get(i))
             end
           end
         end

@@ -128,7 +128,7 @@ module Org::Antlr::Test
       grammar = "grammar T;\n" + "a : A {System.out.println(input);} ;\n" + "A : 'b'* 'c' ;\n"
       found = exec_parser("T.g", grammar, "TParser", "TLexer", "a", "bbbbc", @debug)
       assert_equals("bbbbc\n", found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "a", "c", @debug)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "a", "c", @debug))
       assert_equals("c\n", found)
     end
     

@@ -51,7 +51,7 @@ module Org::Antlr::Test
       pg = Grammar.new("parser grammar p;\n" + "prog : WHILE ID LCURLY (assign)* RCURLY EOF;\n" + "assign : ID ASSIGN expr SEMI ;\n" + "expr : INT | FLOAT | ID ;\n")
       g = Grammar.new
       g.import_token_vocabulary(pg)
-      g.set_file_name((Grammar::IGNORE_STRING_IN_GRAMMAR_FILE_NAME).to_s + "string")
+      g.set_file_name(RJava.cast_to_string(Grammar::IGNORE_STRING_IN_GRAMMAR_FILE_NAME) + "string")
       g.set_grammar_content("lexer grammar t;\n" + "WHILE : 'while';\n" + "LCURLY : '{';\n" + "RCURLY : '}';\n" + "ASSIGN : '=';\n" + "SEMI : ';';\n" + "ID : ('a'..'z')+ ;\n" + "INT : (DIGIT)+ ;\n" + "FLOAT : (DIGIT)+ '.' (DIGIT)* ;\n" + "fragment DIGIT : '0'..'9';\n" + "WS : (' ')+ ;\n")
       input = ANTLRStringStream.new("while x { i=1; y=3.42; z=y; }")
       lex_engine = Interpreter.new(g, input)
@@ -69,7 +69,7 @@ module Org::Antlr::Test
     def test_mismatched_token_error
       pg = Grammar.new("parser grammar p;\n" + "prog : WHILE ID LCURLY (assign)* RCURLY;\n" + "assign : ID ASSIGN expr SEMI ;\n" + "expr : INT | FLOAT | ID ;\n")
       g = Grammar.new
-      g.set_file_name((Grammar::IGNORE_STRING_IN_GRAMMAR_FILE_NAME).to_s + "string")
+      g.set_file_name(RJava.cast_to_string(Grammar::IGNORE_STRING_IN_GRAMMAR_FILE_NAME) + "string")
       g.import_token_vocabulary(pg)
       g.set_grammar_content("lexer grammar t;\n" + "WHILE : 'while';\n" + "LCURLY : '{';\n" + "RCURLY : '}';\n" + "ASSIGN : '=';\n" + "SEMI : ';';\n" + "ID : ('a'..'z')+ ;\n" + "INT : (DIGIT)+ ;\n" + "FLOAT : (DIGIT)+ '.' (DIGIT)* ;\n" + "fragment DIGIT : '0'..'9';\n" + "WS : (' ')+ ;\n")
       input = ANTLRStringStream.new("while x { i=1 y=3.42; z=y; }")

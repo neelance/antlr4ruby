@@ -504,7 +504,7 @@ module Org::Antlr::Test
         g.create_lookahead_dfas(false)
       end
       if (!(equeue.size).equal?(expecting_num_warnings))
-        System.err.println("Warnings issued: " + (equeue).to_s)
+        System.err.println("Warnings issued: " + RJava.cast_to_string(equeue))
       end
       assert_equals("unexpected number of expected problems", expecting_num_warnings, equeue.size)
       dfa = g.get_lookahead_dfa(decision)
@@ -527,7 +527,7 @@ module Org::Antlr::Test
         # first, find nondet message
         msg = get_non_determinism_message(equeue.attr_warnings)
         assert_not_null("no nondeterminism warning?", msg)
-        assert_true("expecting nondeterminism; found " + (msg.get_class.get_name).to_s, msg.is_a?(GrammarNonDeterminismMessage))
+        assert_true("expecting nondeterminism; found " + RJava.cast_to_string(msg.get_class.get_name), msg.is_a?(GrammarNonDeterminismMessage))
         nondet_msg = get_non_determinism_message(equeue.attr_warnings)
         labels = nondet_msg.attr_probe.get_sample_non_deterministic_input_sequence(nondet_msg.attr_problem_state)
         input = nondet_msg.attr_probe.get_input_sequence_display(labels)
@@ -536,7 +536,7 @@ module Org::Antlr::Test
       # check nondet alts
       if (!(expecting_non_det_alts).nil?)
         nondet_msg = get_non_determinism_message(equeue.attr_warnings)
-        assert_not_null("found no nondet alts; expecting: " + (str(expecting_non_det_alts)).to_s, nondet_msg)
+        assert_not_null("found no nondet alts; expecting: " + RJava.cast_to_string(str(expecting_non_det_alts)), nondet_msg)
         non_det_alts = nondet_msg.attr_probe.get_non_deterministic_alts_for_state(nondet_msg.attr_problem_state)
         # compare nonDetAlts with expectingNonDetAlts
         s = BitSet.new
@@ -552,7 +552,7 @@ module Org::Antlr::Test
       end
       if (!(expecting_insufficient_pred_alts).nil?)
         insuff_pred_msg = get_grammar_insufficient_predicates_message(equeue.attr_warnings)
-        assert_not_null("found no GrammarInsufficientPredicatesMessage alts; expecting: " + (str(expecting_non_det_alts)).to_s, insuff_pred_msg)
+        assert_not_null("found no GrammarInsufficientPredicatesMessage alts; expecting: " + RJava.cast_to_string(str(expecting_non_det_alts)), insuff_pred_msg)
         locations = insuff_pred_msg.attr_alt_to_locations
         actual_alts = locations.key_set
         s = BitSet.new

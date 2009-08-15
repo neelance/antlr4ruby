@@ -160,7 +160,7 @@ module Org::Antlr::Runtime::Misc
       
       typesig { [String] }
       def get_absolute_file_name(filename)
-        return (System.get_property("user.home") + JavaFile.attr_separator).to_s + ANTLRWORKS_DIR + (JavaFile.attr_separator).to_s + filename
+        return RJava.cast_to_string(System.get_property("user.home") + JavaFile.attr_separator) + ANTLRWORKS_DIR + RJava.cast_to_string(JavaFile.attr_separator) + filename
       end
     }
     

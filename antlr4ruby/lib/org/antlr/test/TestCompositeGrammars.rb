@@ -50,7 +50,7 @@ module Org::Antlr::Test
       ErrorManager.set_error_listener(equeue)
       grammar = "parser grammar S;\n" + "a : B . C ;\n" # not qualified ID
       g = Grammar.new(grammar)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -162,7 +162,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -172,7 +172,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -188,13 +188,13 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
-      assert_equals("unexpected errors: " + (equeue).to_s, 1, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 1, equeue.attr_errors.size)
       expected_error = "error(161): /tmp/antlr3/M.g:2:8: combined grammar M cannot import combined grammar S"
-      assert_equals("unexpected errors: " + (equeue).to_s, expected_error, equeue.attr_errors.get(0).to_s.replace_first("\\-[0-9]+", "3"))
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), expected_error, equeue.attr_errors.get(0).to_s.replace_first("\\-[0-9]+", "3"))
     end
     
     typesig { [] }
@@ -211,7 +211,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -226,7 +226,7 @@ module Org::Antlr::Test
       expected_msg_id = ErrorManager::MSG_TOKEN_ALIAS_CONFLICT
       expected_message = GrammarSemanticsMessage.new(expected_msg_id, g, nil, expected_arg, expected_arg2)
       check_grammar_semantics_error(equeue, expected_message)
-      assert_equals("unexpected errors: " + (equeue).to_s, 1, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 1, equeue.attr_errors.size)
       expected_error = "error(158): T.g:2:10: cannot alias X='a'; string already assigned to A"
       assert_equals(expected_error, equeue.attr_errors.get(0).to_s)
     end
@@ -245,7 +245,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -260,7 +260,7 @@ module Org::Antlr::Test
       expected_msg_id = ErrorManager::MSG_TOKEN_ALIAS_REASSIGNMENT
       expected_message = GrammarSemanticsMessage.new(expected_msg_id, g, nil, expected_arg, expected_arg2)
       check_grammar_semantics_error(equeue, expected_message)
-      assert_equals("unexpected errors: " + (equeue).to_s, 1, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 1, equeue.attr_errors.size)
       expected_error = "error(159): T.g:2:10: cannot alias A='x'; token name already assigned to 'a'"
       assert_equals(expected_error, equeue.attr_errors.get(0).to_s)
     end
@@ -276,7 +276,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -284,8 +284,8 @@ module Org::Antlr::Test
       expected_msg_id = ErrorManager::MSG_TOKEN_VOCAB_IN_DELEGATE
       expected_message = GrammarSemanticsMessage.new(expected_msg_id, g, nil, expected_arg)
       check_grammar_semantics_warning(equeue, expected_message)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
-      assert_equals("unexpected errors: " + (equeue).to_s, 1, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 1, equeue.attr_warnings.size)
       expected_error = "warning(160): S.g:2:10: tokenVocab option ignored in imported grammar S"
       assert_equals(expected_error, equeue.attr_warnings.get(0).to_s)
     end
@@ -303,7 +303,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -313,7 +313,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -327,12 +327,12 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
       # whole bunch of errors from bad S.g file
-      assert_equals("unexpected errors: " + (equeue).to_s, 5, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 5, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -346,12 +346,12 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
       # whole bunch of errors from bad S.g file
-      assert_equals("unexpected errors: " + (equeue).to_s, 3, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 3, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -409,7 +409,7 @@ module Org::Antlr::Test
       ErrorManager.set_error_listener(equeue)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       composite.assign_token_types
@@ -423,7 +423,7 @@ module Org::Antlr::Test
       result = serializer.serialize(dfa.attr_start_state)
       assert_equals(expecting_dfa, result)
       # must not be a "unreachable alt: Tokens" error
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }
@@ -439,11 +439,11 @@ module Org::Antlr::Test
       ErrorManager.set_error_listener(equeue)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
-      assert_equals("unexpected errors: " + (equeue).to_s, 1, equeue.attr_errors.size)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 1, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_warnings.size)
       expected_error = "error(161): /tmp/antlr3/M.g:2:8: tree grammar M cannot import lexer grammar S"
       assert_equals(expected_error, equeue.attr_errors.get(0).to_s.replace_first("\\-[0-9]+", "3"))
     end
@@ -471,8 +471,8 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "S.g", slave)
       master = "grammar M;\n" + "import S;\n" + "a : A {System.out.println(\"M.a\");} ;\n" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "a", "abc", @debug)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
-      assert_equals("unexpected warnings: " + (equeue).to_s, 0, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
+      assert_equals("unexpected warnings: " + RJava.cast_to_string(equeue), 0, equeue.attr_warnings.size)
       assert_equals("S.A\nM.a\n", found)
     end
     
@@ -487,8 +487,8 @@ module Org::Antlr::Test
       # A is defined in S but M should still see it and not give warning.
       # only problem is ABC.
       raw_generate_and_build_recognizer("M.g", master, "MParser", "MLexer", @debug)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
-      assert_equals("unexpected warnings: " + (equeue).to_s, 1, equeue.attr_warnings.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
+      assert_equals("unexpected warnings: " + RJava.cast_to_string(equeue), 1, equeue.attr_warnings.size)
       expected_error = "warning(105): /tmp/antlr3/M.g:3:5: no lexer rule corresponding to token: ABC"
       assert_equals(expected_error, equeue.attr_warnings.get(0).to_s.replace_first("\\-[0-9]+", "3"))
     end
@@ -509,7 +509,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -520,7 +520,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
       ok = raw_generate_and_build_recognizer("M.g", master, "MParser", nil, false)
       expecting = true # should be ok
       assert_equals(expecting, ok)
@@ -549,7 +549,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -560,7 +560,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
       ok = raw_generate_and_build_recognizer("M.g", master, "MParser", nil, false)
       expecting = true # should be ok
       assert_equals(expecting, ok)
@@ -581,7 +581,7 @@ module Org::Antlr::Test
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
       composite = CompositeGrammar.new
-      g = Grammar.new(antlr, (self.attr_tmpdir).to_s + "/M.g", composite)
+      g = Grammar.new(antlr, RJava.cast_to_string(self.attr_tmpdir) + "/M.g", composite)
       composite.set_delegation_root(g)
       g.parse_and_build_ast
       g.attr_composite.assign_token_types
@@ -592,7 +592,7 @@ module Org::Antlr::Test
       assert_equals(expected_token_idto_type_map, real_elements(g.attr_composite.attr_token_idto_type_map).to_s)
       assert_equals(expected_string_literal_to_type_map, g.attr_composite.attr_string_literal_to_type_map.to_s)
       assert_equals(expected_type_to_token_list, real_elements(g.attr_composite.attr_type_to_token_list).to_s)
-      assert_equals("unexpected errors: " + (equeue).to_s, 0, equeue.attr_errors.size)
+      assert_equals("unexpected errors: " + RJava.cast_to_string(equeue), 0, equeue.attr_errors.size)
     end
     
     typesig { [] }

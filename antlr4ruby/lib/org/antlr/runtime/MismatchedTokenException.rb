@@ -61,7 +61,7 @@ module Org::Antlr::Runtime
     
     typesig { [] }
     def to_s
-      return "MismatchedTokenException(" + (get_unexpected_type).to_s + "!=" + (@expecting).to_s + ")"
+      return "MismatchedTokenException(" + RJava.cast_to_string(get_unexpected_type) + "!=" + RJava.cast_to_string(@expecting) + ")"
     end
     
     private

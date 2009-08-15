@@ -66,7 +66,7 @@ module Org::Antlr::Tool
         if (!(r.attr_label_name_space).nil?)
           it = r.attr_label_name_space.values.iterator
           while (it.has_next)
-            pair = it.next
+            pair = it.next_
             check_for_label_conflict(r, pair.attr_label)
           end
         end
@@ -87,7 +87,7 @@ module Org::Antlr::Tool
       # check all global scopes against tokens
       it = @grammar.get_global_scopes.values.iterator
       while (it.has_next)
-        scope = it.next
+        scope = it.next_
         check_for_global_scope_token_conflict(scope)
       end
       # check for missing rule, tokens
@@ -101,7 +101,7 @@ module Org::Antlr::Tool
         if (!(conflicting_keys).nil?)
           it = conflicting_keys.iterator
           while it.has_next
-            key = it.next
+            key = it.next_
             ErrorManager.grammar_error(ErrorManager::MSG_ARG_RETVAL_CONFLICT, @grammar, r.attr_tree.get_token, key, r.attr_name)
           end
         end
@@ -140,7 +140,7 @@ module Org::Antlr::Tool
       # for each rule ref, ask if there is a rule definition
       iter = @grammar.attr_rule_refs.iterator
       while iter.has_next
-        ref_ast = iter.next
+        ref_ast = iter.next_
         tok = ref_ast.attr_token
         rule_name = tok.get_text
         local_rule = @grammar.get_locally_defined_rule(rule_name)
@@ -159,7 +159,7 @@ module Org::Antlr::Tool
         # associated lexer rule.
         iter_ = @grammar.attr_token_idrefs.iterator
         while iter_.has_next
-          tok = iter_.next
+          tok = iter_.next_
           token_id = tok.get_text
           if (!@grammar.attr_composite.attr_lexer_rules.contains(token_id) && !(@grammar.get_token_type(token_id)).equal?(Label::EOF))
             ErrorManager.grammar_warning(ErrorManager::MSG_NO_TOKEN_DEFINITION, @grammar, tok, token_id)
@@ -169,7 +169,7 @@ module Org::Antlr::Tool
       # check scopes and scoped rule refs
       it = @grammar.attr_scoped_rule_refs.iterator
       while it.has_next
-        scope_ast = it.next # ^(DOT ID atom)
+        scope_ast = it.next_ # ^(DOT ID atom)
         scope_g = @grammar.attr_composite.get_grammar(scope_ast.get_text)
         ref_ast = scope_ast.get_child(1)
         rule_name = ref_ast.get_text
@@ -253,7 +253,7 @@ module Org::Antlr::Tool
       if (!(prev_label_pair).nil?)
         # label already defined; if same type, no problem
         if (!(prev_label_pair.attr_type).equal?(type))
-          type_mismatch_expr = (Grammar::LabelTypeToString[type]).to_s + "!=" + (Grammar::LabelTypeToString[prev_label_pair.attr_type]).to_s
+          type_mismatch_expr = RJava.cast_to_string(Grammar::LabelTypeToString[type]) + "!=" + RJava.cast_to_string(Grammar::LabelTypeToString[prev_label_pair.attr_type])
           ErrorManager.grammar_error(ErrorManager::MSG_LABEL_TYPE_CONFLICT, @grammar, label, label.get_text, type_mismatch_expr)
           return true
         end

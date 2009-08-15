@@ -74,7 +74,7 @@ module Org::Antlr::Runtime::Debug
     
     typesig { [::Java::Int, ::Java::Int] }
     def location(line, pos)
-      System.out.println("location " + (line).to_s + ":" + (pos).to_s)
+      System.out.println("location " + RJava.cast_to_string(line) + ":" + RJava.cast_to_string(pos))
     end
     
     typesig { [Object] }
@@ -83,7 +83,7 @@ module Org::Antlr::Runtime::Debug
       id = @adaptor.get_unique_id(t)
       text = @adaptor.get_text(t)
       type = @adaptor.get_type(t)
-      System.out.println("consumeNode " + (id).to_s + " " + text + " " + (type).to_s)
+      System.out.println("consumeNode " + RJava.cast_to_string(id) + " " + text + " " + RJava.cast_to_string(type))
     end
     
     typesig { [::Java::Int, Object] }
@@ -91,13 +91,13 @@ module Org::Antlr::Runtime::Debug
       id = @adaptor.get_unique_id(t)
       text = @adaptor.get_text(t)
       type = @adaptor.get_type(t)
-      System.out.println("LT " + (i).to_s + " " + (id).to_s + " " + text + " " + (type).to_s)
+      System.out.println("LT " + RJava.cast_to_string(i) + " " + RJava.cast_to_string(id) + " " + text + " " + RJava.cast_to_string(type))
     end
     
     typesig { [Object] }
     # AST stuff
     def nil_node(t)
-      System.out.println("nilNode " + (@adaptor.get_unique_id(t)).to_s)
+      System.out.println("nilNode " + RJava.cast_to_string(@adaptor.get_unique_id(t)))
     end
     
     typesig { [Object] }
@@ -105,7 +105,7 @@ module Org::Antlr::Runtime::Debug
       id = @adaptor.get_unique_id(t)
       text = @adaptor.get_text(t)
       type = @adaptor.get_type(t)
-      System.out.println("create " + (id).to_s + ": " + text + ", " + (type).to_s)
+      System.out.println("create " + RJava.cast_to_string(id) + ": " + text + ", " + RJava.cast_to_string(type))
     end
     
     typesig { [Object, Token] }
@@ -113,22 +113,22 @@ module Org::Antlr::Runtime::Debug
       id = @adaptor.get_unique_id(node)
       text = @adaptor.get_text(node)
       token_index = token.get_token_index
-      System.out.println("create " + (id).to_s + ": " + (token_index).to_s)
+      System.out.println("create " + RJava.cast_to_string(id) + ": " + RJava.cast_to_string(token_index))
     end
     
     typesig { [Object, Object] }
     def become_root(new_root, old_root)
-      System.out.println("becomeRoot " + (@adaptor.get_unique_id(new_root)).to_s + ", " + (@adaptor.get_unique_id(old_root)).to_s)
+      System.out.println("becomeRoot " + RJava.cast_to_string(@adaptor.get_unique_id(new_root)) + ", " + RJava.cast_to_string(@adaptor.get_unique_id(old_root)))
     end
     
     typesig { [Object, Object] }
     def add_child(root, child)
-      System.out.println("addChild " + (@adaptor.get_unique_id(root)).to_s + ", " + (@adaptor.get_unique_id(child)).to_s)
+      System.out.println("addChild " + RJava.cast_to_string(@adaptor.get_unique_id(root)) + ", " + RJava.cast_to_string(@adaptor.get_unique_id(child)))
     end
     
     typesig { [Object, ::Java::Int, ::Java::Int] }
     def set_token_boundaries(t, token_start_index, token_stop_index)
-      System.out.println("setTokenBoundaries " + (@adaptor.get_unique_id(t)).to_s + ", " + (token_start_index).to_s + ", " + (token_stop_index).to_s)
+      System.out.println("setTokenBoundaries " + RJava.cast_to_string(@adaptor.get_unique_id(t)) + ", " + RJava.cast_to_string(token_start_index) + ", " + RJava.cast_to_string(token_stop_index))
     end
     
     private

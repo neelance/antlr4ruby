@@ -66,10 +66,10 @@ module Org::Antlr::Runtime
     typesig { [] }
     def to_s
       if (!(@inserted).nil? && !(self.attr_token).nil?)
-        return "MissingTokenException(inserted " + (@inserted).to_s + " at " + (self.attr_token.get_text).to_s + ")"
+        return "MissingTokenException(inserted " + RJava.cast_to_string(@inserted) + " at " + RJava.cast_to_string(self.attr_token.get_text) + ")"
       end
       if (!(self.attr_token).nil?)
-        return "MissingTokenException(at " + (self.attr_token.get_text).to_s + ")"
+        return "MissingTokenException(at " + RJava.cast_to_string(self.attr_token.get_text) + ")"
       end
       return "MissingTokenException"
     end

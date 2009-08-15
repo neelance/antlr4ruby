@@ -126,7 +126,7 @@ module Org::Antlr::Analysis
       while (@work.size > 0 && !@dfa.attr_nfa.attr_grammar._nfato_dfaconversion_externally_aborted)
         d = @work.get(0)
         if (@dfa.attr_nfa.attr_grammar.attr_composite.attr_watch_nfaconversion)
-          System.out.println("convert DFA state " + (d.attr_state_number).to_s + " (" + (d.attr_nfa_configurations.size).to_s + " nfa states)")
+          System.out.println("convert DFA state " + RJava.cast_to_string(d.attr_state_number) + " (" + RJava.cast_to_string(d.attr_nfa_configurations.size) + " nfa states)")
         end
         k = @dfa.get_user_max_lookahead
         if (k > 0 && (k).equal?(d.get_lookahead_depth))
@@ -288,7 +288,7 @@ module Org::Antlr::Analysis
         label = labels.get(i)
         t = reach(d, label)
         if (self.attr_debug)
-          System.out.println("DFA state after reach " + (label).to_s + " " + (d).to_s + "-" + (label.to_s(@dfa.attr_nfa.attr_grammar)).to_s + "->" + (t).to_s)
+          System.out.println("DFA state after reach " + RJava.cast_to_string(label) + " " + RJava.cast_to_string(d) + "-" + RJava.cast_to_string(label.to_s(@dfa.attr_nfa.attr_grammar)) + "->" + RJava.cast_to_string(t))
         end
         if ((t).nil?)
           # nothing was reached by label due to conflict resolution
@@ -457,7 +457,7 @@ module Org::Antlr::Analysis
     # from the NFA states in d via purely epsilon transitions.
     def closure(d)
       if (self.attr_debug)
-        System.out.println("closure(" + (d).to_s + ")")
+        System.out.println("closure(" + RJava.cast_to_string(d) + ")")
       end
       configs = ArrayList.new
       # Because we are adding to the configurations in closure
@@ -588,7 +588,7 @@ module Org::Antlr::Analysis
     # This case also catches infinite left recursion.
     def closure(p, alt, context, semantic_context, d, collect_predicates)
       if (self.attr_debug)
-        System.out.println("closure at " + (p.attr_enclosing_rule.attr_name).to_s + " state " + (p.attr_state_number).to_s + "|" + (alt).to_s + " filling DFA state " + (d.attr_state_number).to_s + " with context " + (context).to_s)
+        System.out.println("closure at " + RJava.cast_to_string(p.attr_enclosing_rule.attr_name) + " state " + RJava.cast_to_string(p.attr_state_number) + "|" + RJava.cast_to_string(alt) + " filling DFA state " + RJava.cast_to_string(d.attr_state_number) + " with context " + RJava.cast_to_string(context))
       end
       if (DFA::MAX_TIME_PER_DFA_CREATION > 0 && System.current_time_millis - d.attr_dfa.attr_conversion_start_time >= DFA::MAX_TIME_PER_DFA_CREATION)
         # bail way out; we've blown up somehow
@@ -598,8 +598,8 @@ module Org::Antlr::Analysis
       # Avoid infinite recursion
       if (closure_is_busy(d, proposed_nfaconfiguration))
         if (self.attr_debug)
-          System.out.println("avoid visiting exact closure computation NFA config: " + (proposed_nfaconfiguration).to_s + " in " + (p.attr_enclosing_rule.attr_name).to_s)
-          System.out.println("state is " + (d.attr_dfa.attr_decision_number).to_s + "." + (d.attr_state_number).to_s)
+          System.out.println("avoid visiting exact closure computation NFA config: " + RJava.cast_to_string(proposed_nfaconfiguration) + " in " + RJava.cast_to_string(p.attr_enclosing_rule.attr_name))
+          System.out.println("state is " + RJava.cast_to_string(d.attr_dfa.attr_decision_number) + "." + RJava.cast_to_string(d.attr_state_number))
         end
         return
       end
@@ -634,7 +634,7 @@ module Org::Antlr::Analysis
           d.attr_aborted_due_to_recursion_overflow = true
           d.attr_dfa.attr_probe.report_recursion_overflow(d, proposed_nfaconfiguration)
           if (self.attr_debug)
-            System.out.println("analysis overflow in closure(" + (d.attr_state_number).to_s + ")")
+            System.out.println("analysis overflow in closure(" + RJava.cast_to_string(d.attr_state_number) + ")")
           end
           return
         end
@@ -703,7 +703,7 @@ module Org::Antlr::Analysis
                 # altLeftEdge.transition(0).target.stateNumber);
                 if (!label_context.is_syntactic_predicate || (p).equal?(alt_left_edge.attr_transition[0].attr_target))
                   # System.out.println("&"+labelContext+" enclosingRule="+p.enclosingRule);
-                  new_semantic_context = SemanticContext.and(semantic_context, label_context)
+                  new_semantic_context = SemanticContext.and_(semantic_context, label_context)
                 end
               end
               closure(transition0.attr_target, alt, context, new_semantic_context, d, collect_predicates)
@@ -1099,12 +1099,12 @@ module Org::Antlr::Analysis
     # in the EOT state (one for ID and one each for the identical rules).
     def resolve_non_determinisms(d)
       if (self.attr_debug)
-        System.out.println("resolveNonDeterminisms " + (d.to_s).to_s)
+        System.out.println("resolveNonDeterminisms " + RJava.cast_to_string(d.to_s))
       end
       conflicting_lexer_rules = false
       nondeterministic_alts = d.get_non_deterministic_alts
       if (self.attr_debug && !(nondeterministic_alts).nil?)
-        System.out.println("nondet alts=" + (nondeterministic_alts).to_s)
+        System.out.println("nondet alts=" + RJava.cast_to_string(nondeterministic_alts))
       end
       # CHECK FOR AMBIGUOUS EOT (if |allAlts|>1 and EOT state, resolve)
       # grab any config to see if EOT state; any other configs must
@@ -1146,7 +1146,7 @@ module Org::Antlr::Analysis
       resolved = try_to_resolve_with_semantic_predicates(d, nondeterministic_alts)
       if (resolved)
         if (self.attr_debug)
-          System.out.println("resolved DFA state " + (d.attr_state_number).to_s + " with pred")
+          System.out.println("resolved DFA state " + RJava.cast_to_string(d.attr_state_number) + " with pred")
         end
         d.attr_resolved_with_predicates = true
         @dfa.attr_probe.report_nondeterminism_resolved_with_semantic_predicate(d)
@@ -1313,7 +1313,7 @@ module Org::Antlr::Analysis
           if (union_of_predicates_from_all_alts.is_syntactic_predicate)
             naked_alt_pred = SemanticContext::TruePredicate.new
           else
-            naked_alt_pred = SemanticContext.not(union_of_predicates_from_all_alts)
+            naked_alt_pred = SemanticContext.not_(union_of_predicates_from_all_alts)
           end
         end
         # System.out.println("covering naked alt="+nakedAlt+" with "+nakedAltPred);
@@ -1392,7 +1392,7 @@ module Org::Antlr::Analysis
       alt_to_set_of_contexts_map = HashMap.new
       it = nondeterministic_alts.iterator
       while it.has_next
-        alt_i = it.next
+        alt_i = it.next_
         alt_to_set_of_contexts_map.put(alt_i, HashSet.new)
       end
       # List<Label> sampleInputLabels = d.dfa.probe.getSampleNonDeterministicInputSequence(d);
@@ -1452,7 +1452,7 @@ module Org::Antlr::Analysis
       incompletely_covered_alts = ArrayList.new
       it_ = nondeterministic_alts.iterator
       while it_.has_next
-        alt_i = it_.next
+        alt_i = it_.next_
         contexts_for_this_alt = alt_to_set_of_contexts_map.get(alt_i)
         if (nondet_alts_with_uncovered_configuration.contains(alt_i))
           # >= 1 config has no ctx
@@ -1465,8 +1465,8 @@ module Org::Antlr::Analysis
         combined_context = nil
         itr_set = contexts_for_this_alt.iterator
         while itr_set.has_next
-          ctx = itr_set.next
-          combined_context = SemanticContext.or(combined_context, ctx)
+          ctx = itr_set.next_
+          combined_context = SemanticContext.or_(combined_context, ctx)
         end
         alt_to_predicate_context_map.put(alt_i, combined_context)
       end
@@ -1524,11 +1524,11 @@ module Org::Antlr::Analysis
         union_of_predicates_from_all_alts = nil
         iter = alt_to_pred_map.values.iterator
         while (iter.has_next)
-          sem_ctx = iter.next
+          sem_ctx = iter.next_
           if ((union_of_predicates_from_all_alts).nil?)
             union_of_predicates_from_all_alts = sem_ctx
           else
-            union_of_predicates_from_all_alts = SemanticContext.or(union_of_predicates_from_all_alts, sem_ctx)
+            union_of_predicates_from_all_alts = SemanticContext.or_(union_of_predicates_from_all_alts, sem_ctx)
           end
         end
         return union_of_predicates_from_all_alts
@@ -1637,7 +1637,7 @@ module Org::Antlr::Analysis
         it = s.iterator
         while it.has_next
           i += 1
-          i_ = it.next
+          i_ = it.next_
           if ((i).equal?(1))
             # init m with first value
             m = i_.int_value

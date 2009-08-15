@@ -64,7 +64,7 @@ module Org::Antlr::Codegen
       # to it as we cannot assign into strings in Java.
       # /
       file_name = generator.get_recognizer_file_name(grammar.attr_name, grammar.attr_type)
-      file_name = (file_name.substring(0, file_name.length - 2)).to_s + ext_name
+      file_name = RJava.cast_to_string(file_name.substring(0, file_name.length - 2)) + ext_name
       System.out.println("Generating " + file_name)
       generator.write(header_file_st, file_name)
     end
@@ -156,11 +156,11 @@ module Org::Antlr::Codegen
     typesig { [CodeGenerator, String] }
     def get_target_char_literal_from_antlrchar_literal(generator, literal)
       if (literal.starts_with("'\\u"))
-        literal = "0x" + (literal.substring(3, 7)).to_s
+        literal = "0x" + RJava.cast_to_string(literal.substring(3, 7))
       else
         c = literal.char_at(1)
         if (c < 32 || c > 127)
-          literal = "0x" + (JavaInteger.to_hex_string(c)).to_s
+          literal = "0x" + RJava.cast_to_string(JavaInteger.to_hex_string(c))
         end
       end
       return literal
@@ -215,13 +215,13 @@ module Org::Antlr::Codegen
         i += 1
       end
       buf.append(" ANTLR3_STRING_TERMINATOR}")
-      bytes = (buf.to_s).to_s
+      bytes = RJava.cast_to_string(buf.to_s)
       index = @strings.index_of(bytes)
       if ((index).equal?(-1))
         @strings.add(bytes)
         index = @strings.index_of(bytes)
       end
-      strref = "lit_" + (String.value_of(index + 1)).to_s
+      strref = "lit_" + RJava.cast_to_string(String.value_of(index + 1))
       return strref
     end
     

@@ -87,7 +87,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def to_s
-      return "infos: " + (@infos).to_s + "errors: " + (@errors).to_s + "warnings: " + (@warnings).to_s
+      return "infos: " + RJava.cast_to_string(@infos) + "errors: " + RJava.cast_to_string(@errors) + "warnings: " + RJava.cast_to_string(@warnings)
     end
     
     typesig { [] }

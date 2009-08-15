@@ -69,7 +69,7 @@ module Org::Antlr::Runtime::Debug
         System.out.print(" ")
         i += 1
       end
-      System.out.println("> " + rule_name + " lookahead(1)=" + (get_input_symbol(1)).to_s)
+      System.out.println("> " + rule_name + " lookahead(1)=" + RJava.cast_to_string(get_input_symbol(1)))
       @level += 1
     end
     
@@ -81,7 +81,7 @@ module Org::Antlr::Runtime::Debug
         System.out.print(" ")
         i += 1
       end
-      System.out.println("< " + rule_name + " lookahead(1)=" + (get_input_symbol(1)).to_s)
+      System.out.println("< " + rule_name + " lookahead(1)=" + RJava.cast_to_string(get_input_symbol(1)))
     end
     
     typesig { [::Java::Int] }

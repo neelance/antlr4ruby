@@ -140,7 +140,7 @@ module Org::Antlr::Misc
     }
     
     typesig { [Object] }
-    def equals(o)
+    def ==(o)
       if ((o).nil?)
         return false
       end
@@ -228,7 +228,7 @@ module Org::Antlr::Misc
     
     typesig { [] }
     def to_s
-      return (@a).to_s + ".." + (@b).to_s
+      return RJava.cast_to_string(@a) + ".." + RJava.cast_to_string(@b)
     end
     
     private

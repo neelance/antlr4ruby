@@ -243,9 +243,9 @@ module Org::Antlr
               @force_all_files_to_output_dir = true
             end
             i += 1
-            @output_directory = (args[i]).to_s
+            @output_directory = RJava.cast_to_string(args[i])
             if (@output_directory.ends_with("/") || @output_directory.ends_with("\\"))
-              @output_directory = (@output_directory.substring(0, @output_directory.length - 1)).to_s
+              @output_directory = RJava.cast_to_string(@output_directory.substring(0, @output_directory.length - 1))
             end
             out_dir = JavaFile.new(@output_directory)
             if (out_dir.exists && !out_dir.is_directory)
@@ -259,9 +259,9 @@ module Org::Antlr
               System.err.println("missing library directory with -lib option; ignoring")
             else
               i += 1
-              @lib_directory = (args[i]).to_s
+              @lib_directory = RJava.cast_to_string(args[i])
               if (@lib_directory.ends_with("/") || @lib_directory.ends_with("\\"))
-                @lib_directory = (@lib_directory.substring(0, @lib_directory.length - 1)).to_s
+                @lib_directory = RJava.cast_to_string(@lib_directory.substring(0, @lib_directory.length - 1))
               end
               out_dir = JavaFile.new(@lib_directory)
               if (!out_dir.exists)
@@ -461,7 +461,7 @@ module Org::Antlr
           lexer_grammar_str = grammar.get_lexer_grammar
           # System.out.println("lexer grammar:\n"+lexerGrammarStr);
           if ((grammar.attr_type).equal?(Grammar::COMBINED) && !(lexer_grammar_str).nil?)
-            lexer_grammar_file_name = (grammar.get_implicitly_generated_lexer_file_name).to_s
+            lexer_grammar_file_name = RJava.cast_to_string(grammar.get_implicitly_generated_lexer_file_name)
             begin
               w = get_output_file(grammar, lexer_grammar_file_name)
               w.write(lexer_grammar_str)
@@ -502,7 +502,7 @@ module Org::Antlr
           else
             ErrorManager.error(ErrorManager::MSG_CANNOT_OPEN_FILE, grammar_file_name)
           end
-        rescue Exception => e
+        rescue JavaException => e
           ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, grammar_file_name, e)
         end
         i += 1
@@ -577,9 +577,9 @@ module Org::Antlr
         end
         dot_generator = DOTGenerator.new(g)
         dot = dot_generator.get_dot(dfa.attr_start_state)
-        dot_file_name = (g.attr_name).to_s + "." + "dec-" + (d).to_s
+        dot_file_name = RJava.cast_to_string(g.attr_name) + "." + "dec-" + RJava.cast_to_string(d)
         if (g.attr_implicit_lexer)
-          dot_file_name = (g.attr_name + Grammar.attr_grammar_type_to_file_name_suffix[g.attr_type]).to_s + "." + "dec-" + (d).to_s
+          dot_file_name = RJava.cast_to_string(g.attr_name + Grammar.attr_grammar_type_to_file_name_suffix[g.attr_type]) + "." + "dec-" + RJava.cast_to_string(d)
         end
         begin
           write_dotfile(g, dot_file_name, dot)
@@ -597,7 +597,7 @@ module Org::Antlr
       rules.add_all(g.get_rules)
       itr = rules.iterator
       while itr.has_next
-        r = itr.next
+        r = itr.next_
         begin
           dot = dot_generator.get_dot(r.attr_start_state)
           if (!(dot).nil?)
@@ -611,7 +611,7 @@ module Org::Antlr
     
     typesig { [Grammar, Rule, String] }
     def write_dotfile(g, r, dot)
-      write_dotfile(g, (r.attr_grammar.attr_name).to_s + "." + (r.attr_name).to_s, dot)
+      write_dotfile(g, RJava.cast_to_string(r.attr_grammar.attr_name) + "." + RJava.cast_to_string(r.attr_name), dot)
     end
     
     typesig { [Grammar, String, String] }
@@ -731,7 +731,7 @@ module Org::Antlr
     typesig { [String] }
     # Name a file in the -lib dir.  Imported grammars and .tokens files
     def get_library_file(file_name)
-      return @lib_directory + (JavaFile.attr_separator).to_s + file_name
+      return @lib_directory + RJava.cast_to_string(JavaFile.attr_separator) + file_name
     end
     
     typesig { [] }
@@ -754,11 +754,11 @@ module Org::Antlr
     # in -o output path.  antlr -o foo T.g U.g where U needs T.tokens
     # won't work unless we look in foo too.
     def get_imported_vocab_file(vocab_name)
-      f = JavaFile.new(get_library_directory, (JavaFile.attr_separator).to_s + vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s)
+      f = JavaFile.new(get_library_directory, RJava.cast_to_string(JavaFile.attr_separator) + vocab_name + RJava.cast_to_string(CodeGenerator::VOCAB_FILE_EXTENSION))
       if (f.exists)
         return f
       end
-      return JavaFile.new(@output_directory + (JavaFile.attr_separator).to_s + vocab_name + (CodeGenerator::VOCAB_FILE_EXTENSION).to_s)
+      return JavaFile.new(@output_directory + RJava.cast_to_string(JavaFile.attr_separator) + vocab_name + RJava.cast_to_string(CodeGenerator::VOCAB_FILE_EXTENSION))
     end
     
     typesig { [] }
@@ -779,11 +779,11 @@ module Org::Antlr
         min = calendar.get(Calendar::MINUTE)
         sec = calendar.get(Calendar::SECOND)
         sy = String.value_of(y)
-        sm = m < 10 ? "0" + (m).to_s : String.value_of(m)
-        sd = d < 10 ? "0" + (d).to_s : String.value_of(d)
-        sh = h < 10 ? "0" + (h).to_s : String.value_of(h)
-        smin = min < 10 ? "0" + (min).to_s : String.value_of(min)
-        ssec = sec < 10 ? "0" + (sec).to_s : String.value_of(sec)
+        sm = m < 10 ? "0" + RJava.cast_to_string(m) : String.value_of(m)
+        sd = d < 10 ? "0" + RJava.cast_to_string(d) : String.value_of(d)
+        sh = h < 10 ? "0" + RJava.cast_to_string(h) : String.value_of(h)
+        smin = min < 10 ? "0" + RJava.cast_to_string(min) : String.value_of(min)
+        ssec = sec < 10 ? "0" + RJava.cast_to_string(sec) : String.value_of(sec)
         return StringBuffer.new.append(sy).append("-").append(sm).append("-").append(sd).append(" ").append(sh).append(":").append(smin).append(":").append(ssec).to_s
       end
     }

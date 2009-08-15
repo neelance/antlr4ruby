@@ -130,7 +130,7 @@ module Org::Antlr::Misc
       # Use iterators as we modify list in place
       iter = @intervals.list_iterator
       while iter.has_next
-        r = iter.next
+        r = iter.next_
         if ((addition == r))
           return
         end
@@ -141,12 +141,12 @@ module Org::Antlr::Misc
           # make sure we didn't just create an interval that
           # should be merged with next interval in list
           if (iter.has_next)
-            next_ = iter.next
-            if (bigger.adjacent(next_) || !bigger.disjoint(next_))
+            next__ = iter.next_
+            if (bigger.adjacent(next__) || !bigger.disjoint(next__))
               # if we bump up against or overlap next, merge
               iter.remove # remove this one
               iter.previous # move backwards to what we just set
-              iter.set(bigger.union(next_)) # set to 3 merged ones
+              iter.set(bigger.union(next__)) # set to 3 merged ones
             end
           end
           return
@@ -211,7 +211,7 @@ module Org::Antlr::Misc
         return
       end
       if (!(set_.is_a?(IntervalSet)))
-        raise IllegalArgumentException.new("can't add non IntSet (" + (set_.get_class.get_name).to_s + ") to IntervalSet")
+        raise IllegalArgumentException.new("can't add non IntSet (" + RJava.cast_to_string(set_.get_class.get_name) + ") to IntervalSet")
       end
       other = set_
       # walk set and add each interval
@@ -240,7 +240,7 @@ module Org::Antlr::Misc
         return nil # nothing in common with null set
       end
       if (!(vocabulary.is_a?(IntervalSet)))
-        raise IllegalArgumentException.new("can't complement with non IntervalSet (" + (vocabulary.get_class.get_name).to_s + ")")
+        raise IllegalArgumentException.new("can't complement with non IntervalSet (" + RJava.cast_to_string(vocabulary.get_class.get_name) + ")")
       end
       vocabulary_is = (vocabulary)
       max_element = vocabulary_is.get_max_element
@@ -253,7 +253,7 @@ module Org::Antlr::Misc
       # add a range from 0 to first.a constrained to vocab
       if (first.attr_a > 0)
         s = IntervalSet.of(0, first.attr_a - 1)
-        a = s.and(vocabulary_is)
+        a = s.and_(vocabulary_is)
         compl.add_all(a)
       end
       i = 1
@@ -262,7 +262,7 @@ module Org::Antlr::Misc
         previous_ = @intervals.get(i - 1)
         current = @intervals.get(i)
         s = IntervalSet.of(previous_.attr_b + 1, current.attr_a - 1)
-        a = s.and(vocabulary_is)
+        a = s.and_(vocabulary_is)
         compl.add_all(a)
         i += 1
       end
@@ -270,7 +270,7 @@ module Org::Antlr::Misc
       # add a range from last.b to maxElement constrained to vocab
       if (last.attr_b < max_element)
         s = IntervalSet.of(last.attr_b + 1, max_element)
-        a = s.and(vocabulary_is)
+        a = s.and_(vocabulary_is)
         compl.add_all(a)
       end
       return compl
@@ -288,7 +288,7 @@ module Org::Antlr::Misc
       # will be empty.  The only problem would be when this' set max value
       # goes beyond MAX_CHAR_VALUE, but hopefully the constant MAX_CHAR_VALUE
       # will prevent this.
-      return self.and((other).complement(COMPLETE_SET))
+      return self.and_((other).complement(COMPLETE_SET))
     end
     
     typesig { [IntSet] }
@@ -411,7 +411,7 @@ module Org::Antlr::Misc
     # }
     # 
     # TODO: implement this!
-    def or(a)
+    def or_(a)
       o = IntervalSet.new
       o.add_all(self)
       o.add_all(a)
@@ -424,7 +424,7 @@ module Org::Antlr::Misc
     # the intervals are sorted, we can use an iterator for each list and
     # just walk them together.  This is roughly O(min(n,m)) for interval
     # list lengths n and m.
-    def and(other)
+    def and_(other)
       if ((other).nil?)
         # || !(other instanceof IntervalSet) ) {
         return nil # nothing in common with null set
@@ -589,7 +589,7 @@ module Org::Antlr::Misc
     # and disjoint, equals is a simple linear walk over both lists
     # to make sure they are the same.  Interval.equals() is used
     # by the List.equals() method to check the ranges.
-    def equals(obj)
+    def ==(obj)
       if ((obj).nil? || !(obj.is_a?(IntervalSet)))
         return false
       end
@@ -613,7 +613,7 @@ module Org::Antlr::Misc
       end
       iter = @intervals.iterator
       while (iter.has_next)
-        i = iter.next
+        i = iter.next_
         a = i.attr_a
         b = i.attr_b
         if ((a).equal?(b))
@@ -624,9 +624,9 @@ module Org::Antlr::Misc
           end
         else
           if (!(g).nil?)
-            buf.append((g.get_token_display_name(a)).to_s + ".." + (g.get_token_display_name(b)).to_s)
+            buf.append(RJava.cast_to_string(g.get_token_display_name(a)) + ".." + RJava.cast_to_string(g.get_token_display_name(b)))
           else
-            buf.append((a).to_s + ".." + (b).to_s)
+            buf.append(RJava.cast_to_string(a) + ".." + RJava.cast_to_string(b))
           end
         end
         if (iter.has_next)

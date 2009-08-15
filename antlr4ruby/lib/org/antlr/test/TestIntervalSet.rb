@@ -78,7 +78,7 @@ module Org::Antlr::Test
       s = IntervalSet.of(10, 20)
       s2 = IntervalSet.of(13, 15)
       expecting = "13..15"
-      result = (s.and(s2)).to_s
+      result = (s.and_(s2)).to_s
       assert_equals(result, expecting)
     end
     
@@ -87,7 +87,7 @@ module Org::Antlr::Test
       s = IntervalSet.of(Character.new(?a.ord), Character.new(?z.ord))
       s2 = IntervalSet.of(Character.new(?d.ord))
       expecting = "100"
-      result = (s.and(s2)).to_s
+      result = (s.and_(s2)).to_s
       assert_equals(result, expecting)
     end
     
@@ -96,7 +96,7 @@ module Org::Antlr::Test
       s = IntervalSet.of(Character.new(?a.ord), Character.new(?z.ord))
       s2 = IntervalSet.of(Character.new(?0.ord), Character.new(?9.ord))
       expecting = "{}"
-      result = (s.and(s2)).to_s
+      result = (s.and_(s2)).to_s
       assert_equals(result, expecting)
     end
     
@@ -105,7 +105,7 @@ module Org::Antlr::Test
       s = IntervalSet.of(Character.new(?a.ord))
       s2 = IntervalSet.of(Character.new(?d.ord))
       expecting = "{}"
-      result = (s.and(s2)).to_s
+      result = (s.and_(s2)).to_s
       assert_equals(result, expecting)
     end
     
@@ -180,7 +180,7 @@ module Org::Antlr::Test
       assert_equals(result, expecting)
       s3 = IntervalSet.of(5, 10)
       expecting = "11..20"
-      result = ((s.subtract(s3)).to_s).to_s
+      result = RJava.cast_to_string((s.subtract(s3)).to_s)
       assert_equals(result, expecting)
     end
     
@@ -193,7 +193,7 @@ module Org::Antlr::Test
       assert_equals(result, expecting)
       s3 = IntervalSet.of(20, 25)
       expecting = "10..19"
-      result = ((s.subtract(s3)).to_s).to_s
+      result = RJava.cast_to_string((s.subtract(s3)).to_s)
       assert_equals(result, expecting)
     end
     
@@ -217,7 +217,7 @@ module Org::Antlr::Test
       assert_equals(result, expecting)
       s3 = IntervalSet.of(15, 55) # touches both
       expecting = "{10..14, 56..60}"
-      result = ((s.subtract(s3)).to_s).to_s
+      result = RJava.cast_to_string((s.subtract(s3)).to_s)
       assert_equals(result, expecting)
     end
     
@@ -296,7 +296,7 @@ module Org::Antlr::Test
       s2.add(15)
       s2.add(18)
       expecting = "{15, 18}"
-      result = (s.and(s2)).to_s
+      result = (s.and_(s2)).to_s
       assert_equals(result, expecting)
     end
     
@@ -307,7 +307,7 @@ module Org::Antlr::Test
       s2.add(15)
       s2.add(18)
       expecting = "{15, 18}"
-      result = (s2.and(s)).to_s
+      result = (s2.and_(s)).to_s
       assert_equals(result, expecting)
     end
     
@@ -416,7 +416,7 @@ module Org::Antlr::Test
       s2 = IntervalSet.of(0, Character.new(?q.ord))
       s2.add(Character.new(?s.ord), 200)
       expecting = "{0..113, 115, 117..200}"
-      result = (s.and(s2)).to_s
+      result = (s.and_(s2)).to_s
       assert_equals(result, expecting)
     end
     

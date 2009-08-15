@@ -65,7 +65,7 @@ module Org::Antlr::Tool
       # Library of output templates; use <attrname> format
       
       def stlib
-        defined?(@@stlib) ? @@stlib : @@stlib= StringTemplateGroup.new("toollib", AngleBracketTemplateLexer.class)
+        defined?(@@stlib) ? @@stlib : @@stlib= StringTemplateGroup.new("toollib", AngleBracketTemplateLexer)
       end
       alias_method :attr_stlib, :stlib
       
@@ -231,9 +231,9 @@ module Org::Antlr::Tool
           # don't jump to other rules, but display edge to follow node
           edge_st = self.attr_stlib.get_instance_of("org/antlr/tool/templates/dot/edge")
           if (!(rr.attr_rule.attr_grammar).equal?(@grammar))
-            edge_st.set_attribute("label", "<" + (rr.attr_rule.attr_grammar.attr_name).to_s + "." + (rr.attr_rule.attr_name).to_s + ">")
+            edge_st.set_attribute("label", "<" + RJava.cast_to_string(rr.attr_rule.attr_grammar.attr_name) + "." + RJava.cast_to_string(rr.attr_rule.attr_name) + ">")
           else
-            edge_st.set_attribute("label", "<" + (rr.attr_rule.attr_name).to_s + ">")
+            edge_st.set_attribute("label", "<" + RJava.cast_to_string(rr.attr_rule.attr_name) + ">")
           end
           edge_st.set_attribute("src", get_state_label(s))
           edge_st.set_attribute("target", get_state_label(rr.attr_follow_state))
@@ -301,10 +301,10 @@ module Org::Antlr::Tool
     # generate any gated predicates on edge too.
     def get_edge_label(edge)
       label = edge.attr_label.to_s(@grammar)
-      label = (Utils.replace(label, "\\", "\\\\")).to_s
-      label = (Utils.replace(label, "\"", "\\\"")).to_s
-      label = (Utils.replace(label, "\n", "\\\\n")).to_s
-      label = (Utils.replace(label, "\r", "")).to_s
+      label = RJava.cast_to_string(Utils.replace(label, "\\", "\\\\"))
+      label = RJava.cast_to_string(Utils.replace(label, "\"", "\\\""))
+      label = RJava.cast_to_string(Utils.replace(label, "\n", "\\\\n"))
+      label = RJava.cast_to_string(Utils.replace(label, "\r", ""))
       if ((label == Label::EPSILON_STR))
         label = "e"
       end
@@ -314,7 +314,7 @@ module Org::Antlr::Tool
         preds = (target).get_gated_predicates_in_nfaconfigurations
         if (!(preds).nil?)
           preds_str = ""
-          preds_str = "&&{" + (preds.gen_expr(@grammar.attr_generator, @grammar.attr_generator.get_templates, nil).to_s).to_s + "}?"
+          preds_str = "&&{" + RJava.cast_to_string(preds.gen_expr(@grammar.attr_generator, @grammar.attr_generator.get_templates, nil).to_s) + "}?"
           label += preds_str
         end
       end
@@ -361,7 +361,7 @@ module Org::Antlr::Tool
               configs_in_alt = ArrayList.new
               it = configurations.iterator
               while it.has_next
-                c = it.next
+                c = it.next_
                 if (!(c.attr_alt).equal?(alt))
                   next
                 end
@@ -385,24 +385,24 @@ module Org::Antlr::Tool
             end
           end
         end
-        state_label = (buf.to_s).to_s
+        state_label = RJava.cast_to_string(buf.to_s)
       end
       if ((s.is_a?(NFAState)) && (s).is_decision_state)
-        state_label = state_label + ",d=" + ((s).get_decision_number).to_s
+        state_label = state_label + ",d=" + RJava.cast_to_string((s).get_decision_number)
         if (!((s).attr_end_of_block_state_number).equal?(State::INVALID_STATE_NUMBER))
-          state_label += ",eob=" + ((s).attr_end_of_block_state_number).to_s
+          state_label += ",eob=" + RJava.cast_to_string((s).attr_end_of_block_state_number)
         end
       else
         if ((s.is_a?(NFAState)) && !((s).attr_end_of_block_state_number).equal?(State::INVALID_STATE_NUMBER))
           n = (s)
-          state_label = state_label + ",eob=" + (n.attr_end_of_block_state_number).to_s
+          state_label = state_label + ",eob=" + RJava.cast_to_string(n.attr_end_of_block_state_number)
         else
           if (s.is_a?(DFAState) && (s).is_accept_state)
-            state_label = state_label + "=>" + ((s).get_uniquely_predicted_alt).to_s
+            state_label = state_label + "=>" + RJava.cast_to_string((s).get_uniquely_predicted_alt)
           end
         end
       end
-      return (Character.new(?".ord)).to_s + state_label + (Character.new(?".ord)).to_s
+      return RJava.cast_to_string(Character.new(?".ord)) + state_label + RJava.cast_to_string(Character.new(?".ord))
     end
     
     typesig { [] }

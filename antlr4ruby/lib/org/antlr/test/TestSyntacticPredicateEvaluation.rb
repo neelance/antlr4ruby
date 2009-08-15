@@ -42,10 +42,10 @@ module Org::Antlr::Test
       found = exec_parser("T.g", grammar, "TParser", "TLexer", "a", "(x) ;", false)
       expecting = "enter b\n" + "enter b\n" + "enter b\n" + "alt 2\n"
       assert_equals(expecting, found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "a", "(x). ;", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "a", "(x). ;", false))
       expecting = "enter b\n" + "enter b\n" + "alt 1\n"
       assert_equals(expecting, found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "a", "((x)) ;", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "a", "((x)) ;", false))
       expecting = "enter b\n" + "enter b\n" + "enter c\n" + "enter c\n" + "enter c\n" + "alt 3\n"
       assert_equals(expecting, found)
     end
@@ -56,10 +56,10 @@ module Org::Antlr::Test
       found = exec_parser("T.g", grammar, "TParser", "TLexer", "a", "(x) ;", false)
       expecting = "enter b\n" + "enter c\n" + "enter c\n" + "alt 2\n"
       assert_equals(expecting, found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "a", "(x). ;", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "a", "(x). ;", false))
       expecting = "enter b\n" + "enter b\n" + "alt 1\n"
       assert_equals(expecting, found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "a", "((x)) ;", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "a", "((x)) ;", false))
       expecting = "enter b\n" + "enter c\n" + "enter c\n" + "enter c\n" + "alt 2\n"
       assert_equals(expecting, found)
     end
@@ -70,7 +70,7 @@ module Org::Antlr::Test
       grammar = "grammar T;\n" + "s : A ;\n" + "A options {k=1;}\n" + "  : (B '.')=>B '.' {System.out.println(\"alt1\");}\n" + "  | B {System.out.println(\"alt2\");}" + "  ;\n" + "fragment\n" + "B : 'x'+ ;\n"
       found = exec_parser("T.g", grammar, "TParser", "TLexer", "s", "xxx", false)
       assert_equals("alt2\n", found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "s", "xxx.", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "s", "xxx.", false))
       assert_equals("alt1\n", found)
     end
     
@@ -80,7 +80,7 @@ module Org::Antlr::Test
       grammar = "grammar T;\n" + "s : A ;\n" + "A options {k=1;}\n" + "  : (B '.')=>B {System.out.println(\"alt1\");}\n" + "  | B {System.out.println(\"alt2\");}" + "  ;\n" + "D : '.' {System.out.println(\"D\");} ;\n" + "fragment\n" + "B : 'x'+ ;\n"
       found = exec_parser("T.g", grammar, "TParser", "TLexer", "s", "xxx", false)
       assert_equals("alt2\n", found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "s", "xxx.", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "s", "xxx.", false))
       assert_equals("alt1\nD\n", found)
     end
     
@@ -154,7 +154,7 @@ module Org::Antlr::Test
       grammar = "grammar T;\n" + "\n" + "a : ( (b)=> b {System.out.println(\"b\");})? b ;\n" + "b : 'x' ;\n"
       found = exec_parser("T.g", grammar, "TParser", "TLexer", "a", "xx", false)
       assert_equals("b\n", found)
-      found = (exec_parser("T.g", grammar, "TParser", "TLexer", "a", "x", false)).to_s
+      found = RJava.cast_to_string(exec_parser("T.g", grammar, "TParser", "TLexer", "a", "x", false))
       assert_equals("", found)
     end
     

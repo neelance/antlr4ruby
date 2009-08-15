@@ -490,7 +490,7 @@ module Org::Antlr::Tool
           it = s.iterator
           while it.has_next
             # convert token name like ID to ID, "void" to 31
-            token_name = it.next
+            token_name = it.next_
             ttype = @grammar.get_token_type(token_name)
             label = @grammar.attr_generator.get_token_type_as_target_label(ttype)
             tokens.add(label)
@@ -531,7 +531,7 @@ module Org::Antlr::Tool
     typesig { [::Java::Int] }
     def has_rewrite(i)
       if (i >= @alts_with_rewrites.attr_length)
-        ErrorManager.internal_error("alt " + (i).to_s + " exceeds number of " + @name + "'s alts (" + (@alts_with_rewrites.attr_length).to_s + ")")
+        ErrorManager.internal_error("alt " + RJava.cast_to_string(i) + " exceeds number of " + @name + "'s alts (" + RJava.cast_to_string(@alts_with_rewrites.attr_length) + ")")
         return false
       end
       return @alts_with_rewrites[i]
@@ -607,7 +607,7 @@ module Org::Antlr::Tool
         label_name = existing_label_name
       else
         # else create new label
-        label_name = (generator.create_unique_label(refd_symbol)).to_s
+        label_name = RJava.cast_to_string(generator.create_unique_label(refd_symbol))
         label = CommonToken.new(ANTLRParser::ID, label_name)
         if (!(@grammar.attr_type).equal?(Grammar::LEXER) && Character.is_upper_case(refd_symbol.char_at(0)))
           @grammar.define_token_ref_label(@name, label, unique_ref_ast)
@@ -717,7 +717,7 @@ module Org::Antlr::Tool
       keys = options.key_set
       it = keys.iterator
       while it.has_next
-        option_name = it.next
+        option_name = it.next_
         option_value = options.get(option_name)
         stored = set_option(option_name, option_value, options_start_token)
         if ((stored).nil?)
@@ -739,7 +739,7 @@ module Org::Antlr::Tool
     # }
     def to_s
       # used for testing
-      return "[" + (@grammar.attr_name).to_s + "." + @name + ",index=" + (@index).to_s + ",line=" + (@tree.get_token.get_line).to_s + "]"
+      return "[" + RJava.cast_to_string(@grammar.attr_name) + "." + @name + ",index=" + RJava.cast_to_string(@index) + ",line=" + RJava.cast_to_string(@tree.get_token.get_line) + "]"
     end
     
     private

@@ -39,7 +39,9 @@ module Org::Antlr::Misc
   # TODO: unused?
   class IntArrayList < IntArrayListImports.const_get :AbstractList
     include_class_members IntArrayListImports
-    include Cloneable
+    overload_protected {
+      include Cloneable
+    }
     
     class_module.module_eval {
       const_set_lazy(:DEFAULT_CAPACITY) { 10 }
@@ -158,7 +160,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [Object] }
-    def equals(o)
+    def ==(o)
       if ((o).nil?)
         return false
       end

@@ -124,8 +124,8 @@ module Org::Antlr::Runtime::Debug
     end
     
     typesig { [] }
-    def nil
-      node = @adaptor.nil
+    def nil_
+      node = @adaptor.nil_
       @dbg.nil_node(node)
       return node
     end

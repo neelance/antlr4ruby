@@ -139,7 +139,7 @@ module Org::Antlr::Runtime::Debug
         is = @socket.get_input_stream
         isr = InputStreamReader.new(is, "UTF8")
         @in = BufferedReader.new(isr)
-        @out.println("ANTLR " + (DebugEventListener::PROTOCOL_VERSION).to_s)
+        @out.println("ANTLR " + RJava.cast_to_string(DebugEventListener::PROTOCOL_VERSION))
         @out.println("grammar \"" + @grammar_file_name)
         @out.flush
         ack
@@ -185,7 +185,7 @@ module Org::Antlr::Runtime::Debug
     
     typesig { [::Java::Int] }
     def enter_alt(alt)
-      transmit("enterAlt " + (alt).to_s)
+      transmit("enterAlt " + RJava.cast_to_string(alt))
     end
     
     typesig { [String, String] }
@@ -195,22 +195,22 @@ module Org::Antlr::Runtime::Debug
     
     typesig { [::Java::Int] }
     def enter_sub_rule(decision_number)
-      transmit("enterSubRule " + (decision_number).to_s)
+      transmit("enterSubRule " + RJava.cast_to_string(decision_number))
     end
     
     typesig { [::Java::Int] }
     def exit_sub_rule(decision_number)
-      transmit("exitSubRule " + (decision_number).to_s)
+      transmit("exitSubRule " + RJava.cast_to_string(decision_number))
     end
     
     typesig { [::Java::Int] }
     def enter_decision(decision_number)
-      transmit("enterDecision " + (decision_number).to_s)
+      transmit("enterDecision " + RJava.cast_to_string(decision_number))
     end
     
     typesig { [::Java::Int] }
     def exit_decision(decision_number)
-      transmit("exitDecision " + (decision_number).to_s)
+      transmit("exitDecision " + RJava.cast_to_string(decision_number))
     end
     
     typesig { [Token] }
@@ -228,18 +228,18 @@ module Org::Antlr::Runtime::Debug
     typesig { [::Java::Int, Token] }
     def _lt(i, t)
       if (!(t).nil?)
-        transmit("LT " + (i).to_s + " " + (serialize_token(t)).to_s)
+        transmit("LT " + RJava.cast_to_string(i) + " " + RJava.cast_to_string(serialize_token(t)))
       end
     end
     
     typesig { [::Java::Int] }
     def mark(i)
-      transmit("mark " + (i).to_s)
+      transmit("mark " + RJava.cast_to_string(i))
     end
     
     typesig { [::Java::Int] }
     def rewind(i)
-      transmit("rewind " + (i).to_s)
+      transmit("rewind " + RJava.cast_to_string(i))
     end
     
     typesig { [] }
@@ -249,17 +249,17 @@ module Org::Antlr::Runtime::Debug
     
     typesig { [::Java::Int] }
     def begin_backtrack(level)
-      transmit("beginBacktrack " + (level).to_s)
+      transmit("beginBacktrack " + RJava.cast_to_string(level))
     end
     
     typesig { [::Java::Int, ::Java::Boolean] }
     def end_backtrack(level, successful)
-      transmit("endBacktrack " + (level).to_s + " " + ((successful ? TRUE : FALSE)).to_s)
+      transmit("endBacktrack " + RJava.cast_to_string(level) + " " + RJava.cast_to_string((successful ? TRUE : FALSE)))
     end
     
     typesig { [::Java::Int, ::Java::Int] }
     def location(line, pos)
-      transmit("location " + (line).to_s + " " + (pos).to_s)
+      transmit("location " + RJava.cast_to_string(line) + " " + RJava.cast_to_string(pos))
     end
     
     typesig { [RecognitionException] }
@@ -347,7 +347,7 @@ module Org::Antlr::Runtime::Debug
     # A S T  E v e n t s
     def nil_node(t)
       id = @adaptor.get_unique_id(t)
-      transmit("nilNode " + (id).to_s)
+      transmit("nilNode " + RJava.cast_to_string(id))
     end
     
     typesig { [Object] }
@@ -381,27 +381,27 @@ module Org::Antlr::Runtime::Debug
     def create_node(node, token)
       id = @adaptor.get_unique_id(node)
       token_index = token.get_token_index
-      transmit("createNode " + (id).to_s + " " + (token_index).to_s)
+      transmit("createNode " + RJava.cast_to_string(id) + " " + RJava.cast_to_string(token_index))
     end
     
     typesig { [Object, Object] }
     def become_root(new_root, old_root)
       new_root_id = @adaptor.get_unique_id(new_root)
       old_root_id = @adaptor.get_unique_id(old_root)
-      transmit("becomeRoot " + (new_root_id).to_s + " " + (old_root_id).to_s)
+      transmit("becomeRoot " + RJava.cast_to_string(new_root_id) + " " + RJava.cast_to_string(old_root_id))
     end
     
     typesig { [Object, Object] }
     def add_child(root, child)
       root_id = @adaptor.get_unique_id(root)
       child_id = @adaptor.get_unique_id(child)
-      transmit("addChild " + (root_id).to_s + " " + (child_id).to_s)
+      transmit("addChild " + RJava.cast_to_string(root_id) + " " + RJava.cast_to_string(child_id))
     end
     
     typesig { [Object, ::Java::Int, ::Java::Int] }
     def set_token_boundaries(t, token_start_index, token_stop_index)
       id = @adaptor.get_unique_id(t)
-      transmit("setTokenBoundaries " + (id).to_s + " " + (token_start_index).to_s + " " + (token_stop_index).to_s)
+      transmit("setTokenBoundaries " + RJava.cast_to_string(id) + " " + RJava.cast_to_string(token_start_index) + " " + RJava.cast_to_string(token_stop_index))
     end
     
     typesig { [TreeAdaptor] }
@@ -439,15 +439,15 @@ module Org::Antlr::Runtime::Debug
       end
       # escape \n and \r all text for token appears to exist on one line
       # this escape is slow but easy to understand
-      text = (escape_newlines(text)).to_s
+      text = RJava.cast_to_string(escape_newlines(text))
       buf.append(text)
     end
     
     typesig { [String] }
     def escape_newlines(txt)
-      txt = (txt.replace_all("%", "%25")).to_s # escape all escape char ;)
-      txt = (txt.replace_all("\n", "%0A")).to_s # escape \n
-      txt = (txt.replace_all("\r", "%0D")).to_s # escape \r
+      txt = RJava.cast_to_string(txt.replace_all("%", "%25")) # escape all escape char ;)
+      txt = RJava.cast_to_string(txt.replace_all("\n", "%0A")) # escape \n
+      txt = RJava.cast_to_string(txt.replace_all("\r", "%0D")) # escape \r
       return txt
     end
     

@@ -75,7 +75,7 @@ module Org::Antlr::Runtime::Tree
     # Return a nil node (an empty but non-null node) that can hold
     # a list of element as the children.  If you want a flat tree (a list)
     # use "t=adaptor.nil(); t.addChild(x); t.addChild(y);"
-    def nil
+    def nil_
       raise NotImplementedError
     end
     

@@ -142,8 +142,8 @@ module Org::Antlr::Runtime
         def to_s
           op_name = get_class.get_name
           $index = op_name.index_of(Character.new(?$.ord))
-          op_name = (op_name.substring($index + 1, op_name.length)).to_s
-          return "<" + op_name + "@" + (@index).to_s + ":\"" + (@text).to_s + "\">"
+          op_name = RJava.cast_to_string(op_name.substring($index + 1, op_name.length))
+          return "<" + op_name + "@" + RJava.cast_to_string(@index) + ":\"" + RJava.cast_to_string(@text) + "\">"
         end
         
         private
@@ -199,7 +199,7 @@ module Org::Antlr::Runtime
         
         typesig { [] }
         def to_s
-          return "<ReplaceOp@" + (self.attr_index).to_s + ".." + (@last_index).to_s + ":\"" + (self.attr_text).to_s + "\">"
+          return "<ReplaceOp@" + RJava.cast_to_string(self.attr_index) + ".." + RJava.cast_to_string(@last_index) + ":\"" + RJava.cast_to_string(self.attr_text) + "\">"
         end
         
         private
@@ -217,7 +217,7 @@ module Org::Antlr::Runtime
         
         typesig { [] }
         def to_s
-          return "<DeleteOp@" + (self.attr_index).to_s + ".." + (self.attr_last_index).to_s + ">"
+          return "<DeleteOp@" + RJava.cast_to_string(self.attr_index) + ".." + RJava.cast_to_string(self.attr_last_index) + ">"
         end
         
         private
@@ -374,7 +374,7 @@ module Org::Antlr::Runtime
     typesig { [String, ::Java::Int, ::Java::Int, Object] }
     def replace(program_name, from, to, text)
       if (from > to || from < 0 || to < 0 || to >= self.attr_tokens.size)
-        raise IllegalArgumentException.new("replace: range invalid: " + (from).to_s + ".." + (to).to_s + "(size=" + (self.attr_tokens.size).to_s + ")")
+        raise IllegalArgumentException.new("replace: range invalid: " + RJava.cast_to_string(from) + ".." + RJava.cast_to_string(to) + "(size=" + RJava.cast_to_string(self.attr_tokens.size) + ")")
       end
       op = ReplaceOp.new_local(self, from, to, text)
       rewrites = get_program(program_name)
@@ -521,7 +521,7 @@ module Org::Antlr::Runtime
         # should be included (they will be inserts).
         it = index_to_op.values.iterator
         while (it.has_next)
-          op = it.next
+          op = it.next_
           if (op.attr_index >= self.attr_tokens.size - 1)
             buf.append(op.attr_text)
           end
@@ -591,7 +591,7 @@ module Org::Antlr::Runtime
         end
         rop = rewrites.get(i)
         # Wipe prior inserts within range
-        inserts = get_kind_of_ops(rewrites, InsertBeforeOp.class, i)
+        inserts = get_kind_of_ops(rewrites, InsertBeforeOp, i)
         j = 0
         while j < inserts.size
           iop = inserts.get(j)
@@ -602,7 +602,7 @@ module Org::Antlr::Runtime
           j += 1
         end
         # Drop any prior replaces contained within
-        prev_replaces = get_kind_of_ops(rewrites, ReplaceOp.class, i)
+        prev_replaces = get_kind_of_ops(rewrites, ReplaceOp, i)
         j_ = 0
         while j_ < prev_replaces.size
           prev_rop = prev_replaces.get(j_)
@@ -616,7 +616,7 @@ module Org::Antlr::Runtime
           disjoint = prev_rop.attr_last_index < rop.attr_index || prev_rop.attr_index > rop.attr_last_index
           same = (prev_rop.attr_index).equal?(rop.attr_index) && (prev_rop.attr_last_index).equal?(rop.attr_last_index)
           if (!disjoint && !same)
-            raise IllegalArgumentException.new("replace op boundaries of " + (rop).to_s + " overlap with previous " + (prev_rop).to_s)
+            raise IllegalArgumentException.new("replace op boundaries of " + RJava.cast_to_string(rop) + " overlap with previous " + RJava.cast_to_string(prev_rop))
           end
           j_ += 1
         end
@@ -636,7 +636,7 @@ module Org::Antlr::Runtime
         end
         iop = rewrites.get(i_)
         # combine current insert with prior if any at same index
-        prev_inserts = get_kind_of_ops(rewrites, InsertBeforeOp.class, i_)
+        prev_inserts = get_kind_of_ops(rewrites, InsertBeforeOp, i_)
         j = 0
         while j < prev_inserts.size
           prev_iop = prev_inserts.get(j)
@@ -651,7 +651,7 @@ module Org::Antlr::Runtime
           j += 1
         end
         # look for replaces where iop.index is in range; error
-        prev_replaces = get_kind_of_ops(rewrites, ReplaceOp.class, i_)
+        prev_replaces = get_kind_of_ops(rewrites, ReplaceOp, i_)
         j_ = 0
         while j_ < prev_replaces.size
           rop = prev_replaces.get(j_)
@@ -662,7 +662,7 @@ module Org::Antlr::Runtime
             next
           end
           if (iop.attr_index >= rop.attr_index && iop.attr_index <= rop.attr_last_index)
-            raise IllegalArgumentException.new("insert op " + (iop).to_s + " within boundaries of previous " + (rop).to_s)
+            raise IllegalArgumentException.new("insert op " + RJava.cast_to_string(iop) + " within boundaries of previous " + RJava.cast_to_string(rop))
           end
           j_ += 1
         end
@@ -692,10 +692,10 @@ module Org::Antlr::Runtime
       x = ""
       y = ""
       if (!(a).nil?)
-        x = (a.to_s).to_s
+        x = RJava.cast_to_string(a.to_s)
       end
       if (!(b).nil?)
-        y = (b.to_s).to_s
+        y = RJava.cast_to_string(b.to_s)
       end
       return x + y
     end

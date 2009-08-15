@@ -198,7 +198,7 @@ module Org::Antlr::Analysis
         raise IllegalArgumentException.new("You can't add a null transition")
       end
       if (@num_transitions > @transition.attr_length)
-        raise IllegalArgumentException.new("You can only have " + (@transition.attr_length).to_s + " transitions")
+        raise IllegalArgumentException.new("You can only have " + RJava.cast_to_string(@transition.attr_length) + " transitions")
       end
       if (!(e).nil?)
         @transition[@num_transitions] = e

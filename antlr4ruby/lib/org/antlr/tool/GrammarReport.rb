@@ -85,7 +85,7 @@ module Org::Antlr::Tool
       rules = @grammar.get_rules
       it = rules.iterator
       while it.has_next
-        r = it.next
+        r = it.next_
         if (!r.attr_name.to_upper_case.starts_with(Grammar::SYNPRED_RULE_PREFIX.to_upper_case))
           total_non_syn_pred_productions += r.attr_number_of_alts
           total_non_syn_pred_rules += 1
@@ -242,7 +242,7 @@ module Org::Antlr::Tool
       buf = StringBuffer.new
       it = dfas.iterator
       while (it.has_next)
-        dfa = it.next
+        dfa = it.next_
         # if we aborted a DFA and redid with k=1, the backtrackin
         if (decisions.contains(Utils.integer(dfa.attr_decision_number)))
           next

@@ -181,14 +181,14 @@ module Org::Antlr::Runtime::Tree
         # invocation; do nothing
         return
       end
-      parent_name = "n" + (get_node_number(tree)).to_s
+      parent_name = "n" + RJava.cast_to_string(get_node_number(tree))
       # for each child, do a parent -> child edge using unique node names
       parent_text = adaptor.get_text(tree)
       i = 0
       while i < n
         child = adaptor.get_child(tree, i)
         child_text = adaptor.get_text(child)
-        child_name = "n" + (get_node_number(child)).to_s
+        child_name = "n" + RJava.cast_to_string(get_node_number(child))
         edge_st = self.attr__edge_st.get_instance_of
         edge_st.set_attribute("parent", parent_name)
         edge_st.set_attribute("child", child_name)
@@ -204,10 +204,10 @@ module Org::Antlr::Runtime::Tree
     def get_node_st(adaptor, t)
       text = adaptor.get_text(t)
       node_st = self.attr__node_st.get_instance_of
-      unique_name = "n" + (get_node_number(t)).to_s
+      unique_name = "n" + RJava.cast_to_string(get_node_number(t))
       node_st.set_attribute("name", unique_name)
       if (!(text).nil?)
-        text = (text.replace_all("\"", "\\\\\"")).to_s
+        text = RJava.cast_to_string(text.replace_all("\"", "\\\\\""))
       end
       node_st.set_attribute("text", text)
       return node_st

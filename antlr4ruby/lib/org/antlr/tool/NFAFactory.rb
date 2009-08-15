@@ -298,7 +298,7 @@ module Org::Antlr::Tool
       number_un_invoked_rules = 0
       iterator_ = rules.iterator
       while iterator_.has_next
-        r = iterator_.next
+        r = iterator_.next_
         end_nfastate = r.attr_stop_state
         # Is this rule a start symbol?  (no follow links)
         if ((end_nfastate.attr_transition[0]).nil?)
@@ -409,10 +409,10 @@ module Org::Antlr::Tool
       alt_num = 1
       iter = alternative_state_clusters.iterator
       while iter.has_next
-        g = iter.next
+        g = iter.next_
         # add begin NFAState for this alt connected by epsilon
         left = new_state
-        left.set_description("alt " + (alt_num).to_s + " of ()")
+        left.set_description("alt " + RJava.cast_to_string(alt_num) + " of ()")
         transition_between_states(left, g.attr_left, Label::EPSILON)
         transition_between_states(g.attr_right, block_end_nfastate, Label::EPSILON)
         # Are we the first alternative?

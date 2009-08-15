@@ -98,7 +98,9 @@ module Org::Antlr::Tool
   # where some of the ttype values will be the same for aliases tokens.
   class AssignTokenTypesWalker < Antlr::TreeParser
     include_class_members AssignTokenTypesWalkerImports
-    include AssignTokenTypesWalkerTokenTypes
+    overload_protected {
+      include AssignTokenTypesWalkerTokenTypes
+    }
     
     typesig { [RecognitionException] }
     def report_error(ex)
@@ -110,7 +112,7 @@ module Org::Antlr::Tool
           token = (ex).attr_token
         end
       end
-      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "assign.types: " + (ex.to_s).to_s, ex)
+      ErrorManager.syntax_error(ErrorManager::MSG_SYNTAX_ERROR, @grammar, token, "assign.types: " + RJava.cast_to_string(ex.to_s), ex)
     end
     
     attr_accessor :grammar
@@ -193,7 +195,7 @@ module Org::Antlr::Tool
     end
     
     typesig { [GrammarAST, GrammarAST] }
-    def alias(t, s)
+    def alias_(t, s)
     end
     
     typesig { [Grammar] }
@@ -429,39 +431,37 @@ module Org::Antlr::Tool
         match(_t, IMPORT)
         _t = _t.get_first_child
         _cnt34 = 0
-        catch(:break__loop34) do
-          begin
-            if ((_t).nil?)
-              _t = ASTNULL
-            end
-            case (_t.get_type)
-            when ASSIGN
-              __t33 = _t
-              tmp8_ast_in = _t
-              match(_t, ASSIGN)
-              _t = _t.get_first_child
-              tmp9_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              tmp10_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
-              _t = __t33
-              _t = _t.get_next_sibling
-            when ID
-              tmp11_ast_in = _t
-              match(_t, ID)
-              _t = _t.get_next_sibling
+        begin
+          if ((_t).nil?)
+            _t = ASTNULL
+          end
+          case (_t.get_type)
+          when ASSIGN
+            __t33 = _t
+            tmp8_ast_in = _t
+            match(_t, ASSIGN)
+            _t = _t.get_first_child
+            tmp9_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+            tmp10_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+            _t = __t33
+            _t = _t.get_next_sibling
+          when ID
+            tmp11_ast_in = _t
+            match(_t, ID)
+            _t = _t.get_next_sibling
+          else
+            if (_cnt34 >= 1)
+              break
             else
-              if (_cnt34 >= 1)
-                throw :break__loop34, :thrown
-              else
-                raise NoViableAltException.new(_t)
-              end
+              raise NoViableAltException.new(_t)
             end
-            _cnt34 += 1
-          end while (true)
-        end
+          end
+          _cnt34 += 1
+        end while (true)
         _t = __t31
         _t = _t.get_next_sibling
       rescue RecognitionException => ex
@@ -582,7 +582,7 @@ module Org::Antlr::Tool
         id = _t
         match(_t, ID)
         _t = _t.get_next_sibling
-        key = (id.get_text).to_s
+        key = RJava.cast_to_string(id.get_text)
         value = option_value(_t)
         _t = self.attr__ret_tree
         _t = __t23
@@ -762,13 +762,13 @@ module Org::Antlr::Tool
             match(_t, STRING_LITERAL)
             _t = _t.get_next_sibling
             track_string(s)
-            alias(t2, s)
+            alias_(t2, s)
           when CHAR_LITERAL
             c = _t
             match(_t, CHAR_LITERAL)
             _t = _t.get_next_sibling
             track_string(c)
-            alias(t2, c)
+            alias_(t2, c)
           else
             raise NoViableAltException.new(_t)
           end
@@ -801,7 +801,7 @@ module Org::Antlr::Tool
         id = _t
         match(_t, ID)
         _t = _t.get_next_sibling
-        @current_rule_name = (id.get_text).to_s
+        @current_rule_name = RJava.cast_to_string(id.get_text)
         if ((_t).nil?)
           _t = ASTNULL
         end

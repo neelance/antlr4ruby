@@ -63,8 +63,10 @@ module Org::Antlr::Tool
   
   class ANTLRLexer < Antlr::CharScanner
     include_class_members ANTLRLexerImports
-    include ANTLRTokenTypes
-    include TokenStream
+    overload_protected {
+      include ANTLRTokenTypes
+      include TokenStream
+    }
     
     typesig { [] }
     # advance the current column number by one; don't do tabs.
@@ -437,33 +439,31 @@ module Org::Antlr::Tool
           raise NoViableAltForCharException.new(RJava.cast_to_char(_la(1)), get_filename, get_line, get_column)
         end
       end
-      catch(:break__loop170) do
-        begin
-          # nongreedy exit test
-          if (((_la(1)).equal?(Character.new(?*.ord))) && ((_la(2)).equal?(Character.new(?/.ord))) && (true))
+      begin
+        # nongreedy exit test
+        if (((_la(1)).equal?(Character.new(?*.ord))) && ((_la(2)).equal?(Character.new(?/.ord))) && (true))
+          break
+        end
+        case (_la(1))
+        when Character.new(?\r.ord)
+          match(Character.new(?\r.ord))
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
+          end
+        when Character.new(?\n.ord)
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
+          end
+        else
+          if ((_tokenSet_0.member(_la(1))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && ((_la(3) >= Character.new(0x0003) && _la(3) <= Character.new(0x00ff))))
+            match(_tokenSet_0)
+          else
             break
           end
-          case (_la(1))
-          when Character.new(?\r.ord)
-            match(Character.new(?\r.ord))
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          when Character.new(?\n.ord)
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          else
-            if ((_tokenSet_0.member(_la(1))) && ((_la(2) >= Character.new(0x0003) && _la(2) <= Character.new(0x00ff))) && ((_la(3) >= Character.new(0x0003) && _la(3) <= Character.new(0x00ff))))
-              match(_tokenSet_0)
-            else
-              throw :break__loop170, :thrown
-            end
-          end
-        end while (true)
-      end
+        end
+      end while (true)
       match("*/")
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -911,25 +911,23 @@ module Org::Antlr::Tool
       _ttype = CHAR_LITERAL
       _save_index = 0
       match(Character.new(?\'.ord))
-      catch(:break__loop199) do
-        begin
-          case (_la(1))
-          when Character.new(?\\.ord)
-            m_esc(false)
-          when Character.new(?\n.ord)
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          else
-            if ((_tokenSet_1.member(_la(1))))
-              match_not(Character.new(?\'.ord))
-            else
-              throw :break__loop199, :thrown
-            end
+      begin
+        case (_la(1))
+        when Character.new(?\\.ord)
+          m_esc(false)
+        when Character.new(?\n.ord)
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
           end
-        end while (true)
-      end
+        else
+          if ((_tokenSet_1.member(_la(1))))
+            match_not(Character.new(?\'.ord))
+          else
+            break
+          end
+        end
+      end while (true)
       match(Character.new(?\'.ord))
       if ((self.attr_input_state.attr_guessing).equal?(0))
         s = Grammar.get_unescaped_string_from_grammar_string_literal(String.new(self.attr_text.get_buffer, _begin, self.attr_text.length - _begin))
@@ -1178,45 +1176,43 @@ module Org::Antlr::Tool
       _begin = self.attr_text.length
       _ttype = NESTED_ARG_ACTION
       _save_index = 0
-      catch(:break__loop216) do
-        begin
-          case (_la(1))
-          when Character.new(?\r.ord)
-            match(Character.new(?\r.ord))
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          when Character.new(?\n.ord)
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          when Character.new(?".ord)
-            m_action_string_literal(false)
-          when Character.new(?\'.ord)
-            m_action_char_literal(false)
+      begin
+        case (_la(1))
+        when Character.new(?\r.ord)
+          match(Character.new(?\r.ord))
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
+          end
+        when Character.new(?\n.ord)
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
+          end
+        when Character.new(?".ord)
+          m_action_string_literal(false)
+        when Character.new(?\'.ord)
+          m_action_char_literal(false)
+        else
+          if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
+            _save_index = self.attr_text.length
+            match(Character.new(?\\.ord))
+            self.attr_text.set_length(_save_index)
+            match(Character.new(?].ord))
           else
-            if (((_la(1)).equal?(Character.new(?\\.ord))) && ((_la(2)).equal?(Character.new(?].ord))))
-              _save_index = self.attr_text.length
+            if (((_la(1)).equal?(Character.new(?\\.ord))) && (_tokenSet_5.member(_la(2))))
               match(Character.new(?\\.ord))
-              self.attr_text.set_length(_save_index)
-              match(Character.new(?].ord))
+              match_not(Character.new(?].ord))
             else
-              if (((_la(1)).equal?(Character.new(?\\.ord))) && (_tokenSet_5.member(_la(2))))
-                match(Character.new(?\\.ord))
+              if ((_tokenSet_6.member(_la(1))))
                 match_not(Character.new(?].ord))
               else
-                if ((_tokenSet_6.member(_la(1))))
-                  match_not(Character.new(?].ord))
-                else
-                  throw :break__loop216, :thrown
-                end
+                break
               end
             end
           end
-        end while (true)
-      end
+        end
+      end while (true)
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
         _token.set_text(String.new(self.attr_text.get_buffer, _begin, self.attr_text.length - _begin))
@@ -1232,25 +1228,23 @@ module Org::Antlr::Tool
       _ttype = ACTION_STRING_LITERAL
       _save_index = 0
       match(Character.new(?".ord))
-      catch(:break__loop228) do
-        begin
-          case (_la(1))
-          when Character.new(?\\.ord)
-            m_action_esc(false)
-          when Character.new(?\n.ord)
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          else
-            if ((_tokenSet_4.member(_la(1))))
-              match_not(Character.new(?".ord))
-            else
-              throw :break__loop228, :thrown
-            end
+      begin
+        case (_la(1))
+        when Character.new(?\\.ord)
+          m_action_esc(false)
+        when Character.new(?\n.ord)
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
           end
-        end while (true)
-      end
+        else
+          if ((_tokenSet_4.member(_la(1))))
+            match_not(Character.new(?".ord))
+          else
+            break
+          end
+        end
+      end while (true)
       match(Character.new(?".ord))
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -1267,25 +1261,23 @@ module Org::Antlr::Tool
       _ttype = ACTION_CHAR_LITERAL
       _save_index = 0
       match(Character.new(?\'.ord))
-      catch(:break__loop225) do
-        begin
-          case (_la(1))
-          when Character.new(?\\.ord)
-            m_action_esc(false)
-          when Character.new(?\n.ord)
-            match(Character.new(?\n.ord))
-            if ((self.attr_input_state.attr_guessing).equal?(0))
-              newline
-            end
-          else
-            if ((_tokenSet_1.member(_la(1))))
-              match_not(Character.new(?\'.ord))
-            else
-              throw :break__loop225, :thrown
-            end
+      begin
+        case (_la(1))
+        when Character.new(?\\.ord)
+          m_action_esc(false)
+        when Character.new(?\n.ord)
+          match(Character.new(?\n.ord))
+          if ((self.attr_input_state.attr_guessing).equal?(0))
+            newline
           end
-        end while (true)
-      end
+        else
+          if ((_tokenSet_1.member(_la(1))))
+            match_not(Character.new(?\'.ord))
+          else
+            break
+          end
+        end
+      end while (true)
       match(Character.new(?\'.ord))
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -1321,7 +1313,7 @@ module Org::Antlr::Tool
           t.set_type(FORCED_ACTION)
           n = 2
         end
-        action = (action.substring(n, action.length - n)).to_s
+        action = RJava.cast_to_string(action.substring(n, action.length - n))
         t.set_text(action)
         t.set_line(action_line) # set action line to start
         t.set_column(action_column)
@@ -1435,22 +1427,20 @@ module Org::Antlr::Tool
       _ttype = TOKEN_REF
       _save_index = 0
       match_range(Character.new(?A.ord), Character.new(?Z.ord))
-      catch(:break__loop233) do
-        begin
-          case (_la(1))
-          when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
-            match_range(Character.new(?a.ord), Character.new(?z.ord))
-          when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
-            match_range(Character.new(?A.ord), Character.new(?Z.ord))
-          when Character.new(?_.ord)
-            match(Character.new(?_.ord))
-          when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-          else
-            throw :break__loop233, :thrown
-          end
-        end while (true)
-      end
+      begin
+        case (_la(1))
+        when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
+          match_range(Character.new(?a.ord), Character.new(?z.ord))
+        when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
+          match_range(Character.new(?A.ord), Character.new(?Z.ord))
+        when Character.new(?_.ord)
+          match(Character.new(?_.ord))
+        when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
+          match_range(Character.new(?0.ord), Character.new(?9.ord))
+        else
+          break
+        end
+      end while (true)
       _ttype = test_literals_table(_ttype)
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
@@ -1510,22 +1500,20 @@ module Org::Antlr::Tool
       _save_index = 0
       t = RULE_REF
       match_range(Character.new(?a.ord), Character.new(?z.ord))
-      catch(:break__loop243) do
-        begin
-          case (_la(1))
-          when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
-            match_range(Character.new(?a.ord), Character.new(?z.ord))
-          when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
-            match_range(Character.new(?A.ord), Character.new(?Z.ord))
-          when Character.new(?_.ord)
-            match(Character.new(?_.ord))
-          when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
-            match_range(Character.new(?0.ord), Character.new(?9.ord))
-          else
-            throw :break__loop243, :thrown
-          end
-        end while (true)
-      end
+      begin
+        case (_la(1))
+        when Character.new(?a.ord), Character.new(?b.ord), Character.new(?c.ord), Character.new(?d.ord), Character.new(?e.ord), Character.new(?f.ord), Character.new(?g.ord), Character.new(?h.ord), Character.new(?i.ord), Character.new(?j.ord), Character.new(?k.ord), Character.new(?l.ord), Character.new(?m.ord), Character.new(?n.ord), Character.new(?o.ord), Character.new(?p.ord), Character.new(?q.ord), Character.new(?r.ord), Character.new(?s.ord), Character.new(?t.ord), Character.new(?u.ord), Character.new(?v.ord), Character.new(?w.ord), Character.new(?x.ord), Character.new(?y.ord), Character.new(?z.ord)
+          match_range(Character.new(?a.ord), Character.new(?z.ord))
+        when Character.new(?A.ord), Character.new(?B.ord), Character.new(?C.ord), Character.new(?D.ord), Character.new(?E.ord), Character.new(?F.ord), Character.new(?G.ord), Character.new(?H.ord), Character.new(?I.ord), Character.new(?J.ord), Character.new(?K.ord), Character.new(?L.ord), Character.new(?M.ord), Character.new(?N.ord), Character.new(?O.ord), Character.new(?P.ord), Character.new(?Q.ord), Character.new(?R.ord), Character.new(?S.ord), Character.new(?T.ord), Character.new(?U.ord), Character.new(?V.ord), Character.new(?W.ord), Character.new(?X.ord), Character.new(?Y.ord), Character.new(?Z.ord)
+          match_range(Character.new(?A.ord), Character.new(?Z.ord))
+        when Character.new(?_.ord)
+          match(Character.new(?_.ord))
+        when Character.new(?0.ord), Character.new(?1.ord), Character.new(?2.ord), Character.new(?3.ord), Character.new(?4.ord), Character.new(?5.ord), Character.new(?6.ord), Character.new(?7.ord), Character.new(?8.ord), Character.new(?9.ord)
+          match_range(Character.new(?0.ord), Character.new(?9.ord))
+        else
+          break
+        end
+      end while (true)
       if ((self.attr_input_state.attr_guessing).equal?(0))
         t = test_literals_table(t)
       end
@@ -1544,18 +1532,16 @@ module Org::Antlr::Tool
       _begin = self.attr_text.length
       _ttype = WS_LOOP
       _save_index = 0
-      catch(:break__loop240) do
-        begin
-          case (_la(1))
-          when Character.new(?\t.ord), Character.new(?\n.ord), Character.new(?\r.ord), Character.new(?\s.ord)
-            m_ws(false)
-          when Character.new(?/.ord)
-            m_comment(false)
-          else
-            throw :break__loop240, :thrown
-          end
-        end while (true)
-      end
+      begin
+        case (_la(1))
+        when Character.new(?\t.ord), Character.new(?\n.ord), Character.new(?\r.ord), Character.new(?\s.ord)
+          m_ws(false)
+        when Character.new(?/.ord)
+          m_comment(false)
+        else
+          break
+        end
+      end while (true)
       if (_create_token && (_token).nil? && !(_ttype).equal?(Token::SKIP))
         _token = make_token(_ttype)
         _token.set_text(String.new(self.attr_text.get_buffer, _begin, self.attr_text.length - _begin))

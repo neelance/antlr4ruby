@@ -320,7 +320,7 @@ module Org::Antlr::Test
         g.create_lookahead_dfas(false)
       end
       dfa = g.get_lookahead_dfa(decision)
-      assert_not_null("unknown decision #" + (decision).to_s, dfa)
+      assert_not_null("unknown decision #" + RJava.cast_to_string(decision), dfa)
       serializer = FASerializer.new(g)
       result = serializer.serialize(dfa.attr_start_state)
       # System.out.print(result);
@@ -329,7 +329,7 @@ module Org::Antlr::Test
       # first make sure nondeterministic alts are as expected
       if ((expecting_unreachable_alts).nil?)
         if (!(non_det_alts).nil? && !(non_det_alts.size).equal?(0))
-          System.err.println("nondeterministic alts (should be empty): " + (non_det_alts).to_s)
+          System.err.println("nondeterministic alts (should be empty): " + RJava.cast_to_string(non_det_alts))
         end
         assert_equals("unreachable alts mismatch", 0, !(non_det_alts).nil? ? non_det_alts.size : 0)
       else

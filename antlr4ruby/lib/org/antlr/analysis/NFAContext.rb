@@ -166,7 +166,7 @@ module Org::Antlr::Analysis
     # 
     # The hashCode is now cheap as it's computed once upon each context
     # push on the stack.  Use it to make equals() more efficient.
-    def equals(o)
+    def ==(o)
       other = (o)
       if (!(@cached_hash_code).equal?(other.attr_cached_hash_code))
         return false # can't be same if hash is different

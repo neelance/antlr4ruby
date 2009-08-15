@@ -159,7 +159,7 @@ module Org::Antlr::Runtime
       @index = -1
       @start = 0
       @stop = 0
-      @text = (old_token.get_text).to_s
+      @text = RJava.cast_to_string(old_token.get_text)
       @type = old_token.get_type
       @line = old_token.get_line
       @index = old_token.get_token_index
@@ -189,7 +189,7 @@ module Org::Antlr::Runtime
       if ((@input).nil?)
         return nil
       end
-      @text = (@input.substring(@start, @stop)).to_s
+      @text = RJava.cast_to_string(@input.substring(@start, @stop))
       return @text
     end
     
@@ -276,17 +276,17 @@ module Org::Antlr::Runtime
     def to_s
       channel_str = ""
       if (@channel > 0)
-        channel_str = ",channel=" + (@channel).to_s
+        channel_str = ",channel=" + RJava.cast_to_string(@channel)
       end
       txt = get_text
       if (!(txt).nil?)
-        txt = (txt.replace_all("\n", "\\\\n")).to_s
-        txt = (txt.replace_all("\r", "\\\\r")).to_s
-        txt = (txt.replace_all("\t", "\\\\t")).to_s
+        txt = RJava.cast_to_string(txt.replace_all("\n", "\\\\n"))
+        txt = RJava.cast_to_string(txt.replace_all("\r", "\\\\r"))
+        txt = RJava.cast_to_string(txt.replace_all("\t", "\\\\t"))
       else
         txt = "<no text>"
       end
-      return "[@" + (get_token_index).to_s + "," + (@start).to_s + ":" + (@stop).to_s + "='" + txt + "',<" + (@type).to_s + ">" + channel_str + "," + (@line).to_s + ":" + (get_char_position_in_line).to_s + "]"
+      return "[@" + RJava.cast_to_string(get_token_index) + "," + RJava.cast_to_string(@start) + ":" + RJava.cast_to_string(@stop) + "='" + txt + "',<" + RJava.cast_to_string(@type) + ">" + channel_str + "," + RJava.cast_to_string(@line) + ":" + RJava.cast_to_string(get_char_position_in_line) + "]"
     end
     
     private

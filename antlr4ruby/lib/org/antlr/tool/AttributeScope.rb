@@ -225,7 +225,7 @@ module Org::Antlr::Tool
       this_keys = @attributes.key_set
       it = this_keys.iterator
       while it.has_next
-        key = it.next
+        key = it.next_
         if (!(other.attr_attributes.get(key)).nil?)
           inter.add(key)
         end
@@ -243,7 +243,7 @@ module Org::Antlr::Tool
     
     typesig { [] }
     def to_s
-      return ((@is_dynamic_global_scope ? "global " : "") + get_name).to_s + ":" + (@attributes).to_s
+      return RJava.cast_to_string((@is_dynamic_global_scope ? "global " : "") + get_name) + ":" + RJava.cast_to_string(@attributes)
     end
     
     private

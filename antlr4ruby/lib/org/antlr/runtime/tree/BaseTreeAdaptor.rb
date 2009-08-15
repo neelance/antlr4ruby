@@ -59,7 +59,7 @@ module Org::Antlr::Runtime::Tree
     undef_method :unique_node_id=
     
     typesig { [] }
-    def nil
+    def nil_
       return create(nil)
     end
     

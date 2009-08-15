@@ -602,7 +602,7 @@ module Org::Antlr::Analysis
         i += 1
       end
       if (!(snum).equal?(get_number_of_states))
-        ErrorManager.internal_error("DFA " + (@decision_number).to_s + ": " + (@decision_nfastart_state.get_description).to_s + " num unique states " + (get_number_of_states).to_s + "!= num renumbered states " + (snum).to_s)
+        ErrorManager.internal_error("DFA " + RJava.cast_to_string(@decision_number) + ": " + RJava.cast_to_string(@decision_nfastart_state.get_description) + " num unique states " + RJava.cast_to_string(get_number_of_states) + "!= num renumbered states " + RJava.cast_to_string(snum))
       end
     end
     
@@ -709,8 +709,8 @@ module Org::Antlr::Analysis
     def create_state_tables(generator)
       # System.out.println("createTables:\n"+this);
       @generator = generator
-      @description = (get_nfadecision_start_state.get_description).to_s
-      @description = (generator.attr_target.get_target_string_literal_from_string(@description)).to_s
+      @description = RJava.cast_to_string(get_nfadecision_start_state.get_description)
+      @description = RJava.cast_to_string(generator.attr_target.get_target_string_literal_from_string(@description))
       # create all the tables
       @special = Vector.new(self.get_number_of_states) # Vector<short>
       @special.set_size(self.get_number_of_states)
@@ -738,7 +738,7 @@ module Org::Antlr::Analysis
         it = get_unique_states.values.iterator
       end
       while (it.has_next)
-        s = it.next
+        s = it.next_
         if ((s).nil?)
           # ignore null states; some acylic DFA see this condition
           # when inlining DFA (due to lacking of exit branch pruning?)
@@ -844,7 +844,7 @@ module Org::Antlr::Analysis
       @min.set(s.attr_state_number, Utils.integer(RJava.cast_to_char(smin)))
       @max.set(s.attr_state_number, Utils.integer(RJava.cast_to_char(smax)))
       if (smax < 0 || smin > Label::MAX_CHAR_VALUE || smin < 0)
-        ErrorManager.internal_error("messed up: min=" + (@min).to_s + ", max=" + (@max).to_s)
+        ErrorManager.internal_error("messed up: min=" + RJava.cast_to_string(@min) + ", max=" + RJava.cast_to_string(@max))
       end
     end
     
@@ -1205,7 +1205,7 @@ module Org::Antlr::Analysis
             # add all the predicates we find (should be just one, right?)
             it = synpreds.iterator
             while it.has_next
-              semctx = it.next
+              semctx = it.next_
               # System.out.println("synpreds: "+semctx);
               @nfa.attr_grammar.syn_pred_used_in_dfa(self, semctx)
             end

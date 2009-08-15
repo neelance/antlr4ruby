@@ -199,7 +199,7 @@ module Org::Antlr::Analysis
         # text rather than same node in the grammar's AST.
         # Or, if they have the same constant value, return equal.
         # As of July 2006 I'm not sure these are needed.
-        def equals(o)
+        def ==(o)
           if (!(o.is_a?(Predicate)))
             return false
           end
@@ -386,7 +386,7 @@ module Org::Antlr::Analysis
         
         typesig { [] }
         def to_s
-          return "(" + (@left).to_s + "&&" + (@right).to_s + ")"
+          return "(" + RJava.cast_to_string(@left) + "&&" + RJava.cast_to_string(@right) + ")"
         end
         
         private
@@ -433,7 +433,7 @@ module Org::Antlr::Analysis
           end
           it = @operands.iterator
           while it.has_next
-            semctx = it.next
+            semctx = it.next_
             e_st.set_attribute("operands", semctx.gen_expr(generator, templates, dfa))
           end
           return e_st
@@ -444,10 +444,10 @@ module Org::Antlr::Analysis
           result = nil
           it = @operands.iterator
           while it.has_next
-            semctx = it.next
+            semctx = it.next_
             gated_pred = semctx.get_gated_predicate_context
             if (!(gated_pred).nil?)
-              result = or(result, gated_pred)
+              result = or_(result, gated_pred)
               # result = new OR(result, gatedPred);
             end
           end
@@ -458,7 +458,7 @@ module Org::Antlr::Analysis
         def is_syntactic_predicate
           it = @operands.iterator
           while it.has_next
-            semctx = it.next
+            semctx = it.next_
             if (semctx.is_syntactic_predicate)
               return true
             end
@@ -470,7 +470,7 @@ module Org::Antlr::Analysis
         def track_use_of_syntactic_predicates(g)
           it = @operands.iterator
           while it.has_next
-            semctx = it.next
+            semctx = it.next_
             semctx.track_use_of_syntactic_predicates(g)
           end
         end
@@ -482,7 +482,7 @@ module Org::Antlr::Analysis
           i = 0
           it = @operands.iterator
           while it.has_next
-            semctx = it.next
+            semctx = it.next_
             if (i > 0)
               buf.append("||")
             end
@@ -545,7 +545,7 @@ module Org::Antlr::Analysis
         end
         
         typesig { [Object] }
-        def equals(object)
+        def ==(object)
           if (!(object.is_a?(NOT)))
             return false
           end
@@ -554,7 +554,7 @@ module Org::Antlr::Analysis
         
         typesig { [] }
         def to_s
-          return "!(" + (@ctx).to_s + ")"
+          return "!(" + RJava.cast_to_string(@ctx) + ")"
         end
         
         private
@@ -562,7 +562,7 @@ module Org::Antlr::Analysis
       end }
       
       typesig { [SemanticContext, SemanticContext] }
-      def and(a, b)
+      def and_(a, b)
         # System.out.println("AND: "+a+"&&"+b);
         if ((a).equal?(EMPTY_SEMANTIC_CONTEXT) || (a).nil?)
           return b
@@ -578,7 +578,7 @@ module Org::Antlr::Analysis
       end
       
       typesig { [SemanticContext, SemanticContext] }
-      def or(a, b)
+      def or_(a, b)
         # System.out.println("OR: "+a+"||"+b);
         if ((a).equal?(EMPTY_SEMANTIC_CONTEXT) || (a).nil?)
           return b
@@ -616,7 +616,7 @@ module Org::Antlr::Analysis
       end
       
       typesig { [SemanticContext] }
-      def not(a)
+      def not_(a)
         return NOT.new(a)
       end
     }

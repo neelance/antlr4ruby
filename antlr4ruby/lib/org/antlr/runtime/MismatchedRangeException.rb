@@ -67,7 +67,7 @@ module Org::Antlr::Runtime
     
     typesig { [] }
     def to_s
-      return "MismatchedNotSetException(" + (get_unexpected_type).to_s + " not in [" + (@a).to_s + "," + (@b).to_s + "])"
+      return "MismatchedNotSetException(" + RJava.cast_to_string(get_unexpected_type) + " not in [" + RJava.cast_to_string(@a) + "," + RJava.cast_to_string(@b) + "])"
     end
     
     private
