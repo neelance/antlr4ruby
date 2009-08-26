@@ -159,11 +159,11 @@ module Org::Antlr::Analysis
           @gated = false
           @synpred = false
           @constant_value = self.class::INVALID_PRED_VALUE
-          @predicate_ast = GrammarAST.new
+          @predicate_ast = self.class::GrammarAST.new
           @gated = false
         end
         
-        typesig { [GrammarAST] }
+        typesig { [self::GrammarAST] }
         def initialize(predicate)
           @predicate_ast = nil
           @gated = false
@@ -178,7 +178,7 @@ module Org::Antlr::Analysis
           @synpred = (predicate.get_type).equal?(ANTLRParser::SYN_SEMPRED) || (predicate.get_type).equal?(ANTLRParser::BACKTRACK_SEMPRED)
         end
         
-        typesig { [Predicate] }
+        typesig { [self::Predicate] }
         def initialize(p)
           @predicate_ast = nil
           @gated = false
@@ -200,7 +200,7 @@ module Org::Antlr::Analysis
         # Or, if they have the same constant value, return equal.
         # As of July 2006 I'm not sure these are needed.
         def ==(o)
-          if (!(o.is_a?(Predicate)))
+          if (!(o.is_a?(self.class::Predicate)))
             return false
           end
           return (@predicate_ast.get_text == (o).attr_predicate_ast.get_text)
@@ -214,7 +214,7 @@ module Org::Antlr::Analysis
           return @predicate_ast.get_text.hash_code
         end
         
-        typesig { [CodeGenerator, StringTemplateGroup, DFA] }
+        typesig { [self::CodeGenerator, self::StringTemplateGroup, self::DFA] }
         def gen_expr(generator, templates, dfa)
           e_st = nil
           if (!(templates).nil?)
@@ -236,7 +236,7 @@ module Org::Antlr::Analysis
               e_st.set_attribute("pred", generator.translate_action(pred_enclosing_rule_name, @predicate_ast))
             end
           else
-            e_st = StringTemplate.new("$pred$")
+            e_st = self.class::StringTemplate.new("$pred$")
             e_st.set_attribute("pred", self.to_s)
             return e_st
           end
@@ -260,7 +260,7 @@ module Org::Antlr::Analysis
           return !(@predicate_ast).nil? && ((@predicate_ast.get_type).equal?(ANTLRParser::SYN_SEMPRED) || (@predicate_ast.get_type).equal?(ANTLRParser::BACKTRACK_SEMPRED))
         end
         
-        typesig { [Grammar] }
+        typesig { [self::Grammar] }
         def track_use_of_syntactic_predicates(g)
           if (@synpred)
             g.attr_syn_pred_names_used_in_dfa.add(@predicate_ast.get_text)
@@ -288,12 +288,12 @@ module Org::Antlr::Analysis
           self.attr_constant_value = TRUE_PRED
         end
         
-        typesig { [CodeGenerator, StringTemplateGroup, DFA] }
+        typesig { [self::CodeGenerator, self::StringTemplateGroup, self::DFA] }
         def gen_expr(generator, templates, dfa)
           if (!(templates).nil?)
             return templates.get_instance_of("true")
           end
-          return StringTemplate.new("true")
+          return self.class::StringTemplate.new("true")
         end
         
         typesig { [] }
@@ -338,7 +338,7 @@ module Org::Antlr::Analysis
         alias_method :attr_right=, :right=
         undef_method :right=
         
-        typesig { [SemanticContext, SemanticContext] }
+        typesig { [self::SemanticContext, self::SemanticContext] }
         def initialize(a, b)
           @left = nil
           @right = nil
@@ -347,13 +347,13 @@ module Org::Antlr::Analysis
           @right = b
         end
         
-        typesig { [CodeGenerator, StringTemplateGroup, DFA] }
+        typesig { [self::CodeGenerator, self::StringTemplateGroup, self::DFA] }
         def gen_expr(generator, templates, dfa)
           e_st = nil
           if (!(templates).nil?)
             e_st = templates.get_instance_of("andPredicates")
           else
-            e_st = StringTemplate.new("($left$&&$right$)")
+            e_st = self.class::StringTemplate.new("($left$&&$right$)")
           end
           e_st.set_attribute("left", @left.gen_expr(generator, templates, dfa))
           e_st.set_attribute("right", @right.gen_expr(generator, templates, dfa))
@@ -370,7 +370,7 @@ module Org::Antlr::Analysis
           if ((gated_right).nil?)
             return gated_left
           end
-          return AND.new(gated_left, gated_right)
+          return self.class::AND.new(gated_left, gated_right)
         end
         
         typesig { [] }
@@ -378,7 +378,7 @@ module Org::Antlr::Analysis
           return @left.is_syntactic_predicate || @right.is_syntactic_predicate
         end
         
-        typesig { [Grammar] }
+        typesig { [self::Grammar] }
         def track_use_of_syntactic_predicates(g)
           @left.track_use_of_syntactic_predicates(g)
           @right.track_use_of_syntactic_predicates(g)
@@ -402,19 +402,19 @@ module Org::Antlr::Analysis
         alias_method :attr_operands=, :operands=
         undef_method :operands=
         
-        typesig { [SemanticContext, SemanticContext] }
+        typesig { [self::SemanticContext, self::SemanticContext] }
         def initialize(a, b)
           @operands = nil
           super()
-          @operands = HashSet.new
-          if (a.is_a?(OR))
+          @operands = self.class::HashSet.new
+          if (a.is_a?(self.class::OR))
             @operands.add_all((a).attr_operands)
           else
             if (!(a).nil?)
               @operands.add(a)
             end
           end
-          if (b.is_a?(OR))
+          if (b.is_a?(self.class::OR))
             @operands.add_all((b).attr_operands)
           else
             if (!(b).nil?)
@@ -423,13 +423,13 @@ module Org::Antlr::Analysis
           end
         end
         
-        typesig { [CodeGenerator, StringTemplateGroup, DFA] }
+        typesig { [self::CodeGenerator, self::StringTemplateGroup, self::DFA] }
         def gen_expr(generator, templates, dfa)
           e_st = nil
           if (!(templates).nil?)
             e_st = templates.get_instance_of("orPredicates")
           else
-            e_st = StringTemplate.new("($first(operands)$$rest(operands):{o | ||$o$}$)")
+            e_st = self.class::StringTemplate.new("($first(operands)$$rest(operands):{o | ||$o$}$)")
           end
           it = @operands.iterator
           while it.has_next
@@ -466,7 +466,7 @@ module Org::Antlr::Analysis
           return false
         end
         
-        typesig { [Grammar] }
+        typesig { [self::Grammar] }
         def track_use_of_syntactic_predicates(g)
           it = @operands.iterator
           while it.has_next
@@ -477,7 +477,7 @@ module Org::Antlr::Analysis
         
         typesig { [] }
         def to_s
-          buf = StringBuffer.new
+          buf = self.class::StringBuffer.new
           buf.append("(")
           i = 0
           it = @operands.iterator
@@ -506,20 +506,20 @@ module Org::Antlr::Analysis
         alias_method :attr_ctx=, :ctx=
         undef_method :ctx=
         
-        typesig { [SemanticContext] }
+        typesig { [self::SemanticContext] }
         def initialize(ctx)
           @ctx = nil
           super()
           @ctx = ctx
         end
         
-        typesig { [CodeGenerator, StringTemplateGroup, DFA] }
+        typesig { [self::CodeGenerator, self::StringTemplateGroup, self::DFA] }
         def gen_expr(generator, templates, dfa)
           e_st = nil
           if (!(templates).nil?)
             e_st = templates.get_instance_of("notPredicate")
           else
-            e_st = StringTemplate.new("?!($pred$)")
+            e_st = self.class::StringTemplate.new("?!($pred$)")
           end
           e_st.set_attribute("pred", @ctx.gen_expr(generator, templates, dfa))
           return e_st
@@ -531,7 +531,7 @@ module Org::Antlr::Analysis
           if ((p).nil?)
             return nil
           end
-          return NOT.new(p)
+          return self.class::NOT.new(p)
         end
         
         typesig { [] }
@@ -539,14 +539,14 @@ module Org::Antlr::Analysis
           return @ctx.is_syntactic_predicate
         end
         
-        typesig { [Grammar] }
+        typesig { [self::Grammar] }
         def track_use_of_syntactic_predicates(g)
           @ctx.track_use_of_syntactic_predicates(g)
         end
         
         typesig { [Object] }
         def ==(object)
-          if (!(object.is_a?(NOT)))
+          if (!(object.is_a?(self.class::NOT)))
             return false
           end
           return (@ctx == (object).attr_ctx)

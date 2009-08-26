@@ -86,7 +86,7 @@ module Org::Antlr::Tool
         alias_method :attr_g=, :g=
         undef_method :g=
         
-        typesig { [Grammar] }
+        typesig { [self::Grammar] }
         def initialize(g)
           @token = nil
           @g = nil
@@ -94,12 +94,12 @@ module Org::Antlr::Tool
           @g = g
         end
         
-        typesig { [String, String] }
+        typesig { [self::String, self::String] }
         def exit_rule(grammar_file_name, rule_name)
           if (!(rule_name == Grammar::ARTIFICIAL_TOKENS_RULENAME))
             type = @g.get_token_type(rule_name)
             channel = Token::DEFAULT_CHANNEL
-            @token = CommonToken.new(self.attr_input, type, channel, 0, 0)
+            @token = self.class::CommonToken.new(self.attr_input, type, channel, 0, 0)
           end
         end
         

@@ -91,7 +91,7 @@ module Org::Antlr::Runtime::Tree
         
         typesig { [] }
         def remove
-          raise RuntimeException.new("cannot remove nodes from stream")
+          raise self.class::RuntimeException.new("cannot remove nodes from stream")
         end
         
         typesig { [] }

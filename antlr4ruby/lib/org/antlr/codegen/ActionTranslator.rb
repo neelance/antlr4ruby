@@ -3413,7 +3413,7 @@ module Org::Antlr::Codegen
         extend LocalClass
         include_class_members ActionTranslator
         
-        typesig { [BaseRecognizer] }
+        typesig { [self::BaseRecognizer] }
         def initialize(recognizer)
           super()
           self.attr_recognizer = recognizer
@@ -3489,7 +3489,7 @@ module Org::Antlr::Codegen
         extend LocalClass
         include_class_members ActionTranslator
         
-        typesig { [BaseRecognizer] }
+        typesig { [self::BaseRecognizer] }
         def initialize(recognizer)
           super()
           self.attr_recognizer = recognizer
@@ -3508,7 +3508,7 @@ module Org::Antlr::Codegen
           return "1:1: Tokens options {k=1; backtrack=true; } : ( SET_ENCLOSING_RULE_SCOPE_ATTR | ENCLOSING_RULE_SCOPE_ATTR | SET_TOKEN_SCOPE_ATTR | TOKEN_SCOPE_ATTR | SET_RULE_SCOPE_ATTR | RULE_SCOPE_ATTR | LABEL_REF | ISOLATED_TOKEN_REF | ISOLATED_LEXER_RULE_REF | SET_LOCAL_ATTR | LOCAL_ATTR | SET_DYNAMIC_SCOPE_ATTR | DYNAMIC_SCOPE_ATTR | ERROR_SCOPED_XY | DYNAMIC_NEGATIVE_INDEXED_SCOPE_ATTR | DYNAMIC_ABSOLUTE_INDEXED_SCOPE_ATTR | ISOLATED_DYNAMIC_SCOPE | TEMPLATE_INSTANCE | INDIRECT_TEMPLATE_INSTANCE | SET_EXPR_ATTRIBUTE | SET_ATTRIBUTE | TEMPLATE_EXPR | ESC | ERROR_XY | ERROR_X | UNKNOWN_SYNTAX | TEXT );"
         end
         
-        typesig { [::Java::Int, IntStream] }
+        typesig { [::Java::Int, self::IntStream] }
         def special_state_transition(s, _input)
           input = _input
           _s = s
@@ -3638,7 +3638,7 @@ module Org::Antlr::Codegen
             self.attr_state.attr_failed = true
             return -1
           end
-          nvae = NoViableAltException.new(get_description, 28, _s, input)
+          nvae = self.class::NoViableAltException.new(get_description, 28, _s, input)
           error(nvae)
           raise nvae
         end

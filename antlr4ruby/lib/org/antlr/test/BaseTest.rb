@@ -338,17 +338,17 @@ module Org::Antlr::Test
         alias_method :attr_sucker=, :sucker=
         undef_method :sucker=
         
-        typesig { [InputStream] }
+        typesig { [self::InputStream] }
         def initialize(in_)
-          @buf = StringBuffer.new
+          @buf = self.class::StringBuffer.new
           @in = nil
           @sucker = nil
-          @in = BufferedReader.new(InputStreamReader.new(in_))
+          @in = self.class::BufferedReader.new(self.class::InputStreamReader.new(in_))
         end
         
         typesig { [] }
         def start
-          @sucker = JavaThread.new(self)
+          @sucker = self.class::JavaThread.new(self)
           @sucker.start
         end
         
@@ -361,7 +361,7 @@ module Org::Antlr::Test
               @buf.append(Character.new(?\n.ord))
               line = RJava.cast_to_string(@in.read_line)
             end
-          rescue IOException => ioe
+          rescue self.class::IOException => ioe
             System.err.println("can't read output from process")
           end
         end

@@ -172,7 +172,7 @@ module Org::Antlr::Runtime::Debug
           @index = index
         end
         
-        typesig { [::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, String] }
+        typesig { [::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, self::String] }
         def initialize(index, type, channel, line, char_pos, text)
           @index = 0
           @type = 0
@@ -193,7 +193,7 @@ module Org::Antlr::Runtime::Debug
           return @text
         end
         
-        typesig { [String] }
+        typesig { [self::String] }
         def set_text(text)
           @text = text
         end
@@ -253,7 +253,7 @@ module Org::Antlr::Runtime::Debug
           return nil
         end
         
-        typesig { [CharStream] }
+        typesig { [self::CharStream] }
         def set_input_stream(input)
         end
         
@@ -309,7 +309,7 @@ module Org::Antlr::Runtime::Debug
         alias_method :attr_text=, :text=
         undef_method :text=
         
-        typesig { [::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, String] }
+        typesig { [::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, ::Java::Int, self::String] }
         def initialize(id, type, line, char_pos, token_index, text)
           @id = 0
           @type = 0

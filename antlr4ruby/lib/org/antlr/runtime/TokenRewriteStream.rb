@@ -131,7 +131,7 @@ module Org::Antlr::Runtime
           @text = text
         end
         
-        typesig { [StringBuffer] }
+        typesig { [self::StringBuffer] }
         # Execute the rewrite operation by possibly adding to the buffer.
         # Return the index of the next token to operate on.
         def execute(buf)
@@ -159,7 +159,7 @@ module Org::Antlr::Runtime
           super(index, text)
         end
         
-        typesig { [StringBuffer] }
+        typesig { [self::StringBuffer] }
         def execute(buf)
           buf.append(self.attr_text)
           buf.append((self.attr_tokens.get(self.attr_index)).get_text)
@@ -189,7 +189,7 @@ module Org::Antlr::Runtime
           @last_index = to
         end
         
-        typesig { [StringBuffer] }
+        typesig { [self::StringBuffer] }
         def execute(buf)
           if (!(self.attr_text).nil?)
             buf.append(self.attr_text)

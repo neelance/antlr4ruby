@@ -542,8 +542,8 @@ module Org::Antlr::Tool
           @errors = 0
           @warnings = 0
           @infos = 0
-          @error_msg_ids = BitSet.new
-          @warning_msg_ids = BitSet.new
+          @error_msg_ids = self.class::BitSet.new
+          @warning_msg_ids = self.class::BitSet.new
         end
         
         private
@@ -765,7 +765,7 @@ module Org::Antlr::Tool
           
           typesig { [String, JavaThrowable] }
           define_method :error do |s, e|
-            if (e.is_a?(InvocationTargetException))
+            if (e.is_a?(self.class::InvocationTargetException))
               e = (e).get_target_exception
             end
             ErrorManager.error(ErrorManager::MSG_INTERNAL_ERROR, s, e)
