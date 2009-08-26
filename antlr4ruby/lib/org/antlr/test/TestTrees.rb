@@ -61,7 +61,7 @@ module Org::Antlr::Test
         alias_method :attr_x=, :x=
         undef_method :x=
         
-        typesig { [self::Token] }
+        typesig { [class_self::Token] }
         def initialize(t)
           @x = 0
           super()
@@ -76,7 +76,7 @@ module Org::Antlr::Test
           self.attr_token = self.class::CommonToken.new(ttype)
         end
         
-        typesig { [::Java::Int, self::Token, ::Java::Int] }
+        typesig { [::Java::Int, class_self::Token, ::Java::Int] }
         def initialize(ttype, t, x)
           @x = 0
           super()

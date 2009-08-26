@@ -86,7 +86,7 @@ module Org::Antlr::Tool
         alias_method :attr_g=, :g=
         undef_method :g=
         
-        typesig { [self::Grammar] }
+        typesig { [class_self::Grammar] }
         def initialize(g)
           @token = nil
           @g = nil

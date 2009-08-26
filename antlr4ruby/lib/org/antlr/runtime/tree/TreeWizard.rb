@@ -177,7 +177,7 @@ module Org::Antlr::Runtime::Tree
         include_class_members TreeWizard
         include ContextVisitor
         
-        typesig { [Object, Object, ::Java::Int, self::Map] }
+        typesig { [Object, Object, ::Java::Int, class_self::Map] }
         def visit(t, parent, child_index, labels)
           visit(t)
         end
@@ -212,7 +212,7 @@ module Org::Antlr::Runtime::Tree
         alias_method :attr_has_text_arg=, :has_text_arg=
         undef_method :has_text_arg=
         
-        typesig { [self::Token] }
+        typesig { [class_self::Token] }
         def initialize(payload)
           @label = nil
           @has_text_arg = false
@@ -235,7 +235,7 @@ module Org::Antlr::Runtime::Tree
       const_set_lazy(:WildcardTreePattern) { Class.new(TreePattern) do
         include_class_members TreeWizard
         
-        typesig { [self::Token] }
+        typesig { [class_self::Token] }
         def initialize(payload)
           super(payload)
         end
@@ -248,7 +248,7 @@ module Org::Antlr::Runtime::Tree
       const_set_lazy(:TreePatternTreeAdaptor) { Class.new(CommonTreeAdaptor) do
         include_class_members TreeWizard
         
-        typesig { [self::Token] }
+        typesig { [class_self::Token] }
         def create(payload)
           return self.class::TreePattern.new(payload)
         end

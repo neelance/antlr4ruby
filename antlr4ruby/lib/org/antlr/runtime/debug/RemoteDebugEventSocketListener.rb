@@ -253,7 +253,7 @@ module Org::Antlr::Runtime::Debug
           return nil
         end
         
-        typesig { [self::CharStream] }
+        typesig { [class_self::CharStream] }
         def set_input_stream(input)
         end
         

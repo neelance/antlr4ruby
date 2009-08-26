@@ -338,7 +338,7 @@ module Org::Antlr::Test
         alias_method :attr_sucker=, :sucker=
         undef_method :sucker=
         
-        typesig { [self::InputStream] }
+        typesig { [class_self::InputStream] }
         def initialize(in_)
           @buf = self.class::StringBuffer.new
           @in = nil

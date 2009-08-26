@@ -292,7 +292,7 @@ module Org::Antlr::Tool
         alias_method :attr_type=, :type=
         undef_method :type=
         
-        typesig { [Antlr::Token, self::GrammarAST] }
+        typesig { [Antlr::Token, class_self::GrammarAST] }
         # in {RULE_LABEL,TOKEN_LABEL,RULE_LIST_LABEL,TOKEN_LIST_LABEL}
         def initialize(label, element_ref)
           @label = nil
