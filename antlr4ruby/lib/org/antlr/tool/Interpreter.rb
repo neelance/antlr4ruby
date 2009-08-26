@@ -94,7 +94,7 @@ module Org::Antlr::Tool
           @g = g
         end
         
-        typesig { [self::String, self::String] }
+        typesig { [String, String] }
         def exit_rule(grammar_file_name, rule_name)
           if (!(rule_name == Grammar::ARTIFICIAL_TOKENS_RULENAME))
             type = @g.get_token_type(rule_name)

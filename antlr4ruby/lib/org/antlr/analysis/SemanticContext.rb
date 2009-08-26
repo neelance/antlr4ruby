@@ -194,7 +194,7 @@ module Org::Antlr::Analysis
           @constant_value = p.attr_constant_value
         end
         
-        typesig { [Object] }
+        typesig { [self::Object] }
         # Two predicates are the same if they are literally the same
         # text rather than same node in the grammar's AST.
         # Or, if they have the same constant value, return equal.
@@ -544,7 +544,7 @@ module Org::Antlr::Analysis
           @ctx.track_use_of_syntactic_predicates(g)
         end
         
-        typesig { [Object] }
+        typesig { [self::Object] }
         def ==(object)
           if (!(object.is_a?(self.class::NOT)))
             return false

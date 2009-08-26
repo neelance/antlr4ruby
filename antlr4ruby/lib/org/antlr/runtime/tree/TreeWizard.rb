@@ -177,12 +177,12 @@ module Org::Antlr::Runtime::Tree
         include_class_members TreeWizard
         include ContextVisitor
         
-        typesig { [Object, Object, ::Java::Int, self::Map] }
+        typesig { [self::Object, self::Object, ::Java::Int, self::Map] }
         def visit(t, parent, child_index, labels)
           visit(t)
         end
         
-        typesig { [Object] }
+        typesig { [self::Object] }
         def visit(t)
           raise NotImplementedError
         end
