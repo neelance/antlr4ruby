@@ -122,7 +122,7 @@ module Org::Antlr::Runtime
         alias_method :attr_text=, :text=
         undef_method :text=
         
-        typesig { [::Java::Int, self::Object] }
+        typesig { [::Java::Int, Object] }
         def initialize(index, text)
           @instruction_index = 0
           @index = 0
@@ -154,7 +154,7 @@ module Org::Antlr::Runtime
         extend LocalClass
         include_class_members TokenRewriteStream
         
-        typesig { [::Java::Int, self::Object] }
+        typesig { [::Java::Int, Object] }
         def initialize(index, text)
           super(index, text)
         end
@@ -182,7 +182,7 @@ module Org::Antlr::Runtime
         alias_method :attr_last_index=, :last_index=
         undef_method :last_index=
         
-        typesig { [::Java::Int, ::Java::Int, self::Object] }
+        typesig { [::Java::Int, ::Java::Int, Object] }
         def initialize(from, to, text)
           @last_index = 0
           super(from, text)
