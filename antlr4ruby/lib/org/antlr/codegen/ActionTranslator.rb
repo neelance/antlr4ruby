@@ -28,7 +28,7 @@ require "rjava"
 # 
 # $ANTLR 3.1b1 ActionTranslator.g 2008-05-01 15:02:49
 module Org::Antlr::Codegen
-  module ActionTranslatorImports
+  module ActionTranslatorImports #:nodoc:
     class_module.module_eval {
       include ::Java::Lang
       include ::Org::Antlr::Codegen

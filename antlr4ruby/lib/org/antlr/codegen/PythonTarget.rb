@@ -31,7 +31,7 @@ require "rjava"
 # Please excuse my obvious lack of Java experience. The code here is probably
 # full of WTFs - though IMHO Java is the Real WTF(TM) here...
 module Org::Antlr::Codegen
-  module PythonTargetImports
+  module PythonTargetImports #:nodoc:
     class_module.module_eval {
       include ::Java::Lang
       include ::Org::Antlr::Codegen

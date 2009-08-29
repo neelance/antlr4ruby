@@ -26,7 +26,7 @@ require "rjava"
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 module Org::Antlr::Test
-  module TestNFAConstructionImports
+  module TestNFAConstructionImports #:nodoc:
     class_module.module_eval {
       include ::Java::Lang
       include ::Org::Antlr::Test

@@ -28,7 +28,7 @@ require "rjava"
 # 
 # $ANTLR 3.1b1 ActionAnalysis.g 2007-12-11 15:11:24
 module Org::Antlr::Tool
-  module ActionAnalysisLexerImports
+  module ActionAnalysisLexerImports #:nodoc:
     class_module.module_eval {
       include ::Java::Lang
       include ::Org::Antlr::Tool

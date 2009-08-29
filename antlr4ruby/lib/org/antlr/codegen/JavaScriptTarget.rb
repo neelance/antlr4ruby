@@ -1,7 +1,7 @@
 require "rjava"
 
 module Org::Antlr::Codegen
-  module JavaScriptTargetImports
+  module JavaScriptTargetImports #:nodoc:
     class_module.module_eval {
       include ::Java::Lang
       include ::Org::Antlr::Codegen
