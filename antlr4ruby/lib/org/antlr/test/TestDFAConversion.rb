@@ -290,9 +290,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -312,9 +312,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -338,9 +338,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -360,9 +360,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -388,9 +388,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -411,9 +411,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -523,9 +523,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -546,9 +546,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -571,9 +571,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -970,9 +970,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -999,9 +999,9 @@ module Org::Antlr::Test
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private

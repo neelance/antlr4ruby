@@ -1576,9 +1576,9 @@ module Org::Antlr::Analysis
           return 0
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private

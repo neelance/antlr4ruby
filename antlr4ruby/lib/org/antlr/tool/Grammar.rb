@@ -184,9 +184,9 @@ module Org::Antlr::Tool
           include_class_members Grammar
           include MultiMap if MultiMap.class == Module
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -359,9 +359,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -384,9 +384,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -410,9 +410,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -432,9 +432,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -448,9 +448,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -467,9 +467,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -484,9 +484,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -500,9 +500,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -518,9 +518,9 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private

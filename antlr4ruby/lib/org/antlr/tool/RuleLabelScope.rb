@@ -53,9 +53,9 @@ module Org::Antlr::Tool
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -81,9 +81,9 @@ module Org::Antlr::Tool
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -114,9 +114,9 @@ module Org::Antlr::Tool
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -163,7 +163,7 @@ module Org::Antlr::Tool
     # If you label a rule reference, you can access that rule's
     # return values as well as any predefined attributes.
     def get_attribute(name)
-      rule_properties_scope = self.attr_grammar_type_to_rule_properties_scope.attr_grammar_type_to_rule_properties_scope[self.attr_grammar.attr_type]
+      rule_properties_scope = self.attr_grammar_type_to_rule_properties_scope[self.attr_grammar.attr_type]
       if (!(rule_properties_scope.get_attribute(name)).nil?)
         return rule_properties_scope.get_attribute(name)
       end

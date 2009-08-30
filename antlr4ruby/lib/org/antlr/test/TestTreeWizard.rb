@@ -155,9 +155,9 @@ module Org::Antlr::Test
           elements.add(t)
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -183,9 +183,9 @@ module Org::Antlr::Test
           elements.add(t)
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -211,9 +211,9 @@ module Org::Antlr::Test
           elements.add(t)
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -239,9 +239,9 @@ module Org::Antlr::Test
           elements.add(t)
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -267,9 +267,9 @@ module Org::Antlr::Test
           elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]")
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -295,9 +295,9 @@ module Org::Antlr::Test
           elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]")
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -323,9 +323,9 @@ module Org::Antlr::Test
           elements.add(t)
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -351,9 +351,9 @@ module Org::Antlr::Test
           elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]")
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -379,9 +379,9 @@ module Org::Antlr::Test
           elements.add(RJava.cast_to_string(Adaptor.get_text(t)) + "@" + RJava.cast_to_string((!(parent).nil? ? Adaptor.get_text(parent) : "nil")) + "[" + RJava.cast_to_string(child_index) + "]" + RJava.cast_to_string(labels.get("a")) + "&" + RJava.cast_to_string(labels.get("b")))
         end
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private

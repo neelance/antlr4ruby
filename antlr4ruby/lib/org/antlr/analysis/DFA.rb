@@ -1272,7 +1272,7 @@ module Org::Antlr::Analysis
           buf.append(" && ")
         end
         buf.append("timed out (>")
-        buf.append(self.attr_max_time_per_dfa_creation.attr_max_time_per_dfa_creation)
+        buf.append(self.attr_max_time_per_dfa_creation)
         buf.append("ms)")
       end
       buf.append("\n")

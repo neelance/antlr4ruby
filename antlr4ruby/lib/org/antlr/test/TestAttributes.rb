@@ -174,9 +174,9 @@ module Org::Antlr::Test
         include_class_members TestAttributes
         include ArrayList if ArrayList.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private

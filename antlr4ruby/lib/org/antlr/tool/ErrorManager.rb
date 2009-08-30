@@ -412,9 +412,9 @@ module Org::Antlr::Tool
         include_class_members ErrorManager
         include BitSet if BitSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -435,9 +435,9 @@ module Org::Antlr::Tool
         include_class_members ErrorManager
         include BitSet if BitSet.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -454,9 +454,9 @@ module Org::Antlr::Tool
         include_class_members ErrorManager
         include HashMap if HashMap.class == Module
         
-        typesig { [] }
-        define_method :initialize do
-          super()
+        typesig { [Object] }
+        define_method :initialize do |*args|
+          super(*args)
         end
         
         private
@@ -656,9 +656,9 @@ module Org::Antlr::Tool
             System.err.println(output_msg)
           end
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -701,9 +701,9 @@ module Org::Antlr::Tool
           define_method :debug do |s|
           end
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -739,9 +739,9 @@ module Org::Antlr::Tool
           define_method :debug do |s|
           end
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -780,9 +780,9 @@ module Org::Antlr::Tool
           define_method :debug do |s|
           end
           
-          typesig { [] }
-          define_method :initialize do
-            super()
+          typesig { [Object] }
+          define_method :initialize do |*args|
+            super(*args)
           end
           
           private
@@ -821,7 +821,7 @@ module Org::Antlr::Tool
       # so that French Canadians and French Frenchies all get the same
       # template file, fr.stg.  Just easier this way.
       def set_locale(locale)
-        self.attr_locale.attr_locale = locale
+        self.attr_locale = locale
         language = locale.get_language
         file_name = "org/antlr/tool/templates/messages/languages/" + language + ".stg"
         cl = JavaThread.current_thread.get_context_class_loader
@@ -872,7 +872,7 @@ module Org::Antlr::Tool
       # The format gets reset either from the Tool if the user supplied a command line option to that effect
       # Otherwise we just use the default "antlr".
       def set_format(format_name)
-        self.attr_format_name.attr_format_name = format_name
+        self.attr_format_name = format_name
         file_name = "org/antlr/tool/templates/messages/formats/" + format_name + ".stg"
         cl = JavaThread.current_thread.get_context_class_loader
         is = cl.get_resource_as_stream(file_name)
