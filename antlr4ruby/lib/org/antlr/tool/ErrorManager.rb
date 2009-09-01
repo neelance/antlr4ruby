@@ -412,7 +412,7 @@ module Org::Antlr::Tool
         include_class_members ErrorManager
         include BitSet if BitSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -435,7 +435,7 @@ module Org::Antlr::Tool
         include_class_members ErrorManager
         include BitSet if BitSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -454,7 +454,7 @@ module Org::Antlr::Tool
         include_class_members ErrorManager
         include HashMap if HashMap.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -656,7 +656,7 @@ module Org::Antlr::Tool
             System.err.println(output_msg)
           end
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end
@@ -701,7 +701,7 @@ module Org::Antlr::Tool
           define_method :debug do |s|
           end
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end
@@ -739,7 +739,7 @@ module Org::Antlr::Tool
           define_method :debug do |s|
           end
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end
@@ -780,7 +780,7 @@ module Org::Antlr::Tool
           define_method :debug do |s|
           end
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end

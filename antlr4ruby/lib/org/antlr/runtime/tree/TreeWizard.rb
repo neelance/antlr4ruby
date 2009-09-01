@@ -388,7 +388,7 @@ module Org::Antlr::Runtime::Tree
           nodes.add(t)
         end
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -424,7 +424,7 @@ module Org::Antlr::Runtime::Tree
           end
         end
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -502,7 +502,7 @@ module Org::Antlr::Runtime::Tree
           end
         end
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end

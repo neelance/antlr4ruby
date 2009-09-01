@@ -53,7 +53,7 @@ module Org::Antlr::Tool
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end
@@ -81,7 +81,7 @@ module Org::Antlr::Tool
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end
@@ -114,7 +114,7 @@ module Org::Antlr::Tool
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end

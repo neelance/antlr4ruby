@@ -184,7 +184,7 @@ module Org::Antlr::Tool
           include_class_members Grammar
           include MultiMap if MultiMap.class == Module
           
-          typesig { [Object] }
+          typesig { [Vararg.new(Object)] }
           define_method :initialize do |*args|
             super(*args)
           end
@@ -359,7 +359,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -384,7 +384,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -410,7 +410,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -432,7 +432,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -448,7 +448,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -467,7 +467,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -484,7 +484,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -500,7 +500,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
@@ -518,7 +518,7 @@ module Org::Antlr::Tool
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end

@@ -89,7 +89,7 @@ module Org::Antlr::Tool
         include_class_members Rule
         include HashSet if HashSet.class == Module
         
-        typesig { [Object] }
+        typesig { [Vararg.new(Object)] }
         define_method :initialize do |*args|
           super(*args)
         end
