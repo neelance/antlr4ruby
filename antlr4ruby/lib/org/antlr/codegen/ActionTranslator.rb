@@ -3410,7 +3410,7 @@ module Org::Antlr::Codegen
       end
       
       const_set_lazy(:DFA22) { Class.new(DFA) do
-        extend LocalClass
+        local_class_in ActionTranslator
         include_class_members ActionTranslator
         
         typesig { [class_self::BaseRecognizer] }
@@ -3486,7 +3486,7 @@ module Org::Antlr::Codegen
       end
       
       const_set_lazy(:DFA28) { Class.new(DFA) do
-        extend LocalClass
+        local_class_in ActionTranslator
         include_class_members ActionTranslator
         
         typesig { [class_self::BaseRecognizer] }

@@ -49,7 +49,7 @@ module Org::Antlr::Tool
         defined?(@@predefined_rule_properties_scope) ? @@predefined_rule_properties_scope : @@predefined_rule_properties_scope= # Rules have a predefined set of attributes as well as
         # the return values.  'text' needs to be computed though so.
         Class.new(AttributeScope.class == Class ? AttributeScope : Object) do
-          extend LocalClass
+          local_class_in RuleLabelScope
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
@@ -77,7 +77,7 @@ module Org::Antlr::Tool
       
       def predefined_tree_rule_properties_scope
         defined?(@@predefined_tree_rule_properties_scope) ? @@predefined_tree_rule_properties_scope : @@predefined_tree_rule_properties_scope= Class.new(AttributeScope.class == Class ? AttributeScope : Object) do
-          extend LocalClass
+          local_class_in RuleLabelScope
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           
@@ -110,7 +110,7 @@ module Org::Antlr::Tool
       
       def predefined_lexer_rule_properties_scope
         defined?(@@predefined_lexer_rule_properties_scope) ? @@predefined_lexer_rule_properties_scope : @@predefined_lexer_rule_properties_scope= Class.new(AttributeScope.class == Class ? AttributeScope : Object) do
-          extend LocalClass
+          local_class_in RuleLabelScope
           include_class_members RuleLabelScope
           include AttributeScope if AttributeScope.class == Module
           

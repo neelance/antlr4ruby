@@ -58,37 +58,37 @@ module Org::Antlr::Runtime::Tree
     
     class_module.module_eval {
       
-      def _tree_st
+      def __tree_st
         defined?(@@_tree_st) ? @@_tree_st : @@_tree_st= StringTemplate.new("digraph {\n" + "  ordering=out;\n" + "  ranksep=.4;\n" + "  node [shape=plaintext, fixedsize=true, fontsize=11, fontname=\"Courier\",\n" + "        width=.25, height=.25];\n" + "  edge [arrowsize=.5]\n" + "  $nodes$\n" + "  $edges$\n" + "}\n")
       end
-      alias_method :attr__tree_st, :_tree_st
+      alias_method :attr__tree_st, :__tree_st
       
-      def _tree_st=(value)
+      def __tree_st=(value)
         @@_tree_st = value
       end
-      alias_method :attr__tree_st=, :_tree_st=
+      alias_method :attr__tree_st=, :__tree_st=
       
       
-      def _node_st
+      def __node_st
         defined?(@@_node_st) ? @@_node_st : @@_node_st= StringTemplate.new("$name$ [label=\"$text$\"];\n")
       end
-      alias_method :attr__node_st, :_node_st
+      alias_method :attr__node_st, :__node_st
       
-      def _node_st=(value)
+      def __node_st=(value)
         @@_node_st = value
       end
-      alias_method :attr__node_st=, :_node_st=
+      alias_method :attr__node_st=, :__node_st=
       
       
-      def _edge_st
+      def __edge_st
         defined?(@@_edge_st) ? @@_edge_st : @@_edge_st= StringTemplate.new("$parent$ -> $child$ // \"$parentText$\" -> \"$childText$\"\n")
       end
-      alias_method :attr__edge_st, :_edge_st
+      alias_method :attr__edge_st, :__edge_st
       
-      def _edge_st=(value)
+      def __edge_st=(value)
         @@_edge_st = value
       end
-      alias_method :attr__edge_st=, :_edge_st=
+      alias_method :attr__edge_st=, :__edge_st=
     }
     
     # Track node to number mapping so we can get proper node name back

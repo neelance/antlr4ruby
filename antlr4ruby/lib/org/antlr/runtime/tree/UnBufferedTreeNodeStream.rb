@@ -163,7 +163,7 @@ module Org::Antlr::Runtime::Tree
       # class wraps up the current state of the UnBufferedTreeNodeStream.
       # Calling mark() will push another of these on the markers stack.
       const_set_lazy(:TreeWalkState) { Class.new do
-        extend LocalClass
+        local_class_in UnBufferedTreeNodeStream
         include_class_members UnBufferedTreeNodeStream
         
         attr_accessor :current_child_index

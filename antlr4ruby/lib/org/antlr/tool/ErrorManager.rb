@@ -408,7 +408,7 @@ module Org::Antlr::Tool
       # TODO: ...
       const_set_lazy(:ERRORS_FORCING_NO_ANALYSIS) { # Do not do perform analysis if one of these happens
       Class.new(BitSet.class == Class ? BitSet : Object) do
-        extend LocalClass
+        local_class_in ErrorManager
         include_class_members ErrorManager
         include BitSet if BitSet.class == Module
         
@@ -431,7 +431,7 @@ module Org::Antlr::Tool
       # TODO: ...
       const_set_lazy(:ERRORS_FORCING_NO_CODEGEN) { # Do not do code gen if one of these happens
       Class.new(BitSet.class == Class ? BitSet : Object) do
-        extend LocalClass
+        local_class_in ErrorManager
         include_class_members ErrorManager
         include BitSet if BitSet.class == Module
         
@@ -450,7 +450,7 @@ module Org::Antlr::Tool
       # Map<String,Set> where the key is a method name like danglingState.
       # The set is whatever that method accepts or derives like a DFA.
       Class.new(HashMap.class == Class ? HashMap : Object) do
-        extend LocalClass
+        local_class_in ErrorManager
         include_class_members ErrorManager
         include HashMap if HashMap.class == Module
         
@@ -617,7 +617,7 @@ module Org::Antlr::Tool
       
       def the_default_error_listener
         defined?(@@the_default_error_listener) ? @@the_default_error_listener : @@the_default_error_listener= Class.new(ANTLRErrorListener.class == Class ? ANTLRErrorListener : Object) do
-          extend LocalClass
+          local_class_in ErrorManager
           include_class_members ErrorManager
           include ANTLRErrorListener if ANTLRErrorListener.class == Module
           
@@ -677,7 +677,7 @@ module Org::Antlr::Tool
         defined?(@@init_stlistener) ? @@init_stlistener : @@init_stlistener= # Handle all ST error listeners here (code gen, Grammar, and this class
         # use templates.
         Class.new(StringTemplateErrorListener.class == Class ? StringTemplateErrorListener : Object) do
-          extend LocalClass
+          local_class_in ErrorManager
           include_class_members ErrorManager
           include StringTemplateErrorListener if StringTemplateErrorListener.class == Module
           
@@ -723,7 +723,7 @@ module Org::Antlr::Tool
         # I'll handle them here.  This is used only after file has loaded ok
         # and only for the messages STG.
         Class.new(StringTemplateErrorListener.class == Class ? StringTemplateErrorListener : Object) do
-          extend LocalClass
+          local_class_in ErrorManager
           include_class_members ErrorManager
           include StringTemplateErrorListener if StringTemplateErrorListener.class == Module
           
@@ -759,7 +759,7 @@ module Org::Antlr::Tool
       def the_default_stlistener
         defined?(@@the_default_stlistener) ? @@the_default_stlistener : @@the_default_stlistener= # Errors during initialization related to ST must all go to System.err.
         Class.new(StringTemplateErrorListener.class == Class ? StringTemplateErrorListener : Object) do
-          extend LocalClass
+          local_class_in ErrorManager
           include_class_members ErrorManager
           include StringTemplateErrorListener if StringTemplateErrorListener.class == Module
           

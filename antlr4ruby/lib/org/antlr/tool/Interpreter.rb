@@ -71,7 +71,7 @@ module Org::Antlr::Tool
       # To get a stream of tokens, you must call scan() multiple times,
       # recording the token object result after each call.
       const_set_lazy(:LexerActionGetTokenType) { Class.new(BlankDebugEventListener) do
-        extend LocalClass
+        local_class_in Interpreter
         include_class_members Interpreter
         
         attr_accessor :token

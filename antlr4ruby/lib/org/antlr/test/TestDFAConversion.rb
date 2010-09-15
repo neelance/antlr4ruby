@@ -286,7 +286,7 @@ module Org::Antlr::Test
       add("a")
       add("b")
       expected_rules = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -308,7 +308,7 @@ module Org::Antlr::Test
       add("a")
       add("b")
       expecting = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -334,7 +334,7 @@ module Org::Antlr::Test
       add("a")
       add("b")
       expected_rules = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -356,7 +356,7 @@ module Org::Antlr::Test
       add("a")
       add("b")
       expecting = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -384,7 +384,7 @@ module Org::Antlr::Test
       add("e")
       add("d")
       expected_rules = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -407,7 +407,7 @@ module Org::Antlr::Test
       add("d")
       add("e")
       expecting = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -519,7 +519,7 @@ module Org::Antlr::Test
       left_recursive = g.get_left_recursive_rules
       add("a")
       expected_rules = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -542,7 +542,7 @@ module Org::Antlr::Test
       add("b")
       add("c")
       expected_rules = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -567,7 +567,7 @@ module Org::Antlr::Test
       add("x")
       add("y")
       expected_rules = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -966,7 +966,7 @@ module Org::Antlr::Test
       preds = g.attr_syn_pred_names_used_in_dfa
       add("synpred1_t")
       expected_preds = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         
@@ -995,7 +995,7 @@ module Org::Antlr::Test
       preds = g.attr_syn_pred_names_used_in_dfa
       add("synpred1_t")
       expected_preds = Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in TestDFAConversion
         include_class_members TestDFAConversion
         include HashSet if HashSet.class == Module
         

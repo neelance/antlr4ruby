@@ -180,7 +180,7 @@ module Org::Antlr::Tool
         # validDelegations.get(LEXER) gives list of the kinds of delegators
         # that can import lexers.
         Class.new(MultiMap.class == Class ? MultiMap : Object) do
-          extend LocalClass
+          local_class_in Grammar
           include_class_members Grammar
           include MultiMap if MultiMap.class == Module
           
@@ -257,7 +257,7 @@ module Org::Antlr::Tool
       end }
       
       const_set_lazy(:LabelElementPair) { Class.new do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         
         attr_accessor :label
@@ -355,7 +355,7 @@ module Org::Antlr::Tool
       add("backtrack")
       add("memoize")
       const_set_lazy(:LegalLexerOptions) { Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
@@ -380,7 +380,7 @@ module Org::Antlr::Tool
       add("backtrack")
       add("memoize")
       const_set_lazy(:LegalParserOptions) { Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
@@ -406,7 +406,7 @@ module Org::Antlr::Tool
       add("backtrack")
       add("memoize")
       const_set_lazy(:LegalTreeParserOptions) { Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
@@ -428,7 +428,7 @@ module Org::Antlr::Tool
       add("memoize")
       add("rewrite")
       const_set_lazy(:DoNotCopyOptionsToLexer) { Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
@@ -444,7 +444,7 @@ module Org::Antlr::Tool
       
       put("language", "Java")
       const_set_lazy(:DefaultOptions) { Class.new(HashMap.class == Class ? HashMap : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
@@ -463,7 +463,7 @@ module Org::Antlr::Tool
       add("backtrack")
       add("memoize")
       const_set_lazy(:LegalBlockOptions) { Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         
@@ -480,7 +480,7 @@ module Org::Antlr::Tool
       put("greedy", "true")
       const_set_lazy(:DefaultBlockOptions) { # What are the default options for a subrule?
       Class.new(HashMap.class == Class ? HashMap : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
@@ -496,7 +496,7 @@ module Org::Antlr::Tool
       
       put("greedy", "true")
       const_set_lazy(:DefaultLexerBlockOptions) { Class.new(HashMap.class == Class ? HashMap : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashMap if HashMap.class == Module
         
@@ -514,7 +514,7 @@ module Org::Antlr::Tool
       const_set_lazy(:LegalTokenOptions) { # Token options are here to avoid contaminating Token object in runtime
       # Legal options for terminal refs like ID<node=MyVarNode>
       Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Grammar
         include_class_members Grammar
         include HashSet if HashSet.class == Module
         

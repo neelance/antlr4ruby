@@ -85,7 +85,7 @@ module Org::Antlr::Tool
       add("memoize")
       add("backtrack")
       const_set_lazy(:LegalOptions) { Class.new(HashSet.class == Class ? HashSet : Object) do
-        extend LocalClass
+        local_class_in Rule
         include_class_members Rule
         include HashSet if HashSet.class == Module
         

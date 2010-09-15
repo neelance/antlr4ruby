@@ -64,7 +64,7 @@ module Org::Antlr::Runtime::Tree
       const_attr_reader  :INITIAL_CALL_STACK_SIZE
       
       const_set_lazy(:StreamIterator) { Class.new do
-        extend LocalClass
+        local_class_in CommonTreeNodeStream
         include_class_members CommonTreeNodeStream
         include Iterator
         

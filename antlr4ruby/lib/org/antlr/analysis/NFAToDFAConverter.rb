@@ -1558,7 +1558,7 @@ module Org::Antlr::Analysis
       end
       Collections.sort(configs_with_preds, # Sort ascending according to alt; alt i has higher precedence than i+1
       Class.new(Comparator.class == Class ? Comparator : Object) do
-        extend LocalClass
+        local_class_in NFAToDFAConverter
         include_class_members NFAToDFAConverter
         include Comparator if Comparator.class == Module
         

@@ -170,7 +170,7 @@ module Org::Antlr::Test
       add("\"\\\"\"") # that's "\""
       add("19")
       expect_args = Class.new(ArrayList.class == Class ? ArrayList : Object) do
-        extend LocalClass
+        local_class_in TestAttributes
         include_class_members TestAttributes
         include ArrayList if ArrayList.class == Module
         

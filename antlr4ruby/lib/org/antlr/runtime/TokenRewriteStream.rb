@@ -99,7 +99,7 @@ module Org::Antlr::Runtime
       
       # Define the rewrite operation hierarchy
       const_set_lazy(:RewriteOperation) { Class.new do
-        extend LocalClass
+        local_class_in TokenRewriteStream
         include_class_members TokenRewriteStream
         
         # What index into rewrites List are we?
@@ -151,7 +151,7 @@ module Org::Antlr::Runtime
       end }
       
       const_set_lazy(:InsertBeforeOp) { Class.new(RewriteOperation) do
-        extend LocalClass
+        local_class_in TokenRewriteStream
         include_class_members TokenRewriteStream
         
         typesig { [::Java::Int, Object] }
@@ -173,7 +173,7 @@ module Org::Antlr::Runtime
       # I'm going to try replacing range from x..y with (y-x)+1 ReplaceOp
       # instructions.
       const_set_lazy(:ReplaceOp) { Class.new(RewriteOperation) do
-        extend LocalClass
+        local_class_in TokenRewriteStream
         include_class_members TokenRewriteStream
         
         attr_accessor :last_index
@@ -207,7 +207,7 @@ module Org::Antlr::Runtime
       end }
       
       const_set_lazy(:DeleteOp) { Class.new(ReplaceOp) do
-        extend LocalClass
+        local_class_in TokenRewriteStream
         include_class_members TokenRewriteStream
         
         typesig { [::Java::Int, ::Java::Int] }

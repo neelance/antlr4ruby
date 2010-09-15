@@ -268,7 +268,7 @@ module Org::Antlr::Tool
       set_astnode_class("org.antlr.tool.GrammarAST")
       self.attr_ast_factory = # set to factory that sets enclosing rule
       Class.new(ASTFactory.class == Class ? ASTFactory : Object) do
-        extend LocalClass
+        local_class_in ANTLRParser
         include_class_members ANTLRParser
         include ASTFactory if ASTFactory.class == Module
         

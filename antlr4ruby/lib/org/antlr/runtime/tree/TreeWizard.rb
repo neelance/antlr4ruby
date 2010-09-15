@@ -379,7 +379,7 @@ module Org::Antlr::Runtime::Tree
     def find(t, ttype)
       nodes = ArrayList.new
       visit(t, ttype, Class.new(TreeWizard::Visitor.class == Class ? TreeWizard::Visitor : Object) do
-        extend LocalClass
+        local_class_in TreeWizard
         include_class_members TreeWizard
         include TreeWizard::Visitor if TreeWizard::Visitor.class == Module
         
@@ -413,7 +413,7 @@ module Org::Antlr::Runtime::Tree
       end
       root_token_type = tpattern.get_type
       visit(t, root_token_type, Class.new(TreeWizard::ContextVisitor.class == Class ? TreeWizard::ContextVisitor : Object) do
-        extend LocalClass
+        local_class_in TreeWizard
         include_class_members TreeWizard
         include TreeWizard::ContextVisitor if TreeWizard::ContextVisitor.class == Module
         
@@ -489,7 +489,7 @@ module Org::Antlr::Runtime::Tree
       labels = HashMap.new # reused for each _parse
       root_token_type = tpattern.get_type
       visit(t, root_token_type, Class.new(TreeWizard::ContextVisitor.class == Class ? TreeWizard::ContextVisitor : Object) do
-        extend LocalClass
+        local_class_in TreeWizard
         include_class_members TreeWizard
         include TreeWizard::ContextVisitor if TreeWizard::ContextVisitor.class == Module
         

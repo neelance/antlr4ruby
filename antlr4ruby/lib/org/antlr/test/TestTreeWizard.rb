@@ -146,7 +146,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B C D)")
       elements = ArrayList.new
       wiz.visit(t, wiz.get_token_type("B"), Class.new(TreeWizard::Visitor.class == Class ? TreeWizard::Visitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::Visitor if TreeWizard::Visitor.class == Module
         
@@ -174,7 +174,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B (A C B) B D D)")
       elements = ArrayList.new
       wiz.visit(t, wiz.get_token_type("C"), Class.new(TreeWizard::Visitor.class == Class ? TreeWizard::Visitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::Visitor if TreeWizard::Visitor.class == Module
         
@@ -202,7 +202,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B (A C B) B D D)")
       elements = ArrayList.new
       wiz.visit(t, wiz.get_token_type("B"), Class.new(TreeWizard::Visitor.class == Class ? TreeWizard::Visitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::Visitor if TreeWizard::Visitor.class == Module
         
@@ -230,7 +230,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B (A C B) B D D)")
       elements = ArrayList.new
       wiz.visit(t, wiz.get_token_type("A"), Class.new(TreeWizard::Visitor.class == Class ? TreeWizard::Visitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::Visitor if TreeWizard::Visitor.class == Module
         
@@ -258,7 +258,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B (A C B) B D D)")
       elements = ArrayList.new
       wiz.visit(t, wiz.get_token_type("B"), Class.new(TreeWizard::ContextVisitor.class == Class ? TreeWizard::ContextVisitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::ContextVisitor if TreeWizard::ContextVisitor.class == Module
         
@@ -286,7 +286,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B (A C B) B D D)")
       elements = ArrayList.new
       wiz.visit(t, wiz.get_token_type("A"), Class.new(TreeWizard::ContextVisitor.class == Class ? TreeWizard::ContextVisitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::ContextVisitor if TreeWizard::ContextVisitor.class == Module
         
@@ -314,7 +314,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B C (A B) D)")
       elements = ArrayList.new
       wiz.visit(t, "(A B)", Class.new(TreeWizard::Visitor.class == Class ? TreeWizard::Visitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::Visitor if TreeWizard::Visitor.class == Module
         
@@ -342,7 +342,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B C (A B) (D (A B)))")
       elements = ArrayList.new
       wiz.visit(t, "(A B)", Class.new(TreeWizard::ContextVisitor.class == Class ? TreeWizard::ContextVisitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::ContextVisitor if TreeWizard::ContextVisitor.class == Module
         
@@ -370,7 +370,7 @@ module Org::Antlr::Test
       t = wiz.create("(A B C (A[foo] B[bar]) (D (A[big] B[dog])))")
       elements = ArrayList.new
       wiz.visit(t, "(%a:A %b:B)", Class.new(TreeWizard::ContextVisitor.class == Class ? TreeWizard::ContextVisitor : Object) do
-        extend LocalClass
+        local_class_in TestTreeWizard
         include_class_members TestTreeWizard
         include TreeWizard::ContextVisitor if TreeWizard::ContextVisitor.class == Module
         
@@ -496,7 +496,7 @@ module Org::Antlr::Test
       wiz = TreeWizard.new(Adaptor, Tokens)
       t1 = wiz.create("(A B C)")
       t2 = wiz.create("(A B C)")
-      same = (TreeWizard == t1)
+      same = TreeWizard.==(t1, t2, Adaptor)
       assert_true(same)
     end
     
@@ -505,7 +505,7 @@ module Org::Antlr::Test
       wiz = TreeWizard.new(Adaptor, Tokens)
       t1 = wiz.create("(A B[foo] C)")
       t2 = wiz.create("(A B[foo] C)")
-      same = (TreeWizard == t1)
+      same = TreeWizard.==(t1, t2, Adaptor)
       assert_true(same)
     end
     
@@ -514,7 +514,7 @@ module Org::Antlr::Test
       wiz = TreeWizard.new(Adaptor, Tokens)
       t1 = wiz.create("(A B[foo] C)")
       t2 = wiz.create("(A B C)")
-      same = (TreeWizard == t1)
+      same = TreeWizard.==(t1, t2, Adaptor)
       assert_true(!same)
     end
     
