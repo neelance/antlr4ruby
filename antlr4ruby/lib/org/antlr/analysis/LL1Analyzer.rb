@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -96,68 +96,63 @@ module Org::Antlr::Analysis
     end
     
     typesig { [NFAState] }
-    # public void computeRuleFIRSTSets() {
-    # if ( getNumberOfDecisions()==0 ) {
-    # createNFAs();
-    # }
-    # for (Iterator it = getRules().iterator(); it.hasNext();) {
-    # Rule r = (Rule)it.next();
-    # if ( r.isSynPred ) {
-    # continue;
-    # }
-    # LookaheadSet s = FIRST(r);
-    # System.out.println("FIRST("+r.name+")="+s);
-    # }
-    # }
+    # 	public void computeRuleFIRSTSets() {
+    # 		if ( getNumberOfDecisions()==0 ) {
+    # 			createNFAs();
+    # 		}
+    # 		for (Iterator it = getRules().iterator(); it.hasNext();) {
+    # 			Rule r = (Rule)it.next();
+    # 			if ( r.isSynPred ) {
+    # 				continue;
+    # 			}
+    # 			LookaheadSet s = FIRST(r);
+    # 			System.out.println("FIRST("+r.name+")="+s);
+    # 		}
+    # 	}
+    # 	public Set<String> getOverriddenRulesWithDifferentFIRST() {
+    # 		// walk every rule in this grammar and compare FIRST set with
+    # 		// those in imported grammars.
+    # 		Set<String> rules = new HashSet();
+    # 		for (Iterator it = getRules().iterator(); it.hasNext();) {
+    # 			Rule r = (Rule)it.next();
+    # 			//System.out.println(r.name+" FIRST="+r.FIRST);
+    # 			for (int i = 0; i < delegates.size(); i++) {
+    # 				Grammar g = delegates.get(i);
+    # 				Rule importedRule = g.getRule(r.name);
+    # 				if ( importedRule != null ) { // exists in imported grammar
+    # 					// System.out.println(r.name+" exists in imported grammar: FIRST="+importedRule.FIRST);
+    # 					if ( !r.FIRST.equals(importedRule.FIRST) ) {
+    # 						rules.add(r.name);
+    # 					}
+    # 				}
+    # 			}
+    # 		}
+    # 		return rules;
+    # 	}
     # 
-    # 
-    # public Set<String> getOverriddenRulesWithDifferentFIRST() {
-    # // walk every rule in this grammar and compare FIRST set with
-    # // those in imported grammars.
-    # Set<String> rules = new HashSet();
-    # for (Iterator it = getRules().iterator(); it.hasNext();) {
-    # Rule r = (Rule)it.next();
-    # //System.out.println(r.name+" FIRST="+r.FIRST);
-    # for (int i = 0; i < delegates.size(); i++) {
-    # Grammar g = delegates.get(i);
-    # Rule importedRule = g.getRule(r.name);
-    # if ( importedRule != null ) { // exists in imported grammar
-    # // System.out.println(r.name+" exists in imported grammar: FIRST="+importedRule.FIRST);
-    # if ( !r.FIRST.equals(importedRule.FIRST) ) {
-    # rules.add(r.name);
-    # }
-    # }
-    # }
-    # }
-    # return rules;
-    # }
-    # 
-    # public Set<Rule> getImportedRulesSensitiveToOverriddenRulesDueToLOOK() {
-    # Set<String> diffFIRSTs = getOverriddenRulesWithDifferentFIRST();
-    # Set<Rule> rules = new HashSet();
-    # for (Iterator it = diffFIRSTs.iterator(); it.hasNext();) {
-    # String r = (String) it.next();
-    # for (int i = 0; i < delegates.size(); i++) {
-    # Grammar g = delegates.get(i);
-    # Set<Rule> callers = g.ruleSensitivity.get(r);
-    # // somebody invokes rule whose FIRST changed in subgrammar?
-    # if ( callers!=null ) {
-    # rules.addAll(callers);
-    # //System.out.println(g.name+" rules "+callers+" sensitive to "+r+"; dup 'em");
-    # }
-    # }
-    # }
-    # return rules;
-    # }
-    # 
-    # 
-    # public LookaheadSet LOOK(Rule r) {
-    # if ( r.FIRST==null ) {
-    # r.FIRST = FIRST(r.startState);
-    # }
-    # return r.FIRST;
-    # }
-    # 
+    # 	public Set<Rule> getImportedRulesSensitiveToOverriddenRulesDueToLOOK() {
+    # 		Set<String> diffFIRSTs = getOverriddenRulesWithDifferentFIRST();
+    # 		Set<Rule> rules = new HashSet();
+    # 		for (Iterator it = diffFIRSTs.iterator(); it.hasNext();) {
+    # 			String r = (String) it.next();
+    # 			for (int i = 0; i < delegates.size(); i++) {
+    # 				Grammar g = delegates.get(i);
+    # 				Set<Rule> callers = g.ruleSensitivity.get(r);
+    # 				// somebody invokes rule whose FIRST changed in subgrammar?
+    # 				if ( callers!=null ) {
+    # 					rules.addAll(callers);
+    # 					//System.out.println(g.name+" rules "+callers+" sensitive to "+r+"; dup 'em");
+    # 				}
+    # 			}
+    # 		}
+    # 		return rules;
+    # 	}
+    # 	public LookaheadSet LOOK(Rule r) {
+    # 		if ( r.FIRST==null ) {
+    # 			r.FIRST = FIRST(r.startState);
+    # 		}
+    # 		return r.FIRST;
+    # 	}
     # From an NFA state, s, find the set of all labels reachable from s.
     # Used to compute follow sets for error recovery.  Never computes
     # a FOLLOW operation.  FIRST stops at end of rules, returning EOR, unless
@@ -224,10 +219,10 @@ module Org::Antlr::Analysis
     
     typesig { [NFAState, ::Java::Boolean] }
     def ___first(s, chase_follow_transitions)
-      # System.out.println("_LOOK("+s+") in rule "+s.enclosingRule);
-      # if ( s.transition[0] instanceof RuleClosureTransition ) {
-      # System.out.println("go to rule "+((NFAState)s.transition[0].target).enclosingRule);
-      # }
+      # 		System.out.println("_LOOK("+s+") in rule "+s.enclosingRule);
+      # 		if ( s.transition[0] instanceof RuleClosureTransition ) {
+      # 			System.out.println("go to rule "+((NFAState)s.transition[0].target).enclosingRule);
+      # 		}
       if (!chase_follow_transitions && s.is_accept_state)
         if ((@grammar.attr_type).equal?(Grammar::LEXER))
           # FOLLOW makes no sense (at the moment!) for lexical rules.
@@ -340,18 +335,18 @@ module Org::Antlr::Analysis
           return DETECT_PRED_FOUND
         end
       end
-      # if ( transition0.label.isSemanticPredicate() ) {
-      # System.out.println("pred "+transition0.label);
-      # SemanticContext ctx = transition0.label.getSemanticContext();
-      # SemanticContext.Predicate p = (SemanticContext.Predicate)ctx;
-      # // if a non-syn-pred found not in enclosingRule, say we found one
-      # if ( p.predicateAST.getType() != ANTLRParser.BACKTRACK_SEMPRED &&
-      # !p.predicateAST.enclosingRuleName.equals(enclosingRule.name) )
-      # {
-      # System.out.println("found pred "+p+" not in "+enclosingRule.name);
-      # return DETECT_PRED_FOUND;
-      # }
-      # }
+      # 		if ( transition0.label.isSemanticPredicate() ) {
+      # 			System.out.println("pred "+transition0.label);
+      # 			SemanticContext ctx = transition0.label.getSemanticContext();
+      # 			SemanticContext.Predicate p = (SemanticContext.Predicate)ctx;
+      # 			// if a non-syn-pred found not in enclosingRule, say we found one
+      # 			if ( p.predicateAST.getType() != ANTLRParser.BACKTRACK_SEMPRED &&
+      # 				 !p.predicateAST.enclosingRuleName.equals(enclosingRule.name) )
+      # 			{
+      # 				System.out.println("found pred "+p+" not in "+enclosingRule.name);
+      # 				return DETECT_PRED_FOUND;
+      # 			}
+      # 		}
       result = __detect_confounding_predicates(transition0.attr_target, enclosing_rule, chase_follow_transitions)
       if ((result).equal?(DETECT_PRED_FOUND))
         return DETECT_PRED_FOUND

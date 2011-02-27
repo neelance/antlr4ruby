@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -89,12 +89,12 @@ module Org::Antlr::Codegen
       dfa_st.set_attribute("k", Utils.integer(k))
       dfa_st.set_attribute("stateNumber", Utils.integer(s.attr_state_number))
       dfa_st.set_attribute("semPredState", Boolean.value_of(s.is_resolved_with_predicates))
-      # String description = dfa.getNFADecisionStartState().getDescription();
-      # description = parentGenerator.target.getTargetStringLiteralFromString(description);
-      # //System.out.println("DFA: "+description+" associated with AST "+dfa.getNFADecisionStartState());
-      # if ( description!=null ) {
-      # dfaST.setAttribute("description", description);
-      # }
+      # 		String description = dfa.getNFADecisionStartState().getDescription();
+      # 		description = parentGenerator.target.getTargetStringLiteralFromString(description);
+      # 		//System.out.println("DFA: "+description+" associated with AST "+dfa.getNFADecisionStartState());
+      # 		if ( description!=null ) {
+      # 			dfaST.setAttribute("description", description);
+      # 		}
       eotpredicts = NFA::INVALID_ALT_NUMBER
       eottarget = nil
       # System.out.println("DFA state "+s.stateNumber);
@@ -107,9 +107,9 @@ module Org::Antlr::Codegen
           # generate that prediction in the else clause as default case
           eottarget = edge.attr_target
           eotpredicts = eottarget.get_uniquely_predicted_alt
-          # System.out.println("DFA s"+s.stateNumber+" EOT goes to s"+
-          # edge.target.stateNumber+" predicates alt "+
-          # EOTPredicts);
+          # 				System.out.println("DFA s"+s.stateNumber+" EOT goes to s"+
+          # 								   edge.target.stateNumber+" predicates alt "+
+          # 								   EOTPredicts);
           i += 1
           next
         end

@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -267,22 +267,26 @@ module Org::Antlr::Analysis
       # find the NFA loopback state associated with this DFA
       # and count number of alts (all alt numbers are computed
       # based upon the loopback's NFA state.
-      # 
-      # DFA dfa = nfa.grammar.getLookaheadDFA(decisionNumber);
-      # if ( dfa==null ) {
-      # ErrorManager.internalError("can't get DFA for decision "+decisionNumber);
-      # }
+      # 		DFA dfa = nfa.grammar.getLookaheadDFA(decisionNumber);
+      # 		if ( dfa==null ) {
+      # 			ErrorManager.internalError("can't get DFA for decision "+decisionNumber);
+      # 		}
       n_alts = @nfa.attr_grammar.get_number_of_alts_for_decision_nfa(nfa_start)
-      case (nfa_start.attr_decision_state_type)
-      when LOOPBACK
-        walk_alt = display_alt % n_alts + 1 # rotate right mod 1..3
-      when BLOCK_START, OPTIONAL_BLOCK_START
-        walk_alt = display_alt # identity transformation
-      when BYPASS
-        if ((display_alt).equal?(n_alts))
-          walk_alt = 2 # bypass
-        else
-          walk_alt = 1 # any non exit branch alt predicts entering
+      catch(:break_case) do
+        case (nfa_start.attr_decision_state_type)
+        when LOOPBACK
+          walk_alt = display_alt % n_alts + 1 # rotate right mod 1..3
+          throw :break_case, :thrown
+        when BLOCK_START, OPTIONAL_BLOCK_START
+          walk_alt = display_alt # identity transformation
+          throw :break_case, :thrown
+        when BYPASS
+          if ((display_alt).equal?(n_alts))
+            walk_alt = 2 # bypass
+          else
+            walk_alt = 1 # any non exit branch alt predicts entering
+          end
+          throw :break_case, :thrown
         end
       end
       return walk_alt

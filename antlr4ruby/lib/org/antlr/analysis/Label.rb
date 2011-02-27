@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -354,22 +354,20 @@ module Org::Antlr::Analysis
     # 
     # At this point, Labels are not compared for equals when they are
     # predicates, but here's the code for future use.
-    # 
-    # 
-    # protected boolean predicatesEquals(Set others) {
-    # Iterator iter = semanticContext.iterator();
-    # while (iter.hasNext()) {
-    # AST predAST = (AST) iter.next();
-    # Iterator inner = semanticContext.iterator();
-    # while (inner.hasNext()) {
-    # AST otherPredAST = (AST) inner.next();
-    # if ( !predAST.getText().equals(otherPredAST.getText()) ) {
-    # return false;
-    # }
-    # }
-    # }
-    # return true;
-    # }
+    #    protected boolean predicatesEquals(Set others) {
+    #        Iterator iter = semanticContext.iterator();
+    #        while (iter.hasNext()) {
+    #            AST predAST = (AST) iter.next();
+    #            Iterator inner = semanticContext.iterator();
+    #            while (inner.hasNext()) {
+    #                AST otherPredAST = (AST) inner.next();
+    #                if ( !predAST.getText().equals(otherPredAST.getText()) ) {
+    #                    return false;
+    #                }
+    #            }
+    #        }
+    #        return true;
+    #    }
     def to_s
       case (@label)
       when SET
@@ -391,21 +389,21 @@ module Org::Antlr::Analysis
     
     class_module.module_eval {
       typesig { [Label, Label] }
-      # public String predicatesToString() {
-      # if ( semanticContext==NFAConfiguration.DEFAULT_CLAUSE_SEMANTIC_CONTEXT ) {
-      # return "!other preds";
-      # }
-      # StringBuffer buf = new StringBuffer();
-      # Iterator iter = semanticContext.iterator();
-      # while (iter.hasNext()) {
-      # AST predAST = (AST) iter.next();
-      # buf.append(predAST.getText());
-      # if ( iter.hasNext() ) {
-      # buf.append("&");
-      # }
-      # }
-      # return buf.toString();
-      # }
+      #    public String predicatesToString() {
+      #        if ( semanticContext==NFAConfiguration.DEFAULT_CLAUSE_SEMANTIC_CONTEXT ) {
+      #            return "!other preds";
+      #        }
+      #        StringBuffer buf = new StringBuffer();
+      #        Iterator iter = semanticContext.iterator();
+      #        while (iter.hasNext()) {
+      #            AST predAST = (AST) iter.next();
+      #            buf.append(predAST.getText());
+      #            if ( iter.hasNext() ) {
+      #                buf.append("&");
+      #            }
+      #        }
+      #        return buf.toString();
+      #    }
       def intersect(label, edge_label)
         has_intersection = false
         label_is_set = label.is_set

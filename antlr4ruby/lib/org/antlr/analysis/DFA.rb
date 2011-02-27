@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -70,30 +70,29 @@ module Org::Antlr::Analysis
   # If EOT coexists with ALLCHAR:
   # 1. If not greedy, modify the labels parameter to be EOT
   # 2. If greedy, remove EOT from the labels set
-  # protected boolean reachableLabelsEOTCoexistsWithAllChar(OrderedHashSet labels)
-  # {
-  # Label eot = new Label(Label.EOT);
-  # if ( !labels.containsKey(eot) ) {
-  # return false;
-  # }
-  # System.out.println("### contains EOT");
-  # boolean containsAllChar = false;
-  # IntervalSet completeVocab = new IntervalSet();
-  # int n = labels.size();
-  # for (int i=0; i<n; i++) {
-  # Label rl = (Label)labels.get(i);
-  # if ( !rl.equals(eot) ) {
-  # completeVocab.addAll(rl.getSet());
-  # }
-  # }
-  # System.out.println("completeVocab="+completeVocab);
-  # if ( completeVocab.equals(Label.ALLCHAR) ) {
-  # System.out.println("all char");
-  # containsAllChar = true;
-  # }
-  # return containsAllChar;
-  # }
-  # 
+  # 	protected boolean reachableLabelsEOTCoexistsWithAllChar(OrderedHashSet labels)
+  # 	{
+  # 		Label eot = new Label(Label.EOT);
+  # 		if ( !labels.containsKey(eot) ) {
+  # 			return false;
+  # 		}
+  # 		System.out.println("### contains EOT");
+  # 		boolean containsAllChar = false;
+  # 		IntervalSet completeVocab = new IntervalSet();
+  # 		int n = labels.size();
+  # 		for (int i=0; i<n; i++) {
+  # 			Label rl = (Label)labels.get(i);
+  # 			if ( !rl.equals(eot) ) {
+  # 				completeVocab.addAll(rl.getSet());
+  # 			}
+  # 		}
+  # 		System.out.println("completeVocab="+completeVocab);
+  # 		if ( completeVocab.equals(Label.ALLCHAR) ) {
+  # 			System.out.println("all char");
+  # 			containsAllChar = true;
+  # 		}
+  # 		return containsAllChar;
+  # 	}
   # A DFA (converted from a grammar's NFA).
   # DFAs are used as prediction machine for alternative blocks in all kinds
   # of recognizers (lexers, parsers, tree walkers).
@@ -116,8 +115,7 @@ module Org::Antlr::Analysis
       
       # Prevent explosion of DFA states during conversion. The max number
       # of states per alt in a single decision's DFA.
-      # public static final int MAX_STATES_PER_ALT_IN_DFA = 450;
-      # 
+      # 	public static final int MAX_STATES_PER_ALT_IN_DFA = 450;
       # Set to 0 to not terminate early (time in ms)
       
       def max_time_per_dfa_creation
@@ -364,7 +362,6 @@ module Org::Antlr::Analysis
     # http://www.antlr.org/blog/antlr3/codegen.tml
     # Often using Vector as can't set ith position in a List and have
     # it extend list size; bizarre.
-    # 
     # List of special DFAState objects
     attr_accessor :special_states
     alias_method :attr_special_states, :special_states
@@ -763,48 +760,47 @@ module Org::Antlr::Analysis
         i += 1
       end
       # check that the tables are not messed up by encode/decode
-      # 
-      # testEncodeDecode(min);
-      # testEncodeDecode(max);
-      # testEncodeDecode(accept);
-      # testEncodeDecode(special);
-      # System.out.println("min="+min);
-      # System.out.println("max="+max);
-      # System.out.println("eot="+eot);
-      # System.out.println("eof="+eof);
-      # System.out.println("accept="+accept);
-      # System.out.println("special="+special);
-      # System.out.println("transition="+transition);
+      # 		testEncodeDecode(min);
+      # 		testEncodeDecode(max);
+      # 		testEncodeDecode(accept);
+      # 		testEncodeDecode(special);
+      # 		System.out.println("min="+min);
+      # 		System.out.println("max="+max);
+      # 		System.out.println("eot="+eot);
+      # 		System.out.println("eof="+eof);
+      # 		System.out.println("accept="+accept);
+      # 		System.out.println("special="+special);
+      # 		System.out.println("transition="+transition);
     end
     
     typesig { [DFAState] }
-    # private void testEncodeDecode(List data) {
-    # System.out.println("data="+data);
-    # List encoded = getRunLengthEncoding(data);
-    # StringBuffer buf = new StringBuffer();
-    # for (int i = 0; i < encoded.size(); i++) {
-    # String I = (String)encoded.get(i);
-    # int v = 0;
-    # if ( I.startsWith("\\u") ) {
-    # v = Integer.parseInt(I.substring(2,I.length()), 16);
-    # }
-    # else {
-    # v = Integer.parseInt(I.substring(1,I.length()), 8);
-    # }
-    # buf.append((char)v);
-    # }
-    # String encodedS = buf.toString();
-    # short[] decoded = org.antlr.runtime.DFA.unpackEncodedString(encodedS);
-    # //System.out.println("decoded:");
-    # for (int i = 0; i < decoded.length; i++) {
-    # short x = decoded[i];
-    # if ( x!=((Integer)data.get(i)).intValue() ) {
-    # System.err.println("problem with encoding");
-    # }
-    # //System.out.print(", "+x);
-    # }
-    # //System.out.println();
-    # }
+    # 	private void testEncodeDecode(List data) {
+    # 		System.out.println("data="+data);
+    # 		List encoded = getRunLengthEncoding(data);
+    # 		StringBuffer buf = new StringBuffer();
+    # 		for (int i = 0; i < encoded.size(); i++) {
+    # 			String I = (String)encoded.get(i);
+    # 			int v = 0;
+    # 			if ( I.startsWith("\\u") ) {
+    # 				v = Integer.parseInt(I.substring(2,I.length()), 16);
+    # 			}
+    # 			else {
+    # 				v = Integer.parseInt(I.substring(1,I.length()), 8);
+    # 			}
+    # 			buf.append((char)v);
+    # 		}
+    # 		String encodedS = buf.toString();
+    # 		short[] decoded = org.antlr.runtime.DFA.unpackEncodedString(encodedS);
+    # 		//System.out.println("decoded:");
+    # 		for (int i = 0; i < decoded.length; i++) {
+    # 			short x = decoded[i];
+    # 			if ( x!=((Integer)data.get(i)).intValue() ) {
+    # 				System.err.println("problem with encoding");
+    # 			}
+    # 			//System.out.print(", "+x);
+    # 		}
+    # 		//System.out.println();
+    # 	}
     def create_min_max_tables(s)
       smin = Label::MAX_CHAR_VALUE + 1
       smax = Label::MIN_ATOM_VALUE - 1
@@ -850,8 +846,8 @@ module Org::Antlr::Analysis
     
     typesig { [DFAState] }
     def create_transition_table_entry_for_state(s)
-      # System.out.println("createTransitionTableEntryForState s"+s.stateNumber+
-      # " dec "+s.dfa.decisionNumber+" cyclic="+s.dfa.isCyclic());
+      # 		System.out.println("createTransitionTableEntryForState s"+s.stateNumber+
+      # 			" dec "+s.dfa.decisionNumber+" cyclic="+s.dfa.isCyclic());
       smax = (@max.get(s.attr_state_number)).int_value
       smin = (@min.get(s.attr_state_number)).int_value
       state_transitions = Vector.new(smax - smin + 1)
@@ -984,9 +980,8 @@ module Org::Antlr::Analysis
       # except its state number?
       existing = @unique_states.get(d)
       if (!(existing).nil?)
-        # System.out.println("state "+d.stateNumber+" exists as state "+
-        # existing.stateNumber);
-        # 
+        #            System.out.println("state "+d.stateNumber+" exists as state "+
+        #                existing.stateNumber);
         # already there...get the existing DFA state
         return existing
       end

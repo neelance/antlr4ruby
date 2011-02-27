@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -225,12 +225,11 @@ module Org::Antlr::Analysis
               generator.attr_grammar.attr_decisions_whose_dfas_uses_sem_preds.add(dfa)
             end
             pred_enclosing_rule_name = @predicate_ast.attr_enclosing_rule_name
-            # String decisionEnclosingRuleName =
-            # dfa.getNFADecisionStartState().getEnclosingRule();
-            # // if these rulenames are diff, then pred was hoisted out of rule
-            # // Currently I don't warn you about this as it could be annoying.
-            # // I do the translation anyway.
-            # 
+            # 				String decisionEnclosingRuleName =
+            # 					dfa.getNFADecisionStartState().getEnclosingRule();
+            # 				// if these rulenames are diff, then pred was hoisted out of rule
+            # 				// Currently I don't warn you about this as it could be annoying.
+            # 				// I do the translation anyway.
             # eST.setAttribute("pred", this.toString());
             if (!(generator).nil?)
               e_st.set_attribute("pred", generator.translate_action(pred_enclosing_rule_name, @predicate_ast))
@@ -305,24 +304,24 @@ module Org::Antlr::Analysis
         alias_method :initialize__true_predicate, :initialize
       end }
       
-      # public static class FalsePredicate extends Predicate {
-      # public FalsePredicate() {
-      # super();
-      # this.constantValue = FALSE_PRED;
-      # }
-      # public StringTemplate genExpr(CodeGenerator generator,
-      # StringTemplateGroup templates,
-      # DFA dfa)
-      # {
-      # if ( templates!=null ) {
-      # return templates.getInstanceOf("false");
-      # }
-      # return new StringTemplate("false");
-      # }
-      # public String toString() {
-      # return "false"; // not used for code gen, just DOT and print outs
-      # }
-      # }
+      # 	public static class FalsePredicate extends Predicate {
+      # 		public FalsePredicate() {
+      # 			super();
+      # 			this.constantValue = FALSE_PRED;
+      # 		}
+      # 		public StringTemplate genExpr(CodeGenerator generator,
+      # 									  StringTemplateGroup templates,
+      # 									  DFA dfa)
+      # 		{
+      # 			if ( templates!=null ) {
+      # 				return templates.getInstanceOf("false");
+      # 			}
+      # 			return new StringTemplate("false");
+      # 		}
+      # 		public String toString() {
+      # 			return "false"; // not used for code gen, just DOT and print outs
+      # 		}
+      # 	}
       const_set_lazy(:AND) { Class.new(SemanticContext) do
         include_class_members SemanticContext
         

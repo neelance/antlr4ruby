@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -252,19 +252,18 @@ module Org::Antlr::Analysis
     typesig { [::Java::Int] }
     # Walk upwards to the root of the call stack context looking
     # for a particular invoking state.
-    # public boolean contains(int state) {
-    # NFAContext sp = this;
-    # int n = 0; // track recursive invocations of state
-    # System.out.println("this.context is "+sp);
-    # while ( sp.parent!=null ) {
-    # if ( sp.invokingState.stateNumber == state ) {
-    # return true;
-    # }
-    # sp = sp.parent;
-    # }
-    # return false;
-    # }
-    # 
+    # 	public boolean contains(int state) {
+    #        NFAContext sp = this;
+    # 		int n = 0; // track recursive invocations of state
+    # 		System.out.println("this.context is "+sp);
+    # 		while ( sp.parent!=null ) {
+    #            if ( sp.invokingState.stateNumber == state ) {
+    # 				return true;
+    #            }
+    #            sp = sp.parent;
+    #        }
+    #        return false;
+    #    }
     # Given an NFA state number, how many times has the NFA-to-DFA
     # conversion pushed that state on the stack?  In other words,
     # the NFA state must be a rule invocation state and this method
@@ -292,13 +291,13 @@ module Org::Antlr::Analysis
     typesig { [] }
     def hash_code
       return @cached_hash_code
-      # int h = 0;
-      # NFAContext sp = this;
-      # while ( sp.parent!=null ) {
-      # h += sp.invokingState.getStateNumber();
-      # sp = sp.parent;
-      # }
-      # return h;
+      #        int h = 0;
+      #        NFAContext sp = this;
+      #        while ( sp.parent!=null ) {
+      #            h += sp.invokingState.getStateNumber();
+      #            sp = sp.parent;
+      #        }
+      #        return h;
     end
     
     typesig { [] }

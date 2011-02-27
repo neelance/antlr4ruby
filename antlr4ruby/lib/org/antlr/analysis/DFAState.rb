@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -386,9 +386,9 @@ module Org::Antlr::Analysis
       if ((@reachable_labels).nil?)
         @reachable_labels = OrderedHashSet.new
       end
-      # System.out.println("addReachableLabel to state "+dfa.decisionNumber+"."+stateNumber+": "+label.getSet().toString(dfa.nfa.grammar));
-      # System.out.println("start of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
-      # "reachableLabels="+reachableLabels.toString());
+      # 		System.out.println("addReachableLabel to state "+dfa.decisionNumber+"."+stateNumber+": "+label.getSet().toString(dfa.nfa.grammar));
+      # 		System.out.println("start of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
+      # 				"reachableLabels="+reachableLabels.toString());
       if (@reachable_labels.contains(label))
         # exact label present
         return
@@ -400,9 +400,9 @@ module Org::Antlr::Analysis
       i = 0
       while i < n
         rl = @reachable_labels.get(i)
-        # System.out.println("comparing ["+i+"]: "+label.toString(dfa.nfa.grammar)+" & "+
-        # rl.toString(dfa.nfa.grammar)+"="+
-        # intersection.toString(dfa.nfa.grammar));
+        # 			System.out.println("comparing ["+i+"]: "+label.toString(dfa.nfa.grammar)+" & "+
+        #                    rl.toString(dfa.nfa.grammar)+"="+
+        #                    intersection.toString(dfa.nfa.grammar));
         if (!Label.intersect(label, rl))
           i += 1
           next
@@ -424,9 +424,8 @@ module Org::Antlr::Analysis
           new_label = Label.new(existing_minus_new_elements)
           @reachable_labels.add(new_label)
         end
-        # System.out.println("after collision, " +
-        # "reachableLabels="+reachableLabels.toString());
-        # 
+        #            System.out.println("after collision, " +
+        #                    "reachableLabels="+reachableLabels.toString());
         # anything left to add to the reachableLabels?
         remainder = t.subtract(s_i)
         if (remainder.is_nil)
@@ -436,14 +435,14 @@ module Org::Antlr::Analysis
         i += 1
       end
       if (!remainder.is_nil)
-        # System.out.println("before add remainder to state "+dfa.decisionNumber+"."+stateNumber+": " +
-        # "reachableLabels="+reachableLabels.toString());
-        # System.out.println("remainder state "+dfa.decisionNumber+"."+stateNumber+": "+remainder.toString(dfa.nfa.grammar));
+        # 			System.out.println("before add remainder to state "+dfa.decisionNumber+"."+stateNumber+": " +
+        # 					"reachableLabels="+reachableLabels.toString());
+        # 			System.out.println("remainder state "+dfa.decisionNumber+"."+stateNumber+": "+remainder.toString(dfa.nfa.grammar));
         new_label = Label.new(remainder)
         @reachable_labels.add(new_label)
       end
-      # System.out.println("#END of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
-      # "reachableLabels="+reachableLabels.toString());
+      # 		System.out.println("#END of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
+      # 				"reachableLabels="+reachableLabels.toString());
     end
     
     typesig { [] }
@@ -642,9 +641,8 @@ module Org::Antlr::Analysis
             alt = c.attr_alt
           else
             if (!(c.attr_alt).equal?(alt))
-              # System.out.println("potential conflict in state "+stateI+
-              # " configs: "+configsForState);
-              # 
+              # 					System.out.println("potential conflict in state "+stateI+
+              # 									   " configs: "+configsForState);
               # 11/28/2005: don't report closures that pinch back
               # together in Tokens rule.  We want to silently resolve
               # to the first token definition ala lex/flex by ignoring
@@ -679,11 +677,11 @@ module Org::Antlr::Analysis
       # are left in the states set).  Now we will check context.
       # For example, the list of configs for NFA state 3 in some DFA
       # state might be:
-      # [3|2|[28 18 $], 3|1|[28 $], 3|1, 3|2]
+      #   [3|2|[28 18 $], 3|1|[28 $], 3|1, 3|2]
       # I want to create a map from context to alts looking for overlap:
-      # [28 18 $] -> 2
-      # [28 $] -> 1
-      # [$] -> 1,2
+      #   [28 18 $] -> 2
+      #   [28 $] -> 1
+      #   [$] -> 1,2
       # Indeed a conflict exists as same state 3, same context [$], predicts
       # alts 1 and 2.
       # walk each state with potential conflicting configurations

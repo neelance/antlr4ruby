@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -163,14 +163,12 @@ module Org::Antlr::Analysis
     alias_method :attr_state_to_recursion_overflow_configurations_map=, :state_to_recursion_overflow_configurations_map=
     undef_method :state_to_recursion_overflow_configurations_map=
     
-    # protected Map<Integer, List<NFAConfiguration>> stateToRecursionOverflowConfigurationsMap =
-    # new HashMap<Integer, List<NFAConfiguration>>();
-    # 
+    # 	protected Map<Integer, List<NFAConfiguration>> stateToRecursionOverflowConfigurationsMap =
+    # 		new HashMap<Integer, List<NFAConfiguration>>();
     # Left recursion discovered.  The proposed new NFAConfiguration
     # is recorded for the associated DFA state.
-    # protected Map<Integer,List<NFAConfiguration>> stateToLeftRecursiveConfigurationsMap =
-    # new HashMap<Integer,List<NFAConfiguration>>();
-    # 
+    # 	protected Map<Integer,List<NFAConfiguration>> stateToLeftRecursiveConfigurationsMap =
+    # 		new HashMap<Integer,List<NFAConfiguration>>();
     # Did ANTLR have to terminate early on the analysis of this decision?
     attr_accessor :timed_out
     alias_method :attr_timed_out, :timed_out
@@ -593,8 +591,7 @@ module Org::Antlr::Analysis
       # Map<Map<String target, List<NFAState call sites>>
       alt_to_target_to_call_sites_map = HashMap.new
       # track a single problem DFA state for each alt
-      alt_to_dfastate = HashMap.new
-      # output param
+      alt_to_dfastate = HashMap.new # output param
       compute_alt_to_problem_maps(dfa_states_with_recursion_problems, @state_to_recursion_overflow_configurations_map, alt_to_target_to_call_sites_map, alt_to_dfastate) # output param
       # walk each alt with recursion overflow problems and generate error
       alts = alt_to_target_to_call_sites_map.key_set
@@ -678,8 +675,8 @@ module Org::Antlr::Analysis
     # Report that at least 2 alts have recursive constructs.  There is
     # no way to build a DFA so we terminated.
     def report_non_llstar_decision(dfa)
-      # System.out.println("non-LL(*) DFA "+dfa.decisionNumber+", alts: "+
-      # dfa.recursiveAltSet.toList());
+      # 		System.out.println("non-LL(*) DFA "+dfa.decisionNumber+", alts: "+
+      # 						   dfa.recursiveAltSet.toList());
       @non_llstar_decision = true
       @alts_with_problem.add_all(dfa.attr_recursive_alt_set.to_list)
     end
@@ -842,23 +839,21 @@ module Org::Antlr::Analysis
     # take paths that are turned off during nondeterminism resolution. So,
     # just do a depth-first walk traversing edges labeled with the current
     # label.  Return true if a path was found emanating from state s.
-    # 
-    # starting where?
-    # 0..labels.size()-1
-    # input sequence
     def get_nfapath(s, label_index, labels, path)
+      # starting where?
+      # 0..labels.size()-1
+      # input sequence
       # output list of NFA states
       # track a visit to state s at input index labelIndex if not seen
       this_state_key = get_state_label_index_key(s.attr_state_number, label_index)
       if (@states_visited_at_input_depth.contains(this_state_key))
-        # System.out.println("### already visited "+s.stateNumber+" previously at index "+
-        # labelIndex);
+        # 			System.out.println("### already visited "+s.stateNumber+" previously at index "+
+        # 						   labelIndex);
         return false
       end
       @states_visited_at_input_depth.add(this_state_key)
-      # System.out.println("enter state "+s.stateNumber+" visited states: "+
-      # statesVisitedAtInputDepth);
-      # 
+      # 		System.out.println("enter state "+s.stateNumber+" visited states: "+
+      # 						   statesVisitedAtInputDepth);
       # pick the first edge whose target is in states and whose
       # label is labels[labelIndex]
       i = 0
@@ -866,10 +861,10 @@ module Org::Antlr::Analysis
         t = s.attr_transition[i]
         edge_target = t.attr_target
         label = labels.get(label_index)
-        # System.out.println(s.stateNumber+"-"+
-        # t.label.toString(dfa.nfa.grammar)+"->"+
-        # edgeTarget.stateNumber+" =="+
-        # label.toString(dfa.nfa.grammar)+"?");
+        # 			System.out.println(s.stateNumber+"-"+
+        # 							   t.label.toString(dfa.nfa.grammar)+"->"+
+        # 							   edgeTarget.stateNumber+" =="+
+        # 							   label.toString(dfa.nfa.grammar)+"?");
         if (t.attr_label.is_epsilon || t.attr_label.is_semantic_predicate)
           # nondeterministically backtrack down epsilon edges
           path.add(edge_target)
@@ -884,9 +879,9 @@ module Org::Antlr::Analysis
         end
         if (t.attr_label.matches(label))
           path.add(edge_target)
-          # System.out.println("found label "+
-          # t.label.toString(dfa.nfa.grammar)+
-          # " at state "+s.stateNumber+"; labelIndex="+labelIndex);
+          # 				System.out.println("found label "+
+          # 								   t.label.toString(dfa.nfa.grammar)+
+          # 								   " at state "+s.stateNumber+"; labelIndex="+labelIndex);
           if ((label_index).equal?(labels.size - 1))
             # found last label; done!
             @states_visited_at_input_depth.remove(this_state_key)
@@ -898,8 +893,8 @@ module Org::Antlr::Analysis
             @states_visited_at_input_depth.remove(this_state_key)
             return true
           end
-          # System.out.println("backtrack; path from "+s.stateNumber+"->"+
-          # t.label.toString(dfa.nfa.grammar)+" didn't work");
+          # 				System.out.println("backtrack; path from "+s.stateNumber+"->"+
+          # 								   t.label.toString(dfa.nfa.grammar)+" didn't work");
           path.remove(path.size - 1) # remove; didn't work out
           i += 1
           next # keep looking for a path for labels

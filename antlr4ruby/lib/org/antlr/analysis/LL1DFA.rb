@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -120,17 +120,16 @@ module Org::Antlr::Analysis
               set_accept_state(alt, pred_dfatarget)
             end
             # add a transition to pred target from d
-            # 
-            # int walkAlt =
-            # decisionStartState.translateDisplayAltToWalkAlt(alt);
-            # NFAState altLeftEdge = nfa.grammar.getNFAStateForAltOfDecision(decisionStartState, walkAlt);
-            # NFAState altStartState = (NFAState)altLeftEdge.transition[0].target;
-            # SemanticContext ctx = nfa.grammar.ll1Analyzer.getPredicates(altStartState);
-            # System.out.println("sem ctx = "+ctx);
-            # if ( ctx == null ) {
-            # ctx = new SemanticContext.TruePredicate();
-            # }
-            # s.addTransition(predDFATarget, new Label(ctx));
+            # 					int walkAlt =
+            # 						decisionStartState.translateDisplayAltToWalkAlt(alt);
+            # 					NFAState altLeftEdge = nfa.grammar.getNFAStateForAltOfDecision(decisionStartState, walkAlt);
+            # 					NFAState altStartState = (NFAState)altLeftEdge.transition[0].target;
+            # 					SemanticContext ctx = nfa.grammar.ll1Analyzer.getPredicates(altStartState);
+            # 					System.out.println("sem ctx = "+ctx);
+            # 					if ( ctx == null ) {
+            # 						ctx = new SemanticContext.TruePredicate();
+            # 					}
+            # 					s.addTransition(predDFATarget, new Label(ctx));
             synpred = get_syn_pred_for_alt(decision_start_state, alt)
             if ((synpred).nil?)
               synpred = SemanticContext::TruePredicate.new
@@ -166,8 +165,8 @@ module Org::Antlr::Analysis
         if (ctx.is_syntactic_predicate)
           p = ctx
           if ((p.attr_predicate_ast.get_type).equal?(ANTLRParser::BACKTRACK_SEMPRED))
-            # System.out.println("syn pred for alt "+walkAlt+" "+
-            # ((SemanticContext.Predicate)altStartState.transition[0].label.getSemanticContext()).predicateAST);
+            # 					System.out.println("syn pred for alt "+walkAlt+" "+
+            # 									   ((SemanticContext.Predicate)altStartState.transition[0].label.getSemanticContext()).predicateAST);
             if (ctx.is_syntactic_predicate)
               self.attr_nfa.attr_grammar.syn_pred_used_in_dfa(self, ctx)
             end

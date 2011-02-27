@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -39,20 +39,19 @@ module Org::Antlr::Analysis
   
   # Walk DFA states, unlinking the nfa configs and whatever else I
   # can to reduce memory footprint.
-  # protected void unlinkUnneededStateData(DFAState d) {
-  # Integer sI = Utils.integer(d.stateNumber);
-  # if ( visited.contains(sI) ) {
-  # return; // already visited
-  # }
-  # visited.add(sI);
-  # d.nfaConfigurations = null;
-  # for (int i = 0; i < d.getNumberOfTransitions(); i++) {
-  # Transition edge = (Transition) d.transition(i);
-  # DFAState edgeTarget = ((DFAState)edge.target);
-  # unlinkUnneededStateData(edgeTarget);
-  # }
-  # }
-  # 
+  # 	protected void unlinkUnneededStateData(DFAState d) {
+  # 		Integer sI = Utils.integer(d.stateNumber);
+  # 		if ( visited.contains(sI) ) {
+  # 			return; // already visited
+  # 		}
+  # 		visited.add(sI);
+  # 		d.nfaConfigurations = null;
+  # 		for (int i = 0; i < d.getNumberOfTransitions(); i++) {
+  # 			Transition edge = (Transition) d.transition(i);
+  # 			DFAState edgeTarget = ((DFAState)edge.target);
+  # 			unlinkUnneededStateData(edgeTarget);
+  # 		}
+  # 	}
   # A module to perform optimizations on DFAs.
   # 
   # I could more easily (and more quickly) do some optimizations (such as
@@ -221,9 +220,8 @@ module Org::Antlr::Analysis
       if ((dfa).nil?)
         return # nothing to do
       end
-      # System.out.println("Optimize DFA "+dfa.decisionNFAStartState.decisionNumber+
-      # " num states="+dfa.getNumberOfStates());
-      # 
+      # 		System.out.println("Optimize DFA "+dfa.decisionNFAStartState.decisionNumber+
+      # 						   " num states="+dfa.getNumberOfStates());
       # long start = System.currentTimeMillis();
       if (self.attr_prune_ebnf_exit_branches && dfa.can_inline_decision)
         @visited.clear
@@ -238,9 +236,8 @@ module Org::Antlr::Analysis
         optimize_eotbranches(dfa.attr_start_state)
       end
       # ack...code gen needs this, cannot optimize
-      # visited.clear();
-      # unlinkUnneededStateData(dfa.startState);
-      # 
+      # 		visited.clear();
+      # 		unlinkUnneededStateData(dfa.startState);
       # long stop = System.currentTimeMillis();
       # System.out.println("minimized in "+(int)(stop-start)+" ms");
     end
@@ -257,14 +254,13 @@ module Org::Antlr::Analysis
       while i < d.get_number_of_transitions
         edge = d.transition(i)
         edge_target = (edge.attr_target)
-        # System.out.println(d.stateNumber+"-"+
-        # edge.label.toString(d.dfa.nfa.grammar)+"->"+
-        # edgeTarget.stateNumber);
-        # 
+        # 			System.out.println(d.stateNumber+"-"+
+        # 							   edge.label.toString(d.dfa.nfa.grammar)+"->"+
+        # 							   edgeTarget.stateNumber);
         # if target is an accept state and that alt is the exit alt
         if (edge_target.is_accept_state && (edge_target.get_uniquely_predicted_alt).equal?(n_alts))
-          # System.out.println("ignoring transition "+i+" to max alt "+
-          # d.dfa.getNumberOfAlts());
+          # 				System.out.println("ignoring transition "+i+" to max alt "+
+          # 					d.dfa.getNumberOfAlts());
           d.remove_transition(i)
           i -= 1 # back up one so that i++ of loop iteration stays within bounds
         end
@@ -284,10 +280,9 @@ module Org::Antlr::Analysis
       while i < d.get_number_of_transitions
         edge = d.transition(i)
         edge_target = (edge.attr_target)
-        # System.out.println(d.stateNumber+"-"+
-        # edge.label.toString(d.dfa.nfa.grammar)+"->"+
-        # edgeTarget.stateNumber);
-        # 
+        # 			System.out.println(d.stateNumber+"-"+
+        # 							   edge.label.toString(d.dfa.nfa.grammar)+"->"+
+        # 							   edgeTarget.stateNumber);
         # if only one edge coming out, it is EOT, and target is accept prune
         if (self.attr_prune_tokens_rule_superfluous_eot_edges && edge_target.is_accept_state && (d.get_number_of_transitions).equal?(1) && edge.attr_label.is_atom && (edge.attr_label.get_atom).equal?(Label::EOT))
           # System.out.println("state "+d+" can be pruned");
