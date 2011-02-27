@@ -272,21 +272,16 @@ module Org::Antlr::Analysis
       # 			ErrorManager.internalError("can't get DFA for decision "+decisionNumber);
       # 		}
       n_alts = @nfa.attr_grammar.get_number_of_alts_for_decision_nfa(nfa_start)
-      catch(:break_case) do
-        case (nfa_start.attr_decision_state_type)
-        when LOOPBACK
-          walk_alt = display_alt % n_alts + 1 # rotate right mod 1..3
-          throw :break_case, :thrown
-        when BLOCK_START, OPTIONAL_BLOCK_START
-          walk_alt = display_alt # identity transformation
-          throw :break_case, :thrown
-        when BYPASS
-          if ((display_alt).equal?(n_alts))
-            walk_alt = 2 # bypass
-          else
-            walk_alt = 1 # any non exit branch alt predicts entering
-          end
-          throw :break_case, :thrown
+      case (nfa_start.attr_decision_state_type)
+      when LOOPBACK
+        walk_alt = display_alt % n_alts + 1 # rotate right mod 1..3
+      when BLOCK_START, OPTIONAL_BLOCK_START
+        walk_alt = display_alt # identity transformation
+      when BYPASS
+        if ((display_alt).equal?(n_alts))
+          walk_alt = 2 # bypass
+        else
+          walk_alt = 1 # any non exit branch alt predicts entering
         end
       end
       return walk_alt
