@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -1113,20 +1113,20 @@ module Org::Antlr::Codegen
       code = @templates.get_instance_of("alt")
       alternative_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
       a = nil
-      # // TODO: can we use Rule.altsWithRewrites???
-      # if ( blockNestingLevel==RULE_BLOCK_NESTING_LEVEL ) {
-      # GrammarAST aRewriteNode = #alternative.findFirstType(REWRITE);
-      # if ( grammar.buildAST() &&
-      # (aRewriteNode!=null||
-      # (#alternative.getNextSibling()!=null &&
-      # #alternative.getNextSibling().getType()==REWRITE)) )
-      # {
-      # currentAltHasASTRewrite = true;
-      # }
-      # else {
-      # currentAltHasASTRewrite = false;
-      # }
-      # }
+      # 		// TODO: can we use Rule.altsWithRewrites???
+      # 		if ( blockNestingLevel==RULE_BLOCK_NESTING_LEVEL ) {
+      # 			GrammarAST aRewriteNode = #alternative.findFirstType(REWRITE);
+      # 			if ( grammar.buildAST() &&
+      # 				 (aRewriteNode!=null||
+      # 				 (#alternative.getNextSibling()!=null &&
+      # 				  #alternative.getNextSibling().getType()==REWRITE)) )
+      # 			{
+      # 				currentAltHasASTRewrite = true;
+      # 			}
+      # 			else {
+      # 				currentAltHasASTRewrite = false;
+      # 			}
+      # 		}
       if ((@block_nesting_level).equal?(RULE_BLOCK_NESTING_LEVEL) && @grammar.build_ast)
         r = @grammar.get_rule(@current_rule_name)
         @current_alt_has_astrewrite = r.has_rewrite(@outer_alt_num)

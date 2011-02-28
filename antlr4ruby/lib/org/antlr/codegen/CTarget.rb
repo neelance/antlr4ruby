@@ -3,17 +3,17 @@ require "rjava"
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -51,6 +51,7 @@ module Org::Antlr::Codegen
     def gen_recognizer_file(tool, generator, grammar, output_file_st)
       # Before we write this, and cause it to generate its string,
       # we need to add all the string literals that we are going to match
+      # 
       output_file_st.set_attribute("literals", @strings)
       file_name = generator.get_recognizer_file_name(grammar.attr_name, grammar.attr_type)
       System.out.println("Generating " + file_name)
@@ -184,6 +185,7 @@ module Org::Antlr::Codegen
       # We need ot lose any escaped characters of the form \x and just
       # replace them with their actual values as well as lose the surrounding
       # quote marks.
+      # 
       i = 1
       while i < literal.length - 1
         buf.append("0x")
@@ -206,6 +208,7 @@ module Org::Antlr::Codegen
             buf.append("0C")
           else
             # Anything else is what it is!
+            # 
             buf.append(JavaInteger.to_hex_string(RJava.cast_to_int(literal.char_at(i))).to_upper_case)
           end
         else

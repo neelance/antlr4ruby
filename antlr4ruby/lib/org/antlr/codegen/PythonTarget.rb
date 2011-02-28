@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -25,9 +25,6 @@ require "rjava"
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-# 
-# 
-# 
 # Please excuse my obvious lack of Java experience. The code here is probably
 # full of WTFs - though IMHO Java is the Real WTF(TM) here...
 module Org::Antlr::Codegen
@@ -85,15 +82,14 @@ module Org::Antlr::Codegen
     typesig { [JavaList, Antlr::Token] }
     def post_process_action(chunks, action_token)
       # TODO
-      # - check for and report TAB usage
-      # 
+      # 		   - check for and report TAB usage
       # System.out.println("\n*** Action at " + actionToken.getLine() + ":" + actionToken.getColumn());
       # First I create a new list of chunks. String chunks are splitted into
-      # lines and some whitespace my be added at the beginning.
+      # 		   lines and some whitespace my be added at the beginning.
       # 
-      # As a result I get a list of chunks
-      # - where the first line starts at column 0
-      # - where every LF is at the end of a string chunk
+      # 		   As a result I get a list of chunks
+      # 		   - where the first line starts at column 0
+      # 		   - where every LF is at the end of a string chunk
       n_chunks = ArrayList.new
       i = 0
       while i < chunks.size

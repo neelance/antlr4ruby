@@ -235,9 +235,8 @@ module Org::Antlr::Codegen
     
     class_module.module_eval {
       # I have factored out the generation of cyclic DFAs to separate class
-      # 
-      # public CyclicDFACodeGenerator cyclicDFAGenerator =
-      # new CyclicDFACodeGenerator(this);
+      # 	public CyclicDFACodeGenerator cyclicDFAGenerator =
+      # 		new CyclicDFACodeGenerator(this);
       const_set_lazy(:VOCAB_FILE_EXTENSION) { ".tokens" }
       const_attr_reader  :VOCAB_FILE_EXTENSION
       
@@ -516,8 +515,8 @@ module Org::Antlr::Codegen
       rescue IOException => ioe
         ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, get_vocab_file_name, ioe)
       end
-      # System.out.println("num obj.prop refs: "+ ASTExpr.totalObjPropRefs);
-      # System.out.println("num reflection lookups: "+ ASTExpr.totalReflectionLookups);
+      # 		System.out.println("num obj.prop refs: "+ ASTExpr.totalObjPropRefs);
+      # 		System.out.println("num reflection lookups: "+ ASTExpr.totalReflectionLookups);
       return @output_file_st
     end
     
@@ -588,10 +587,10 @@ module Org::Antlr::Codegen
     # Like Grosch I implemented local FOLLOW sets that are combined at run-time
     # upon error to avoid parsing overhead.
     def generate_local_follow(referenced_element_node, referenced_element_name, enclosing_rule_name, element_index)
-      # System.out.println("compute FOLLOW "+grammar.name+"."+referencedElementNode.toString()+
-      # " for "+referencedElementName+"#"+elementIndex +" in "+
-      # enclosingRuleName+
-      # " line="+referencedElementNode.getLine());
+      # 		System.out.println("compute FOLLOW "+grammar.name+"."+referencedElementNode.toString()+
+      # 						 " for "+referencedElementName+"#"+elementIndex +" in "+
+      # 						 enclosingRuleName+
+      # 						 " line="+referencedElementNode.getLine());
       following_nfastate = referenced_element_node.attr_following_nfastate
       follow = nil
       if (!(following_nfastate).nil?)
@@ -1151,13 +1150,13 @@ module Org::Antlr::Codegen
       ext_st = @templates.get_instance_of("codeFileExtension")
       recognizer_name = @grammar.get_recognizer_name
       return recognizer_name + RJava.cast_to_string(ext_st.to_s)
-      # String suffix = "";
-      # if ( type==Grammar.COMBINED ||
-      # (type==Grammar.LEXER && !grammar.implicitLexer) )
-      # {
-      # suffix = Grammar.grammarTypeToFileNameSuffix[type];
-      # }
-      # return name+suffix+extST.toString();
+      # 		String suffix = "";
+      # 		if ( type==Grammar.COMBINED ||
+      # 			 (type==Grammar.LEXER && !grammar.implicitLexer) )
+      # 		{
+      # 			suffix = Grammar.grammarTypeToFileNameSuffix[type];
+      # 		}
+      # 		return name+suffix+extST.toString();
     end
     
     typesig { [] }
