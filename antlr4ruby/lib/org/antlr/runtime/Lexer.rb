@@ -136,6 +136,7 @@ module Org::Antlr::Runtime
     typesig { [] }
     # This is the lexer entry point that sets instance var 'token'
     def m_tokens
+      raise NotImplementedError
     end
     
     typesig { [CharStream] }

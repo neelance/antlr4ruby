@@ -63,6 +63,7 @@ module Org::Antlr::Analysis
     
     typesig { [Transition] }
     def add_transition(e)
+      raise NotImplementedError
     end
     
     typesig { [::Java::Int] }

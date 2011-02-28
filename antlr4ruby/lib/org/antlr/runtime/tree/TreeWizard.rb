@@ -182,6 +182,7 @@ module Org::Antlr::Runtime::Tree
         
         typesig { [Object] }
         def visit(t)
+          raise NotImplementedError
         end
         
         typesig { [] }
