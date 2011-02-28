@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -63,8 +63,8 @@ module Org::Antlr::Test
     def test_aor_b
       g = Grammar.new("parser grammar P;\n" + "a : A | B {;} ;")
       # expecting (0)--Ep-->(1)--Ep-->(2)--A-->(3)--Ep-->(4)--Ep-->(5,end)
-      # |                            ^
-      # (6)--Ep-->(7)--B-->(8)--------|
+      # 										|                            ^
+      # 									   (6)--Ep-->(7)--B-->(8)--------|
       expecting = ".s0->.s1\n" + ".s1->.s2\n" + ".s1->.s7\n" + ".s10->.s4\n" + ".s2-A->.s3\n" + ".s3->.s4\n" + ".s4->:s5\n" + ".s7->.s8\n" + ".s8-B->.s9\n" + ".s9-{}->.s10\n" + ":s5-EOF->.s6\n"
       check_rule(g, "a", expecting)
     end
@@ -115,8 +115,8 @@ module Org::Antlr::Test
     def test_aor_epsilon
       g = Grammar.new("parser grammar P;\n" + "a : A | ;")
       # expecting (0)--Ep-->(1)--Ep-->(2)--A-->(3)--Ep-->(4)--Ep-->(5,end)
-      # |                            ^
-      # (6)--Ep-->(7)--Ep-->(8)-------|
+      # 										|                            ^
+      # 									   (6)--Ep-->(7)--Ep-->(8)-------|
       expecting = ".s0->.s1\n" + ".s1->.s2\n" + ".s1->.s7\n" + ".s2-A->.s3\n" + ".s3->.s4\n" + ".s4->:s5\n" + ".s7->.s8\n" + ".s8->.s9\n" + ".s9->.s4\n" + ":s5-EOF->.s6\n"
       check_rule(g, "a", expecting)
     end
@@ -140,9 +140,9 @@ module Org::Antlr::Test
       g = Grammar.new("parser grammar P;\n" + "a : (A | B) C;")
       # expecting
       # 
-      # (0)--Ep-->(1)--Ep-->(2)--A-->(3)--Ep-->(4)--Ep-->(5)--C-->(6)--Ep-->(7,end)
-      # |                            ^
-      # (8)--Ep-->(9)--B-->(10)-------|
+      # 				(0)--Ep-->(1)--Ep-->(2)--A-->(3)--Ep-->(4)--Ep-->(5)--C-->(6)--Ep-->(7,end)
+      # 						   |                            ^
+      # 						  (8)--Ep-->(9)--B-->(10)-------|
     end
     
     typesig { [] }

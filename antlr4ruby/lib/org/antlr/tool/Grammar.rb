@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -1313,17 +1313,16 @@ module Org::Antlr::Tool
     typesig { [] }
     # Walk the list of options, altering this Grammar object according
     # to any I recognize.
-    # protected void processOptions() {
-    # Iterator optionNames = options.keySet().iterator();
-    # while (optionNames.hasNext()) {
-    # String optionName = (String) optionNames.next();
-    # Object value = options.get(optionName);
-    # if ( optionName.equals("tokenVocab") ) {
+    # 	protected void processOptions() {
+    # 		Iterator optionNames = options.keySet().iterator();
+    # 		while (optionNames.hasNext()) {
+    # 			String optionName = (String) optionNames.next();
+    # 			Object value = options.get(optionName);
+    # 			if ( optionName.equals("tokenVocab") ) {
     # 
-    # }
-    # }
-    # }
-    # 
+    # 			}
+    # 		}
+    # 	}
     # Define all the rule begin/end NFAStates to solve forward reference
     # issues.  Critical for composite grammars too.
     # This is normally called on all root/delegates manually and then
@@ -1400,10 +1399,10 @@ module Org::Antlr::Tool
       end
       # CHECK FOR LEFT RECURSION; Make sure we can actually do analysis
       check_all_rules_for_left_recursion
-      # // was there a severe problem while sniffing the grammar?
-      # if ( ErrorManager.doNotAttemptAnalysis() ) {
-      # return;
-      # }
+      # 		// was there a severe problem while sniffing the grammar?
+      # 		if ( ErrorManager.doNotAttemptAnalysis() ) {
+      # 			return;
+      # 		}
       start = System.current_time_millis
       # System.out.println("### create DFAs");
       num_decisions = get_number_of_decisions
@@ -1506,9 +1505,9 @@ module Org::Antlr::Tool
         while i <= num_alts
           j = i + 1
           while j <= num_alts
-            # System.out.println("compare "+i+", "+j+": "+
-            # altLook[i].toString(this)+" with "+
-            # altLook[j].toString(this));
+            # 				System.out.println("compare "+i+", "+j+": "+
+            # 								   altLook[i].toString(this)+" with "+
+            # 								   altLook[j].toString(this));
             collision = alt_look[i].intersection(alt_look[j])
             if (!collision.is_nil)
               # System.out.println("collision (non-LL(1)): "+collision.toString(this));
@@ -1530,19 +1529,16 @@ module Org::Antlr::Tool
         set_lookahead_dfa(decision, lookahead_dfa)
         update_line_column_to_lookahead_dfamap(lookahead_dfa)
         return lookahead_dfa
-      end
+      end # not manually set to k=1
       # not LL(1) but perhaps we can solve with simplified predicate search
       # even if k=1 set manually, only resolve here if we have preds; i.e.,
       # don't resolve etc...
-      # 
-      # SemanticContext visiblePredicates =
-      # ll1Analyzer.getPredicates(decisionStartState);
-      # boolean foundConfoundingPredicate =
-      # ll1Analyzer.detectConfoundingPredicates(decisionStartState);
-      # 
+      # 		SemanticContext visiblePredicates =
+      # 			ll1Analyzer.getPredicates(decisionStartState);
+      # 		boolean foundConfoundingPredicate =
+      # 			ll1Analyzer.detectConfoundingPredicates(decisionStartState);
       # exit if not forced k=1 or we found a predicate situation we
       # can't handle: predicates in rules invoked from this decision.
-      # not manually set to k=1
       if (!(get_user_max_lookahead(decision)).equal?(1) || !get_auto_backtrack_mode(decision) || found_confounding_predicate)
         # System.out.println("trying LL(*)");
         return nil
@@ -1617,8 +1613,8 @@ module Org::Antlr::Tool
           # (ignoring s_i-t if nil; don't put in list)
           # Replace existing s_i with intersection since we
           # know that will always be a non nil character class
-          intersection = s_i.and_(t)
-          disjoint_sets.set(i, intersection)
+          intersection_ = s_i.and_(t)
+          disjoint_sets.set(i, intersection_)
           # Compute s_i-t to see what is in current set and not in incoming
           existing_minus_new_elements = s_i.subtract(t)
           # System.out.println(s_i+"-"+t+"="+existingMinusNewElements);
@@ -1761,8 +1757,8 @@ module Org::Antlr::Tool
         return
       end
       r = Rule.new(self, rule_name, @composite.attr_rule_index, num_alts)
-      # System.out.println("defineRule("+ruleName+",modifier="+modifier+
-      # "): index="+r.index+", nalts="+numAlts);
+      # 		System.out.println("defineRule("+ruleName+",modifier="+modifier+
+      # 						   "): index="+r.index+", nalts="+numAlts);
       r.attr_modifier = modifier
       @name_to_rule_map.put(rule_name, r)
       set_rule_ast(rule_name, tree)
@@ -1809,10 +1805,9 @@ module Org::Antlr::Tool
     end
     
     typesig { [GrammarAST, String, GrammarAST, GrammarAST] }
-    # public Set<Rule> getRuleNamesVisitedDuringLOOK() {
-    # return rulesSensitiveToOtherRules;
-    # }
-    # 
+    # 	public Set<Rule> getRuleNamesVisitedDuringLOOK() {
+    # 		return rulesSensitiveToOtherRules;
+    # 	}
     # Given @scope::name {action} define it for this grammar.  Later,
     # the code generator will ask for the actions table.  For composite
     # grammars, make sure header action propogates down to all delegates.
@@ -1866,10 +1861,8 @@ module Org::Antlr::Tool
     typesig { [Antlr::Token, GrammarAST] }
     def define_lexer_rule_found_in_parser(rule_token, rule_ast)
       # System.out.println("rule tree is:\n"+ruleAST.toStringTree());
-      # 
-      # String ruleText = tokenBuffer.toOriginalString(ruleAST.ruleStartTokenIndex,
-      # ruleAST.ruleStopTokenIndex);
-      # 
+      # 		String ruleText = tokenBuffer.toOriginalString(ruleAST.ruleStartTokenIndex,
+      # 											   ruleAST.ruleStopTokenIndex);
       # first, create the text of the rule
       buf = StringBuffer.new
       buf.append("// $ANTLR src \"")
@@ -1952,9 +1945,9 @@ module Org::Antlr::Tool
     typesig { [String] }
     def get_rule(rule_name)
       r = @composite.get_rule(rule_name)
-      # if ( r!=null && r.grammar != this ) {
-      # System.out.println(name+".getRule("+ruleName+")="+r);
-      # }
+      # 		if ( r!=null && r.grammar != this ) {
+      # 			System.out.println(name+".getRule("+ruleName+")="+r);
+      # 		}
       return r
     end
     
@@ -2208,14 +2201,14 @@ module Org::Antlr::Tool
     # This data is also used to verify that all rules have been defined.
     def alt_references_rule(enclosing_rule_name, ref_scope_ast, ref_ast, outer_alt_num)
       # Do nothing for now; not sure need; track S.x as x
-      # String scope = null;
-      # Grammar scopeG = null;
-      # if ( refScopeAST!=null ) {
-      # if ( !scopedRuleRefs.contains(refScopeAST) ) {
-      # scopedRuleRefs.add(refScopeAST);
-      # }
-      # scope = refScopeAST.getText();
-      # }
+      # 		String scope = null;
+      # 		Grammar scopeG = null;
+      # 		if ( refScopeAST!=null ) {
+      # 			if ( !scopedRuleRefs.contains(refScopeAST) ) {
+      # 				scopedRuleRefs.add(refScopeAST);
+      # 			}
+      # 			scope = refScopeAST.getText();
+      # 		}
       r = get_rule(enclosing_rule_name)
       if ((r).nil?)
         return # no error here; see NameSpaceChecker
@@ -2368,11 +2361,11 @@ module Org::Antlr::Tool
       # This routine still works though.
       def get_char_value_from_grammar_char_literal(literal)
         case (literal.length)
-        # no escape char
         when 3
           # 'x'
           return literal.char_at(1)
         when 4
+          # no escape char
           # '\x'  (antlr lexer will catch invalid char)
           if (Character.is_digit(literal.char_at(2)))
             ErrorManager.error(ErrorManager::MSG_SYNTAX_ERROR, "invalid char literal: " + literal)
@@ -2618,9 +2611,9 @@ module Org::Antlr::Tool
       token_name = nil
       index = 0
       # inside any target's char range and is lexer grammar?
+      # faux label?
       if ((@type).equal?(LEXER) && ttype >= Label::MIN_CHAR_VALUE && ttype <= Label::MAX_CHAR_VALUE)
         return get_antlrchar_literal_for_char(ttype)
-      # faux label?
       else
         if (ttype < 0)
           token_name = RJava.cast_to_string(@composite.attr_type_to_token_list.get(Label::NUM_FAUX_LABELS + ttype))
@@ -3054,28 +3047,28 @@ module Org::Antlr::Tool
     end
     
     typesig { [] }
-    # public void setDecisionOptions(int decision, Map options) {
-    # Decision d = createDecision(decision);
-    # d.options = options;
-    # }
+    # 	public void setDecisionOptions(int decision, Map options) {
+    # 		Decision d = createDecision(decision);
+    # 		d.options = options;
+    # 	}
     # 
-    # public void setDecisionOption(int decision, String name, Object value) {
-    # Decision d = getDecision(decision);
-    # if ( d!=null ) {
-    # if ( d.options==null ) {
-    # d.options = new HashMap();
-    # }
-    # d.options.put(name,value);
-    # }
-    # }
+    # 	public void setDecisionOption(int decision, String name, Object value) {
+    # 		Decision d = getDecision(decision);
+    # 		if ( d!=null ) {
+    # 			if ( d.options==null ) {
+    # 				d.options = new HashMap();
+    # 			}
+    # 			d.options.put(name,value);
+    # 		}
+    # 	}
     # 
-    # public Map getDecisionOptions(int decision) {
-    # Decision d = getDecision(decision);
-    # if ( d==null ) {
-    # return null;
-    # }
-    # return d.options;
-    # }
+    # 	public Map getDecisionOptions(int decision) {
+    # 		Decision d = getDecision(decision);
+    # 		if ( d==null ) {
+    # 			return null;
+    # 		}
+    # 		return d.options;
+    #    }
     def get_number_of_decisions
       return @decision_count
     end
@@ -3304,19 +3297,19 @@ module Org::Antlr::Tool
     end
     
     typesig { [NFAState] }
-    # public void computeRuleFOLLOWSets() {
-    # if ( getNumberOfDecisions()==0 ) {
-    # createNFAs();
-    # }
-    # for (Iterator it = getRules().iterator(); it.hasNext();) {
-    # Rule r = (Rule)it.next();
-    # if ( r.isSynPred ) {
-    # continue;
-    # }
-    # LookaheadSet s = ll1Analyzer.FOLLOW(r);
-    # System.out.println("FOLLOW("+r.name+")="+s);
-    # }
-    # }
+    # 	public void computeRuleFOLLOWSets() {
+    # 		if ( getNumberOfDecisions()==0 ) {
+    # 			createNFAs();
+    # 		}
+    # 		for (Iterator it = getRules().iterator(); it.hasNext();) {
+    # 			Rule r = (Rule)it.next();
+    # 			if ( r.isSynPred ) {
+    # 				continue;
+    # 			}
+    # 			LookaheadSet s = ll1Analyzer.FOLLOW(r);
+    # 			System.out.println("FOLLOW("+r.name+")="+s);
+    # 		}
+    # 	}
     def _first(s)
       return @ll1analyzer._first(s)
     end

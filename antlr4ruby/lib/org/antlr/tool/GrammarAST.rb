@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -157,7 +157,7 @@ module Org::Antlr::Tool
     alias_method :attr_rewrite_refs_shallow=, :rewrite_refs_shallow=
     undef_method :rewrite_refs_shallow=
     
-    # If REWRITE node, track EVERY element and label ref to right of ->
+    # 	If REWRITE node, track EVERY element and label ref to right of ->
     # for this rewrite rule.  There could be multiple of these per
     # rule:
     # 
@@ -543,11 +543,11 @@ module Org::Antlr::Tool
         return false
       end
       # if roots match, do full list match test on children.
+      # sibling has no kids, make sure t doesn't either
       if (!(self.get_first_child).nil?)
         if (!((self.get_first_child).has_same_list_structure(t.get_first_child)))
           return false
         end
-      # sibling has no kids, make sure t doesn't either
       else
         if (!(t.get_first_child).nil?)
           return false
@@ -571,11 +571,11 @@ module Org::Antlr::Tool
           return false
         end
         # if roots match, do full list match test on children.
+        # sibling has no kids, make sure t doesn't either
         if (!(sibling.get_first_child).nil?)
           if (!(sibling.get_first_child).has_same_list_structure(t.get_first_child))
             return false
           end
-        # sibling has no kids, make sure t doesn't either
         else
           if (!(t.get_first_child).nil?)
             return false
@@ -640,11 +640,11 @@ module Org::Antlr::Tool
           return dup_list_no_actions(t.get_first_child, t)
         end
         # DOH!  Must allow labels for sem preds
-        # if ( (ttype==ANTLRParser.ASSIGN||ttype==ANTLRParser.PLUS_ASSIGN) &&
-        # (parent==null||parent.getType()!=ANTLRParser.OPTIONS) )
-        # {
-        # return dupTreeNoActions(t.getChild(1), t); // return x from ^(ASSIGN label x)
-        # }
+        #        if ( (ttype==ANTLRParser.ASSIGN||ttype==ANTLRParser.PLUS_ASSIGN) &&
+        # 			 (parent==null||parent.getType()!=ANTLRParser.OPTIONS) )
+        # 		{
+        # 			return dupTreeNoActions(t.getChild(1), t); // return x from ^(ASSIGN label x)
+        # 		}
         result = dup(t) # make copy of root
         # copy all children of root.
         kids = dup_list_no_actions(t.get_first_child, t)

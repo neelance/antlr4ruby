@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -172,8 +172,7 @@ module Org::Antlr::Test
     typesig { [] }
     def test_set_attr_of_expr_in_members
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # must not get null ptr!
+      ErrorManager.set_error_listener(equeue) # must not get null ptr!
       g = Grammar.new("grammar t;\n" + "options {\n" + "    output=template;\n" + "}\n" + "@members {\n" + "%code.instr = o;" + "}\n" + "a : ID\n" + "  ;\n" + "\n" + "ID : 'a';\n")
       antlr = new_tool
       generator = CodeGenerator.new(antlr, g, "Java")
@@ -218,9 +217,9 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_error(equeue, expected_message)
-      # System.out.println(equeue.infos);
-      # System.out.println(equeue.warnings);
-      # System.out.println(equeue.errors);
+      # 		System.out.println(equeue.infos);
+      # 		System.out.println(equeue.warnings);
+      # 		System.out.println(equeue.errors);
       found_msg = nil
       i = 0
       while i < equeue.attr_errors.size

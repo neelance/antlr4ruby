@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -129,17 +129,16 @@ module Org::Antlr::Tool
     # Return a String containing a DOT description that, when displayed,
     # will show the incoming state machine visually.  All nodes reachable
     # from startState will be included.
-    # public String getRuleNFADOT(State startState) {
-    # // The output DOT graph for visualization
-    # StringTemplate dot = stlib.getInstanceOf("org/antlr/tool/templates/dot/nfa");
+    #    public String getRuleNFADOT(State startState) {
+    #        // The output DOT graph for visualization
+    #        StringTemplate dot = stlib.getInstanceOf("org/antlr/tool/templates/dot/nfa");
     # 
-    # markedStates = new HashSet();
-    # dot.setAttribute("startState",
-    # Utils.integer(startState.stateNumber));
-    # walkRuleNFACreatingDOT(dot, startState);
-    # return dot.toString();
-    # }
-    # 
+    #        markedStates = new HashSet();
+    #        dot.setAttribute("startState",
+    #                Utils.integer(startState.stateNumber));
+    #        walkRuleNFACreatingDOT(dot, startState);
+    #        return dot.toString();
+    #    }
     # Do a depth-first walk of the state machine graph and
     # fill a DOT description template.  Keep filling the
     # states and edges attributes.
@@ -161,8 +160,8 @@ module Org::Antlr::Tool
       i = 0
       while i < s.get_number_of_transitions
         edge = s.transition(i)
-        # System.out.println("dfa "+s.dfa.decisionNumber+
-        # " edge from s"+s.stateNumber+" ["+i+"] of "+s.getNumberOfTransitions());
+        # 			System.out.println("dfa "+s.dfa.decisionNumber+
+        # 				" edge from s"+s.stateNumber+" ["+i+"] of "+s.getNumberOfTransitions());
         if (STRIP_NONREDUCED_STATES)
           if (edge.attr_target.is_a?(DFAState) && !((edge.attr_target).get_accept_state_reachable).equal?(DFA::REACHABLE_YES))
             i += 1
@@ -263,40 +262,37 @@ module Org::Antlr::Tool
     end
     
     typesig { [Transition] }
-    # public void writeDOTFilesForAllRuleNFAs() throws IOException {
-    # Collection rules = grammar.getRules();
-    # for (Iterator itr = rules.iterator(); itr.hasNext();) {
-    # Grammar.Rule r = (Grammar.Rule) itr.next();
-    # String ruleName = r.name;
-    # writeDOTFile(
-    # ruleName,
-    # getRuleNFADOT(grammar.getRuleStartState(ruleName)));
-    # }
-    # }
-    # 
-    # 
-    # public void writeDOTFilesForAllDecisionDFAs() throws IOException {
-    # // for debugging, create a DOT file for each decision in
-    # // a directory named for the grammar.
-    # File grammarDir = new File(grammar.name+"_DFAs");
-    # grammarDir.mkdirs();
-    # List decisionList = grammar.getDecisionNFAStartStateList();
-    # if ( decisionList==null ) {
-    # return;
-    # }
-    # int i = 1;
-    # Iterator iter = decisionList.iterator();
-    # while (iter.hasNext()) {
-    # NFAState decisionState = (NFAState)iter.next();
-    # DFA dfa = decisionState.getDecisionASTNode().getLookaheadDFA();
-    # if ( dfa!=null ) {
-    # String dot = getDOT( dfa.startState );
-    # writeDOTFile(grammarDir+"/dec-"+i, dot);
-    # }
-    # i++;
-    # }
-    # }
-    # 
+    # 	public void writeDOTFilesForAllRuleNFAs() throws IOException {
+    #        Collection rules = grammar.getRules();
+    #        for (Iterator itr = rules.iterator(); itr.hasNext();) {
+    # 			Grammar.Rule r = (Grammar.Rule) itr.next();
+    #            String ruleName = r.name;
+    #            writeDOTFile(
+    #                    ruleName,
+    #                    getRuleNFADOT(grammar.getRuleStartState(ruleName)));
+    #        }
+    #    }
+    # 	public void writeDOTFilesForAllDecisionDFAs() throws IOException {
+    #        // for debugging, create a DOT file for each decision in
+    #        // a directory named for the grammar.
+    #        File grammarDir = new File(grammar.name+"_DFAs");
+    #        grammarDir.mkdirs();
+    #        List decisionList = grammar.getDecisionNFAStartStateList();
+    #        if ( decisionList==null ) {
+    #            return;
+    #        }
+    #        int i = 1;
+    #        Iterator iter = decisionList.iterator();
+    #        while (iter.hasNext()) {
+    #            NFAState decisionState = (NFAState)iter.next();
+    #            DFA dfa = decisionState.getDecisionASTNode().getLookaheadDFA();
+    #            if ( dfa!=null ) {
+    #                String dot = getDOT( dfa.startState );
+    #                writeDOTFile(grammarDir+"/dec-"+i, dot);
+    #            }
+    #            i++;
+    #        }
+    #    }
     # Fix edge strings so they print out in DOT properly;
     # generate any gated predicates on edge too.
     def get_edge_label(edge)

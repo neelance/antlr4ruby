@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -40,39 +40,38 @@ module Org::Antlr::Test
     include_class_members TestInterpretedLexingImports
     
     typesig { [] }
-    # static class Tracer implements ANTLRDebugInterface {
-    # Grammar g;
-    # public DebugActions(Grammar g) {
-    # this.g = g;
-    # }
-    # public void enterRule(String ruleName) {
-    # System.out.println("enterRule("+ruleName+")");
-    # }
+    # 	static class Tracer implements ANTLRDebugInterface {
+    # 		Grammar g;
+    # 		public DebugActions(Grammar g) {
+    # 			this.g = g;
+    # 		}
+    # 		public void enterRule(String ruleName) {
+    # 			System.out.println("enterRule("+ruleName+")");
+    # 		}
     # 
-    # public void exitRule(String ruleName) {
-    # System.out.println("exitRule("+ruleName+")");
-    # }
+    # 		public void exitRule(String ruleName) {
+    # 			System.out.println("exitRule("+ruleName+")");
+    # 		}
     # 
-    # public void matchElement(int type) {
-    # System.out.println("matchElement("+g.getTokenName(type)+")");
-    # }
+    # 		public void matchElement(int type) {
+    # 			System.out.println("matchElement("+g.getTokenName(type)+")");
+    # 		}
     # 
-    # public void mismatchedElement(MismatchedTokenException e) {
-    # System.out.println(e);
-    # e.printStackTrace(System.out);
-    # }
+    # 		public void mismatchedElement(MismatchedTokenException e) {
+    # 			System.out.println(e);
+    # 			e.printStackTrace(System.out);
+    # 		}
     # 
-    # public void mismatchedSet(MismatchedSetException e) {
-    # System.out.println(e);
-    # e.printStackTrace(System.out);
-    # }
+    # 		public void mismatchedSet(MismatchedSetException e) {
+    # 			System.out.println(e);
+    # 			e.printStackTrace(System.out);
+    # 		}
     # 
-    # public void noViableAlt(NoViableAltException e) {
-    # System.out.println(e);
-    # e.printStackTrace(System.out);
-    # }
-    # }
-    # 
+    # 		public void noViableAlt(NoViableAltException e) {
+    # 			System.out.println(e);
+    # 			e.printStackTrace(System.out);
+    # 		}
+    # 	}
     # Public default constructor used by TestRig
     def initialize
       super()

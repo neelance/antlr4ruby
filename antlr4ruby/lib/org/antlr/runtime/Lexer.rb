@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -136,7 +136,6 @@ module Org::Antlr::Runtime
     typesig { [] }
     # This is the lexer entry point that sets instance var 'token'
     def m_tokens
-      raise NotImplementedError
     end
     
     typesig { [CharStream] }
@@ -275,13 +274,13 @@ module Org::Antlr::Runtime
     def report_error(e)
       # TODO: not thought about recovery in lexer yet.
       # 
-      # // if we've already reported an error and have not matched a token
-      # // yet successfully, don't report any errors.
-      # if ( errorRecovery ) {
-      # //System.err.print("[SPURIOUS] ");
-      # return;
-      # }
-      # errorRecovery = true;
+      # 		// if we've already reported an error and have not matched a token
+      # 		// yet successfully, don't report any errors.
+      # 		if ( errorRecovery ) {
+      # 			//System.err.print("[SPURIOUS] ");
+      # 			return;
+      # 		}
+      # 		errorRecovery = true;
       display_recognition_error(self.get_token_names, e)
     end
     

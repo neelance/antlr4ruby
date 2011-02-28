@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -109,8 +109,8 @@ module Org::Antlr::Tool
           epsilon_target = t.attr_target
           if ((epsilon_target.attr_end_of_block_state_number).equal?(State::INVALID_STATE_NUMBER) && !(epsilon_target.attr_transition[0]).nil?)
             s.set_transition0(epsilon_target.attr_transition[0])
-            # System.out.println("### opt "+s.stateNumber+"->"+
-            # epsilonTarget.transition(0).target.stateNumber);
+            # 					System.out.println("### opt "+s.stateNumber+"->"+
+            # 									   epsilonTarget.transition(0).target.stateNumber);
           end
         end
         s = t.attr_target
@@ -153,17 +153,17 @@ module Org::Antlr::Tool
     typesig { [::Java::Int, ::Java::Int] }
     # Can only complement block of simple alts; can complement build_Set()
     # result, that is.  Get set and complement, replace old with complement.
-    # public StateCluster build_AlternativeBlockComplement(StateCluster blk) {
-    # State s0 = blk.left;
-    # IntSet set = getCollapsedBlockAsSet(s0);
-    # if ( set!=null ) {
-    # // if set is available, then structure known and blk is a set
-    # set = nfa.grammar.complement(set);
-    # Label label = s0.transition(0).target.transition(0).label;
-    # label.setSet(set);
-    # }
-    # return blk;
-    # }
+    #    public StateCluster build_AlternativeBlockComplement(StateCluster blk) {
+    #        State s0 = blk.left;
+    #        IntSet set = getCollapsedBlockAsSet(s0);
+    #        if ( set!=null ) {
+    #            // if set is available, then structure known and blk is a set
+    #            set = nfa.grammar.complement(set);
+    #            Label label = s0.transition(0).target.transition(0).label;
+    #            label.setSet(set);
+    #        }
+    #        return blk;
+    #    }
     def build__range(a, b)
       left = new_state
       right = new_state
@@ -323,9 +323,9 @@ module Org::Antlr::Tool
         label = Label::EOT
         end_.set_eottarget_state(true)
       end
-      # System.out.println("build "+nfa.grammar.getTokenDisplayName(label)+
-      # " loop on end of state "+endNFAState.getDescription()+
-      # " to state "+end.stateNumber);
+      # 		System.out.println("build "+nfa.grammar.getTokenDisplayName(label)+
+      # 						   " loop on end of state "+endNFAState.getDescription()+
+      # 						   " to state "+end.stateNumber);
       to_end = Transition.new(label, end_)
       end_nfastate.add_transition(to_end)
     end
@@ -609,42 +609,41 @@ module Org::Antlr::Tool
     # Grammar.addArtificialMatchTokensRule().
     # 
     # 11/28/2005: removed so we can use normal rule construction for Tokens.
-    # public NFAState build_ArtificialMatchTokensRuleNFA() {
-    # int altNum = 1;
-    # NFAState firstAlt = null; // the start state for the "rule"
-    # NFAState prevAlternative = null;
-    # Iterator iter = nfa.grammar.getRules().iterator();
-    # // TODO: add a single decision node/state for good description
-    # while (iter.hasNext()) {
-    # Rule r = (Rule) iter.next();
-    # String ruleName = r.name;
-    # String modifier = nfa.grammar.getRuleModifier(ruleName);
-    # if ( ruleName.equals(Grammar.ARTIFICIAL_TOKENS_RULENAME) ||
-    # (modifier!=null &&
-    # modifier.equals(Grammar.FRAGMENT_RULE_MODIFIER)) )
-    # {
-    # continue; // don't loop to yourself or do nontoken rules
-    # }
-    # NFAState ruleStartState = nfa.grammar.getRuleStartState(ruleName);
-    # NFAState left = newState();
-    # left.setDescription("alt "+altNum+" of artificial rule "+Grammar.ARTIFICIAL_TOKENS_RULENAME);
-    # transitionBetweenStates(left, ruleStartState, Label.EPSILON);
-    # // Are we the first alternative?
-    # if ( firstAlt==null ) {
-    # firstAlt = left; // track extreme top left node as rule start
-    # }
-    # else {
-    # // if not first alternative, must link to this alt from previous
-    # transitionBetweenStates(prevAlternative, left, Label.EPSILON);
-    # }
-    # prevAlternative = left;
-    # altNum++;
-    # }
-    # firstAlt.decisionStateType = NFAState.BLOCK_START;
+    #    public NFAState build_ArtificialMatchTokensRuleNFA() {
+    #        int altNum = 1;
+    #        NFAState firstAlt = null; // the start state for the "rule"
+    #        NFAState prevAlternative = null;
+    #        Iterator iter = nfa.grammar.getRules().iterator();
+    # 		// TODO: add a single decision node/state for good description
+    #        while (iter.hasNext()) {
+    # 			Rule r = (Rule) iter.next();
+    #            String ruleName = r.name;
+    # 			String modifier = nfa.grammar.getRuleModifier(ruleName);
+    #            if ( ruleName.equals(Grammar.ARTIFICIAL_TOKENS_RULENAME) ||
+    # 				 (modifier!=null &&
+    # 				  modifier.equals(Grammar.FRAGMENT_RULE_MODIFIER)) )
+    # 			{
+    #                continue; // don't loop to yourself or do nontoken rules
+    #            }
+    #            NFAState ruleStartState = nfa.grammar.getRuleStartState(ruleName);
+    #            NFAState left = newState();
+    #            left.setDescription("alt "+altNum+" of artificial rule "+Grammar.ARTIFICIAL_TOKENS_RULENAME);
+    #            transitionBetweenStates(left, ruleStartState, Label.EPSILON);
+    #            // Are we the first alternative?
+    #            if ( firstAlt==null ) {
+    #                firstAlt = left; // track extreme top left node as rule start
+    #            }
+    #            else {
+    #                // if not first alternative, must link to this alt from previous
+    #                transitionBetweenStates(prevAlternative, left, Label.EPSILON);
+    #            }
+    #            prevAlternative = left;
+    #            altNum++;
+    #        }
+    # 		firstAlt.decisionStateType = NFAState.BLOCK_START;
     # 
-    # return firstAlt;
-    # }
-    # 
+    #        return firstAlt;
+    #    }
     # Build an atom with all possible values in its label
     def build__wildcard
       left = new_state

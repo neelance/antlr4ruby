@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -64,8 +64,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_non_imaginary_with_ctor
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : INT ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # make new INT node
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : INT ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # make new INT node
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T;}\n" + "a : INT -> INT[\"99\"]\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "34")
       assert_equals("99\n", found)
@@ -236,8 +235,7 @@ module Org::Antlr::Test
     typesig { [] }
     # REWRITE MODE
     def test_rewrite_mode_combined_rewrite_and_auto
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT -> ^(ID INT) | INT ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # leaves it alone, returning $a.start
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT -> ^(ID INT) | INT ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # leaves it alone, returning $a.start
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "a : ^(ID INT) -> ^(ID[\"ick\"] INT)\n" + "  | INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "abc 34")
       assert_equals("(ick 34)\n", found)
@@ -263,8 +261,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_rewrite_mode_chain_rule_tree
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT -> ^(ID INT) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # a.tree must become b.tree
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT -> ^(ID INT) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # a.tree must become b.tree
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "s : a ;\n" + "a : b ;\n" + "b : ^(ID INT) -> INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "s", "abc 34")
       assert_equals("34\n", found)
@@ -272,8 +269,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_rewrite_mode_chain_rule_tree2
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT -> ^(ID INT) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # only b contributes to tree, but it's after a*; s.tree = b.tree
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT -> ^(ID INT) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # only b contributes to tree, but it's after a*; s.tree = b.tree
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "tokens { X; }\n" + "s : a* b ;\n" + "a : X ;\n" + "b : ^(ID INT) -> INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "s", "abc 34")
       assert_equals("34\n", found)
@@ -281,8 +277,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_rewrite_mode_chain_rule_tree3
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : 'boo' ID INT -> 'boo' ^(ID INT) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # don't reset s.tree to b.tree due to 'boo'
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : 'boo' ID INT -> 'boo' ^(ID INT) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # don't reset s.tree to b.tree due to 'boo'
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "tokens { X; }\n" + "s : 'boo' a* b ;\n" + "a : X ;\n" + "b : ^(ID INT) -> INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "s", "boo abc 34")
       assert_equals("boo 34\n", found)
@@ -290,8 +285,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_rewrite_mode_chain_rule_tree4
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : 'boo' ID INT -> ^('boo' ^(ID INT)) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # don't reset s.tree to b.tree due to 'boo'
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : 'boo' ID INT -> ^('boo' ^(ID INT)) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # don't reset s.tree to b.tree due to 'boo'
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "tokens { X; }\n" + "s : ^('boo' a* b) ;\n" + "a : X ;\n" + "b : ^(ID INT) -> INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "s", "boo abc 34")
       assert_equals("(boo 34)\n", found)
@@ -299,8 +293,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_rewrite_mode_chain_rule_tree5
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : 'boo' ID INT -> ^('boo' ^(ID INT)) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # s.tree is a.tree
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : 'boo' ID INT -> ^('boo' ^(ID INT)) ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # s.tree is a.tree
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T; rewrite=true;}\n" + "tokens { X; }\n" + "s : ^(a b) ;\n" + "a : 'boo' ;\n" + "b : ^(ID INT) -> INT\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "s", "boo abc 34")
       assert_equals("(boo 34)\n", found)

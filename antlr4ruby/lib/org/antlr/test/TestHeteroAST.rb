@@ -207,8 +207,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_tree_parser_auto_hetero_ast
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID ';' ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
-      # NEEDS SPECIAL CTOR
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID ';' ;\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # NEEDS SPECIAL CTOR
       tree_grammar = "tree grammar TP;\n" + "options {output=AST; ASTLabelType=CommonTree; tokenVocab=T;}\n" + "tokens { ROOT; }\n" + "@members {\n" + "class V extends CommonTree {\n" + "  public V(CommonTree t) { super(t); }\n" + "  public String toString() { return super.toString()+\"<V>\";}\n" + "}\n" + "}\n" + "a : ID<V> ';'<V>\n" + "  ;\n"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "abc;")
       assert_equals("abc<V> ;<V>\n", found)

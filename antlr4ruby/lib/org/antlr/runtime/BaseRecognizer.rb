@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -413,7 +413,7 @@ module Org::Antlr::Runtime
     end
     
     typesig { [] }
-    # Compute the error recovery set for the current rule.  During
+    #  Compute the error recovery set for the current rule.  During
     # rule invocation, the parser pushes the set of tokens that can
     # follow that rule reference on the stack; this amounts to
     # computing FIRST of what follows the rule reference in the
@@ -570,8 +570,8 @@ module Org::Antlr::Runtime
       i = top
       while i >= 0
         local_follow_set = @state.attr_following[i]
-        # System.out.println("local follow depth "+i+"="+
-        # localFollowSet.toString(getTokenNames())+")");
+        # 			System.out.println("local follow depth "+i+"="+
+        # 							   localFollowSet.toString(getTokenNames())+")");
         follow_set.or_in_place(local_follow_set)
         if (exact)
           # can we see end of rule?
@@ -625,9 +625,9 @@ module Org::Antlr::Runtime
       # if next token is what we are looking for then "delete" this token
       if (mismatch_is_unwanted_token(input, ttype))
         e = UnwantedTokenException.new(ttype, input)
-        # System.err.println("recoverFromMismatchedToken deleting "+
-        # ((TokenStream)input).LT(1)+
-        # " since "+((TokenStream)input).LT(2)+" is what we want");
+        # 			System.err.println("recoverFromMismatchedToken deleting "+
+        # 							   ((TokenStream)input).LT(1)+
+        # 							   " since "+((TokenStream)input).LT(2)+" is what we want");
         begin_resync
         input.consume # simply delete extra token
         end_resync

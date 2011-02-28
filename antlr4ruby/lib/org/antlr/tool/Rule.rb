@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -729,14 +729,13 @@ module Org::Antlr::Tool
     typesig { [] }
     # Used during grammar imports to see if sets of rules intersect... This
     # method and hashCode use the String name as the key for Rule objects.
-    # public boolean equals(Object other) {
-    # return this.name.equals(((Rule)other).name);
-    # }
-    # 
+    # 	public boolean equals(Object other) {
+    # 		return this.name.equals(((Rule)other).name);
+    # 	}
     # Used during grammar imports to see if sets of rules intersect...
-    # public int hashCode() {
-    # return name.hashCode();
-    # }
+    # 	public int hashCode() {
+    # 		return name.hashCode();
+    # 	}
     def to_s
       # used for testing
       return "[" + RJava.cast_to_string(@grammar.attr_name) + "." + @name + ",index=" + RJava.cast_to_string(@index) + ",line=" + RJava.cast_to_string(@tree.get_token.get_line) + "]"

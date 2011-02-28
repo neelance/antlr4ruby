@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -418,8 +418,8 @@ module Org::Antlr::Runtime::Debug
         this_ref_index = @parser.get_token_stream.index
         num_hidden = get_number_of_hidden_tokens(starting_index.int_value, this_ref_index)
         depth = i + this_ref_index - starting_index.int_value - num_hidden
-        # System.out.println("LT("+i+") @ index "+thisRefIndex+" is depth "+depth+
-        # " max is "+maxLookaheadInCurrentDecision);
+        # 			System.out.println("LT("+i+") @ index "+thisRefIndex+" is depth "+depth+
+        # 				" max is "+maxLookaheadInCurrentDecision);
         if (depth > @max_lookahead_in_current_decision)
           @max_lookahead_in_current_decision = depth
         end
@@ -454,26 +454,26 @@ module Org::Antlr::Runtime::Debug
     end
     
     typesig { [RecognitionException] }
-    # public void mark(int marker) {
-    # int i = parser.getTokenStream().index();
-    # System.out.println("mark @ index "+i);
-    # synPredLookaheadStack.add(new Integer(i));
-    # }
+    # 	public void mark(int marker) {
+    # 		int i = parser.getTokenStream().index();
+    # 		System.out.println("mark @ index "+i);
+    # 		synPredLookaheadStack.add(new Integer(i));
+    # 	}
     # 
-    # public void rewind(int marker) {
-    # // pop starting index off stack
-    # int stackTop = synPredLookaheadStack.size()-1;
-    # Integer startingIndex = (Integer)synPredLookaheadStack.get(stackTop);
-    # synPredLookaheadStack.remove(synPredLookaheadStack.size()-1);
-    # // compute lookahead depth
-    # int stopIndex = parser.getTokenStream().index();
-    # System.out.println("rewind @ index "+stopIndex);
-    # int depth = stopIndex - startingIndex.intValue();
-    # System.out.println("depth of lookahead for synpred: "+depth);
-    # decisionMaxSynPredLookaheads.add(
-    # new Integer(depth)
-    # );
-    # }
+    # 	public void rewind(int marker) {
+    # 		// pop starting index off stack
+    # 		int stackTop = synPredLookaheadStack.size()-1;
+    # 		Integer startingIndex = (Integer)synPredLookaheadStack.get(stackTop);
+    # 		synPredLookaheadStack.remove(synPredLookaheadStack.size()-1);
+    # 		// compute lookahead depth
+    # 		int stopIndex = parser.getTokenStream().index();
+    # 		System.out.println("rewind @ index "+stopIndex);
+    # 		int depth = stopIndex - startingIndex.intValue();
+    # 		System.out.println("depth of lookahead for synpred: "+depth);
+    # 		decisionMaxSynPredLookaheads.add(
+    # 			new Integer(depth)
+    # 		);
+    # 	}
     def recognition_exception(e)
       @number_reported_errors += 1
     end

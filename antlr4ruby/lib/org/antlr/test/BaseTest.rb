@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -144,8 +144,8 @@ module Org::Antlr::Test
         options.add(JavaFile.new(@tmpdir, grammar_file_name).to_s)
         options_a = Array.typed(String).new(options.size) { nil }
         options.to_array(options_a)
-        # final ErrorQueue equeue = new ErrorQueue();
-        # ErrorManager.setErrorListener(equeue);
+        # 			final ErrorQueue equeue = new ErrorQueue();
+        # 			ErrorManager.setErrorListener(equeue);
         antlr = Tool.new(options_a)
         antlr.process
         listener = ErrorManager.get_error_listener
@@ -278,10 +278,10 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_grammar_semantics_error(equeue, expected_message)
-      # System.out.println(equeue.infos);
-      # System.out.println(equeue.warnings);
-      # System.out.println(equeue.errors);
-      # assertTrue("number of errors mismatch", n, equeue.errors.size());
+      # 				System.out.println(equeue.infos);
+      # 				System.out.println(equeue.warnings);
+      # 				System.out.println(equeue.errors);
+      # 				assertTrue("number of errors mismatch", n, equeue.errors.size());
       found_msg = nil
       i = 0
       while i < equeue.attr_errors.size
@@ -511,9 +511,9 @@ module Org::Antlr::Test
     typesig { [Map] }
     def real_elements(elements)
       n = ArrayList.new
-      iterator = elements.key_set.iterator
-      while (iterator.has_next)
-        token_id = iterator.next_
+      iterator_ = elements.key_set.iterator
+      while (iterator_.has_next)
+        token_id = iterator_.next_
         if (elements.get(token_id) >= Label::MIN_TOKEN_TYPE)
           n.add(token_id + "=" + RJava.cast_to_string(elements.get(token_id)))
         end

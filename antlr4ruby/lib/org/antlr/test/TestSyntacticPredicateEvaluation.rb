@@ -109,8 +109,7 @@ module Org::Antlr::Test
     typesig { [] }
     def test_triple_nested_pred_in_lexer
       grammar = "grammar T;\n" + "s : (.)+ {System.out.println(\"done\");} ;\n" + "EXPR\n" + "options {\n" + "  k=1;\n" + "}\n" + "@init {System.out.println(\"enter expr \"+(char)input.LT(1));}\n" + "  : (ATOM 'x') => ATOM 'x' {System.out.println(\"ATOM x\");}\n" + "  | ATOM {System.out.println(\"ATOM \"+$ATOM.text);}\n" + ";\n" + "fragment ATOM\n" + "@init {System.out.println(\"enter atom \"+(char)input.LT(1));}\n" + "   : '(' EXPR ')'\n" + "   | INT\n" + "   ;\n" + "fragment INT: '0'..'9'+ ;\n" + "fragment WS : (' '|'\\n')+ \n" + "   ;\n"
-      found = exec_parser("T.g", grammar, "TParser", "TLexer", "s", "((34)x)x", false)
-      # has no memoization
+      found = exec_parser("T.g", grammar, "TParser", "TLexer", "s", "((34)x)x", false) # has no memoization
       expecting = "enter expr (\n" + "enter atom (\n" + "enter expr (\n" + "enter atom (\n" + "enter expr 3\n" + "enter atom 3\n" + "enter atom 3\n" + "enter atom (\n" + "enter expr 3\n" + "enter atom 3\n" + "enter atom 3\n" + "enter atom (\n" + "enter expr (\n" + "enter atom (\n" + "enter expr 3\n" + "enter atom 3\n" + "enter atom 3\n" + "enter atom (\n" + "enter expr 3\n" + "enter atom 3\n" + "enter atom 3\n" + "ATOM 34\n" + "ATOM x\n" + "ATOM x\n" + "done\n"
       assert_equals(expecting, found)
     end
@@ -125,9 +124,8 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_tree_parser_with_nested_syn_pred
-      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT+ (PERIOD|SEMI);\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "SEMI : ';' ;\n" + "PERIOD : '.' ;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n"
+      grammar = "grammar T;\n" + "options {output=AST;}\n" + "a : ID INT+ (PERIOD|SEMI);\n" + "ID : 'a'..'z'+ ;\n" + "INT : '0'..'9'+;\n" + "SEMI : ';' ;\n" + "PERIOD : '.' ;\n" + "WS : (' '|'\\n') {$channel=HIDDEN;} ;\n" # choose this alt for just one INT
       # backtracks in a and b due to k=1
-      # choose this alt for just one INT
       tree_grammar = "tree grammar TP;\n" + "options {k=1; backtrack=true; ASTLabelType=CommonTree; tokenVocab=T;}\n" + "a : ID b {System.out.print(\" a:alt 1\");}" + "  | ID INT+ SEMI   {System.out.print(\" a:alt 2\");}\n" + "  ;\n" + "b : INT PERIOD  {System.out.print(\"b:alt 1\");}" + "  | INT+ PERIOD {System.out.print(\"b:alt 2\");}" + "  ;"
       found = exec_tree_parser("T.g", grammar, "TParser", "TP.g", tree_grammar, "TP", "TLexer", "a", "a", "a 1 2 3.")
       assert_equals("b:alt 2 a:alt 1\n", found)

@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -223,7 +223,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     # The following was broken:
-    # {0..113, 115..65534}-{0..115, 117..65534}=116..65534
+    # 	 	{0..113, 115..65534}-{0..115, 117..65534}=116..65534
     def test_subtract_of_wacky_range
       s = IntervalSet.of(0, 113)
       s.add(115, 200)
@@ -406,10 +406,10 @@ module Org::Antlr::Test
     
     typesig { [] }
     # The following was broken:
-    # {'\u0000'..'s', 'u'..'\uFFFE'} & {'\u0000'..'q', 's'..'\uFFFE'}=
-    # {'\u0000'..'q', 's'}!!!! broken...
-    # 'q' is 113 ascii
-    # 'u' is 117
+    # 	    {'\u0000'..'s', 'u'..'\uFFFE'} & {'\u0000'..'q', 's'..'\uFFFE'}=
+    # 	    {'\u0000'..'q', 's'}!!!! broken...
+    # 	 	'q' is 113 ascii
+    # 	 	'u' is 117
     def test_not_rintersection_not_t
       s = IntervalSet.of(0, Character.new(?s.ord))
       s.add(Character.new(?u.ord), 200)

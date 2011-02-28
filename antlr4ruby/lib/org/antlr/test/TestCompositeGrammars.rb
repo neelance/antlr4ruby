@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -57,8 +57,7 @@ module Org::Antlr::Test
     def test_delegator_invokes_delegate_rule
       slave = "parser grammar S;\n" + "a : B {System.out.println(\"S.a\");} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # defines B from inherited token space
+      write_file(self.attr_tmpdir, "S.g", slave) # defines B from inherited token space
       master = "grammar M;\n" + "import S;\n" + "s : a ;\n" + "B : 'b' ;" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "s", "b", @debug)
       assert_equals("S.a\n", found)
@@ -71,8 +70,7 @@ module Org::Antlr::Test
       # in M.
       slave = "parser grammar S;\n" + "a[int x] returns [int y] : B {System.out.print(\"S.a\"); $y=1000;} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # defines B from inherited token space
+      write_file(self.attr_tmpdir, "S.g", slave) # defines B from inherited token space
       master = "grammar M;\n" + "import S;\n" + "s : label=a[3] {System.out.println($label.y);} ;\n" + "B : 'b' ;" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "s", "b", @debug)
       assert_equals("S.a1000\n", found)
@@ -85,8 +83,7 @@ module Org::Antlr::Test
       # in M.
       slave = "parser grammar S;\n" + "a : B {System.out.print(\"S.a\");} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # defines B from inherited token space
+      write_file(self.attr_tmpdir, "S.g", slave) # defines B from inherited token space
       master = "grammar M;\n" + "import S;\n" + "s : a {System.out.println($a.text);} ;\n" + "B : 'b' ;" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "s", "b", @debug)
       assert_equals("S.ab\n", found)
@@ -96,9 +93,7 @@ module Org::Antlr::Test
     def test_delegator_accesses_delegate_members
       slave = "parser grammar S;\n" + "@members {\n" + "  public void foo() {System.out.println(\"foo\");}\n" + "}\n" + "a : B ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # uses no rules from the import
-      # gS is import pointer
+      write_file(self.attr_tmpdir, "S.g", slave) # uses no rules from the import # gS is import pointer
       master = "grammar M;\n" + "import S;\n" + "s : 'b' {gS.foo();} ;\n" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "s", "b", @debug)
       assert_equals("foo\n", found)
@@ -122,11 +117,10 @@ module Org::Antlr::Test
       # A, B, C token type order
       slave = "parser grammar S;\n" + "tokens { A; B; C; }\n" + "x : A {System.out.println(\"S.x\");} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # reverse order
+      write_file(self.attr_tmpdir, "S.g", slave) # reverse order
       slave2 = "parser grammar T;\n" + "tokens { C; B; A; }\n" + "y : A {System.out.println(\"T.y\");} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "T.g", slave2)
+      write_file(self.attr_tmpdir, "T.g", slave2) # matches AA, which should be "aa" # another order: B, A, C
       # The lexer will create rules to match letters a, b, c.
       # The associated token types A, B, C must have the same value
       # and all import'd parsers.  Since ANTLR regenerates all imports
@@ -137,8 +131,6 @@ module Org::Antlr::Test
       # public static final int B=5;
       # public static final int WS=7;
       # public static final int A=4;
-      # matches AA, which should be "aa"
-      # another order: B, A, C
       master = "grammar M;\n" + "import S,T;\n" + "s : x y ;\n" + "B : 'b' ;\n" + "A : 'a' ;\n" + "C : 'c' ;\n" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "s", "aa", @debug)
       assert_equals("S.x\n" + "T.y\n", found)
@@ -147,17 +139,13 @@ module Org::Antlr::Test
     typesig { [] }
     def test_delegates_see_same_token_type2
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # A, B, C token type order
+      ErrorManager.set_error_listener(equeue) # A, B, C token type order
       slave = "parser grammar S;\n" + "tokens { A; B; C; }\n" + "x : A {System.out.println(\"S.x\");} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # reverse order
+      write_file(self.attr_tmpdir, "S.g", slave) # reverse order
       slave2 = "parser grammar T;\n" + "tokens { C; B; A; }\n" + "y : A {System.out.println(\"T.y\");} ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "T.g", slave2)
-      # matches AA, which should be "aa"
-      # another order: B, A, C
+      write_file(self.attr_tmpdir, "T.g", slave2) # matches AA, which should be "aa" # another order: B, A, C
       master = "grammar M;\n" + "import S,T;\n" + "s : x y ;\n" + "B : 'b' ;\n" + "A : 'a' ;\n" + "C : 'c' ;\n" + "WS : (' '|'\\n') {skip();} ;\n"
       write_file(self.attr_tmpdir, "M.g", master)
       antlr = new_tool(Array.typed(String).new(["-lib", self.attr_tmpdir]))
@@ -179,8 +167,7 @@ module Org::Antlr::Test
     def test_combined_imports_combined
       # for now, we don't allow combined to import combined
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # A, B, C token type order
+      ErrorManager.set_error_listener(equeue) # A, B, C token type order
       slave = "grammar S;\n" + "tokens { A; B; C; }\n" + "x : 'x' INT {System.out.println(\"S.x\");} ;\n" + "INT : '0'..'9'+ ;\n" + "WS : (' '|'\\n') {skip();} ;\n"
       mkdir(self.attr_tmpdir)
       write_file(self.attr_tmpdir, "S.g", slave)
@@ -455,8 +442,7 @@ module Org::Antlr::Test
       # be separate to compile.
       slave = "parser grammar S;\n" + "a : 'a' {System.out.println(\"S.a1\");}\n" + "  | 'a' {System.out.println(\"S.a2\");}\n" + "  ;\n" + "b : 'x' | 'y' {;} ;\n" # preds generated but not need in DFA here
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "S.g", slave)
-      # forces def of preds here in M
+      write_file(self.attr_tmpdir, "S.g", slave) # forces def of preds here in M
       master = "grammar M;\n" + "options {backtrack=true;}\n" + "import S;\n" + "start : a b ;\n" + "nonsense : 'q' | 'q' {;} ;" + "WS : (' '|'\\n') {skip();} ;\n"
       found = exec_parser("M.g", master, "MParser", "MLexer", "start", "ax", @debug)
       assert_equals("S.a1\n", found)
@@ -500,8 +486,7 @@ module Org::Antlr::Test
       ErrorManager.set_error_listener(equeue)
       slave = "parser grammar T;\n" + "a : T ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "T.g", slave)
-      # A, B, C token type order
+      write_file(self.attr_tmpdir, "T.g", slave) # A, B, C token type order
       slave2 = "parser grammar S;\n" + "import T;\n" + "a : S ;\n"
       mkdir(self.attr_tmpdir)
       write_file(self.attr_tmpdir, "S.g", slave2)
@@ -572,8 +557,7 @@ module Org::Antlr::Test
       ErrorManager.set_error_listener(equeue)
       slave = "parser grammar T;\n" + "x : T ;\n"
       mkdir(self.attr_tmpdir)
-      write_file(self.attr_tmpdir, "T.g", slave)
-      # A, B, C token type order
+      write_file(self.attr_tmpdir, "T.g", slave) # A, B, C token type order
       slave2 = "parser grammar S;\n" + "import T;\n" + "a : S ;\n"
       mkdir(self.attr_tmpdir)
       write_file(self.attr_tmpdir, "S.g", slave2)

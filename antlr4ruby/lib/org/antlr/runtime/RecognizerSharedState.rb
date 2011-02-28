@@ -114,7 +114,7 @@ module Org::Antlr::Runtime
     undef_method :rule_memo=
     
     # LEXER FIELDS (must be in same state object to avoid casting
-    # constantly in generated code and Lexer object) :(
+    #               constantly in generated code and Lexer object) :(
     # The goal of all lexer rules/methods is to create a token object.
     # This is an instance variable as multiple rules may collaborate to
     # create a single token.  nextToken will return this object after

@@ -82,8 +82,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_predicated_loop
-      g = Grammar.new("parser grammar P;\n" + "a : ( {p1}? A | {p2}? A )+;")
-      # loop back
+      g = Grammar.new("parser grammar P;\n" + "a : ( {p1}? A | {p2}? A )+;") # loop back
       expecting = ".s0-A->.s2\n" + ".s0-EOF->:s1=>3\n" + ".s2-{p1}?->:s3=>1\n" + ".s2-{p2}?->:s4=>2\n"
       check_decision(g, 1, expecting, nil, nil, nil, nil, nil, 0, false)
     end
@@ -130,19 +129,19 @@ module Org::Antlr::Test
     end
     
     typesig { [] }
-    # public void testIncompleteSemanticHoistedContextk2() throws Exception {
-    # ErrorQueue equeue = new ErrorQueue();
-    # ErrorManager.setErrorListener(equeue);
-    # Grammar g = new Grammar(
-    # "parser grammar t;\n"+
-    # "a : b | A B;\n" +
-    # "b : {p1}? A B | A B ;");
-    # String expecting =
-    # ".s0-A->.s1\n" +
-    # ".s1-B->:s2=>1\n";
-    # checkDecision(g, 1, expecting, new int[] {2},
-    # new int[] {1,2}, "A B", new int[] {1}, null, 3);
-    # }
+    # 	public void testIncompleteSemanticHoistedContextk2() throws Exception {
+    # 		ErrorQueue equeue = new ErrorQueue();
+    # 		ErrorManager.setErrorListener(equeue);
+    # 		Grammar g = new Grammar(
+    # 			"parser grammar t;\n"+
+    # 			"a : b | A B;\n" +
+    # 			"b : {p1}? A B | A B ;");
+    # 		String expecting =
+    # 			".s0-A->.s1\n" +
+    # 			".s1-B->:s2=>1\n";
+    # 		checkDecision(g, 1, expecting, new int[] {2},
+    # 					  new int[] {1,2}, "A B", new int[] {1}, null, 3);
+    # 	}
     def test_hoist2
       g = Grammar.new("parser grammar P;\n" + "a : b | c ;\n" + "b : {p1}? A ;\n" + "c : {p2}? A ;\n")
       expecting = ".s0-A->.s1\n" + ".s1-{p1}?->:s2=>1\n" + ".s1-{p2}?->:s3=>2\n"
@@ -151,8 +150,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_hoist_correct_context
-      g = Grammar.new("parser grammar P;\n" + "a : b | {p2}? ID ;\n" + "b : {p1}? ID | INT ;\n")
-      # only tests after ID, not INT :)
+      g = Grammar.new("parser grammar P;\n" + "a : b | {p2}? ID ;\n" + "b : {p1}? ID | INT ;\n") # only tests after ID, not INT :)
       expecting = ".s0-ID->.s1\n" + ".s0-INT->:s2=>1\n" + ".s1-{p1}?->:s2=>1\n" + ".s1-{p2}?->:s3=>2\n"
       check_decision(g, 1, expecting, nil, nil, nil, nil, nil, 0, false)
     end
@@ -188,8 +186,8 @@ module Org::Antlr::Test
       end
       dfa = g.get_lookahead_dfa(1)
       assert_equals(nil, dfa) # can't analyze.
-      # String result = serializer.serialize(dfa.startState);
-      # assertEquals(expecting, result);
+      # 		String result = serializer.serialize(dfa.startState);
+      # 		assertEquals(expecting, result);
       assert_equals("unexpected number of expected problems", 1, equeue.size)
       msg = equeue.attr_warnings.get(0)
       assert_true("warning must be a left recursion msg", msg.is_a?(LeftRecursionCyclesMessage))
@@ -200,11 +198,11 @@ module Org::Antlr::Test
       g = Grammar.new("parser grammar P;\n" + "a : {p1}? A B | A C | {p2}? A | {p3}? A | A ;\n")
       # two situations of note:
       # 1. A B syntax is enough to predict that alt, so p1 is not used
-      # to distinguish it from alts 2..5
+      #    to distinguish it from alts 2..5
       # 2. Alts 3, 4, 5 are nondeterministic with upon A.  p2, p3 and the
-      # complement of p2||p3 is sufficient to resolve the conflict. Do
-      # not include alt 1's p1 pred in the "complement of other alts"
-      # because it is not considered nondeterministic with alts 3..5
+      #    complement of p2||p3 is sufficient to resolve the conflict. Do
+      #    not include alt 1's p1 pred in the "complement of other alts"
+      #    because it is not considered nondeterministic with alts 3..5
       expecting = ".s0-A->.s1\n" + ".s1-B->:s2=>1\n" + ".s1-C->:s3=>2\n" + ".s1-{p2}?->:s4=>3\n" + ".s1-{p3}?->:s5=>4\n" + ".s1-{true}?->:s6=>5\n"
       check_decision(g, 1, expecting, nil, nil, nil, nil, nil, 0, false)
     end
@@ -214,11 +212,11 @@ module Org::Antlr::Test
       g = Grammar.new("parser grammar P;\n" + "a : {p1}? A B | A C | {p2}? A | A | {p3}? A ;\n")
       # two situations of note:
       # 1. A B syntax is enough to predict that alt, so p1 is not used
-      # to distinguish it from alts 2..5
+      #    to distinguish it from alts 2..5
       # 2. Alts 3, 4, 5 are nondeterministic with upon A.  p2, p3 and the
-      # complement of p2||p3 is sufficient to resolve the conflict. Do
-      # not include alt 1's p1 pred in the "complement of other alts"
-      # because it is not considered nondeterministic with alts 3..5
+      #    complement of p2||p3 is sufficient to resolve the conflict. Do
+      #    not include alt 1's p1 pred in the "complement of other alts"
+      #    because it is not considered nondeterministic with alts 3..5
       expecting = ".s0-A->.s1\n" + ".s1-B->:s2=>1\n" + ".s1-C->:s3=>2\n" + ".s1-{!((p3||p2))}?->:s5=>4\n" + ".s1-{p2}?->:s4=>3\n" + ".s1-{p3}?->:s6=>5\n"
       check_decision(g, 1, expecting, nil, nil, nil, nil, nil, 0, false)
     end
@@ -317,8 +315,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_gated_pred_not_actually_used_on_edges
-      g = Grammar.new("lexer grammar P;\n" + "A : ('a' | {p}?=> 'a')\n" + "  | 'a' 'b'\n" + "  ;")
-      # Used to disambig subrule
+      g = Grammar.new("lexer grammar P;\n" + "A : ('a' | {p}?=> 'a')\n" + "  | 'a' 'b'\n" + "  ;") # Used to disambig subrule
       expecting1 = ".s0-'a'->.s1\n" + ".s1-{!(p)}?->:s2=>1\n" + ".s1-{p}?->:s3=>2\n"
       # rule A decision can't test p from s0->1 because 'a' is valid
       # for alt1 *and* alt2 w/o p.  Can't test p from s1 to s3 because
@@ -374,9 +371,7 @@ module Org::Antlr::Test
     typesig { [] }
     def test_incomplete_semantic_hoisted_context_in_follow
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # limit to k=1 because it's LL(2); force pred hoist
-      # need FOLLOW
+      ErrorManager.set_error_listener(equeue) # limit to k=1 because it's LL(2); force pred hoist # need FOLLOW
       g = Grammar.new("parser grammar t;\n" + "options {k=1;}\n" + "a : A? ;\n" + "b : X a {p1}? A | Y a A ;") # only one A is covered
       expecting = ".s0-A->:s1=>1\n" # s0-EOF->s2 branch pruned during optimization
       check_decision(g, 1, expecting, Array.typed(::Java::Int).new([2]), Array.typed(::Java::Int).new([1, 2]), "A", Array.typed(::Java::Int).new([2]), nil, 3, false)
@@ -385,8 +380,7 @@ module Org::Antlr::Test
     typesig { [] }
     def test_incomplete_semantic_hoisted_context_in_followk2
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # need FOLLOW
+      ErrorManager.set_error_listener(equeue) # need FOLLOW
       g = Grammar.new("parser grammar t;\n" + "a : (A B)? ;\n" + "b : X a {p1}? A B | Y a A B | Z a ;") # only first alt is covered
       expecting = ".s0-A->.s1\n" + ".s0-EOF->:s3=>2\n" + ".s1-B->:s2=>1\n"
       check_decision(g, 1, expecting, nil, Array.typed(::Java::Int).new([1, 2]), "A B", Array.typed(::Java::Int).new([2]), nil, 2, false)
@@ -395,8 +389,7 @@ module Org::Antlr::Test
     typesig { [] }
     def test_incomplete_semantic_hoisted_context_in_followdue_to_hidden_pred
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # need FOLLOW
+      ErrorManager.set_error_listener(equeue) # need FOLLOW
       g = Grammar.new("parser grammar t;\n" + "a : (A B)? ;\n" + "b : X a {p1}? A B | Y a {a1} {p2}? A B | Z a ;") # only first alt is covered
       expecting = ".s0-A->.s1\n" + ".s0-EOF->:s3=>2\n" + ".s1-B->:s2=>1\n"
       check_decision(g, 1, expecting, nil, Array.typed(::Java::Int).new([1, 2]), "A B", Array.typed(::Java::Int).new([2]), nil, 2, true)

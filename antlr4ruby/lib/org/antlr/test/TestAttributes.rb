@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -318,10 +318,10 @@ module Org::Antlr::Test
     
     typesig { [] }
     # $x.start refs are checked during translation not before so ANTLR misses
-    # the fact that rule r has refs to predefined attributes if the ref is after
-    # the def of the method or self-referential.  Actually would be ok if I didn't
-    # convert actions to strings; keep as templates.
-    # June 9, 2006: made action translation leave templates not strings
+    # 	 the fact that rule r has refs to predefined attributes if the ref is after
+    # 	 the def of the method or self-referential.  Actually would be ok if I didn't
+    # 	 convert actions to strings; keep as templates.
+    # 	 June 9, 2006: made action translation leave templates not strings
     def test_ref_to_return_value_before_ref_to_predefined_attr
       action = "$x.foo"
       expecting = "(x!=null?x.foo:0)"
@@ -1120,60 +1120,60 @@ module Org::Antlr::Test
     end
     
     typesig { [] }
-    # I think these have to be errors $a.x makes no sense.
-    # public void testFullyQualifiedRefToLabelInCurrentRule() throws Exception {
-    # String action = "$a.x;";
-    # String expecting = "x;";
+    #  I think these have to be errors $a.x makes no sense.
+    # 	public void testFullyQualifiedRefToLabelInCurrentRule() throws Exception {
+    # 			String action = "$a.x;";
+    # 			String expecting = "x;";
     # 
-    # ErrorQueue equeue = new ErrorQueue();
-    # ErrorManager.setErrorListener(equeue);
-    # Grammar g = new Grammar(
-    # "grammar t;\n"+
-    # "a : x='a' {"+action+"}\n" +
-    # "  ;\n");
-    # Tool antlr = newTool();
-    # CodeGenerator generator = new CodeGenerator(antlr, g, "Java");
-    # g.setCodeGenerator(generator);
-    # generator.genRecognizer(); // forces load of templates
-    # ActionTranslator translator = new ActionTranslator(generator,"a",
-    # new antlr.CommonToken(ANTLRParser.ACTION,action),1);
-    # String rawTranslation =
-    # translator.translate();
-    # StringTemplateGroup templates =
-    # new StringTemplateGroup(".", AngleBracketTemplateLexer.class);
-    # StringTemplate actionST = new StringTemplate(templates, rawTranslation);
-    # String found = actionST.toString();
-    # assertEquals(expecting, found);
+    # 			ErrorQueue equeue = new ErrorQueue();
+    # 			ErrorManager.setErrorListener(equeue);
+    # 			Grammar g = new Grammar(
+    # 				"grammar t;\n"+
+    # 					"a : x='a' {"+action+"}\n" +
+    # 					"  ;\n");
+    # 			Tool antlr = newTool();
+    # 			CodeGenerator generator = new CodeGenerator(antlr, g, "Java");
+    # 			g.setCodeGenerator(generator);
+    # 			generator.genRecognizer(); // forces load of templates
+    # 			ActionTranslator translator = new ActionTranslator(generator,"a",
+    # 															   new antlr.CommonToken(ANTLRParser.ACTION,action),1);
+    # 			String rawTranslation =
+    # 				translator.translate();
+    # 			StringTemplateGroup templates =
+    # 				new StringTemplateGroup(".", AngleBracketTemplateLexer.class);
+    # 			StringTemplate actionST = new StringTemplate(templates, rawTranslation);
+    # 			String found = actionST.toString();
+    # 			assertEquals(expecting, found);
     # 
-    # assertEquals("unexpected errors: "+equeue, 0, equeue.errors.size());
-    # }
+    # 			assertEquals("unexpected errors: "+equeue, 0, equeue.errors.size());
+    # 		}
     # 
-    # public void testFullyQualifiedRefToListLabelInCurrentRule() throws Exception {
-    # String action = "$a.x;"; // must be qualified
-    # String expecting = "list_x;";
+    # 	public void testFullyQualifiedRefToListLabelInCurrentRule() throws Exception {
+    # 		String action = "$a.x;"; // must be qualified
+    # 		String expecting = "list_x;";
     # 
-    # ErrorQueue equeue = new ErrorQueue();
-    # ErrorManager.setErrorListener(equeue);
-    # Grammar g = new Grammar(
-    # "grammar t;\n"+
-    # "a : x+='a' {"+action+"}\n" +
-    # "  ;\n");
-    # Tool antlr = newTool();
-    # CodeGenerator generator = new CodeGenerator(antlr, g, "Java");
-    # g.setCodeGenerator(generator);
-    # generator.genRecognizer(); // forces load of templates
-    # ActionTranslator translator = new ActionTranslator(generator,"a",
-    # new antlr.CommonToken(ANTLRParser.ACTION,action),1);
-    # String rawTranslation =
-    # translator.translate();
-    # StringTemplateGroup templates =
-    # new StringTemplateGroup(".", AngleBracketTemplateLexer.class);
-    # StringTemplate actionST = new StringTemplate(templates, rawTranslation);
-    # String found = actionST.toString();
-    # assertEquals(expecting, found);
+    # 		ErrorQueue equeue = new ErrorQueue();
+    # 		ErrorManager.setErrorListener(equeue);
+    # 		Grammar g = new Grammar(
+    # 			"grammar t;\n"+
+    # 				"a : x+='a' {"+action+"}\n" +
+    # 				"  ;\n");
+    # 		Tool antlr = newTool();
+    # 		CodeGenerator generator = new CodeGenerator(antlr, g, "Java");
+    # 		g.setCodeGenerator(generator);
+    # 		generator.genRecognizer(); // forces load of templates
+    # 		ActionTranslator translator = new ActionTranslator(generator,"a",
+    # 														   new antlr.CommonToken(ANTLRParser.ACTION,action),1);
+    # 		String rawTranslation =
+    # 			translator.translate();
+    # 		StringTemplateGroup templates =
+    # 			new StringTemplateGroup(".", AngleBracketTemplateLexer.class);
+    # 		StringTemplate actionST = new StringTemplate(templates, rawTranslation);
+    # 		String found = actionST.toString();
+    # 		assertEquals(expecting, found);
     # 
-    # assertEquals("unexpected errors: "+equeue, 0, equeue.errors.size());
-    # }
+    # 		assertEquals("unexpected errors: "+equeue, 0, equeue.errors.size());
+    # 	}
     def test_fully_qualified_ref_to_template_attribute_in_current_rule
       action = "$a.st;" # can be qualified
       expecting = "retval.st;"
@@ -1216,8 +1216,7 @@ module Org::Antlr::Test
       action = "$b::n;"
       expecting = "((b_scope)b_stack.peek()).n;"
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # refers to current invocation's n
+      ErrorManager.set_error_listener(equeue) # refers to current invocation's n
       g = Grammar.new("grammar t;\n" + "s : b ;\n" + "b\n" + "scope {\n" + "  int n;\n" + "} : '(' b ')' {" + action + "}\n" + "  ;\n")
       antlr = new_tool
       generator = CodeGenerator.new(antlr, g, "Java")
@@ -2415,8 +2414,7 @@ module Org::Antlr::Test
       action = "int x = $b::n;"
       expecting = "int x = ((b_scope)b_stack.peek()).n;"
       equeue = ErrorQueue.new
-      ErrorManager.set_error_listener(equeue)
-      # refers to current invocation's n
+      ErrorManager.set_error_listener(equeue) # refers to current invocation's n
       g = Grammar.new("grammar t;\n" + "s : b ;\n" + "b\n" + "scope {\n" + "  int n;\n" + "} : '(' b ')' {" + action + "}\n" + "  ;\n")
       antlr = new_tool
       generator = CodeGenerator.new(antlr, g, "Java")
@@ -2434,9 +2432,9 @@ module Org::Antlr::Test
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     # S U P P O R T
     def check_error(equeue, expected_message)
-      # System.out.println(equeue.infos);
-      # System.out.println(equeue.warnings);
-      # System.out.println(equeue.errors);
+      # 		System.out.println(equeue.infos);
+      # 		System.out.println(equeue.warnings);
+      # 		System.out.println(equeue.errors);
       found_msg = nil
       i = 0
       while i < equeue.attr_errors.size

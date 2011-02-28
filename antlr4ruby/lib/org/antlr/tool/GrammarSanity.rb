@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -121,8 +121,8 @@ module Org::Antlr::Tool
         if (@visited_during_recursion_check.contains(ref_rule_def))
           # record left-recursive rule, but don't go back in
           @grammar.attr_left_recursive_rules.add(ref_rule_def)
-          # System.out.println("already visited "+refRuleDef+", calling from "+
-          # s.enclosingRule);
+          # 				System.out.println("already visited "+refRuleDef+", calling from "+
+          # 								   s.enclosingRule);
           add_rules_to_cycle(ref_rule_def, s.attr_enclosing_rule, list_of_recursive_cycles)
         else
           # must visit if not already visited; send new visitedStates set
@@ -242,13 +242,13 @@ module Org::Antlr::Tool
         return
       end
       case (element_ast.get_type)
-      # labels ok on non-rule refs
-      # skip past actions
       when ANTLRParser::ASSIGN, ANTLRParser::PLUS_ASSIGN
+        # labels ok on non-rule refs
         if (is_valid_simple_element_node(element_ast.get_child(1)))
           return
         end
       when ANTLRParser::ACTION, ANTLRParser::SEMPRED, ANTLRParser::SYN_SEMPRED, ANTLRParser::BACKTRACK_SEMPRED, ANTLRParser::GATED_SEMPRED
+        # skip past actions
         ensure_alt_is_simple_node_or_tree(alt_ast, element_ast.get_next_sibling, outer_alt_num)
         return
       end

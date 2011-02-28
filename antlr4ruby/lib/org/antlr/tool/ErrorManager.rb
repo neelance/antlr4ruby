@@ -8,12 +8,12 @@ require "rjava"
 # modification, are permitted provided that the following conditions
 # are met:
 # 1. Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 # 3. The name of the author may not be used to endorse or promote products
-# derived from this software without specific prior written permission.
+#    derived from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -687,9 +687,9 @@ module Org::Antlr::Tool
             if (!(e).nil?)
               System.err.println("exception: " + RJava.cast_to_string(e))
             end
-            # if ( e!=null ) {
-            # e.printStackTrace(System.err);
-            # }
+            # 				if ( e!=null ) {
+            # 					e.printStackTrace(System.err);
+            # 				}
           end
           
           typesig { [String] }
@@ -919,29 +919,28 @@ module Org::Antlr::Tool
       # Encodes the error handling found in setLocale, but does not trigger
       # panics, which would make GUI tools die if ANTLR's installation was
       # a bit screwy.  Duplicated code...ick.
-      # public static Locale getLocaleForValidMessages(Locale locale) {
-      # ErrorManager.locale = locale;
-      # String language = locale.getLanguage();
-      # String fileName = "org/antlr/tool/templates/messages/"+language+".stg";
-      # ClassLoader cl = Thread.currentThread().getContextClassLoader();
-      # InputStream is = cl.getResourceAsStream(fileName);
-      # if ( is==null && language.equals(Locale.US.getLanguage()) ) {
-      # return null;
-      # }
-      # else if ( is==null ) {
-      # return getLocaleForValidMessages(Locale.US); // recurse on this rule, trying the US locale
-      # }
+      # 	public static Locale getLocaleForValidMessages(Locale locale) {
+      # 		ErrorManager.locale = locale;
+      # 		String language = locale.getLanguage();
+      # 		String fileName = "org/antlr/tool/templates/messages/"+language+".stg";
+      # 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
+      # 		InputStream is = cl.getResourceAsStream(fileName);
+      # 		if ( is==null && language.equals(Locale.US.getLanguage()) ) {
+      # 			return null;
+      # 		}
+      # 		else if ( is==null ) {
+      # 			return getLocaleForValidMessages(Locale.US); // recurse on this rule, trying the US locale
+      # 		}
       # 
-      # boolean messagesOK = verifyMessages();
-      # if ( !messagesOK && language.equals(Locale.US.getLanguage()) ) {
-      # return null;
-      # }
-      # else if ( !messagesOK ) {
-      # return getLocaleForValidMessages(Locale.US); // try US to see if that will work
-      # }
-      # return true;
-      # }
-      # 
+      # 		boolean messagesOK = verifyMessages();
+      # 		if ( !messagesOK && language.equals(Locale.US.getLanguage()) ) {
+      # 			return null;
+      # 		}
+      # 		else if ( !messagesOK ) {
+      # 			return getLocaleForValidMessages(Locale.US); // try US to see if that will work
+      # 		}
+      # 		return true;
+      # 	}
       # In general, you'll want all errors to go to a single spot.
       # However, in a GUI, you might have two frames up with two
       # different grammars.  Two threads might launch to process the
@@ -1146,17 +1145,17 @@ module Org::Antlr::Tool
       end
       
       typesig { [Collection] }
-      # // TODO: we can remove I think.  All detected now with cycles check.
-      # public static void leftRecursion(DecisionProbe probe,
-      # int alt,
-      # Collection targetRules,
-      # Collection callSiteStates)
-      # {
-      # getErrorState().warnings++;
-      # Message msg = new LeftRecursionMessage(probe, alt, targetRules, callSiteStates);
-      # getErrorState().warningMsgIDs.add(msg.msgID);
-      # getErrorListener().warning(msg);
-      # }
+      # 	// TODO: we can remove I think.  All detected now with cycles check.
+      # 	public static void leftRecursion(DecisionProbe probe,
+      # 									 int alt,
+      # 									 Collection targetRules,
+      # 									 Collection callSiteStates)
+      # 	{
+      # 		getErrorState().warnings++;
+      # 		Message msg = new LeftRecursionMessage(probe, alt, targetRules, callSiteStates);
+      # 		getErrorState().warningMsgIDs.add(msg.msgID);
+      # 		getErrorListener().warning(msg);
+      # 	}
       def left_recursion_cycles(cycles)
         get_error_state.attr_errors += 1
         msg = LeftRecursionCyclesMessage.new(cycles)
@@ -1208,9 +1207,9 @@ module Org::Antlr::Tool
       end
       
       typesig { [Object, JavaThrowable] }
-      def internal_error(error, e)
+      def internal_error(error_, e)
         location = get_last_non_error_manager_code_location(e)
-        msg = "Exception " + RJava.cast_to_string(e) + "@" + RJava.cast_to_string(location) + ": " + RJava.cast_to_string(error)
+        msg = "Exception " + RJava.cast_to_string(e) + "@" + RJava.cast_to_string(location) + ": " + RJava.cast_to_string(error_)
         error(MSG_INTERNAL_ERROR, msg)
       end
       

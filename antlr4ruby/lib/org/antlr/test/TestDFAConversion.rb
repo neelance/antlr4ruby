@@ -813,8 +813,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_rule_alts_set_collapse
-      g = Grammar.new("parser grammar t;\n" + "a : A | B | C ;")
-      # still looks like block
+      g = Grammar.new("parser grammar t;\n" + "a : A | B | C ;") # still looks like block
       expecting = " ( grammar t ( rule a ARG RET scope ( BLOCK ( ALT A <end-of-alt> ) ( ALT B <end-of-alt> ) ( ALT C <end-of-alt> ) <end-of-block> ) <end-of-rule> ) )"
       assert_equals(expecting, g.get_grammar_tree.to_string_tree)
     end
@@ -837,8 +836,8 @@ module Org::Antlr::Test
       num_warnings = 3
       check_decision(g, 3, expecting, unreachable_alts, non_det_alts, ambig_input, dangling_alts, num_warnings)
       # There are 2 nondet errors, but the checkDecision only checks first one :(
-      # The "B" conflicting input is not checked except by virtue of the
-      # result DFA.
+      # 		The "B" conflicting input is not checked except by virtue of the
+      # 		result DFA.
       # <string>:2:5: Decision can match input such as "A" using multiple alternatives:
       # alt 1 via NFA path 7,2,3
       # alt 2 via NFA path 14,9,10
@@ -954,8 +953,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_gated_syn_pred
-      g = Grammar.new("parser grammar t;\n" + "x   : (X)=> X\n" + "    | Y\n" + "    ;\n")
-      # does not hoist; it gates edges
+      g = Grammar.new("parser grammar t;\n" + "x   : (X)=> X\n" + "    | Y\n" + "    ;\n") # does not hoist; it gates edges
       expecting = ".s0-X&&{synpred1_t}?->:s1=>1\n" + ".s0-Y->:s2=>2\n"
       unreachable_alts = nil
       non_det_alts = nil
@@ -983,8 +981,7 @@ module Org::Antlr::Test
     
     typesig { [] }
     def test_hoisted_gated_syn_pred
-      g = Grammar.new("parser grammar t;\n" + "x   : (X)=> X\n" + "    | X\n" + "    ;\n")
-      # hoists into decision
+      g = Grammar.new("parser grammar t;\n" + "x   : (X)=> X\n" + "    | X\n" + "    ;\n") # hoists into decision
       expecting = ".s0-X->.s1\n" + ".s1-{synpred1_t}?->:s2=>1\n" + ".s1-{true}?->:s3=>2\n"
       unreachable_alts = nil
       non_det_alts = nil

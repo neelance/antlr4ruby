@@ -38,105 +38,100 @@ module Org::Antlr::Tool
     }
   end
   
-  # public void minimizeRuleSet() {
-  # Set<Rule> refs = _minimizeRuleSet(delegateGrammarTreeRoot);
-  # System.out.println("all rule refs: "+refs);
-  # }
+  # 	public void minimizeRuleSet() {
+  # 		Set<Rule> refs = _minimizeRuleSet(delegateGrammarTreeRoot);
+  # 		System.out.println("all rule refs: "+refs);
+  # 	}
   # 
-  # public Set<Rule> _minimizeRuleSet(CompositeGrammarTree p) {
-  # Set<Rule> refs = new HashSet<Rule>();
-  # for (GrammarAST refAST : p.grammar.ruleRefs) {
-  # System.out.println("ref "+refAST.getText()+": "+refAST.NFAStartState+
-  # " enclosing rule: "+refAST.NFAStartState.enclosingRule+
-  # " invoking rule: "+((NFAState)refAST.NFAStartState.transition[0].target).enclosingRule);
-  # refs.add(((NFAState)refAST.NFAStartState.transition[0].target).enclosingRule);
-  # }
+  # 	public Set<Rule> _minimizeRuleSet(CompositeGrammarTree p) {
+  # 		Set<Rule> refs = new HashSet<Rule>();
+  # 		for (GrammarAST refAST : p.grammar.ruleRefs) {
+  # 			System.out.println("ref "+refAST.getText()+": "+refAST.NFAStartState+
+  # 							   " enclosing rule: "+refAST.NFAStartState.enclosingRule+
+  # 							   " invoking rule: "+((NFAState)refAST.NFAStartState.transition[0].target).enclosingRule);
+  # 			refs.add(((NFAState)refAST.NFAStartState.transition[0].target).enclosingRule);
+  # 		}
   # 
-  # if ( p.children!=null ) {
-  # for (CompositeGrammarTree delegate : p.children) {
-  # Set<Rule> delegateRuleRefs = _minimizeRuleSet(delegate);
-  # refs.addAll(delegateRuleRefs);
-  # }
-  # }
+  # 		if ( p.children!=null ) {
+  # 			for (CompositeGrammarTree delegate : p.children) {
+  # 				Set<Rule> delegateRuleRefs = _minimizeRuleSet(delegate);
+  # 				refs.addAll(delegateRuleRefs);
+  # 			}
+  # 		}
   # 
-  # return refs;
-  # }
+  # 		return refs;
+  # 	}
+  # 	public void oldminimizeRuleSet() {
+  # 		// first walk to remove all overridden rules
+  # 		Set<String> ruleDefs = new HashSet<String>();
+  # 		Set<String> ruleRefs = new HashSet<String>();
+  # 		for (GrammarAST refAST : delegateGrammarTreeRoot.grammar.ruleRefs) {
+  # 			String rname = refAST.getText();
+  # 			ruleRefs.add(rname);
+  # 		}
+  # 		_minimizeRuleSet(ruleDefs,
+  # 						 ruleRefs,
+  # 						 delegateGrammarTreeRoot);
+  # 		System.out.println("overall rule defs: "+ruleDefs);
+  # 	}
   # 
+  # 	public void _minimizeRuleSet(Set<String> ruleDefs,
+  # 								 Set<String> ruleRefs,
+  # 								 CompositeGrammarTree p) {
+  # 		Set<String> localRuleDefs = new HashSet<String>();
+  # 		for (Rule r : p.grammar.getRules()) {
+  # 			if ( !ruleDefs.contains(r.name) ) {
+  # 				localRuleDefs.add(r.name);
+  # 				ruleDefs.add(r.name);
+  # 			}
+  # 		}
+  # 		System.out.println("rule defs for "+p.grammar.name+": "+localRuleDefs);
   # 
-  # public void oldminimizeRuleSet() {
-  # // first walk to remove all overridden rules
-  # Set<String> ruleDefs = new HashSet<String>();
-  # Set<String> ruleRefs = new HashSet<String>();
-  # for (GrammarAST refAST : delegateGrammarTreeRoot.grammar.ruleRefs) {
-  # String rname = refAST.getText();
-  # ruleRefs.add(rname);
-  # }
-  # _minimizeRuleSet(ruleDefs,
-  # ruleRefs,
-  # delegateGrammarTreeRoot);
-  # System.out.println("overall rule defs: "+ruleDefs);
-  # }
+  # 		// remove locally-defined rules not in ref set
+  # 		// find intersection of local rules and references from delegator
+  # 		// that is set of rules needed by delegator
+  # 		Set<String> localRuleDefsSatisfyingRefsFromBelow = new HashSet<String>();
+  # 		for (String r : ruleRefs) {
+  # 			if ( localRuleDefs.contains(r) ) {
+  # 				localRuleDefsSatisfyingRefsFromBelow.add(r);
+  # 			}
+  # 		}
   # 
-  # public void _minimizeRuleSet(Set<String> ruleDefs,
-  # Set<String> ruleRefs,
-  # CompositeGrammarTree p) {
-  # Set<String> localRuleDefs = new HashSet<String>();
-  # for (Rule r : p.grammar.getRules()) {
-  # if ( !ruleDefs.contains(r.name) ) {
-  # localRuleDefs.add(r.name);
-  # ruleDefs.add(r.name);
-  # }
-  # }
-  # System.out.println("rule defs for "+p.grammar.name+": "+localRuleDefs);
+  # 		// now get list of refs from localRuleDefsSatisfyingRefsFromBelow.
+  # 		// Those rules are also allowed in this delegate
+  # 		for (GrammarAST refAST : p.grammar.ruleRefs) {
+  # 			if ( localRuleDefsSatisfyingRefsFromBelow.contains(refAST.enclosingRuleName) ) {
+  # 				// found rule ref within needed rule
+  # 			}
+  # 		}
   # 
-  # // remove locally-defined rules not in ref set
-  # // find intersection of local rules and references from delegator
-  # // that is set of rules needed by delegator
-  # Set<String> localRuleDefsSatisfyingRefsFromBelow = new HashSet<String>();
-  # for (String r : ruleRefs) {
-  # if ( localRuleDefs.contains(r) ) {
-  # localRuleDefsSatisfyingRefsFromBelow.add(r);
-  # }
-  # }
+  # 		// remove rule refs not in the new rule def set
   # 
-  # // now get list of refs from localRuleDefsSatisfyingRefsFromBelow.
-  # // Those rules are also allowed in this delegate
-  # for (GrammarAST refAST : p.grammar.ruleRefs) {
-  # if ( localRuleDefsSatisfyingRefsFromBelow.contains(refAST.enclosingRuleName) ) {
-  # // found rule ref within needed rule
-  # }
-  # }
+  # 		// walk all children, adding rules not already defined
+  # 		if ( p.children!=null ) {
+  # 			for (CompositeGrammarTree delegate : p.children) {
+  # 				_minimizeRuleSet(ruleDefs, ruleRefs, delegate);
+  # 			}
+  # 		}
+  # 	}
+  # 	public void trackNFAStatesThatHaveLabeledEdge(Label label,
+  # 												  NFAState stateWithLabeledEdge)
+  # 	{
+  # 		Set<NFAState> states = typeToNFAStatesWithEdgeOfTypeMap.get(label);
+  # 		if ( states==null ) {
+  # 			states = new HashSet<NFAState>();
+  # 			typeToNFAStatesWithEdgeOfTypeMap.put(label, states);
+  # 		}
+  # 		states.add(stateWithLabeledEdge);
+  # 	}
   # 
-  # // remove rule refs not in the new rule def set
+  # 	public Map<Label, Set<NFAState>> getTypeToNFAStatesWithEdgeOfTypeMap() {
+  # 		return typeToNFAStatesWithEdgeOfTypeMap;
+  # 	}
   # 
-  # // walk all children, adding rules not already defined
-  # if ( p.children!=null ) {
-  # for (CompositeGrammarTree delegate : p.children) {
-  # _minimizeRuleSet(ruleDefs, ruleRefs, delegate);
-  # }
-  # }
-  # }
-  # 
-  # 
-  # public void trackNFAStatesThatHaveLabeledEdge(Label label,
-  # NFAState stateWithLabeledEdge)
-  # {
-  # Set<NFAState> states = typeToNFAStatesWithEdgeOfTypeMap.get(label);
-  # if ( states==null ) {
-  # states = new HashSet<NFAState>();
-  # typeToNFAStatesWithEdgeOfTypeMap.put(label, states);
-  # }
-  # states.add(stateWithLabeledEdge);
-  # }
-  # 
-  # public Map<Label, Set<NFAState>> getTypeToNFAStatesWithEdgeOfTypeMap() {
-  # return typeToNFAStatesWithEdgeOfTypeMap;
-  # }
-  # 
-  # public Set<NFAState> getStatesWithEdge(Label label) {
-  # return typeToNFAStatesWithEdgeOfTypeMap.get(label);
-  # }
-  # 
+  # 	public Set<NFAState> getStatesWithEdge(Label label) {
+  # 		return typeToNFAStatesWithEdgeOfTypeMap.get(label);
+  # 	}
   # A tree of component (delegate) grammars.
   # 
   # Rules defined in delegates are "inherited" like multi-inheritance
@@ -340,9 +335,8 @@ module Org::Antlr::Tool
       end
       delegator.attr_composite_tree_node.add_child(CompositeGrammarTree.new(delegate))
       # // find delegator in tree so we can add a child to it
-      # CompositeGrammarTree t = delegateGrammarTreeRoot.findNode(delegator);
-      # t.addChild();
-      # 
+      # 		CompositeGrammarTree t = delegateGrammarTreeRoot.findNode(delegator);
+      # 		t.addChild();
       # make sure new grammar shares this composite
       delegate.attr_composite = self
     end

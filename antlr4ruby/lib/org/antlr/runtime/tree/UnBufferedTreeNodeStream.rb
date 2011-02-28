@@ -404,10 +404,9 @@ module Org::Antlr::Runtime::Tree
     typesig { [] }
     # Satisfy IntStream interface
     def consume
-      # System.out.println("consume: currentNode="+currentNode.getType()+
-      # " childIndex="+currentChildIndex+
-      # " nodeIndex="+absoluteNodeIndex);
-      # 
+      # 		System.out.println("consume: currentNode="+currentNode.getType()+
+      # 						   " childIndex="+currentChildIndex+
+      # 						   " nodeIndex="+absoluteNodeIndex);
       # make sure there is something in lookahead buf, which might call next()
       fill(1)
       @absolute_node_index += 1
