@@ -67,7 +67,7 @@ module Org::Antlr::Runtime
         return
       end
       f = JavaFile.new(file_name)
-      size = RJava.cast_to_int(f.length)
+      size = (f.length).to_int
       isr = nil
       fis = FileInputStream.new(file_name)
       if (!(encoding).nil?)

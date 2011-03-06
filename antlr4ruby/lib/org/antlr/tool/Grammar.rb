@@ -1682,7 +1682,7 @@ module Org::Antlr::Tool
       update_line_column_to_lookahead_dfamap(lookahead_dfa)
       if (@composite.attr_watch_nfaconversion)
         stop_dfa = System.current_time_millis
-        System.out.println("cost: " + RJava.cast_to_string(lookahead_dfa.get_number_of_states) + " states, " + RJava.cast_to_string(RJava.cast_to_int((stop_dfa - start_dfa))) + " ms")
+        System.out.println("cost: " + RJava.cast_to_string(lookahead_dfa.get_number_of_states) + " states, " + RJava.cast_to_string(((stop_dfa - start_dfa)).to_int) + " ms")
       end
       # System.out.println("after create DFA; synPredNamesUsedInDFA="+synPredNamesUsedInDFA);
       return lookahead_dfa
@@ -2577,7 +2577,7 @@ module Org::Antlr::Tool
             token = tokenizer.next_token
             next
           end
-          token_type = RJava.cast_to_int(tokenizer.attr_nval)
+          token_type = (tokenizer.attr_nval).to_int
           token = tokenizer.next_token
           # System.out.println("import "+tokenID+"="+tokenType);
           @composite.attr_max_token_type = Math.max(@composite.attr_max_token_type, token_type)

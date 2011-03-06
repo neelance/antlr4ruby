@@ -106,9 +106,9 @@ module Org::Antlr::Codegen
     def get_target64bit_string_from_value(word)
       buf = StringBuffer.new(22) # enough for the two "0x", "," and " "
       buf.append("0x")
-      write_hex_with_padding(buf, JavaInteger.to_hex_string(RJava.cast_to_int((word & 0xffffffff))))
+      write_hex_with_padding(buf, JavaInteger.to_hex_string(((word & 0xffffffff)).to_int))
       buf.append(", 0x")
-      write_hex_with_padding(buf, JavaInteger.to_hex_string(RJava.cast_to_int((word >> 32))))
+      write_hex_with_padding(buf, JavaInteger.to_hex_string(((word >> 32)).to_int))
       return buf.to_s
     end
     

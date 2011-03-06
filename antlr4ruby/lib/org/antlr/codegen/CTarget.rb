@@ -209,10 +209,10 @@ module Org::Antlr::Codegen
           else
             # Anything else is what it is!
             # 
-            buf.append(JavaInteger.to_hex_string(RJava.cast_to_int(literal.char_at(i))).to_upper_case)
+            buf.append(JavaInteger.to_hex_string((literal.char_at(i)).to_int).to_upper_case)
           end
         else
-          buf.append(JavaInteger.to_hex_string(RJava.cast_to_int(literal.char_at(i))).to_upper_case)
+          buf.append(JavaInteger.to_hex_string((literal.char_at(i)).to_int).to_upper_case)
         end
         buf.append(", ")
         i += 1

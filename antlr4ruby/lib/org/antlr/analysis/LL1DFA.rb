@@ -110,7 +110,7 @@ module Org::Antlr::Analysis
           s.attr_resolved_with_predicates = true
           i = 0
           while i < alts.size
-            alt = RJava.cast_to_int(alts.get(i))
+            alt = (alts.get(i)).to_int
             s.attr_cached_uniquely_predicated_alt = NFA::INVALID_ALT_NUMBER
             pred_dfatarget = get_accept_state(alt)
             if ((pred_dfatarget).nil?)
