@@ -835,9 +835,9 @@ module Org::Antlr::Test
       dangling_alts = nil
       num_warnings = 3
       check_decision(g, 3, expecting, unreachable_alts, non_det_alts, ambig_input, dangling_alts, num_warnings)
-      # There are 2 nondet errors, but the checkDecision only checks first one :(
-      # 		The "B" conflicting input is not checked except by virtue of the
-      # 		result DFA.
+      #            There are 2 nondet errors, but the checkDecision only checks first one :(
+      #         The "B" conflicting input is not checked except by virtue of the
+      #         result DFA.
       # <string>:2:5: Decision can match input such as "A" using multiple alternatives:
       # alt 1 via NFA path 7,2,3
       # alt 2 via NFA path 14,9,10

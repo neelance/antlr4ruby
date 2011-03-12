@@ -33,9 +33,9 @@ module Org::Antlr::Runtime
     }
   end
   
-  # 	public int specialTransition(int state, int symbol) {
-  # 		return 0;
-  # 	}
+  # public int specialTransition(int state, int symbol) {
+  #     return 0;
+  # }
   # A DFA implemented as a set of transition tables.
   # 
   # Any state that has a semantic predicate edge is special; those states

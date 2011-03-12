@@ -66,14 +66,14 @@ module Org::Antlr::Tool
     undef_method :input=
     
     class_module.module_eval {
+      # A lexer listener that just creates token objects as they
+      # are matched.  scan() use this listener to get a single object.
+      # To get a stream of tokens, you must call scan() multiple times,
+      # recording the token object result after each call.
       const_set_lazy(:LexerActionGetTokenType) { Class.new(BlankDebugEventListener) do
         local_class_in Interpreter
         include_class_members Interpreter
         
-        # A lexer listener that just creates token objects as they
-        # are matched.  scan() use this listener to get a single object.
-        # To get a stream of tokens, you must call scan() multiple times,
-        # recording the token object result after each call.
         attr_accessor :token
         alias_method :attr_token, :token
         undef_method :token
@@ -241,17 +241,17 @@ module Org::Antlr::Tool
         if (!(visited_states).nil?)
           visited_states.add(s)
         end
-        # 			System.out.println("parse state "+s.stateNumber+" input="+
-        # 				s.nfa.grammar.getTokenDisplayName(t));
+        # System.out.println("parse state "+s.stateNumber+" input="+
+        #     s.nfa.grammar.getTokenDisplayName(t));
         # CASE 1: decision state
         if (s.get_decision_number > 0 && s.attr_nfa.attr_grammar.get_number_of_alts_for_decision_nfa(s) > 1)
           # decision point, must predict and jump to alt
           dfa = s.attr_nfa.attr_grammar.get_lookahead_dfa(s.get_decision_number)
-          # 				if ( s.nfa.grammar.type!=Grammar.LEXER ) {
-          # 					System.out.println("decision: "+
-          # 								   dfa.getNFADecisionStartState().getDescription()+
-          # 								   " input="+s.nfa.grammar.getTokenDisplayName(t));
-          # 				}
+          # if ( s.nfa.grammar.type!=Grammar.LEXER ) {
+          #     System.out.println("decision: "+
+          #                    dfa.getNFADecisionStartState().getDescription()+
+          #                    " input="+s.nfa.grammar.getTokenDisplayName(t));
+          # }
           m = input.mark
           predicted_alt = predict(dfa)
           if ((predicted_alt).equal?(NFA::INVALID_ALT_NUMBER))
@@ -265,10 +265,10 @@ module Org::Antlr::Tool
           end
           input.rewind(m)
           parse_alt = s.translate_display_alt_to_walk_alt(predicted_alt)
-          # 				if ( s.nfa.grammar.type!=Grammar.LEXER ) {
-          # 					System.out.println("predicted alt "+predictedAlt+", parseAlt "+
-          # 									   parseAlt);
-          # 				}
+          # if ( s.nfa.grammar.type!=Grammar.LEXER ) {
+          #     System.out.println("predicted alt "+predictedAlt+", parseAlt "+
+          #                        parseAlt);
+          # }
           alt = nil
           if (parse_alt > s.attr_nfa.attr_grammar.get_number_of_alts_for_decision_nfa(s))
             # implied branch of loop etc...
@@ -306,10 +306,8 @@ module Org::Antlr::Tool
           end
         end
         # CASE 3: epsilon transition
-        # CASE 4: match label on transition
         if (label.is_epsilon)
           # CASE 3a: rule invocation state
-          # CASE 3b: plain old epsilon transition, just move
           if (trans.is_a?(RuleClosureTransition))
             rule_invocation_stack.push(s)
             s = trans.attr_target
@@ -321,11 +319,12 @@ module Org::Antlr::Tool
             if (!s.attr_nfa.attr_grammar.all_decision_dfahave_been_created)
               s.attr_nfa.attr_grammar.create_lookahead_dfas
             end
+            # CASE 3b: plain old epsilon transition, just move
           else
             s = trans.attr_target
           end
+          # CASE 4: match label on transition
         else
-          # CASE 5: error condition; label is inconsistent with input
           if (label.matches(t))
             if (!(actions).nil?)
               if ((s.attr_nfa.attr_grammar.attr_type).equal?(Grammar::PARSER) || (s.attr_nfa.attr_grammar.attr_type).equal?(Grammar::COMBINED))
@@ -335,6 +334,7 @@ module Org::Antlr::Tool
             s = s.attr_transition[0].attr_target
             input.consume
             t = input._la(1)
+            # CASE 5: error condition; label is inconsistent with input
           else
             if (label.is_atom)
               mte = MismatchedTokenException.new(label.get_atom, input)
@@ -385,8 +385,8 @@ module Org::Antlr::Tool
       eot_transition = nil
       while (!s.is_accept_state)
         catch(:next_dfa_loop) do
-          # 			System.out.println("DFA.predict("+s.getStateNumber()+", "+
-          # 					dfa.getNFA().getGrammar().getTokenName(c)+")");
+          # System.out.println("DFA.predict("+s.getStateNumber()+", "+
+          #         dfa.getNFA().getGrammar().getTokenName(c)+")");
           # for each edge of s, look for intersection with current char
           i = 0
           while i < s.get_number_of_transitions
@@ -408,16 +408,16 @@ module Org::Antlr::Tool
             s = eot_transition.attr_target
             next
           end
-          # 			ErrorManager.error(ErrorManager.MSG_NO_VIABLE_DFA_ALT,
-          # 							   s,
-          # 							   dfa.nfa.grammar.getTokenName(c));
+          # ErrorManager.error(ErrorManager.MSG_NO_VIABLE_DFA_ALT,
+          #                    s,
+          #                    dfa.nfa.grammar.getTokenName(c));
           return NFA::INVALID_ALT_NUMBER
         end
       end
       # woohoo!  We know which alt to predict
       # nothing emanates from a stop state; must terminate anyway
-      # 		System.out.println("DFA stop state "+s.getStateNumber()+" predicts "+
-      # 				s.getUniquelyPredictedAlt());
+      # System.out.println("DFA stop state "+s.getStateNumber()+" predicts "+
+      #         s.getUniquelyPredictedAlt());
       return s.get_uniquely_predicted_alt
     end
     

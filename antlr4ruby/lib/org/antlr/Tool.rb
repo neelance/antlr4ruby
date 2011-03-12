@@ -406,14 +406,14 @@ module Org::Antlr
     end
     
     typesig { [] }
-    # 		protected void checkForInvalidArguments(String[] args, BitSet cmdLineArgValid) {
-    # 			// check for invalid command line args
-    # 			for (int a = 0; a < args.length; a++) {
-    # 				if (!cmdLineArgValid.member(a)) {
-    # 					System.err.println("invalid command-line argument: " + args[a] + "; ignored");
-    # 				}
-    # 			}
-    # 		}
+    # protected void checkForInvalidArguments(String[] args, BitSet cmdLineArgValid) {
+    #     // check for invalid command line args
+    #     for (int a = 0; a < args.length; a++) {
+    #         if (!cmdLineArgValid.member(a)) {
+    #             System.err.println("invalid command-line argument: " + args[a] + "; ignored");
+    #         }
+    #     }
+    # }
     def process
       num_files = @grammar_file_names.size
       exception_when_writing_lexer_file = false

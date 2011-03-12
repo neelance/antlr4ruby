@@ -215,9 +215,9 @@ module Org::Antlr::Misc
     def difference_not_properly_contained(other)
       diff = nil
       # other.a to left of this.a (or same)
-      # other.a to right of this.a
       if (other.starts_before_non_disjoint(self))
         diff = Interval.create(Math.max(@a, other.attr_b + 1), @b)
+        # other.a to right of this.a
       else
         if (other.starts_after_non_disjoint(self))
           diff = Interval.create(@a, other.attr_a - 1)

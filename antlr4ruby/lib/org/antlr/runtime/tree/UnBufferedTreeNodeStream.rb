@@ -159,7 +159,7 @@ module Org::Antlr::Runtime::Tree
     
     class_module.module_eval {
       # When walking ahead with cyclic DFA or for syntactic predicates,
-      # we need to record the state of the tree node stream.  This
+      #  we need to record the state of the tree node stream.  This
       # class wraps up the current state of the UnBufferedTreeNodeStream.
       # Calling mark() will push another of these on the markers stack.
       const_set_lazy(:TreeWalkState) { Class.new do
@@ -404,9 +404,9 @@ module Org::Antlr::Runtime::Tree
     typesig { [] }
     # Satisfy IntStream interface
     def consume
-      # 		System.out.println("consume: currentNode="+currentNode.getType()+
-      # 						   " childIndex="+currentChildIndex+
-      # 						   " nodeIndex="+absoluteNodeIndex);
+      # System.out.println("consume: currentNode="+currentNode.getType()+
+      #                    " childIndex="+currentChildIndex+
+      #                    " nodeIndex="+absoluteNodeIndex);
       # make sure there is something in lookahead buf, which might call next()
       fill(1)
       @absolute_node_index += 1

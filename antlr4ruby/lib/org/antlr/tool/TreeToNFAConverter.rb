@@ -103,21 +103,21 @@ module Org::Antlr::Tool
     
     typesig { [String, NFAState] }
     # protected void init() {
-    #    // define all the rule begin/end NFAStates to solve forward reference issues
-    #    Collection rules = grammar.getRules();
-    #    for (Iterator itr = rules.iterator(); itr.hasNext();) {
-    # 		Rule r = (Rule) itr.next();
-    #        String ruleName = r.name;
-    #        NFAState ruleBeginState = factory.newState();
-    #        ruleBeginState.setDescription("rule "+ruleName+" start");
-    # 		ruleBeginState.enclosingRule = r;
-    #        r.startState = ruleBeginState;
-    #        NFAState ruleEndState = factory.newState();
-    #        ruleEndState.setDescription("rule "+ruleName+" end");
-    #        ruleEndState.setAcceptState(true);
-    # 		ruleEndState.enclosingRule = r;
-    #        r.stopState = ruleEndState;
-    #    }
+    #     // define all the rule begin/end NFAStates to solve forward reference issues
+    #     Collection rules = grammar.getRules();
+    #     for (Iterator itr = rules.iterator(); itr.hasNext();) {
+    #         Rule r = (Rule) itr.next();
+    #         String ruleName = r.name;
+    #         NFAState ruleBeginState = factory.newState();
+    #         ruleBeginState.setDescription("rule "+ruleName+" start");
+    #         ruleBeginState.enclosingRule = r;
+    #         r.startState = ruleBeginState;
+    #         NFAState ruleEndState = factory.newState();
+    #         ruleEndState.setDescription("rule "+ruleName+" end");
+    #         ruleEndState.setAcceptState(true);
+    #         ruleEndState.enclosingRule = r;
+    #         r.stopState = ruleEndState;
+    #     }
     # }
     def add_follow_transition(rule_name, following)
       # System.out.println("adding follow link to rule "+ruleName);

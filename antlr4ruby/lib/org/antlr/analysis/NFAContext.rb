@@ -65,7 +65,7 @@ module Org::Antlr::Analysis
       # most m times.  Hence, the number of DFA states will not grow forever.
       # With recursive rules like
       # 
-      # e : '(' e ')' | INT ;
+      #   e : '(' e ')' | INT ;
       # 
       # you could chase your tail forever if somebody said "s : e '.' | e ';' ;"
       # This constant prevents new states from being created after a stack gets
@@ -73,12 +73,12 @@ module Org::Antlr::Analysis
       # trapped by the non-LL(*) detector for recursion in > 1 alt.  Here is
       # an example that trips stack overflow:
       # 
-      # s : a Y | A A A A A X ; // force recursion past m=4
-      # a : A a | Q;
+      #     s : a Y | A A A A A X ; // force recursion past m=4
+      #     a : A a | Q;
       # 
       # If that were:
       # 
-      # s : a Y | A+ X ;
+      #     s : a Y | A+ X ;
       # 
       # it could loop forever.
       # 
@@ -90,10 +90,10 @@ module Org::Antlr::Analysis
       # 
       # max=0 implies you cannot ever jump to another rule during closure.
       # max=1 implies you can make as many calls as you want--you just
-      # can't ever visit a state that is on your rule invocation stack.
-      # I.e., you cannot ever recurse.
+      #       can't ever visit a state that is on your rule invocation stack.
+      #          I.e., you cannot ever recurse.
       # max=2 implies you are able to recurse once (i.e., call a rule twice
-      # from the same place).
+      #       from the same place).
       # 
       # This tracks recursion to a rule specific to an invocation site!
       # It does not detect multiple calls to a rule from different rule
@@ -250,20 +250,20 @@ module Org::Antlr::Analysis
     end
     
     typesig { [::Java::Int] }
-    # Walk upwards to the root of the call stack context looking
-    # for a particular invoking state.
-    # 	public boolean contains(int state) {
-    #        NFAContext sp = this;
-    # 		int n = 0; // track recursive invocations of state
-    # 		System.out.println("this.context is "+sp);
-    # 		while ( sp.parent!=null ) {
-    #            if ( sp.invokingState.stateNumber == state ) {
-    # 				return true;
-    #            }
-    #            sp = sp.parent;
-    #        }
-    #        return false;
-    #    }
+    #   * Walk upwards to the root of the call stack context looking
+    #  *  for a particular invoking state.
+    # public boolean contains(int state) {
+    #     NFAContext sp = this;
+    #     int n = 0; // track recursive invocations of state
+    #     System.out.println("this.context is "+sp);
+    #     while ( sp.parent!=null ) {
+    #         if ( sp.invokingState.stateNumber == state ) {
+    #             return true;
+    #         }
+    #         sp = sp.parent;
+    #     }
+    #     return false;
+    # }
     # Given an NFA state number, how many times has the NFA-to-DFA
     # conversion pushed that state on the stack?  In other words,
     # the NFA state must be a rule invocation state and this method
@@ -291,13 +291,13 @@ module Org::Antlr::Analysis
     typesig { [] }
     def hash_code
       return @cached_hash_code
-      #        int h = 0;
-      #        NFAContext sp = this;
-      #        while ( sp.parent!=null ) {
-      #            h += sp.invokingState.getStateNumber();
-      #            sp = sp.parent;
-      #        }
-      #        return h;
+      # int h = 0;
+      # NFAContext sp = this;
+      # while ( sp.parent!=null ) {
+      #     h += sp.invokingState.getStateNumber();
+      #     sp = sp.parent;
+      # }
+      # return h;
     end
     
     typesig { [] }

@@ -76,7 +76,7 @@ module Org::Antlr::Codegen
     end
     
     typesig { [String] }
-    # Converts a String into a representation that can be use as a literal
+    #  Converts a String into a representation that can be use as a literal
     # when surrounded by double-quotes.
     # 
     # Used for escaping semantic predicate strings for exceptions.
@@ -136,7 +136,7 @@ module Org::Antlr::Codegen
     end
     
     typesig { [CodeGenerator] }
-    # Character constants get truncated to this value.
+    #  Character constants get truncated to this value.
     # TODO: This should be derived from the charVocabulary. Depending on it
     # being 255 or 0xFFFF the templates should generate normal character
     # constants or multibyte ones.

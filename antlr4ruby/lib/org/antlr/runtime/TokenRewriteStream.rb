@@ -56,18 +56,18 @@ module Org::Antlr::Runtime
   # roll back any changes if there is an error just by removing instructions.
   # For example,
   # 
-  # CharStream input = new ANTLRFileStream("input");
-  # TLexer lex = new TLexer(input);
-  # TokenRewriteStream tokens = new TokenRewriteStream(lex);
-  # T parser = new T(tokens);
-  # parser.startRule();
+  #  CharStream input = new ANTLRFileStream("input");
+  #  TLexer lex = new TLexer(input);
+  #  TokenRewriteStream tokens = new TokenRewriteStream(lex);
+  #  T parser = new T(tokens);
+  #  parser.startRule();
   # 
-  # Then in the rules, you can execute
-  # Token t,u;
-  # ...
-  # input.insertAfter(t, "text to put after t");}
-  # input.insertAfter(u, "text after u");}
-  # System.out.println(tokens.toString());
+  #     Then in the rules, you can execute
+  #     Token t,u;
+  #     ...
+  #     input.insertAfter(t, "text to put after t");}
+  #        input.insertAfter(u, "text after u");}
+  #        System.out.println(tokens.toString());
   # 
   # Actually, you have to cast the 'input' to a TokenRewriteStream. :(
   # 
@@ -77,10 +77,10 @@ module Org::Antlr::Runtime
   # useful for generating a C file and also its header file--all from the
   # same buffer:
   # 
-  # tokens.insertAfter("pass1", t, "text to put after t");}
-  # tokens.insertAfter("pass2", u, "text after u");}
-  # System.out.println(tokens.toString("pass1"));
-  # System.out.println(tokens.toString("pass2"));
+  #     tokens.insertAfter("pass1", t, "text to put after t");}
+  #        tokens.insertAfter("pass2", u, "text after u");}
+  #        System.out.println(tokens.toString("pass1"));
+  #        System.out.println(tokens.toString("pass2"));
   # 
   # If you don't use named rewrite streams, a "default" stream is used as
   # the first example shows.
@@ -97,11 +97,11 @@ module Org::Antlr::Runtime
       const_set_lazy(:MIN_TOKEN_INDEX) { 0 }
       const_attr_reader  :MIN_TOKEN_INDEX
       
+      # Define the rewrite operation hierarchy
       const_set_lazy(:RewriteOperation) { Class.new do
         local_class_in TokenRewriteStream
         include_class_members TokenRewriteStream
         
-        # Define the rewrite operation hierarchy
         # What index into rewrites List are we?
         attr_accessor :instruction_index
         alias_method :attr_instruction_index, :instruction_index
@@ -170,12 +170,12 @@ module Org::Antlr::Runtime
         alias_method :initialize__insert_before_op, :initialize
       end }
       
+      # I'm going to try replacing range from x..y with (y-x)+1 ReplaceOp
+      # instructions.
       const_set_lazy(:ReplaceOp) { Class.new(RewriteOperation) do
         local_class_in TokenRewriteStream
         include_class_members TokenRewriteStream
         
-        # I'm going to try replacing range from x..y with (y-x)+1 ReplaceOp
-        # instructions.
         attr_accessor :last_index
         alias_method :attr_last_index, :last_index
         undef_method :last_index
@@ -535,36 +535,36 @@ module Org::Antlr::Runtime
     # overlapping replaces that are not completed nested).  Inserts to
     # same index need to be combined etc...   Here are the cases:
     # 
-    # I.i.u I.j.v								leave alone, nonoverlapping
-    # I.i.u I.i.v								combine: Iivu
+    # I.i.u I.j.v                                leave alone, nonoverlapping
+    # I.i.u I.i.v                                combine: Iivu
     # 
-    # R.i-j.u R.x-y.v	| i-j in x-y			delete first R
-    # R.i-j.u R.i-j.v							delete first R
-    # R.i-j.u R.x-y.v	| x-y in i-j			ERROR
-    # R.i-j.u R.x-y.v	| boundaries overlap	ERROR
+    # R.i-j.u R.x-y.v    | i-j in x-y            delete first R
+    # R.i-j.u R.i-j.v                            delete first R
+    # R.i-j.u R.x-y.v    | x-y in i-j            ERROR
+    # R.i-j.u R.x-y.v    | boundaries overlap    ERROR
     # 
-    # I.i.u R.x-y.v | i in x-y				delete I
-    # I.i.u R.x-y.v | i not in x-y			leave alone, nonoverlapping
-    # R.x-y.v I.i.u | i in x-y				ERROR
-    # R.x-y.v I.x.u 							R.x-y.uv (combine, delete I)
-    # R.x-y.v I.i.u | i not in x-y			leave alone, nonoverlapping
+    # I.i.u R.x-y.v | i in x-y                delete I
+    # I.i.u R.x-y.v | i not in x-y            leave alone, nonoverlapping
+    # R.x-y.v I.i.u | i in x-y                ERROR
+    # R.x-y.v I.x.u                             R.x-y.uv (combine, delete I)
+    # R.x-y.v I.i.u | i not in x-y            leave alone, nonoverlapping
     # 
     # I.i.u = insert u before op @ index i
     # R.x-y.u = replace x-y indexed tokens with u
     # 
     # First we need to examine replaces.  For any replace op:
     # 
-    # 1. wipe out any insertions before op within that range.
-    # 2. Drop any replace op before that is contained completely within
-    # that range.
-    # 3. Throw exception upon boundary overlap with any previous replace.
+    #        1. wipe out any insertions before op within that range.
+    #       2. Drop any replace op before that is contained completely within
+    #        that range.
+    #       3. Throw exception upon boundary overlap with any previous replace.
     # 
     # Then we can deal with inserts:
     # 
-    # 1. for any inserts to same index, combine even if not adjacent.
-    # 2. for any prior replace with same left boundary, combine this
-    # insert with replace and delete this replace.
-    # 3. throw exception if index in same range as previous replace
+    #        1. for any inserts to same index, combine even if not adjacent.
+    #        2. for any prior replace with same left boundary, combine this
+    #        insert with replace and delete this replace.
+    #        3. throw exception if index in same range as previous replace
     # 
     # Don't actually delete; make op null in list. Easier to walk list.
     # Later we can throw as we add to index -> op map.

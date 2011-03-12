@@ -144,8 +144,8 @@ module Org::Antlr::Test
         options.add(JavaFile.new(@tmpdir, grammar_file_name).to_s)
         options_a = Array.typed(String).new(options.size) { nil }
         options.to_array(options_a)
-        # 			final ErrorQueue equeue = new ErrorQueue();
-        # 			ErrorManager.setErrorListener(equeue);
+        # final ErrorQueue equeue = new ErrorQueue();
+        # ErrorManager.setErrorListener(equeue);
         antlr = Tool.new(options_a)
         antlr.process
         listener = ErrorManager.get_error_listener
@@ -278,10 +278,10 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_grammar_semantics_error(equeue, expected_message)
-      # 				System.out.println(equeue.infos);
-      # 				System.out.println(equeue.warnings);
-      # 				System.out.println(equeue.errors);
-      # 				assertTrue("number of errors mismatch", n, equeue.errors.size());
+      # System.out.println(equeue.infos);
+      # System.out.println(equeue.warnings);
+      # System.out.println(equeue.errors);
+      # assertTrue("number of errors mismatch", n, equeue.errors.size());
       found_msg = nil
       i = 0
       while i < equeue.attr_errors.size

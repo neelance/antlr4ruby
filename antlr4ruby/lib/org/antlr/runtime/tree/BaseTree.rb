@@ -194,9 +194,9 @@ module Org::Antlr::Runtime::Tree
     # For huge child lists, inserting children can force walking rest of
     # children to set their childindex; could be slow.
     def replace_children(start_child_index, stop_child_index, t)
-      # 		System.out.println("replaceChildren "+startChildIndex+", "+stopChildIndex+
-      # 						   " with "+((BaseTree)t).toStringTree());
-      # 		System.out.println("in="+toStringTree());
+      # System.out.println("replaceChildren "+startChildIndex+", "+stopChildIndex+
+      #                    " with "+((BaseTree)t).toStringTree());
+      # System.out.println("in="+toStringTree());
       if ((@children).nil?)
         raise IllegalArgumentException.new("indexes invalid; no children in list")
       end

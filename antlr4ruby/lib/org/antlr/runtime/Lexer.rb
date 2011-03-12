@@ -273,15 +273,15 @@ module Org::Antlr::Runtime
     
     typesig { [RecognitionException] }
     def report_error(e)
-      # TODO: not thought about recovery in lexer yet.
-      # 
-      # 		// if we've already reported an error and have not matched a token
-      # 		// yet successfully, don't report any errors.
-      # 		if ( errorRecovery ) {
-      # 			//System.err.print("[SPURIOUS] ");
-      # 			return;
-      # 		}
-      # 		errorRecovery = true;
+      #   * TODO: not thought about recovery in lexer yet.
+      #  *
+      # // if we've already reported an error and have not matched a token
+      # // yet successfully, don't report any errors.
+      # if ( errorRecovery ) {
+      #     //System.err.print("[SPURIOUS] ");
+      #     return;
+      # }
+      # errorRecovery = true;
       display_recognition_error(self.get_token_names, e)
     end
     

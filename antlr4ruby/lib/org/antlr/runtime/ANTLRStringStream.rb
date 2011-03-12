@@ -154,8 +154,8 @@ module Org::Antlr::Runtime
       if (@p < @n)
         @char_position_in_line += 1
         if ((@data[@p]).equal?(Character.new(?\n.ord)))
-          # 				System.out.println("newline char found on line: "+line+
-          # 								   "@ pos="+charPositionInLine);
+          # System.out.println("newline char found on line: "+line+
+          #                    "@ pos="+charPositionInLine);
           @line += 1
           @char_position_in_line = 0
         end

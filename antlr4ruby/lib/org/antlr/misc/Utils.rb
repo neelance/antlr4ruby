@@ -68,13 +68,13 @@ module Org::Antlr::Misc
       
       typesig { [String, String, String] }
       # Given a source string, src,
-      # 		a string to replace, replacee,
-      # 		and a string to replace with, replacer,
-      # 		return a new string w/ the replacing done.
-      # 		You can use replacer==null to remove replacee from the string.
+      # a string to replace, replacee,
+      # and a string to replace with, replacer,
+      # return a new string w/ the replacing done.
+      # You can use replacer==null to remove replacee from the string.
       # 
-      # 		This should be faster than Java's String.replaceAll as that one
-      # 		uses regex (I only want to play with strings anyway).
+      # This should be faster than Java's String.replaceAll as that one
+      # uses regex (I only want to play with strings anyway).
       def replace(src, replacee, replacer)
         result = StringBuffer.new(src.length + 50)
         start_index = 0

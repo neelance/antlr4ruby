@@ -165,8 +165,8 @@ module Org::Antlr::Test
     typesig { [] }
     def test_escaped_literals
       # Grammar:
-      # 			A : '\"' ;  should match a single double-quote: "
-      # 			B : '\\\"' ; should match input \"
+      #  A : '\"' ;  should match a single double-quote: "
+      #  B : '\\\"' ; should match input \"
       grammar = "lexer grammar T;\n" + "A : '\\\"' ;\n" + "B : '\\\\\\\"' ;\n" # '\\\"'
       found = raw_generate_and_build_recognizer("T.g", grammar, nil, "T", false)
       expecting = true # should be ok

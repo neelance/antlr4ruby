@@ -96,7 +96,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [::Java::Int] }
-    # Construct a bitset given the size
+    #  Construct a bitset given the size
     # @param nbits The size of the bitset in bits
     def initialize(nbits)
       @bits = nil
@@ -162,15 +162,15 @@ module Org::Antlr::Misc
         e_i = o
         add(e_i.int_value)
       end
-      # 		int n = elements.size();
-      # 		for (int i = 0; i < n; i++) {
-      # 			Object o = elements.get(i);
-      # 			if ( !(o instanceof Integer) ) {
-      # 				throw new IllegalArgumentException();
-      # 			}
-      # 			Integer eI = (Integer)o;
-      # 			add(eI.intValue());
-      # 		}
+      # int n = elements.size();
+      # for (int i = 0; i < n; i++) {
+      #     Object o = elements.get(i);
+      #     if ( !(o instanceof Integer) ) {
+      #         throw new IllegalArgumentException();
+      #     }
+      #     Integer eI = (Integer)o;
+      #     add(eI.intValue());
+      # }
     end
     
     typesig { [IntSet] }
@@ -564,7 +564,7 @@ module Org::Antlr::Misc
     end
     
     typesig { [Grammar] }
-    # Transform a bit set into a string by formatting each element as an integer
+    #  Transform a bit set into a string by formatting each element as an integer
     # separator The string to put in between elements
     # @return A commma-separated list of values
     def to_s(g)

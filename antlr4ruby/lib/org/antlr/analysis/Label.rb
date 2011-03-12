@@ -76,8 +76,8 @@ module Org::Antlr::Analysis
       # yields a DFA predictor:
       # 
       # o-a->o-b->1   predict alt 1
-      # |
-      # |-EOT->o predict alt 2
+      #      |
+      #      |-EOT->o predict alt 2
       # 
       # To generate code for EOT, treat it as the "default" path, which
       # implies there is no way to mismatch a char for the state from
@@ -354,20 +354,20 @@ module Org::Antlr::Analysis
     # 
     # At this point, Labels are not compared for equals when they are
     # predicates, but here's the code for future use.
-    #    protected boolean predicatesEquals(Set others) {
-    #        Iterator iter = semanticContext.iterator();
-    #        while (iter.hasNext()) {
-    #            AST predAST = (AST) iter.next();
-    #            Iterator inner = semanticContext.iterator();
-    #            while (inner.hasNext()) {
-    #                AST otherPredAST = (AST) inner.next();
-    #                if ( !predAST.getText().equals(otherPredAST.getText()) ) {
-    #                    return false;
-    #                }
-    #            }
-    #        }
-    #        return true;
-    #    }
+    # protected boolean predicatesEquals(Set others) {
+    #     Iterator iter = semanticContext.iterator();
+    #     while (iter.hasNext()) {
+    #         AST predAST = (AST) iter.next();
+    #         Iterator inner = semanticContext.iterator();
+    #         while (inner.hasNext()) {
+    #             AST otherPredAST = (AST) inner.next();
+    #             if ( !predAST.getText().equals(otherPredAST.getText()) ) {
+    #                 return false;
+    #             }
+    #         }
+    #     }
+    #     return true;
+    # }
     def to_s
       case (@label)
       when SET
@@ -389,21 +389,21 @@ module Org::Antlr::Analysis
     
     class_module.module_eval {
       typesig { [Label, Label] }
-      #    public String predicatesToString() {
-      #        if ( semanticContext==NFAConfiguration.DEFAULT_CLAUSE_SEMANTIC_CONTEXT ) {
-      #            return "!other preds";
-      #        }
-      #        StringBuffer buf = new StringBuffer();
-      #        Iterator iter = semanticContext.iterator();
-      #        while (iter.hasNext()) {
-      #            AST predAST = (AST) iter.next();
-      #            buf.append(predAST.getText());
-      #            if ( iter.hasNext() ) {
-      #                buf.append("&");
-      #            }
-      #        }
-      #        return buf.toString();
-      #    }
+      # public String predicatesToString() {
+      #     if ( semanticContext==NFAConfiguration.DEFAULT_CLAUSE_SEMANTIC_CONTEXT ) {
+      #         return "!other preds";
+      #     }
+      #     StringBuffer buf = new StringBuffer();
+      #     Iterator iter = semanticContext.iterator();
+      #     while (iter.hasNext()) {
+      #         AST predAST = (AST) iter.next();
+      #         buf.append(predAST.getText());
+      #         if ( iter.hasNext() ) {
+      #             buf.append("&");
+      #         }
+      #     }
+      #     return buf.toString();
+      # }
       def intersect(label, edge_label)
         has_intersection = false
         label_is_set = label.is_set

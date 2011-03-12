@@ -211,15 +211,15 @@ module Org::Antlr::Codegen
     # to the two char sequence \n for Java, C, C++, ...  The new string has
     # double-quotes around it as well.  Example String in memory:
     # 
-    # a"[newlinechar]b'c[carriagereturnchar]d[tab]e\f
+    #    a"[newlinechar]b'c[carriagereturnchar]d[tab]e\f
     # 
     # would be converted to the valid Java s:
     # 
-    # "a\"\nb'c\rd\te\\f"
+    #    "a\"\nb'c\rd\te\\f"
     # 
     # or
     # 
-    # a\"\nb'c\rd\te\\f
+    #    a\"\nb'c\rd\te\\f
     # 
     # depending on the quoted arg.
     def get_target_string_literal_from_string(s, quoted)

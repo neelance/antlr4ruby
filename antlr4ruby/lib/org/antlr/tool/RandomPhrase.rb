@@ -42,10 +42,10 @@ module Org::Antlr::Tool
   
   # Generate a random phrase given a grammar.
   # Usage:
-  # java org.antlr.tool.RandomPhrase grammarFile.g startRule [seed]
+  #    java org.antlr.tool.RandomPhrase grammarFile.g startRule [seed]
   # 
   # For example:
-  # java org.antlr.tool.RandomPhrase simple.g program 342
+  #    java org.antlr.tool.RandomPhrase simple.g program 342
   # 
   # The seed acts like a unique identifier so you can get the same random
   # phrase back during unit testing, for example.

@@ -40,38 +40,38 @@ module Org::Antlr::Test
     include_class_members TestInterpretedLexingImports
     
     typesig { [] }
-    # 	static class Tracer implements ANTLRDebugInterface {
-    # 		Grammar g;
-    # 		public DebugActions(Grammar g) {
-    # 			this.g = g;
-    # 		}
-    # 		public void enterRule(String ruleName) {
-    # 			System.out.println("enterRule("+ruleName+")");
-    # 		}
+    # static class Tracer implements ANTLRDebugInterface {
+    #     Grammar g;
+    #     public DebugActions(Grammar g) {
+    #         this.g = g;
+    #     }
+    #     public void enterRule(String ruleName) {
+    #         System.out.println("enterRule("+ruleName+")");
+    #     }
     # 
-    # 		public void exitRule(String ruleName) {
-    # 			System.out.println("exitRule("+ruleName+")");
-    # 		}
+    #     public void exitRule(String ruleName) {
+    #         System.out.println("exitRule("+ruleName+")");
+    #     }
     # 
-    # 		public void matchElement(int type) {
-    # 			System.out.println("matchElement("+g.getTokenName(type)+")");
-    # 		}
+    #     public void matchElement(int type) {
+    #         System.out.println("matchElement("+g.getTokenName(type)+")");
+    #     }
     # 
-    # 		public void mismatchedElement(MismatchedTokenException e) {
-    # 			System.out.println(e);
-    # 			e.printStackTrace(System.out);
-    # 		}
+    #     public void mismatchedElement(MismatchedTokenException e) {
+    #         System.out.println(e);
+    #         e.printStackTrace(System.out);
+    #     }
     # 
-    # 		public void mismatchedSet(MismatchedSetException e) {
-    # 			System.out.println(e);
-    # 			e.printStackTrace(System.out);
-    # 		}
+    #     public void mismatchedSet(MismatchedSetException e) {
+    #         System.out.println(e);
+    #         e.printStackTrace(System.out);
+    #     }
     # 
-    # 		public void noViableAlt(NoViableAltException e) {
-    # 			System.out.println(e);
-    # 			e.printStackTrace(System.out);
-    # 		}
-    # 	}
+    #     public void noViableAlt(NoViableAltException e) {
+    #         System.out.println(e);
+    #         e.printStackTrace(System.out);
+    #     }
+    # }
     # Public default constructor used by TestRig
     def initialize
       super()

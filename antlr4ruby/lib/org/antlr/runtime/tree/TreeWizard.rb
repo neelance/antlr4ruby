@@ -36,100 +36,100 @@ module Org::Antlr::Runtime::Tree
   end
   
   # TODO: next stuff taken from CommonTreeNodeStream
-  # Given a node, add this to the reverse index tokenTypeToStreamIndexesMap.
-  # You can override this method to alter how indexing occurs.  The
-  # default is to create a
+  #       * Given a node, add this to the reverse index tokenTypeToStreamIndexesMap.
+  #  *  You can override this method to alter how indexing occurs.  The
+  #  *  default is to create a
+  #  *
+  #  *    Map<Integer token type,ArrayList<Integer stream index>>
+  #  *
+  #  *  This data structure allows you to find all nodes with type INT in order.
+  #  *
+  #  *  If you really need to find a node of type, say, FUNC quickly then perhaps
+  #  *
+  #  *    Map<Integertoken type,Map<Object tree node,Integer stream index>>
+  #  *
+  #  *  would be better for you.  The interior maps map a tree node to
+  #  *  the index so you don't have to search linearly for a specific node.
+  #  *
+  #  *  If you change this method, you will likely need to change
+  #  *  getNodeIndex(), which extracts information.
+  # protected void fillReverseIndex(Object node, int streamIndex) {
+  #     //System.out.println("revIndex "+node+"@"+streamIndex);
+  #     if ( tokenTypesToReverseIndex==null ) {
+  #         return; // no indexing if this is empty (nothing of interest)
+  #     }
+  #     if ( tokenTypeToStreamIndexesMap==null ) {
+  #         tokenTypeToStreamIndexesMap = new HashMap(); // first indexing op
+  #     }
+  #     int tokenType = adaptor.getType(node);
+  #     Integer tokenTypeI = new Integer(tokenType);
+  #     if ( !(tokenTypesToReverseIndex==INDEX_ALL ||
+  #            tokenTypesToReverseIndex.contains(tokenTypeI)) )
+  #     {
+  #         return; // tokenType not of interest
+  #     }
+  #     Integer streamIndexI = new Integer(streamIndex);
+  #     ArrayList indexes = (ArrayList)tokenTypeToStreamIndexesMap.get(tokenTypeI);
+  #     if ( indexes==null ) {
+  #         indexes = new ArrayList(); // no list yet for this token type
+  #         indexes.add(streamIndexI); // not there yet, add
+  #         tokenTypeToStreamIndexesMap.put(tokenTypeI, indexes);
+  #     }
+  #     else {
+  #         if ( !indexes.contains(streamIndexI) ) {
+  #             indexes.add(streamIndexI); // not there yet, add
+  #         }
+  #     }
+  # }
   # 
-  # Map<Integer token type,ArrayList<Integer stream index>>
+  # /** Track the indicated token type in the reverse index.  Call this
+  #  *  repeatedly for each type or use variant with Set argument to
+  #  *  set all at once.
+  #  * @param tokenType
+  # public void reverseIndex(int tokenType) {
+  #     if ( tokenTypesToReverseIndex==null ) {
+  #         tokenTypesToReverseIndex = new HashSet();
+  #     }
+  #     else if ( tokenTypesToReverseIndex==INDEX_ALL ) {
+  #         return;
+  #     }
+  #     tokenTypesToReverseIndex.add(new Integer(tokenType));
+  # }
   # 
-  # This data structure allows you to find all nodes with type INT in order.
+  # /** Track the indicated token types in the reverse index. Set
+  #  *  to INDEX_ALL to track all token types.
+  # public void reverseIndex(Set tokenTypes) {
+  #     tokenTypesToReverseIndex = tokenTypes;
+  # }
   # 
-  # If you really need to find a node of type, say, FUNC quickly then perhaps
-  # 
-  # Map<Integertoken type,Map<Object tree node,Integer stream index>>
-  # 
-  # would be better for you.  The interior maps map a tree node to
-  # the index so you don't have to search linearly for a specific node.
-  # 
-  # If you change this method, you will likely need to change
-  # getNodeIndex(), which extracts information.
-  # 	protected void fillReverseIndex(Object node, int streamIndex) {
-  # 		//System.out.println("revIndex "+node+"@"+streamIndex);
-  # 		if ( tokenTypesToReverseIndex==null ) {
-  # 			return; // no indexing if this is empty (nothing of interest)
-  # 		}
-  # 		if ( tokenTypeToStreamIndexesMap==null ) {
-  # 			tokenTypeToStreamIndexesMap = new HashMap(); // first indexing op
-  # 		}
-  # 		int tokenType = adaptor.getType(node);
-  # 		Integer tokenTypeI = new Integer(tokenType);
-  # 		if ( !(tokenTypesToReverseIndex==INDEX_ALL ||
-  # 			   tokenTypesToReverseIndex.contains(tokenTypeI)) )
-  # 		{
-  # 			return; // tokenType not of interest
-  # 		}
-  # 		Integer streamIndexI = new Integer(streamIndex);
-  # 		ArrayList indexes = (ArrayList)tokenTypeToStreamIndexesMap.get(tokenTypeI);
-  # 		if ( indexes==null ) {
-  # 			indexes = new ArrayList(); // no list yet for this token type
-  # 			indexes.add(streamIndexI); // not there yet, add
-  # 			tokenTypeToStreamIndexesMap.put(tokenTypeI, indexes);
-  # 		}
-  # 		else {
-  # 			if ( !indexes.contains(streamIndexI) ) {
-  # 				indexes.add(streamIndexI); // not there yet, add
-  # 			}
-  # 		}
-  # 	}
-  # 
-  # 	/** Track the indicated token type in the reverse index.  Call this
-  # repeatedly for each type or use variant with Set argument to
-  # set all at once.
-  # @param tokenType
-  # 	public void reverseIndex(int tokenType) {
-  # 		if ( tokenTypesToReverseIndex==null ) {
-  # 			tokenTypesToReverseIndex = new HashSet();
-  # 		}
-  # 		else if ( tokenTypesToReverseIndex==INDEX_ALL ) {
-  # 			return;
-  # 		}
-  # 		tokenTypesToReverseIndex.add(new Integer(tokenType));
-  # 	}
-  # 
-  # 	/** Track the indicated token types in the reverse index. Set
-  # to INDEX_ALL to track all token types.
-  # 	public void reverseIndex(Set tokenTypes) {
-  # 		tokenTypesToReverseIndex = tokenTypes;
-  # 	}
-  # 
-  # 	/** Given a node pointer, return its index into the node stream.
-  # This is not its Token stream index.  If there is no reverse map
-  # from node to stream index or the map does not contain entries
-  # for node's token type, a linear search of entire stream is used.
-  # 
-  # Return -1 if exact node pointer not in stream.
-  # 	public int getNodeIndex(Object node) {
-  # 		//System.out.println("get "+node);
-  # 		if ( tokenTypeToStreamIndexesMap==null ) {
-  # 			return getNodeIndexLinearly(node);
-  # 		}
-  # 		int tokenType = adaptor.getType(node);
-  # 		Integer tokenTypeI = new Integer(tokenType);
-  # 		ArrayList indexes = (ArrayList)tokenTypeToStreamIndexesMap.get(tokenTypeI);
-  # 		if ( indexes==null ) {
-  # 			//System.out.println("found linearly; stream index = "+getNodeIndexLinearly(node));
-  # 			return getNodeIndexLinearly(node);
-  # 		}
-  # 		for (int i = 0; i < indexes.size(); i++) {
-  # 			Integer streamIndexI = (Integer)indexes.get(i);
-  # 			Object n = get(streamIndexI.intValue());
-  # 			if ( n==node ) {
-  # 				//System.out.println("found in index; stream index = "+streamIndexI);
-  # 				return streamIndexI.intValue(); // found it!
-  # 			}
-  # 		}
-  # 		return -1;
-  # 	}
+  # /** Given a node pointer, return its index into the node stream.
+  #  *  This is not its Token stream index.  If there is no reverse map
+  #  *  from node to stream index or the map does not contain entries
+  #  *  for node's token type, a linear search of entire stream is used.
+  #  *
+  #  *  Return -1 if exact node pointer not in stream.
+  # public int getNodeIndex(Object node) {
+  #     //System.out.println("get "+node);
+  #     if ( tokenTypeToStreamIndexesMap==null ) {
+  #         return getNodeIndexLinearly(node);
+  #     }
+  #     int tokenType = adaptor.getType(node);
+  #     Integer tokenTypeI = new Integer(tokenType);
+  #     ArrayList indexes = (ArrayList)tokenTypeToStreamIndexesMap.get(tokenTypeI);
+  #     if ( indexes==null ) {
+  #         //System.out.println("found linearly; stream index = "+getNodeIndexLinearly(node));
+  #         return getNodeIndexLinearly(node);
+  #     }
+  #     for (int i = 0; i < indexes.size(); i++) {
+  #         Integer streamIndexI = (Integer)indexes.get(i);
+  #         Object n = get(streamIndexI.intValue());
+  #         if ( n==node ) {
+  #             //System.out.println("found in index; stream index = "+streamIndexI);
+  #             return streamIndexI.intValue(); // found it!
+  #         }
+  #     }
+  #     return -1;
+  # }
   # Build and navigate trees with this object.  Must know about the names
   # of tokens so you have to pass in a map or array of token names (from which
   # this class can build the map).  I.e., Token DECL means nothing unless the
@@ -263,23 +263,23 @@ module Org::Antlr::Runtime::Tree
     
     typesig { [TreeAdaptor] }
     # TODO: build indexes for the wizard
-    # During fillBuffer(), we can make a reverse index from a set
-    # of token types of interest to the list of indexes into the
-    # node stream.  This lets us convert a node pointer to a
-    # stream index semi-efficiently for a list of interesting
-    # nodes such as function definition nodes (you'll want to seek
-    # to their bodies for an interpreter).  Also useful for doing
-    # dynamic searches; i.e., go find me all PLUS nodes.
-    # 	protected Map tokenTypeToStreamIndexesMap;
+    #   * During fillBuffer(), we can make a reverse index from a set
+    #  *  of token types of interest to the list of indexes into the
+    #  *  node stream.  This lets us convert a node pointer to a
+    #  *  stream index semi-efficiently for a list of interesting
+    #  *  nodes such as function definition nodes (you'll want to seek
+    #  *  to their bodies for an interpreter).  Also useful for doing
+    #  *  dynamic searches; i.e., go find me all PLUS nodes.
+    # protected Map tokenTypeToStreamIndexesMap;
     # 
-    # 	/** If tokenTypesToReverseIndex set to INDEX_ALL then indexing
-    # occurs for all token types.
-    # 	public static final Set INDEX_ALL = new HashSet();
+    # /** If tokenTypesToReverseIndex set to INDEX_ALL then indexing
+    #  *  occurs for all token types.
+    # public static final Set INDEX_ALL = new HashSet();
     # 
-    # 	/** A set of token types user would like to index for faster lookup.
-    # If this is INDEX_ALL, then all token types are tracked.  If null,
-    # then none are indexed.
-    # 	protected Set tokenTypesToReverseIndex = null;
+    # /** A set of token types user would like to index for faster lookup.
+    #  *  If this is INDEX_ALL, then all token types are tracked.  If null,
+    #  *  then none are indexed.
+    # protected Set tokenTypesToReverseIndex = null;
     def initialize(adaptor)
       @adaptor = nil
       @token_name_to_type_map = nil
@@ -525,8 +525,8 @@ module Org::Antlr::Runtime::Tree
       tokenizer = TreePatternLexer.new(pattern_)
       parser = TreePatternParser.new(tokenizer, self, TreePatternTreeAdaptor.new)
       tpattern = parser.pattern
-      # 		System.out.println("t="+((Tree)t).toStringTree());
-      # 		System.out.println("scant="+tpattern.toStringTree());
+      # System.out.println("t="+((Tree)t).toStringTree());
+      # System.out.println("scant="+tpattern.toStringTree());
       matched = __parse(t, tpattern, labels)
       return matched
     end
@@ -581,7 +581,7 @@ module Org::Antlr::Runtime::Tree
     # Create a tree or node from the indicated tree pattern that closely
     # follows ANTLR tree grammar tree element syntax:
     # 
-    # (root child1 ... child2).
+    #        (root child1 ... child2).
     # 
     # You can also just pass in a node: ID
     # 
@@ -599,14 +599,14 @@ module Org::Antlr::Runtime::Tree
     
     class_module.module_eval {
       typesig { [Object, Object, TreeAdaptor] }
-      # Compare t1 and t2; return true if token types/text, structure match exactly.
-      # The trees are examined in their entirety so that (A B) does not match
-      # (A B C) nor (A (B C)).
-      # 	 // TODO: allow them to pass in a comparator
-      # TODO: have a version that is nonstatic so it can use instance adaptor
-      # 
-      # I cannot rely on the tree node's equals() implementation as I make
-      # no constraints at all on the node types nor interface etc...
+      #  * Compare t1 and t2; return true if token types/text, structure match exactly.
+      # *  The trees are examined in their entirety so that (A B) does not match
+      # *  (A B C) nor (A (B C)).
+      # // TODO: allow them to pass in a comparator
+      # *  TODO: have a version that is nonstatic so it can use instance adaptor
+      # *
+      # *  I cannot rely on the tree node's equals() implementation as I make
+      # *  no constraints at all on the node types nor interface etc...
       def ==(t1, t2, adaptor)
         return __equals(t1, t2, adaptor)
       end

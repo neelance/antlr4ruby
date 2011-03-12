@@ -177,8 +177,8 @@ module Org::Antlr::Tool
     # that terminates a definition such as ',' or ';'.  For example,
     # 
     # scope symbols {
-    # int n;
-    # List names;
+    #     int n;
+    #     List names;
     # }
     # 
     # would pass in definitions equal to the text in between {...} and

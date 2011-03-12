@@ -82,8 +82,8 @@ module Org::Antlr::Misc
     typesig { [Object] }
     def remove(o)
       raise UnsupportedOperationException.new
-      # 		elements.remove(o);
-      #        return super.remove(o);
+      # elements.remove(o);
+      # return super.remove(o);
     end
     
     typesig { [] }
@@ -101,10 +101,10 @@ module Org::Antlr::Misc
     
     typesig { [] }
     def size
-      # 		if ( elements.size()!=super.size() ) {
-      # 			ErrorManager.internalError("OrderedHashSet: elements and set size differs; "+
-      # 									   elements.size()+"!="+super.size());
-      #        }
+      # if ( elements.size()!=super.size() ) {
+      #     ErrorManager.internalError("OrderedHashSet: elements and set size differs; "+
+      #                                elements.size()+"!="+super.size());
+      # }
       return @elements.size
     end
     

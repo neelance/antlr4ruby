@@ -148,10 +148,10 @@ module Org::Antlr::Tool
         # (can have optional action last)
         if (block.has_same_tree_structure(self.attr_char_alias) || block.has_same_tree_structure(self.attr_string_alias) || block.has_same_tree_structure(self.attr_char_alias2) || block.has_same_tree_structure(self.attr_string_alias2))
           @token_rule_defs.add(t.get_text)
-          # 			Grammar parent = grammar.composite.getDelegator(grammar);
-          # 			boolean importedByParserOrCombined =
-          # 				parent!=null &&
-          # 				(parent.type==Grammar.LEXER||parent.type==Grammar.PARSER);
+          # Grammar parent = grammar.composite.getDelegator(grammar);
+          # boolean importedByParserOrCombined =
+          #     parent!=null &&
+          #     (parent.type==Grammar.LEXER||parent.type==Grammar.PARSER);
           if ((self.attr_grammar.attr_type).equal?(Grammar::COMBINED) || (self.attr_grammar.attr_type).equal?(Grammar::LEXER))
             # only call this rule an alias if combined or lexer
             alias_(t, block.get_first_child.get_first_child)
@@ -198,35 +198,35 @@ module Org::Antlr::Tool
     
     typesig { [Grammar] }
     def define_tokens(root)
-      # 	System.out.println("stringLiterals="+stringLiterals);
-      # 	System.out.println("tokens="+tokens);
-      # 	System.out.println("aliases="+aliases);
-      # 	System.out.println("aliasesReverseIndex="+aliasesReverseIndex);
+      # System.out.println("stringLiterals="+stringLiterals);
+      # System.out.println("tokens="+tokens);
+      # System.out.println("aliases="+aliases);
+      # System.out.println("aliasesReverseIndex="+aliasesReverseIndex);
       assign_token_idtypes(root)
       alias_token_ids_and_literals(root)
       assign_string_types(root)
-      # 	System.out.println("stringLiterals="+stringLiterals);
-      # 	System.out.println("tokens="+tokens);
-      # 	System.out.println("aliases="+aliases);
+      # System.out.println("stringLiterals="+stringLiterals);
+      # System.out.println("tokens="+tokens);
+      # System.out.println("aliases="+aliases);
       define_token_names_and_literals_in_grammar(root)
     end
     
     typesig { [Grammar] }
     # protected void defineStringLiteralsFromDelegates() {
-    # 	 if ( grammar.getGrammarIsMaster() && grammar.type==Grammar.COMBINED ) {
-    # 		 List<Grammar> delegates = grammar.getDelegates();
-    # 		 System.out.println("delegates in master combined: "+delegates);
-    # 		 for (int i = 0; i < delegates.size(); i++) {
-    # 			 Grammar d = (Grammar) delegates.get(i);
-    # 			 Set<String> literals = d.getStringLiterals();
-    # 			 for (Iterator it = literals.iterator(); it.hasNext();) {
-    # 				 String literal = (String) it.next();
-    # 				 System.out.println("literal "+literal);
-    # 				 int ttype = grammar.getTokenType(literal);
-    # 				 grammar.defineLexerRuleForStringLiteral(literal, ttype);
-    # 			 }
-    # 		 }
-    # 	 }
+    #      if ( grammar.getGrammarIsMaster() && grammar.type==Grammar.COMBINED ) {
+    #          List<Grammar> delegates = grammar.getDelegates();
+    #          System.out.println("delegates in master combined: "+delegates);
+    #          for (int i = 0; i < delegates.size(); i++) {
+    #              Grammar d = (Grammar) delegates.get(i);
+    #              Set<String> literals = d.getStringLiterals();
+    #              for (Iterator it = literals.iterator(); it.hasNext();) {
+    #                  String literal = (String) it.next();
+    #                  System.out.println("literal "+literal);
+    #                  int ttype = grammar.getTokenType(literal);
+    #                  grammar.defineLexerRuleForStringLiteral(literal, ttype);
+    #              }
+    #          }
+    #      }
     # }
     def assign_string_types(root)
       # walk string literals assigning types to unassigned ones

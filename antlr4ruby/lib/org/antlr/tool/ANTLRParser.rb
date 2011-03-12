@@ -61,12 +61,12 @@ module Org::Antlr::Tool
   # 
   # The phases are:
   # 
-  # antlr.g (this file)
-  # assign.types.g
-  # define.g
-  # buildnfa.g
-  # antlr.print.g (optional)
-  # codegen.g
+  #       antlr.g (this file)
+  #       assign.types.g
+  #       define.g
+  #       buildnfa.g
+  #       antlr.print.g (optional)
+  #       codegen.g
   # 
   # Terence Parr
   # University of San Francisco
@@ -2549,15 +2549,15 @@ module Org::Antlr::Tool
     
     typesig { [] }
     # Build a tree for a template rewrite:
-    #      ^(TEMPLATE (ID|ACTION) ^(ARGLIST ^(ARG ID ACTION) ...) )
-    #    where ARGLIST is always there even if no args exist.
-    #    ID can be "template" keyword.  If first child is ACTION then it's
-    #    an indirect template ref
+    #   ^(TEMPLATE (ID|ACTION) ^(ARGLIST ^(ARG ID ACTION) ...) )
+    # where ARGLIST is always there even if no args exist.
+    # ID can be "template" keyword.  If first child is ACTION then it's
+    # an indirect template ref
     # 
-    #    -> foo(a={...}, b={...})
-    #    -> ({string-e})(a={...}, b={...})  // e evaluates to template name
-    #    -> {%{$ID.text}} // create literal template from string (done in ActionTranslator)
-    # 	-> {st-expr} // st-expr evaluates to ST
+    # -> foo(a={...}, b={...})
+    # -> ({string-e})(a={...}, b={...})  // e evaluates to template name
+    # -> {%{$ID.text}} // create literal template from string (done in ActionTranslator)
+    # -> {st-expr} // st-expr evaluates to ST
     def rewrite_template
       self.attr_return_ast = nil
       current_ast = ASTPair.new

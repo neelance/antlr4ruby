@@ -129,19 +129,19 @@ module Org::Antlr::Test
     end
     
     typesig { [] }
-    # 	public void testIncompleteSemanticHoistedContextk2() throws Exception {
-    # 		ErrorQueue equeue = new ErrorQueue();
-    # 		ErrorManager.setErrorListener(equeue);
-    # 		Grammar g = new Grammar(
-    # 			"parser grammar t;\n"+
-    # 			"a : b | A B;\n" +
-    # 			"b : {p1}? A B | A B ;");
-    # 		String expecting =
-    # 			".s0-A->.s1\n" +
-    # 			".s1-B->:s2=>1\n";
-    # 		checkDecision(g, 1, expecting, new int[] {2},
-    # 					  new int[] {1,2}, "A B", new int[] {1}, null, 3);
-    # 	}
+    # public void testIncompleteSemanticHoistedContextk2() throws Exception {
+    #     ErrorQueue equeue = new ErrorQueue();
+    #     ErrorManager.setErrorListener(equeue);
+    #     Grammar g = new Grammar(
+    #         "parser grammar t;\n"+
+    #         "a : b | A B;\n" +
+    #         "b : {p1}? A B | A B ;");
+    #     String expecting =
+    #         ".s0-A->.s1\n" +
+    #         ".s1-B->:s2=>1\n";
+    #     checkDecision(g, 1, expecting, new int[] {2},
+    #                   new int[] {1,2}, "A B", new int[] {1}, null, 3);
+    # }
     def test_hoist2
       g = Grammar.new("parser grammar P;\n" + "a : b | c ;\n" + "b : {p1}? A ;\n" + "c : {p2}? A ;\n")
       expecting = ".s0-A->.s1\n" + ".s1-{p1}?->:s2=>1\n" + ".s1-{p2}?->:s3=>2\n"
@@ -186,8 +186,8 @@ module Org::Antlr::Test
       end
       dfa = g.get_lookahead_dfa(1)
       assert_equals(nil, dfa) # can't analyze.
-      # 		String result = serializer.serialize(dfa.startState);
-      # 		assertEquals(expecting, result);
+      # String result = serializer.serialize(dfa.startState);
+      # assertEquals(expecting, result);
       assert_equals("unexpected number of expected problems", 1, equeue.size)
       msg = equeue.attr_warnings.get(0)
       assert_true("warning must be a left recursion msg", msg.is_a?(LeftRecursionCyclesMessage))

@@ -212,7 +212,7 @@ module Org::Antlr::Runtime::Tree
     
     typesig { [Object] }
     # When constructing trees, sometimes we need to dup a token or AST
-    # subtree.  Dup'ing a token means just creating another AST node
+    #    subtree.  Dup'ing a token means just creating another AST node
     # around it.  For trees, you must call the adaptor.dupTree() unless
     # the element is for a tree root; then it must be a node dup.
     def dup(el)

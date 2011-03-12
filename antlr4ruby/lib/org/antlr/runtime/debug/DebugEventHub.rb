@@ -74,12 +74,12 @@ module Org::Antlr::Runtime::Debug
     
     typesig { [String, String] }
     # To avoid a mess like this:
-    # 		public void enterRule(final String ruleName) {
-    # 			broadcast(new Code(){
-    # 				public void exec(DebugEventListener listener) {listener.enterRule(ruleName);}}
-    # 				);
-    # 		}
-    # 		I am dup'ing the for-loop in each.  Where are Java closures!? blech!
+    #  public void enterRule(final String ruleName) {
+    #      broadcast(new Code(){
+    #          public void exec(DebugEventListener listener) {listener.enterRule(ruleName);}}
+    #          );
+    #  }
+    #  I am dup'ing the for-loop in each.  Where are Java closures!? blech!
     def enter_rule(grammar_file_name, rule_name)
       i = 0
       while i < @listeners.size

@@ -109,8 +109,8 @@ module Org::Antlr::Tool
           epsilon_target = t.attr_target
           if ((epsilon_target.attr_end_of_block_state_number).equal?(State::INVALID_STATE_NUMBER) && !(epsilon_target.attr_transition[0]).nil?)
             s.set_transition0(epsilon_target.attr_transition[0])
-            # 					System.out.println("### opt "+s.stateNumber+"->"+
-            # 									   epsilonTarget.transition(0).target.stateNumber);
+            # System.out.println("### opt "+s.stateNumber+"->"+
+            #                    epsilonTarget.transition(0).target.stateNumber);
           end
         end
         s = t.attr_target
@@ -151,19 +151,19 @@ module Org::Antlr::Tool
     end
     
     typesig { [::Java::Int, ::Java::Int] }
-    # Can only complement block of simple alts; can complement build_Set()
-    # result, that is.  Get set and complement, replace old with complement.
-    #    public StateCluster build_AlternativeBlockComplement(StateCluster blk) {
-    #        State s0 = blk.left;
-    #        IntSet set = getCollapsedBlockAsSet(s0);
-    #        if ( set!=null ) {
-    #            // if set is available, then structure known and blk is a set
-    #            set = nfa.grammar.complement(set);
-    #            Label label = s0.transition(0).target.transition(0).label;
-    #            label.setSet(set);
-    #        }
-    #        return blk;
-    #    }
+    #   * Can only complement block of simple alts; can complement build_Set()
+    #  *  result, that is.  Get set and complement, replace old with complement.
+    # public StateCluster build_AlternativeBlockComplement(StateCluster blk) {
+    #     State s0 = blk.left;
+    #     IntSet set = getCollapsedBlockAsSet(s0);
+    #     if ( set!=null ) {
+    #         // if set is available, then structure known and blk is a set
+    #         set = nfa.grammar.complement(set);
+    #         Label label = s0.transition(0).target.transition(0).label;
+    #         label.setSet(set);
+    #     }
+    #     return blk;
+    # }
     def build__range(a, b)
       left = new_state
       right = new_state
@@ -323,9 +323,9 @@ module Org::Antlr::Tool
         label = Label::EOT
         end_.set_eottarget_state(true)
       end
-      # 		System.out.println("build "+nfa.grammar.getTokenDisplayName(label)+
-      # 						   " loop on end of state "+endNFAState.getDescription()+
-      # 						   " to state "+end.stateNumber);
+      # System.out.println("build "+nfa.grammar.getTokenDisplayName(label)+
+      #                    " loop on end of state "+endNFAState.getDescription()+
+      #                    " to state "+end.stateNumber);
       to_end = Transition.new(label, end_)
       end_nfastate.add_transition(to_end)
     end
@@ -482,8 +482,8 @@ module Org::Antlr::Tool
     typesig { [StateCluster] }
     # From (A)+ build
     # 
-    # |---|    (Transition 2 from A.right points at alt 1)
-    # v   |    (follow of loop is Transition 1)
+    #    |---|    (Transition 2 from A.right points at alt 1)
+    #    v   |    (follow of loop is Transition 1)
     # o->o-A-o->o
     # 
     # Meaning that the last NFAState in A points back to A's left Transition NFAState
@@ -519,8 +519,8 @@ module Org::Antlr::Tool
     typesig { [StateCluster] }
     # From (A)* build
     # 
-    # |---|
-    # v   |
+    #    |---|
+    #    v   |
     # o->o-A-o--o (Transition 2 from block end points at alt 1; follow is Transition 1)
     # |         ^
     # o---------| (optional branch is 2nd alt of optional block containing A+)
@@ -586,64 +586,64 @@ module Org::Antlr::Tool
     end
     
     typesig { [] }
-    # Build an NFA predictor for special rule called Tokens manually that
-    # predicts which token will succeed.  The refs to the rules are not
-    # RuleRefTransitions as I want DFA conversion to stop at the EOT
-    # transition on the end of each token, rather than return to Tokens rule.
-    # If I used normal build_alternativeBlock for this, the RuleRefTransitions
-    # would save return address when jumping away from Tokens rule.
+    #   * Build an NFA predictor for special rule called Tokens manually that
+    #  *  predicts which token will succeed.  The refs to the rules are not
+    #  *  RuleRefTransitions as I want DFA conversion to stop at the EOT
+    #  *  transition on the end of each token, rather than return to Tokens rule.
+    #  *  If I used normal build_alternativeBlock for this, the RuleRefTransitions
+    #  *  would save return address when jumping away from Tokens rule.
+    #  *
+    #  *  All I do here is build n new states for n rules with an epsilon
+    #  *  edge to the rule start states and then to the next state in the
+    #  *  list:
+    #  *
+    #  *   o->(A)  (a state links to start of A and to next in list)
+    #  *   |
+    #  *   o->(B)
+    #  *   |
+    #  *   ...
+    #  *   |
+    #  *   o->(Z)
+    #  *
+    #  *  This is the NFA created for the artificial rule created in
+    #  *  Grammar.addArtificialMatchTokensRule().
+    #  *
+    #  *  11/28/2005: removed so we can use normal rule construction for Tokens.
+    # public NFAState build_ArtificialMatchTokensRuleNFA() {
+    #     int altNum = 1;
+    #     NFAState firstAlt = null; // the start state for the "rule"
+    #     NFAState prevAlternative = null;
+    #     Iterator iter = nfa.grammar.getRules().iterator();
+    #     // TODO: add a single decision node/state for good description
+    #     while (iter.hasNext()) {
+    #         Rule r = (Rule) iter.next();
+    #         String ruleName = r.name;
+    #         String modifier = nfa.grammar.getRuleModifier(ruleName);
+    #         if ( ruleName.equals(Grammar.ARTIFICIAL_TOKENS_RULENAME) ||
+    #              (modifier!=null &&
+    #               modifier.equals(Grammar.FRAGMENT_RULE_MODIFIER)) )
+    #         {
+    #             continue; // don't loop to yourself or do nontoken rules
+    #         }
+    #         NFAState ruleStartState = nfa.grammar.getRuleStartState(ruleName);
+    #         NFAState left = newState();
+    #         left.setDescription("alt "+altNum+" of artificial rule "+Grammar.ARTIFICIAL_TOKENS_RULENAME);
+    #         transitionBetweenStates(left, ruleStartState, Label.EPSILON);
+    #         // Are we the first alternative?
+    #         if ( firstAlt==null ) {
+    #             firstAlt = left; // track extreme top left node as rule start
+    #         }
+    #         else {
+    #             // if not first alternative, must link to this alt from previous
+    #             transitionBetweenStates(prevAlternative, left, Label.EPSILON);
+    #         }
+    #         prevAlternative = left;
+    #         altNum++;
+    #     }
+    #     firstAlt.decisionStateType = NFAState.BLOCK_START;
     # 
-    # All I do here is build n new states for n rules with an epsilon
-    # edge to the rule start states and then to the next state in the
-    # list:
-    # 
-    # o->(A)  (a state links to start of A and to next in list)
-    # |
-    # o->(B)
-    # |
-    # ...
-    # |
-    # o->(Z)
-    # 
-    # This is the NFA created for the artificial rule created in
-    # Grammar.addArtificialMatchTokensRule().
-    # 
-    # 11/28/2005: removed so we can use normal rule construction for Tokens.
-    #    public NFAState build_ArtificialMatchTokensRuleNFA() {
-    #        int altNum = 1;
-    #        NFAState firstAlt = null; // the start state for the "rule"
-    #        NFAState prevAlternative = null;
-    #        Iterator iter = nfa.grammar.getRules().iterator();
-    # 		// TODO: add a single decision node/state for good description
-    #        while (iter.hasNext()) {
-    # 			Rule r = (Rule) iter.next();
-    #            String ruleName = r.name;
-    # 			String modifier = nfa.grammar.getRuleModifier(ruleName);
-    #            if ( ruleName.equals(Grammar.ARTIFICIAL_TOKENS_RULENAME) ||
-    # 				 (modifier!=null &&
-    # 				  modifier.equals(Grammar.FRAGMENT_RULE_MODIFIER)) )
-    # 			{
-    #                continue; // don't loop to yourself or do nontoken rules
-    #            }
-    #            NFAState ruleStartState = nfa.grammar.getRuleStartState(ruleName);
-    #            NFAState left = newState();
-    #            left.setDescription("alt "+altNum+" of artificial rule "+Grammar.ARTIFICIAL_TOKENS_RULENAME);
-    #            transitionBetweenStates(left, ruleStartState, Label.EPSILON);
-    #            // Are we the first alternative?
-    #            if ( firstAlt==null ) {
-    #                firstAlt = left; // track extreme top left node as rule start
-    #            }
-    #            else {
-    #                // if not first alternative, must link to this alt from previous
-    #                transitionBetweenStates(prevAlternative, left, Label.EPSILON);
-    #            }
-    #            prevAlternative = left;
-    #            altNum++;
-    #        }
-    # 		firstAlt.decisionStateType = NFAState.BLOCK_START;
-    # 
-    #        return firstAlt;
-    #    }
+    #     return firstAlt;
+    # }
     # Build an atom with all possible values in its label
     def build__wildcard
       left = new_state

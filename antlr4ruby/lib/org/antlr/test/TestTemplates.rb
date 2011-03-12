@@ -217,9 +217,9 @@ module Org::Antlr::Test
     
     typesig { [ErrorQueue, GrammarSemanticsMessage] }
     def check_error(equeue, expected_message)
-      # 		System.out.println(equeue.infos);
-      # 		System.out.println(equeue.warnings);
-      # 		System.out.println(equeue.errors);
+      # System.out.println(equeue.infos);
+      # System.out.println(equeue.warnings);
+      # System.out.println(equeue.errors);
       found_msg = nil
       i = 0
       while i < equeue.attr_errors.size

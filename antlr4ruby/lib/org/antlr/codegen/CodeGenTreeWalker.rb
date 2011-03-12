@@ -1113,20 +1113,20 @@ module Org::Antlr::Codegen
       code = @templates.get_instance_of("alt")
       alternative_ast_in = ((_t).equal?(ASTNULL)) ? nil : _t
       a = nil
-      # 		// TODO: can we use Rule.altsWithRewrites???
-      # 		if ( blockNestingLevel==RULE_BLOCK_NESTING_LEVEL ) {
-      # 			GrammarAST aRewriteNode = #alternative.findFirstType(REWRITE);
-      # 			if ( grammar.buildAST() &&
-      # 				 (aRewriteNode!=null||
-      # 				 (#alternative.getNextSibling()!=null &&
-      # 				  #alternative.getNextSibling().getType()==REWRITE)) )
-      # 			{
-      # 				currentAltHasASTRewrite = true;
-      # 			}
-      # 			else {
-      # 				currentAltHasASTRewrite = false;
-      # 			}
-      # 		}
+      # // TODO: can we use Rule.altsWithRewrites???
+      # if ( blockNestingLevel==RULE_BLOCK_NESTING_LEVEL ) {
+      #     GrammarAST aRewriteNode = #alternative.findFirstType(REWRITE);
+      #     if ( grammar.buildAST() &&
+      #          (aRewriteNode!=null||
+      #          (#alternative.getNextSibling()!=null &&
+      #           #alternative.getNextSibling().getType()==REWRITE)) )
+      #     {
+      #         currentAltHasASTRewrite = true;
+      #     }
+      #     else {
+      #         currentAltHasASTRewrite = false;
+      #     }
+      # }
       if ((@block_nesting_level).equal?(RULE_BLOCK_NESTING_LEVEL) && @grammar.build_ast)
         r = @grammar.get_rule(@current_rule_name)
         @current_alt_has_astrewrite = r.has_rewrite(@outer_alt_num)

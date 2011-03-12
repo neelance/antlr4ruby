@@ -47,29 +47,29 @@ module Org::Antlr::Codegen
     }
   end
   
-  # ANTLR's code generator.
+  #  ANTLR's code generator.
   # 
-  # Generate recognizers derived from grammars.  Language independence
-  # achieved through the use of StringTemplateGroup objects.  All output
-  # strings are completely encapsulated in the group files such as Java.stg.
-  # Some computations are done that are unused by a particular language.
-  # This generator just computes and sets the values into the templates;
-  # the templates are free to use or not use the information.
+  #  Generate recognizers derived from grammars.  Language independence
+  #  achieved through the use of StringTemplateGroup objects.  All output
+  #  strings are completely encapsulated in the group files such as Java.stg.
+  #  Some computations are done that are unused by a particular language.
+  #  This generator just computes and sets the values into the templates;
+  #  the templates are free to use or not use the information.
   # 
-  # To make a new code generation target, define X.stg for language X
-  # by copying from existing Y.stg most closely releated to your language;
-  # e.g., to do CSharp.stg copy Java.stg.  The template group file has a
-  # bunch of templates that are needed by the code generator.  You can add
-  # a new target w/o even recompiling ANTLR itself.  The language=X option
-  # in a grammar file dictates which templates get loaded/used.
+  #  To make a new code generation target, define X.stg for language X
+  #  by copying from existing Y.stg most closely releated to your language;
+  #  e.g., to do CSharp.stg copy Java.stg.  The template group file has a
+  #  bunch of templates that are needed by the code generator.  You can add
+  #  a new target w/o even recompiling ANTLR itself.  The language=X option
+  #  in a grammar file dictates which templates get loaded/used.
   # 
-  # Some language like C need both parser files and header files.  Java needs
-  # to have a separate file for the cyclic DFA as ANTLR generates bytecodes
-  # directly (which cannot be in the generated parser Java file).  To facilitate
-  # this,
+  #  Some language like C need both parser files and header files.  Java needs
+  #  to have a separate file for the cyclic DFA as ANTLR generates bytecodes
+  #  directly (which cannot be in the generated parser Java file).  To facilitate
+  #  this,
   # 
   # cyclic can be in same file, but header, output must be searpate.  recognizer
-  # is in outptufile.
+  #  is in outptufile.
   class CodeGenerator 
     include_class_members CodeGeneratorImports
     
@@ -235,8 +235,8 @@ module Org::Antlr::Codegen
     
     class_module.module_eval {
       # I have factored out the generation of cyclic DFAs to separate class
-      # 	public CyclicDFACodeGenerator cyclicDFAGenerator =
-      # 		new CyclicDFACodeGenerator(this);
+      # public CyclicDFACodeGenerator cyclicDFAGenerator =
+      #     new CyclicDFACodeGenerator(this);
       const_set_lazy(:VOCAB_FILE_EXTENSION) { ".tokens" }
       const_attr_reader  :VOCAB_FILE_EXTENSION
       
@@ -366,8 +366,8 @@ module Org::Antlr::Codegen
     # 
     # Either 1 or 2 files are written:
     # 
-    # recognizer: the main parser/lexer/treewalker item
-    # header file: language like C/C++ need extern definitions
+    #        recognizer: the main parser/lexer/treewalker item
+    #        header file: language like C/C++ need extern definitions
     # 
     # The target, such as JavaTarget, dictates which files get written.
     def gen_recognizer
@@ -515,8 +515,8 @@ module Org::Antlr::Codegen
       rescue IOException => ioe
         ErrorManager.error(ErrorManager::MSG_CANNOT_WRITE_FILE, get_vocab_file_name, ioe)
       end
-      # 		System.out.println("num obj.prop refs: "+ ASTExpr.totalObjPropRefs);
-      # 		System.out.println("num reflection lookups: "+ ASTExpr.totalReflectionLookups);
+      # System.out.println("num obj.prop refs: "+ ASTExpr.totalObjPropRefs);
+      # System.out.println("num reflection lookups: "+ ASTExpr.totalReflectionLookups);
       return @output_file_st
     end
     
@@ -587,10 +587,10 @@ module Org::Antlr::Codegen
     # Like Grosch I implemented local FOLLOW sets that are combined at run-time
     # upon error to avoid parsing overhead.
     def generate_local_follow(referenced_element_node, referenced_element_name, enclosing_rule_name, element_index)
-      # 		System.out.println("compute FOLLOW "+grammar.name+"."+referencedElementNode.toString()+
-      # 						 " for "+referencedElementName+"#"+elementIndex +" in "+
-      # 						 enclosingRuleName+
-      # 						 " line="+referencedElementNode.getLine());
+      # System.out.println("compute FOLLOW "+grammar.name+"."+referencedElementNode.toString()+
+      #                  " for "+referencedElementName+"#"+elementIndex +" in "+
+      #                  enclosingRuleName+
+      #                  " line="+referencedElementNode.getLine());
       following_nfastate = referenced_element_node.attr_following_nfastate
       follow = nil
       if (!(following_nfastate).nil?)
@@ -1150,13 +1150,13 @@ module Org::Antlr::Codegen
       ext_st = @templates.get_instance_of("codeFileExtension")
       recognizer_name = @grammar.get_recognizer_name
       return recognizer_name + RJava.cast_to_string(ext_st.to_s)
-      # 		String suffix = "";
-      # 		if ( type==Grammar.COMBINED ||
-      # 			 (type==Grammar.LEXER && !grammar.implicitLexer) )
-      # 		{
-      # 			suffix = Grammar.grammarTypeToFileNameSuffix[type];
-      # 		}
-      # 		return name+suffix+extST.toString();
+      # String suffix = "";
+      # if ( type==Grammar.COMBINED ||
+      #      (type==Grammar.LEXER && !grammar.implicitLexer) )
+      # {
+      #     suffix = Grammar.grammarTypeToFileNameSuffix[type];
+      # }
+      # return name+suffix+extST.toString();
     end
     
     typesig { [] }

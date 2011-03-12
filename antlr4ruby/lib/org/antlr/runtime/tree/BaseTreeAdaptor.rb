@@ -130,19 +130,19 @@ module Org::Antlr::Runtime::Tree
     # If oldRoot is a nil root, just copy or move the children to newRoot.
     # If not a nil root, make oldRoot a child of newRoot.
     # 
-    # old=^(nil a b c), new=r yields ^(r a b c)
-    # old=^(a b c), new=r yields ^(r ^(a b c))
+    #   old=^(nil a b c), new=r yields ^(r a b c)
+    #   old=^(a b c), new=r yields ^(r ^(a b c))
     # 
     # If newRoot is a nil-rooted single child tree, use the single
     # child as the new root node.
     # 
-    # old=^(nil a b c), new=^(nil r) yields ^(r a b c)
-    # old=^(a b c), new=^(nil r) yields ^(r ^(a b c))
+    #   old=^(nil a b c), new=^(nil r) yields ^(r a b c)
+    #   old=^(a b c), new=^(nil r) yields ^(r ^(a b c))
     # 
     # If oldRoot was null, it's ok, just return newRoot (even if isNil).
     # 
-    # old=null, new=r yields r
-    # old=null, new=^(nil r) yields ^(nil r)
+    #   old=null, new=r yields r
+    #   old=null, new=^(nil r) yields ^(nil r)
     # 
     # Return newRoot.  Throw an exception if newRoot is not a
     # simple node or nil root with a single child node--it must be a root
@@ -308,7 +308,7 @@ module Org::Antlr::Runtime::Tree
     # an actual real input token.  Typically this is for converting '{'
     # tokens to BLOCK etc...  You'll see
     # 
-    # r : lc='{' ID+ '}' -> ^(BLOCK[$lc] ID+) ;
+    #   r : lc='{' ID+ '}' -> ^(BLOCK[$lc] ID+) ;
     # 
     # If you care what the token payload objects' type is, you should
     # override this method and any other createToken variant.

@@ -49,7 +49,7 @@ module Org::Antlr::Runtime::Tree
     
     typesig { [Object] }
     # Duplicate a node.  This is part of the factory;
-    # override if you want another kind of node to be built.
+    #   override if you want another kind of node to be built.
     # 
     # I could use reflection to prevent having to override this
     # but reflection is slow.
@@ -87,7 +87,7 @@ module Org::Antlr::Runtime::Tree
     # an actual real input token.  Typically this is for converting '{'
     # tokens to BLOCK etc...  You'll see
     # 
-    # r : lc='{' ID+ '}' -> ^(BLOCK[$lc] ID+) ;
+    #   r : lc='{' ID+ '}' -> ^(BLOCK[$lc] ID+) ;
     # 
     # If you care what the token payload objects' type is, you should
     # override this method and any other createToken variant.

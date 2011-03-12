@@ -43,16 +43,16 @@ module Org::Antlr::Runtime::Tree
   # This is a set of non-static methods so you can subclass
   # to override.  For example, here is an invocation:
   # 
-  # CharStream input = new ANTLRInputStream(System.in);
-  # TLexer lex = new TLexer(input);
-  # CommonTokenStream tokens = new CommonTokenStream(lex);
-  # TParser parser = new TParser(tokens);
-  # TParser.e_return r = parser.e();
-  # Tree t = (Tree)r.tree;
-  # System.out.println(t.toStringTree());
-  # DOTTreeGenerator gen = new DOTTreeGenerator();
-  # StringTemplate st = gen.toDOT(t);
-  # System.out.println(st);
+  #     CharStream input = new ANTLRInputStream(System.in);
+  #     TLexer lex = new TLexer(input);
+  #     CommonTokenStream tokens = new CommonTokenStream(lex);
+  #     TParser parser = new TParser(tokens);
+  #     TParser.e_return r = parser.e();
+  #     Tree t = (Tree)r.tree;
+  #     System.out.println(t.toStringTree());
+  #     DOTTreeGenerator gen = new DOTTreeGenerator();
+  #     StringTemplate st = gen.toDOT(t);
+  #     System.out.println(st);
   class DOTTreeGenerator 
     include_class_members DOTTreeGeneratorImports
     
@@ -112,10 +112,10 @@ module Org::Antlr::Runtime::Tree
       to_dotdefine_nodes(tree, adaptor, tree_st)
       @node_number = 0
       to_dotdefine_edges(tree, adaptor, tree_st)
-      # 		if ( adaptor.getChildCount(tree)==0 ) {
-      #            // single node, don't do edge.
-      #            treeST.setAttribute("nodes", adaptor.getText(tree));
-      #        }
+      # if ( adaptor.getChildCount(tree)==0 ) {
+      #     // single node, don't do edge.
+      #     treeST.setAttribute("nodes", adaptor.getText(tree));
+      # }
       return tree_st
     end
     
@@ -125,17 +125,17 @@ module Org::Antlr::Runtime::Tree
     end
     
     typesig { [Tree] }
-    # Generate DOT (graphviz) for a whole tree not just a node.
-    # For example, 3+4*5 should generate:
+    #  Generate DOT (graphviz) for a whole tree not just a node.
+    #  For example, 3+4*5 should generate:
     # 
     # digraph {
-    # node [shape=plaintext, fixedsize=true, fontsize=11, fontname="Courier",
-    # width=.4, height=.2];
-    # edge [arrowsize=.7]
-    # "+"->3
-    # "+"->"*"
-    # "*"->4
-    # "*"->5
+    #   node [shape=plaintext, fixedsize=true, fontsize=11, fontname="Courier",
+    #         width=.4, height=.2];
+    #   edge [arrowsize=.7]
+    #   "+"->3
+    #   "+"->"*"
+    #   "*"->4
+    #   "*"->5
     # }
     # 
     # Return the ST not a string in case people want to alter.

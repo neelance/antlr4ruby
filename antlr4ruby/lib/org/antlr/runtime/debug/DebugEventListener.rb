@@ -210,39 +210,39 @@ module Org::Antlr::Runtime::Debug
     # Here is a sample event trace for grammar:
     # 
     # b : C ({;}A|B) // {;} is there to prevent A|B becoming a set
-    # | D
-    # ;
+    #   | D
+    #   ;
     # 
     # The sequence for this rule (with no viable alt in the subrule) for
     # input 'c c' (there are 3 tokens) is:
     # 
-    # commence
-    # LT(1)
-    # enterRule b
-    # location 7 1
-    # enter decision 3
-    # LT(1)
-    # exit decision 3
-    # enterAlt1
-    # location 7 5
-    # LT(1)
-    # consumeToken [c/<4>,1:0]
-    # location 7 7
-    # enterSubRule 2
-    # enter decision 2
-    # LT(1)
-    # LT(1)
-    # recognitionException NoViableAltException 2 1 2
-    # exit decision 2
-    # exitSubRule 2
-    # beginResync
-    # LT(1)
-    # consumeToken [c/<4>,1:1]
-    # LT(1)
-    # endResync
-    # LT(-1)
-    # exitRule b
-    # terminate
+    #       commence
+    #       LT(1)
+    #       enterRule b
+    #       location 7 1
+    #       enter decision 3
+    #       LT(1)
+    #       exit decision 3
+    #       enterAlt1
+    #       location 7 5
+    #       LT(1)
+    #       consumeToken [c/<4>,1:0]
+    #       location 7 7
+    #       enterSubRule 2
+    #       enter decision 2
+    #       LT(1)
+    #       LT(1)
+    #       recognitionException NoViableAltException 2 1 2
+    #       exit decision 2
+    #       exitSubRule 2
+    #       beginResync
+    #       LT(1)
+    #       consumeToken [c/<4>,1:1]
+    #       LT(1)
+    #       endResync
+    #       LT(-1)
+    #       exitRule b
+    #       terminate
     def recognition_exception(e)
       raise NotImplementedError
     end
@@ -295,13 +295,13 @@ module Org::Antlr::Runtime::Debug
     
     typesig { [Object] }
     # T r e e  P a r s i n g
-    # Input for a tree parser is an AST, but we know nothing for sure
-    # about a node except its type and text (obtained from the adaptor).
-    # This is the analog of the consumeToken method.  Again, the ID is
-    # the hashCode usually of the node so it only works if hashCode is
-    # not implemented.  If the type is UP or DOWN, then
-    # the ID is not really meaningful as it's fixed--there is
-    # just one UP node and one DOWN navigation node.
+    #  Input for a tree parser is an AST, but we know nothing for sure
+    #  about a node except its type and text (obtained from the adaptor).
+    #  This is the analog of the consumeToken method.  Again, the ID is
+    #  the hashCode usually of the node so it only works if hashCode is
+    #  not implemented.  If the type is UP or DOWN, then
+    #  the ID is not really meaningful as it's fixed--there is
+    #  just one UP node and one DOWN navigation node.
     # @param t
     def consume_node(t)
       raise NotImplementedError
@@ -323,15 +323,15 @@ module Org::Antlr::Runtime::Debug
     # such as when entering a subrule in automatic mode and when
     # building a tree in rewrite mode.
     # 
-    # If you are receiving this event over a socket via
+    #  If you are receiving this event over a socket via
     # RemoteDebugEventSocketListener then only t.ID is set.
     def nil_node(t)
       raise NotImplementedError
     end
     
     typesig { [Object] }
-    # Upon syntax error, recognizers bracket the error with an error node
-    # if they are building ASTs.
+    #  Upon syntax error, recognizers bracket the error with an error node
+    #  if they are building ASTs.
     # @param t
     def error_node(t)
       raise NotImplementedError

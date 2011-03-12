@@ -34,7 +34,7 @@ module Org::Antlr::Runtime::Misc
     }
   end
   
-  # Stats routines needed by profiler etc...
+  #  * Stats routines needed by profiler etc...
   # 
   # // note that these routines return 0.0 if no values exist in the X[]
   # // which is not "correct", but it is useful so I don't generate NaN

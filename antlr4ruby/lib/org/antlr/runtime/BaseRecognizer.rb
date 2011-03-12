@@ -210,11 +210,11 @@ module Org::Antlr::Runtime
     # To get out of recovery mode, the parser must successfully match
     # a token (after a resync).  So it will go:
     # 
-    # 1. error occurs
-    # 2. enter recovery mode, report error
-    # 3. consume until token found in resynch set
-    # 4. try to resume parsing
-    # 5. next match() will reset errorRecovery mode
+    #        1. error occurs
+    #        2. enter recovery mode, report error
+    #        3. consume until token found in resynch set
+    #        4. try to resume parsing
+    #        5. next match() will reset errorRecovery mode
     # 
     # If you override, make sure to update syntaxErrors if you care about that.
     def report_error(e)
@@ -413,7 +413,7 @@ module Org::Antlr::Runtime
     end
     
     typesig { [] }
-    #  Compute the error recovery set for the current rule.  During
+    # Compute the error recovery set for the current rule.  During
     # rule invocation, the parser pushes the set of tokens that can
     # follow that rule reference on the stack; this amounts to
     # computing FIRST of what follows the rule reference in the
@@ -434,12 +434,12 @@ module Org::Antlr::Runtime
     # Consider grammar:
     # 
     # a : '[' b ']'
-    # | '(' b ')'
-    # ;
+    #   | '(' b ')'
+    #   ;
     # b : c '^' INT ;
     # c : ID
-    # | INT
-    # ;
+    #   | INT
+    #   ;
     # 
     # At each rule invocation, the set of tokens that could follow
     # that rule is pushed on a stack.  Here are the various "local"
@@ -456,9 +456,9 @@ module Org::Antlr::Runtime
     # and, hence, the follow context stack is:
     # 
     # depth  local follow set     after call to rule
-    # 0         <EOF>                    a (from main())
-    # 1          ']'                     b
-    # 3          '^'                     c
+    #   0         <EOF>                    a (from main())
+    #   1          ']'                     b
+    #   3          '^'                     c
     # 
     # Notice that ')' is not included, because b would have to have
     # been called from a different context in rule a for ')' to be
@@ -515,7 +515,7 @@ module Org::Antlr::Runtime
     # given the current call chain.  Contrast this with the
     # definition of plain FOLLOW for rule r:
     # 
-    # FOLLOW(r)={x | S=>*alpha r beta in G and x in FIRST(beta)}
+    #  FOLLOW(r)={x | S=>*alpha r beta in G and x in FIRST(beta)}
     # 
     # where x in T* and alpha, beta in V*; T is set of terminals and
     # V is the set of terminals and nonterminals.  In other words,
@@ -528,27 +528,27 @@ module Org::Antlr::Runtime
     # For example, consider grammar:
     # 
     # stat : ID '=' expr ';'      // FOLLOW(stat)=={EOF}
-    # | "return" expr '.'
-    # ;
+    #      | "return" expr '.'
+    #      ;
     # expr : atom ('+' atom)* ;   // FOLLOW(expr)=={';','.',')'}
     # atom : INT                  // FOLLOW(atom)=={'+',')',';','.'}
-    # | '(' expr ')'
-    # ;
+    #      | '(' expr ')'
+    #      ;
     # 
     # The FOLLOW sets are all inclusive whereas context-sensitive
     # FOLLOW sets are precisely what could follow a rule reference.
     # For input input "i=(3);", here is the derivation:
     # 
     # stat => ID '=' expr ';'
-    # => ID '=' atom ('+' atom)* ';'
-    # => ID '=' '(' expr ')' ('+' atom)* ';'
-    # => ID '=' '(' atom ')' ('+' atom)* ';'
-    # => ID '=' '(' INT ')' ('+' atom)* ';'
-    # => ID '=' '(' INT ')' ';'
+    #      => ID '=' atom ('+' atom)* ';'
+    #      => ID '=' '(' expr ')' ('+' atom)* ';'
+    #      => ID '=' '(' atom ')' ('+' atom)* ';'
+    #      => ID '=' '(' INT ')' ('+' atom)* ';'
+    #      => ID '=' '(' INT ')' ';'
     # 
     # At the "3" token, you'd have a call chain of
     # 
-    # stat -> expr -> atom -> expr -> atom
+    #   stat -> expr -> atom -> expr -> atom
     # 
     # What can follow that specific nested ref to atom?  Exactly ')'
     # as you can see by looking at the derivation of this specific
@@ -570,8 +570,8 @@ module Org::Antlr::Runtime
       i = top
       while i >= 0
         local_follow_set = @state.attr_following[i]
-        # 			System.out.println("local follow depth "+i+"="+
-        # 							   localFollowSet.toString(getTokenNames())+")");
+        # System.out.println("local follow depth "+i+"="+
+        #                    localFollowSet.toString(getTokenNames())+")");
         follow_set.or_in_place(local_follow_set)
         if (exact)
           # can we see end of rule?
@@ -609,13 +609,13 @@ module Org::Antlr::Runtime
     # ')'.  When the parser returns from the nested call to expr, it
     # will have call chain:
     # 
-    # stat -> expr -> atom
+    #   stat -> expr -> atom
     # 
     # and it will be trying to match the ')' at this point in the
     # derivation:
     # 
-    # => ID '=' '(' INT ')' ('+' atom)* ';'
-    # ^
+    #      => ID '=' '(' INT ')' ('+' atom)* ';'
+    #                         ^
     # match() will see that ';' doesn't match ')' and report a
     # mismatched token error.  To recover, it sees that LA(1)==';'
     # is in the set of tokens that can follow the ')' token
@@ -625,9 +625,9 @@ module Org::Antlr::Runtime
       # if next token is what we are looking for then "delete" this token
       if (mismatch_is_unwanted_token(input, ttype))
         e = UnwantedTokenException.new(ttype, input)
-        # 			System.err.println("recoverFromMismatchedToken deleting "+
-        # 							   ((TokenStream)input).LT(1)+
-        # 							   " since "+((TokenStream)input).LT(2)+" is what we want");
+        # System.err.println("recoverFromMismatchedToken deleting "+
+        #                    ((TokenStream)input).LT(1)+
+        #                    " since "+((TokenStream)input).LT(2)+" is what we want");
         begin_resync
         input.consume # simply delete extra token
         end_resync

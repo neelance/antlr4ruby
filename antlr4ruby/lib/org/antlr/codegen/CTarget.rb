@@ -3,7 +3,7 @@ require "rjava"
 # [The "BSD licence"]
 # Copyright (c) 2005-2006 Terence Parr
 # All rights reserved.
-#
+# 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
 # are met:
@@ -76,7 +76,7 @@ module Org::Antlr::Codegen
     end
     
     typesig { [::Java::Int, String] }
-    # Is scope in @scope::name {action} valid for this kind of grammar?
+    #  Is scope in @scope::name {action} valid for this kind of grammar?
     # Targets like C++ may want to allow new scopes like headerfile or
     # some such.  The action names themselves are not policed at the
     # moment so targets can add template actions w/o having to recompile
@@ -170,12 +170,12 @@ module Org::Antlr::Codegen
     typesig { [CodeGenerator, String] }
     # Convert from an ANTLR string literal found in a grammar file to
     # an equivalent string literal in the C target.
-    # Because we msut support Unicode character sets and have chosen
-    # to have the lexer match UTF32 characters, then we must encode
-    # string matches to use 32 bit character arrays. Here then we
-    # must produce the C array and cater for the case where the
-    # lexer has been eoncded with a string such as "xyz\n", which looks
-    # slightly incogrous to me but is not incorrect.
+    #  *  Because we msut support Unicode character sets and have chosen
+    #  *  to have the lexer match UTF32 characters, then we must encode
+    #  *  string matches to use 32 bit character arrays. Here then we
+    #  *  must produce the C array and cater for the case where the
+    #  *  lexer has been eoncded with a string such as "xyz\n", which looks
+    #  *  slightly incogrous to me but is not incorrect.
     def get_target_string_literal_from_antlrstring_literal(generator, literal)
       index = 0
       outc = 0

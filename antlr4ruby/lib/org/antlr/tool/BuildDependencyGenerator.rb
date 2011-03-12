@@ -46,23 +46,23 @@ module Org::Antlr::Tool
   # Using ST, emit a simple "make compatible" list of dependencies.
   # For example, combined grammar T.g (no token import) generates:
   # 
-  # TParser.java : T.g
-  # T.tokens : T.g
-  # T__g : T.g
+  #       TParser.java : T.g
+  #        T.tokens : T.g
+  #        T__g : T.g
   # 
   # For tree grammar TP with import of T.tokens:
   # 
-  # TP.g : T.tokens
-  # TP.java : TP.g
+  #        TP.g : T.tokens
+  #        TP.java : TP.g
   # 
   # If "-lib libdir" is used on command-line with -depend, then include the
   # path like
   # 
-  # TP.g : libdir/T.tokens
+  #        TP.g : libdir/T.tokens
   # 
   # Pay attention to -o as well:
   # 
-  # outputdir/TParser.java : T.g
+  #        outputdir/TParser.java : T.g
   # 
   # So this output shows what the grammar depends on *and* what it generates.
   # 

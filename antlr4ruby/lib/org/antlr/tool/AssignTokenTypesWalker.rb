@@ -49,53 +49,53 @@ module Org::Antlr::Tool
   end
   
   # [Warning: TJP says that this is probably out of date as of 11/19/2005,
-  # but since it's probably still useful, I'll leave in.  Don't have energy
-  # to update at the moment.]
+  #  but since it's probably still useful, I'll leave in.  Don't have energy
+  #  to update at the moment.]
   # 
   # Compute the token types for all literals and rules etc..  There are
   # a few different cases to consider for grammar types and a few situations
   # within.
   # 
   # CASE 1 : pure parser grammar
-  # a) Any reference to a token gets a token type.
+  #   a) Any reference to a token gets a token type.
   # b) The tokens section may alias a token name to a string or char
   # 
   # CASE 2 : pure lexer grammar
   # a) Import token vocabulary if available. Set token types for any new tokens
-  # to values above last imported token type
+  #    to values above last imported token type
   # b) token rule definitions get token types if not already defined
   # c) literals do NOT get token types
   # 
   # CASE 3 : merged parser / lexer grammar
-  # a) Any char or string literal gets a token type in a parser rule
+  #   a) Any char or string literal gets a token type in a parser rule
   # b) Any reference to a token gets a token type if not referencing
-  # a fragment lexer rule
+  #    a fragment lexer rule
   # c) The tokens section may alias a token name to a string or char
-  # which must add a rule to the lexer
+  #    which must add a rule to the lexer
   # d) token rule definitions get token types if not already defined
   # e) token rule definitions may also alias a token name to a literal.
-  # E.g., Rule 'FOR : "for";' will alias FOR to "for" in the sense that
-  # references to either in the parser grammar will yield the token type
+  #    E.g., Rule 'FOR : "for";' will alias FOR to "for" in the sense that
+  #    references to either in the parser grammar will yield the token type
   # 
   # What this pass does:
   # 
   # 0. Collects basic info about the grammar like grammar name and type;
-  # Oh, I have go get the options in case they affect the token types.
-  # E.g., tokenVocab option.
-  # Imports any token vocab name/type pairs into a local hashtable.
+  #    Oh, I have go get the options in case they affect the token types.
+  #    E.g., tokenVocab option.
+  #    Imports any token vocab name/type pairs into a local hashtable.
   # 1. Finds a list of all literals and token names.
   # 2. Finds a list of all token name rule definitions;
-  # no token rules implies pure parser.
+  #    no token rules implies pure parser.
   # 3. Finds a list of all simple token rule defs of form "<NAME> : <literal>;"
-  # and aliases them.
+  #    and aliases them.
   # 4. Walks token names table and assign types to any unassigned
   # 5. Walks aliases and assign types to referenced literals
   # 6. Walks literals, assigning types if untyped
   # 4. Informs the Grammar object of the type definitions such as:
-  # g.defineToken(<charliteral>, ttype);
-  # g.defineToken(<stringliteral>, ttype);
-  # g.defineToken(<tokenID>, ttype);
-  # where some of the ttype values will be the same for aliases tokens.
+  #    g.defineToken(<charliteral>, ttype);
+  #    g.defineToken(<stringliteral>, ttype);
+  #    g.defineToken(<tokenID>, ttype);
+  #    where some of the ttype values will be the same for aliases tokens.
   class AssignTokenTypesWalker < Antlr::TreeParser
     include_class_members AssignTokenTypesWalkerImports
     overload_protected {

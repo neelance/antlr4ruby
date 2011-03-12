@@ -89,12 +89,12 @@ module Org::Antlr::Codegen
       dfa_st.set_attribute("k", Utils.integer(k))
       dfa_st.set_attribute("stateNumber", Utils.integer(s.attr_state_number))
       dfa_st.set_attribute("semPredState", Boolean.value_of(s.is_resolved_with_predicates))
-      # 		String description = dfa.getNFADecisionStartState().getDescription();
-      # 		description = parentGenerator.target.getTargetStringLiteralFromString(description);
-      # 		//System.out.println("DFA: "+description+" associated with AST "+dfa.getNFADecisionStartState());
-      # 		if ( description!=null ) {
-      # 			dfaST.setAttribute("description", description);
-      # 		}
+      # String description = dfa.getNFADecisionStartState().getDescription();
+      # description = parentGenerator.target.getTargetStringLiteralFromString(description);
+      # //System.out.println("DFA: "+description+" associated with AST "+dfa.getNFADecisionStartState());
+      # if ( description!=null ) {
+      #     dfaST.setAttribute("description", description);
+      # }
       eotpredicts = NFA::INVALID_ALT_NUMBER
       eottarget = nil
       # System.out.println("DFA state "+s.stateNumber);
@@ -107,9 +107,9 @@ module Org::Antlr::Codegen
           # generate that prediction in the else clause as default case
           eottarget = edge.attr_target
           eotpredicts = eottarget.get_uniquely_predicted_alt
-          # 				System.out.println("DFA s"+s.stateNumber+" EOT goes to s"+
-          # 								   edge.target.stateNumber+" predicates alt "+
-          # 								   EOTPredicts);
+          # System.out.println("DFA s"+s.stateNumber+" EOT goes to s"+
+          #                    edge.target.stateNumber+" predicates alt "+
+          #                    EOTPredicts);
           i += 1
           next
         end

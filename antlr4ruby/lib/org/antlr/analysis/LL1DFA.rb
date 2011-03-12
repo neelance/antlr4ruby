@@ -120,16 +120,16 @@ module Org::Antlr::Analysis
               set_accept_state(alt, pred_dfatarget)
             end
             # add a transition to pred target from d
-            # 					int walkAlt =
-            # 						decisionStartState.translateDisplayAltToWalkAlt(alt);
-            # 					NFAState altLeftEdge = nfa.grammar.getNFAStateForAltOfDecision(decisionStartState, walkAlt);
-            # 					NFAState altStartState = (NFAState)altLeftEdge.transition[0].target;
-            # 					SemanticContext ctx = nfa.grammar.ll1Analyzer.getPredicates(altStartState);
-            # 					System.out.println("sem ctx = "+ctx);
-            # 					if ( ctx == null ) {
-            # 						ctx = new SemanticContext.TruePredicate();
-            # 					}
-            # 					s.addTransition(predDFATarget, new Label(ctx));
+            # int walkAlt =
+            #     decisionStartState.translateDisplayAltToWalkAlt(alt);
+            # NFAState altLeftEdge = nfa.grammar.getNFAStateForAltOfDecision(decisionStartState, walkAlt);
+            # NFAState altStartState = (NFAState)altLeftEdge.transition[0].target;
+            # SemanticContext ctx = nfa.grammar.ll1Analyzer.getPredicates(altStartState);
+            # System.out.println("sem ctx = "+ctx);
+            # if ( ctx == null ) {
+            #     ctx = new SemanticContext.TruePredicate();
+            # }
+            # s.addTransition(predDFATarget, new Label(ctx));
             synpred = get_syn_pred_for_alt(decision_start_state, alt)
             if ((synpred).nil?)
               synpred = SemanticContext::TruePredicate.new
@@ -165,8 +165,8 @@ module Org::Antlr::Analysis
         if (ctx.is_syntactic_predicate)
           p = ctx
           if ((p.attr_predicate_ast.get_type).equal?(ANTLRParser::BACKTRACK_SEMPRED))
-            # 					System.out.println("syn pred for alt "+walkAlt+" "+
-            # 									   ((SemanticContext.Predicate)altStartState.transition[0].label.getSemanticContext()).predicateAST);
+            # System.out.println("syn pred for alt "+walkAlt+" "+
+            #                    ((SemanticContext.Predicate)altStartState.transition[0].label.getSemanticContext()).predicateAST);
             if (ctx.is_syntactic_predicate)
               self.attr_nfa.attr_grammar.syn_pred_used_in_dfa(self, ctx)
             end

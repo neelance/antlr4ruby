@@ -687,9 +687,9 @@ module Org::Antlr::Tool
             if (!(e).nil?)
               System.err.println("exception: " + RJava.cast_to_string(e))
             end
-            # 				if ( e!=null ) {
-            # 					e.printStackTrace(System.err);
-            # 				}
+            # if ( e!=null ) {
+            #     e.printStackTrace(System.err);
+            # }
           end
           
           typesig { [String] }
@@ -916,31 +916,31 @@ module Org::Antlr::Tool
       end
       
       typesig { [ANTLRErrorListener] }
-      # Encodes the error handling found in setLocale, but does not trigger
-      # panics, which would make GUI tools die if ANTLR's installation was
-      # a bit screwy.  Duplicated code...ick.
-      # 	public static Locale getLocaleForValidMessages(Locale locale) {
-      # 		ErrorManager.locale = locale;
-      # 		String language = locale.getLanguage();
-      # 		String fileName = "org/antlr/tool/templates/messages/"+language+".stg";
-      # 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-      # 		InputStream is = cl.getResourceAsStream(fileName);
-      # 		if ( is==null && language.equals(Locale.US.getLanguage()) ) {
-      # 			return null;
-      # 		}
-      # 		else if ( is==null ) {
-      # 			return getLocaleForValidMessages(Locale.US); // recurse on this rule, trying the US locale
-      # 		}
+      #   * Encodes the error handling found in setLocale, but does not trigger
+      #  *  panics, which would make GUI tools die if ANTLR's installation was
+      #  *  a bit screwy.  Duplicated code...ick.
+      # public static Locale getLocaleForValidMessages(Locale locale) {
+      #     ErrorManager.locale = locale;
+      #     String language = locale.getLanguage();
+      #     String fileName = "org/antlr/tool/templates/messages/"+language+".stg";
+      #     ClassLoader cl = Thread.currentThread().getContextClassLoader();
+      #     InputStream is = cl.getResourceAsStream(fileName);
+      #     if ( is==null && language.equals(Locale.US.getLanguage()) ) {
+      #         return null;
+      #     }
+      #     else if ( is==null ) {
+      #         return getLocaleForValidMessages(Locale.US); // recurse on this rule, trying the US locale
+      #     }
       # 
-      # 		boolean messagesOK = verifyMessages();
-      # 		if ( !messagesOK && language.equals(Locale.US.getLanguage()) ) {
-      # 			return null;
-      # 		}
-      # 		else if ( !messagesOK ) {
-      # 			return getLocaleForValidMessages(Locale.US); // try US to see if that will work
-      # 		}
-      # 		return true;
-      # 	}
+      #     boolean messagesOK = verifyMessages();
+      #     if ( !messagesOK && language.equals(Locale.US.getLanguage()) ) {
+      #         return null;
+      #     }
+      #     else if ( !messagesOK ) {
+      #         return getLocaleForValidMessages(Locale.US); // try US to see if that will work
+      #     }
+      #     return true;
+      # }
       # In general, you'll want all errors to go to a single spot.
       # However, in a GUI, you might have two frames up with two
       # different grammars.  Two threads might launch to process the
@@ -984,7 +984,7 @@ module Org::Antlr::Tool
       end
       
       typesig { [] }
-      # Return a StringTemplate that refers to the current format used for
+      #  Return a StringTemplate that refers to the current format used for
       # emitting messages.
       def get_location_format
         return self.attr_format.get_instance_of("location")
@@ -1145,17 +1145,17 @@ module Org::Antlr::Tool
       end
       
       typesig { [Collection] }
-      # 	// TODO: we can remove I think.  All detected now with cycles check.
-      # 	public static void leftRecursion(DecisionProbe probe,
-      # 									 int alt,
-      # 									 Collection targetRules,
-      # 									 Collection callSiteStates)
-      # 	{
-      # 		getErrorState().warnings++;
-      # 		Message msg = new LeftRecursionMessage(probe, alt, targetRules, callSiteStates);
-      # 		getErrorState().warningMsgIDs.add(msg.msgID);
-      # 		getErrorListener().warning(msg);
-      # 	}
+      # // TODO: we can remove I think.  All detected now with cycles check.
+      # public static void leftRecursion(DecisionProbe probe,
+      #                                  int alt,
+      #                                  Collection targetRules,
+      #                                  Collection callSiteStates)
+      # {
+      #     getErrorState().warnings++;
+      #     Message msg = new LeftRecursionMessage(probe, alt, targetRules, callSiteStates);
+      #     getErrorState().warningMsgIDs.add(msg.msgID);
+      #     getErrorListener().warning(msg);
+      # }
       def left_recursion_cycles(cycles)
         get_error_state.attr_errors += 1
         msg = LeftRecursionCyclesMessage.new(cycles)

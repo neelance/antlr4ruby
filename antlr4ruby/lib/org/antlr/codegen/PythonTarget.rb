@@ -82,14 +82,14 @@ module Org::Antlr::Codegen
     typesig { [JavaList, Antlr::Token] }
     def post_process_action(chunks, action_token)
       # TODO
-      # 		   - check for and report TAB usage
+      # - check for and report TAB usage
       # System.out.println("\n*** Action at " + actionToken.getLine() + ":" + actionToken.getColumn());
       # First I create a new list of chunks. String chunks are splitted into
-      # 		   lines and some whitespace my be added at the beginning.
+      # lines and some whitespace my be added at the beginning.
       # 
-      # 		   As a result I get a list of chunks
-      # 		   - where the first line starts at column 0
-      # 		   - where every LF is at the end of a string chunk
+      # As a result I get a list of chunks
+      # - where the first line starts at column 0
+      # - where every LF is at the end of a string chunk
       n_chunks = ArrayList.new
       i = 0
       while i < chunks.size

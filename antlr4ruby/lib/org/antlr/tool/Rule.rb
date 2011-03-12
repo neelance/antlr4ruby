@@ -727,15 +727,15 @@ module Org::Antlr::Tool
     end
     
     typesig { [] }
-    # Used during grammar imports to see if sets of rules intersect... This
-    # method and hashCode use the String name as the key for Rule objects.
-    # 	public boolean equals(Object other) {
-    # 		return this.name.equals(((Rule)other).name);
-    # 	}
-    # Used during grammar imports to see if sets of rules intersect...
-    # 	public int hashCode() {
-    # 		return name.hashCode();
-    # 	}
+    #   * Used during grammar imports to see if sets of rules intersect... This
+    #  *  method and hashCode use the String name as the key for Rule objects.
+    # public boolean equals(Object other) {
+    #     return this.name.equals(((Rule)other).name);
+    # }
+    #   * Used during grammar imports to see if sets of rules intersect...
+    # public int hashCode() {
+    #     return name.hashCode();
+    # }
     def to_s
       # used for testing
       return "[" + RJava.cast_to_string(@grammar.attr_name) + "." + @name + ",index=" + RJava.cast_to_string(@index) + ",line=" + RJava.cast_to_string(@tree.get_token.get_line) + "]"

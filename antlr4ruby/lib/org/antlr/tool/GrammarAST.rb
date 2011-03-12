@@ -157,11 +157,11 @@ module Org::Antlr::Tool
     alias_method :attr_rewrite_refs_shallow=, :rewrite_refs_shallow=
     undef_method :rewrite_refs_shallow=
     
-    # 	If REWRITE node, track EVERY element and label ref to right of ->
+    #   If REWRITE node, track EVERY element and label ref to right of ->
     # for this rewrite rule.  There could be multiple of these per
     # rule:
     # 
-    # a : ( ... -> ... | ... -> ... ) -> ... ;
+    #    a : ( ... -> ... | ... -> ... ) -> ... ;
     # 
     # We may need a list of all refs to do definitions for whole rewrite
     # later.
@@ -543,11 +543,11 @@ module Org::Antlr::Tool
         return false
       end
       # if roots match, do full list match test on children.
-      # sibling has no kids, make sure t doesn't either
       if (!(self.get_first_child).nil?)
         if (!((self.get_first_child).has_same_list_structure(t.get_first_child)))
           return false
         end
+        # sibling has no kids, make sure t doesn't either
       else
         if (!(t.get_first_child).nil?)
           return false
@@ -571,11 +571,11 @@ module Org::Antlr::Tool
           return false
         end
         # if roots match, do full list match test on children.
-        # sibling has no kids, make sure t doesn't either
         if (!(sibling.get_first_child).nil?)
           if (!(sibling.get_first_child).has_same_list_structure(t.get_first_child))
             return false
           end
+          # sibling has no kids, make sure t doesn't either
         else
           if (!(t.get_first_child).nil?)
             return false
@@ -639,12 +639,12 @@ module Org::Antlr::Tool
           # return x from ^(ROOT x)
           return dup_list_no_actions(t.get_first_child, t)
         end
-        # DOH!  Must allow labels for sem preds
-        #        if ( (ttype==ANTLRParser.ASSIGN||ttype==ANTLRParser.PLUS_ASSIGN) &&
-        # 			 (parent==null||parent.getType()!=ANTLRParser.OPTIONS) )
-        # 		{
-        # 			return dupTreeNoActions(t.getChild(1), t); // return x from ^(ASSIGN label x)
-        # 		}
+        #    DOH!  Must allow labels for sem preds
+        # if ( (ttype==ANTLRParser.ASSIGN||ttype==ANTLRParser.PLUS_ASSIGN) &&
+        #      (parent==null||parent.getType()!=ANTLRParser.OPTIONS) )
+        # {
+        #     return dupTreeNoActions(t.getChild(1), t); // return x from ^(ASSIGN label x)
+        # }
         result = dup(t) # make copy of root
         # copy all children of root.
         kids = dup_list_no_actions(t.get_first_child, t)

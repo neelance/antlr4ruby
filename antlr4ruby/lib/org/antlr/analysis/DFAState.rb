@@ -137,10 +137,10 @@ module Org::Antlr::Analysis
     # detect recursion.  There may be other alts that are cool:
     # 
     # a : recur '.'
-    # | recur ';'
-    # | X Y  // LL(2) decision; don't abort and use k=1 plus backtracking
-    # | X Z
-    # ;
+    #   | recur ';'
+    #   | X Y  // LL(2) decision; don't abort and use k=1 plus backtracking
+    #   | X Z
+    #   ;
     # 
     # 12/13/2007: Actually this has caused problems.  If k=*, must terminate
     # and throw out entire DFA; retry with k=1.  Since recursive, do not
@@ -386,9 +386,9 @@ module Org::Antlr::Analysis
       if ((@reachable_labels).nil?)
         @reachable_labels = OrderedHashSet.new
       end
-      # 		System.out.println("addReachableLabel to state "+dfa.decisionNumber+"."+stateNumber+": "+label.getSet().toString(dfa.nfa.grammar));
-      # 		System.out.println("start of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
-      # 				"reachableLabels="+reachableLabels.toString());
+      # System.out.println("addReachableLabel to state "+dfa.decisionNumber+"."+stateNumber+": "+label.getSet().toString(dfa.nfa.grammar));
+      # System.out.println("start of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
+      #         "reachableLabels="+reachableLabels.toString());
       if (@reachable_labels.contains(label))
         # exact label present
         return
@@ -400,9 +400,9 @@ module Org::Antlr::Analysis
       i = 0
       while i < n
         rl = @reachable_labels.get(i)
-        # 			System.out.println("comparing ["+i+"]: "+label.toString(dfa.nfa.grammar)+" & "+
-        #                    rl.toString(dfa.nfa.grammar)+"="+
-        #                    intersection.toString(dfa.nfa.grammar));
+        # System.out.println("comparing ["+i+"]: "+label.toString(dfa.nfa.grammar)+" & "+
+        #         rl.toString(dfa.nfa.grammar)+"="+
+        #         intersection.toString(dfa.nfa.grammar));
         if (!Label.intersect(label, rl))
           i += 1
           next
@@ -424,8 +424,8 @@ module Org::Antlr::Analysis
           new_label = Label.new(existing_minus_new_elements)
           @reachable_labels.add(new_label)
         end
-        #            System.out.println("after collision, " +
-        #                    "reachableLabels="+reachableLabels.toString());
+        # System.out.println("after collision, " +
+        #         "reachableLabels="+reachableLabels.toString());
         # anything left to add to the reachableLabels?
         remainder = t.subtract(s_i)
         if (remainder.is_nil)
@@ -435,14 +435,14 @@ module Org::Antlr::Analysis
         i += 1
       end
       if (!remainder.is_nil)
-        # 			System.out.println("before add remainder to state "+dfa.decisionNumber+"."+stateNumber+": " +
-        # 					"reachableLabels="+reachableLabels.toString());
-        # 			System.out.println("remainder state "+dfa.decisionNumber+"."+stateNumber+": "+remainder.toString(dfa.nfa.grammar));
+        # System.out.println("before add remainder to state "+dfa.decisionNumber+"."+stateNumber+": " +
+        #         "reachableLabels="+reachableLabels.toString());
+        # System.out.println("remainder state "+dfa.decisionNumber+"."+stateNumber+": "+remainder.toString(dfa.nfa.grammar));
         new_label = Label.new(remainder)
         @reachable_labels.add(new_label)
       end
-      # 		System.out.println("#END of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
-      # 				"reachableLabels="+reachableLabels.toString());
+      # System.out.println("#END of add to state "+dfa.decisionNumber+"."+stateNumber+": " +
+      #         "reachableLabels="+reachableLabels.toString());
     end
     
     typesig { [] }
@@ -641,8 +641,8 @@ module Org::Antlr::Analysis
             alt = c.attr_alt
           else
             if (!(c.attr_alt).equal?(alt))
-              # 					System.out.println("potential conflict in state "+stateI+
-              # 									   " configs: "+configsForState);
+              # System.out.println("potential conflict in state "+stateI+
+              #                    " configs: "+configsForState);
               # 11/28/2005: don't report closures that pinch back
               # together in Tokens rule.  We want to silently resolve
               # to the first token definition ala lex/flex by ignoring
@@ -772,9 +772,9 @@ module Org::Antlr::Analysis
     # predicate implies we should evaluate the predicate to true. This
     # means the whole edge has to be ungated. Consider:
     # 
-    # X : ('a' | {p}?=> 'a')
-    # | 'a' 'b'
-    # ;
+    #    X : ('a' | {p}?=> 'a')
+    #      | 'a' 'b'
+    #      ;
     # 
     # Here, you 'a' gets you from s0 to s1 but you can't test p because
     # plain 'a' is ok.  It's also ok for starting alt 2.  Hence, you can't

@@ -324,22 +324,22 @@ module Org::Antlr::Runtime::Tree
     end
     
     typesig { [::Java::Int] }
-    # 	public Object getLastTreeNode() {
-    # 		int i = index();
-    # 		if ( i>=size() ) {
-    # 			i--; // if at EOF, have to start one back
-    # 		}
-    # 		System.out.println("start last node: "+i+" size=="+nodes.size());
-    # 		while ( i>=0 &&
-    # 			(adaptor.getType(get(i))==Token.EOF ||
-    # 			 adaptor.getType(get(i))==Token.UP ||
-    # 			 adaptor.getType(get(i))==Token.DOWN) )
-    # 		{
-    # 			i--;
-    # 		}
-    # 		System.out.println("stop at node: "+i+" "+nodes.get(i));
-    # 		return nodes.get(i);
-    # 	}
+    # public Object getLastTreeNode() {
+    #     int i = index();
+    #     if ( i>=size() ) {
+    #         i--; // if at EOF, have to start one back
+    #     }
+    #     System.out.println("start last node: "+i+" size=="+nodes.size());
+    #     while ( i>=0 &&
+    #         (adaptor.getType(get(i))==Token.EOF ||
+    #          adaptor.getType(get(i))==Token.UP ||
+    #          adaptor.getType(get(i))==Token.DOWN) )
+    #     {
+    #         i--;
+    #     }
+    #     System.out.println("stop at node: "+i+" "+nodes.get(i));
+    #     return nodes.get(i);
+    # }
     # Look backwards k nodes
     def _lb(k)
       if ((k).equal?(0))

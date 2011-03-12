@@ -132,9 +132,9 @@ module Org::Antlr::Analysis
         if (k > 0 && (k).equal?(d.get_lookahead_depth))
           # we've hit max lookahead, make this a stop state
           # System.out.println("stop state @k="+k+" (terminated early)");
-          # 				List<Label> sampleInputLabels = d.dfa.probe.getSampleNonDeterministicInputSequence(d);
-          # 				String input = d.dfa.probe.getInputSequenceDisplay(sampleInputLabels);
-          # 				System.out.println("sample input: "+input);
+          # List<Label> sampleInputLabels = d.dfa.probe.getSampleNonDeterministicInputSequence(d);
+          # String input = d.dfa.probe.getInputSequenceDisplay(sampleInputLabels);
+          # System.out.println("sample input: "+input);
           resolve_non_determinisms(d)
           # Check to see if we need to add any semantic predicate transitions
           if (d.is_resolved_with_predicates)
@@ -219,9 +219,9 @@ module Org::Antlr::Analysis
       # System.out.println("work on DFA state "+d);
       labels = d.get_reachable_labels
       # System.out.println("reachable labels="+labels);
-      # 		System.out.println("|reachable|/|nfaconfigs|="+
-      # 				labels.size()+"/"+d.getNFAConfigurations().size()+"="+
-      # 				labels.size()/(float)d.getNFAConfigurations().size());
+      # System.out.println("|reachable|/|nfaconfigs|="+
+      #         labels.size()+"/"+d.getNFAConfigurations().size()+"="+
+      #         labels.size()/(float)d.getNFAConfigurations().size());
       # normally EOT is the "default" clause and decisions just
       # choose that last clause when nothing else matches.  DFA conversion
       # continues searching for a unique sequence that predicts the
@@ -260,18 +260,18 @@ module Org::Antlr::Analysis
       # [Taking back out a few days later on Jan 17, 2006.  This could
       #  be an option for the future, but this was wrong soluion for
       #  filtering.]
-      # 		if ( dfa.nfa.grammar.type==Grammar.LEXER && containsEOT ) {
-      # 			String filterOption = (String)dfa.nfa.grammar.getOption("filter");
-      # 			boolean filterMode = filterOption!=null && filterOption.equals("true");
-      # 			if ( filterMode && d.dfa.isTokensRuleDecision() ) {
-      # 				DFAState t = reach(d, EOTLabel);
-      # 				if ( t.getNFAConfigurations().size()>0 ) {
-      # 					convertToEOTAcceptState(d);
-      # 					//System.out.println("state "+d+" has EOT target "+t.stateNumber);
-      # 					return;
-      # 				}
-      # 			}
-      # 		}
+      # if ( dfa.nfa.grammar.type==Grammar.LEXER && containsEOT ) {
+      #     String filterOption = (String)dfa.nfa.grammar.getOption("filter");
+      #     boolean filterMode = filterOption!=null && filterOption.equals("true");
+      #     if ( filterMode && d.dfa.isTokensRuleDecision() ) {
+      #         DFAState t = reach(d, EOTLabel);
+      #         if ( t.getNFAConfigurations().size()>0 ) {
+      #             convertToEOTAcceptState(d);
+      #             //System.out.println("state "+d+" has EOT target "+t.stateNumber);
+      #             return;
+      #         }
+      #     }
+      # }
       number_of_edges_emanating = 0
       target_to_label_map = HashMap.new
       # for each label that could possibly emanate from NFAStates of d
@@ -305,9 +305,9 @@ module Org::Antlr::Analysis
           # for analysis of Java grammar from 11.5s to 2s!  Wow.
           closure(t) # add any NFA states reachable via epsilon
         end
-        # 			System.out.println("DFA state after closure "+d+"-"+
-        # 							   label.toString(dfa.nfa.grammar)+
-        # 							   "->"+t);
+        # System.out.println("DFA state after closure "+d+"-"+
+        #                    label.toString(dfa.nfa.grammar)+
+        #                    "->"+t);
         # add if not in DFA yet and then make d-label->t
         target_state = add_dfastate_to_work_list(t)
         number_of_edges_emanating += add_transition(d, label, target_state, target_to_label_map)
@@ -352,29 +352,29 @@ module Org::Antlr::Analysis
       # bother to test any other edges.  Example:
       # 
       # NUM_INT
-      # : '1'..'9' ('0'..'9')* ('l'|'L')?
-      # | '0' ('x'|'X') ('0'..'9'|'a'..'f'|'A'..'F')+ ('l'|'L')?
-      # | '0' ('0'..'7')* ('l'|'L')?
-      # ;
+      #   : '1'..'9' ('0'..'9')* ('l'|'L')?
+      #   | '0' ('x'|'X') ('0'..'9'|'a'..'f'|'A'..'F')+ ('l'|'L')?
+      #   | '0' ('0'..'7')* ('l'|'L')?
+      #   ;
       # 
       # The normal decision to predict alts 1, 2, 3 is:
       # 
       # if ( (input.LA(1)>='1' && input.LA(1)<='9') ) {
-      # alt7=1;
+      #      alt7=1;
       # }
       # else if ( input.LA(1)=='0' ) {
-      # if ( input.LA(2)=='X'||input.LA(2)=='x' ) {
-      # alt7=2;
-      # }
-      # else if ( (input.LA(2)>='0' && input.LA(2)<='7') ) {
-      # alt7=3;
-      # }
-      # else if ( input.LA(2)=='L'||input.LA(2)=='l' ) {
-      # alt7=3;
-      # }
-      # else {
-      # alt7=3;
-      # }
+      #     if ( input.LA(2)=='X'||input.LA(2)=='x' ) {
+      #         alt7=2;
+      #     }
+      #     else if ( (input.LA(2)>='0' && input.LA(2)<='7') ) {
+      #          alt7=3;
+      #     }
+      #     else if ( input.LA(2)=='L'||input.LA(2)=='l' ) {
+      #          alt7=3;
+      #     }
+      #     else {
+      #          alt7=3;
+      #     }
       # }
       # else error
       # 
@@ -385,15 +385,15 @@ module Org::Antlr::Analysis
       # A better decision is as follows:
       # 
       # if ( (input.LA(1)>='1' && input.LA(1)<='9') ) {
-      # alt7=1;
+      #     alt7=1;
       # }
       # else if ( input.LA(1)=='0' ) {
-      # if ( input.LA(2)=='X'||input.LA(2)=='x' ) {
-      # alt7=2;
-      # }
-      # else {
-      # alt7=3;
-      # }
+      #     if ( input.LA(2)=='X'||input.LA(2)=='x' ) {
+      #         alt7=2;
+      #     }
+      #     else {
+      #         alt7=3;
+      #     }
       # }
       # 
       # The DFA originally has 3 edges going to the state the predicts alt 3,
@@ -488,41 +488,41 @@ module Org::Antlr::Analysis
     # 
     # There are four cases of interest (the last being the usual transition):
     # 
-    # 1. Traverse an edge that takes us to the start state of another
-    # rule, r.  We must push this state so that if the DFA
-    # conversion hits the end of rule r, then it knows to continue
-    # the conversion at state following state that "invoked" r. By
-    # construction, there is a single transition emanating from a rule
-    # ref node.
+    #  1. Traverse an edge that takes us to the start state of another
+    #     rule, r.  We must push this state so that if the DFA
+    #     conversion hits the end of rule r, then it knows to continue
+    #     the conversion at state following state that "invoked" r. By
+    #     construction, there is a single transition emanating from a rule
+    #     ref node.
     # 
-    # 2. Reach an NFA state associated with the end of a rule, r, in the
-    # grammar from which it was built.  We must add an implicit (i.e.,
-    # don't actually add an epsilon transition) epsilon transition
-    # from r's end state to the NFA state following the NFA state
-    # that transitioned to rule r's start state.  Because there are
-    # many states that could reach r, the context for a rule invocation
-    # is part of a call tree not a simple stack.  When we fall off end
-    # of rule, "pop" a state off the call tree and add that state's
-    # "following" node to d's NFA configuration list.  The context
-    # for this new addition will be the new "stack top" in the call tree.
+    #  2. Reach an NFA state associated with the end of a rule, r, in the
+    #     grammar from which it was built.  We must add an implicit (i.e.,
+    #     don't actually add an epsilon transition) epsilon transition
+    #     from r's end state to the NFA state following the NFA state
+    #     that transitioned to rule r's start state.  Because there are
+    #     many states that could reach r, the context for a rule invocation
+    #     is part of a call tree not a simple stack.  When we fall off end
+    #     of rule, "pop" a state off the call tree and add that state's
+    #     "following" node to d's NFA configuration list.  The context
+    #     for this new addition will be the new "stack top" in the call tree.
     # 
-    # 3. Like case 2, we reach an NFA state associated with the end of a
-    # rule, r, in the grammar from which NFA was built.  In this case,
-    # however, we realize that during this NFA->DFA conversion, no state
-    # invoked the current rule's NFA.  There is no choice but to add
-    # all NFA states that follow references to r's start state.  This is
-    # analogous to computing the FOLLOW(r) in the LL(k) world.  By
-    # construction, even rule stop state has a chain of nodes emanating
-    # from it that points to every possible following node.  This case
-    # is conveniently handled then by the 4th case.
+    #  3. Like case 2, we reach an NFA state associated with the end of a
+    #     rule, r, in the grammar from which NFA was built.  In this case,
+    #     however, we realize that during this NFA->DFA conversion, no state
+    #     invoked the current rule's NFA.  There is no choice but to add
+    #     all NFA states that follow references to r's start state.  This is
+    #     analogous to computing the FOLLOW(r) in the LL(k) world.  By
+    #     construction, even rule stop state has a chain of nodes emanating
+    #     from it that points to every possible following node.  This case
+    #     is conveniently handled then by the 4th case.
     # 
-    # 4. Normal case.  If p can reach another NFA state q, then add
-    # q to d's configuration list, copying p's context for q's context.
-    # If there is a semantic predicate on the transition, then AND it
-    # with any existing semantic context.
+    #  4. Normal case.  If p can reach another NFA state q, then add
+    #     q to d's configuration list, copying p's context for q's context.
+    #     If there is a semantic predicate on the transition, then AND it
+    #     with any existing semantic context.
     # 
-    # Current state p is always added to d's configuration list as it's part
-    # of the closure as well.
+    #  Current state p is always added to d's configuration list as it's part
+    #  of the closure as well.
     # 
     # When is a closure operation in a cycle condition?  While it is
     # very possible to have the same NFA state mentioned twice
@@ -530,57 +530,57 @@ module Org::Antlr::Analysis
     # would lead to nontermination of closure operation:
     # 
     # o   Whenever closure reaches a configuration where the same state
-    # with same or a suffix context already exists.  This catches
-    # the IF-THEN-ELSE tail recursion cycle and things like
+    #     with same or a suffix context already exists.  This catches
+    #     the IF-THEN-ELSE tail recursion cycle and things like
     # 
-    # a : A a | B ;
+    #     a : A a | B ;
     # 
-    # the context will be $ (empty stack).
+    #     the context will be $ (empty stack).
     # 
-    # We have to check
-    # larger context stacks because of (...)+ loops.  For
-    # example, the context of a (...)+ can be nonempty if the
-    # surrounding rule is invoked by another rule:
+    #     We have to check
+    #     larger context stacks because of (...)+ loops.  For
+    #     example, the context of a (...)+ can be nonempty if the
+    #     surrounding rule is invoked by another rule:
     # 
-    # a : b A | X ;
-    # b : (B|)+ ;  // nondeterministic by the way
+    #     a : b A | X ;
+    #     b : (B|)+ ;  // nondeterministic by the way
     # 
-    # The context of the (B|)+ loop is "invoked from item
-    # a : . b A ;" and then the empty alt of the loop can reach back
-    # to itself.  The context stack will have one "return
-    # address" element and so we must check for same state, same
-    # context for arbitrary context stacks.
+    #     The context of the (B|)+ loop is "invoked from item
+    #     a : . b A ;" and then the empty alt of the loop can reach back
+    #     to itself.  The context stack will have one "return
+    #     address" element and so we must check for same state, same
+    #     context for arbitrary context stacks.
     # 
-    # Idea: If we've seen this configuration before during closure, stop.
-    # We also need to avoid reaching same state with conflicting context.
-    # Ultimately analysis would stop and we'd find the conflict, but we
-    # should stop the computation.  Previously I only checked for
-    # exact config.  Need to check for same state, suffix context
-    # not just exact context.
+    #     Idea: If we've seen this configuration before during closure, stop.
+    #     We also need to avoid reaching same state with conflicting context.
+    #     Ultimately analysis would stop and we'd find the conflict, but we
+    #     should stop the computation.  Previously I only checked for
+    #     exact config.  Need to check for same state, suffix context
+    #        not just exact context.
     # 
     # o   Whenever closure reaches a configuration where state p
-    # is present in its own context stack.  This means that
-    # p is a rule invocation state and the target rule has
-    # been called before.  NFAContext.MAX_RECURSIVE_INVOCATIONS
-    # (See the comment there also) determines how many times
-    # it's possible to recurse; clearly we cannot recurse forever.
-    # Some grammars such as the following actually require at
-    # least one recursive call to correctly compute the lookahead:
+    #     is present in its own context stack.  This means that
+    #     p is a rule invocation state and the target rule has
+    #     been called before.  NFAContext.MAX_RECURSIVE_INVOCATIONS
+    #     (See the comment there also) determines how many times
+    #     it's possible to recurse; clearly we cannot recurse forever.
+    #     Some grammars such as the following actually require at
+    #     least one recursive call to correctly compute the lookahead:
     # 
-    # a : L ID R
-    # | b
-    # ;
-    # b : ID
-    # | L a R
-    # ;
+    #     a : L ID R
+    #       | b
+    #       ;
+    #     b : ID
+    #       | L a R
+    #       ;
     # 
-    # Input L ID R is ambiguous but to figure this out, ANTLR
-    # needs to go a->b->a->b to find the L ID sequence.
+    #     Input L ID R is ambiguous but to figure this out, ANTLR
+    #     needs to go a->b->a->b to find the L ID sequence.
     # 
-    # Do not allow closure to add a configuration that would
-    # allow too much recursion.
+    #     Do not allow closure to add a configuration that would
+    #     allow too much recursion.
     # 
-    # This case also catches infinite left recursion.
+    #     This case also catches infinite left recursion.
     def closure(p, alt, context, semantic_context, d, collect_predicates)
       if (self.attr_debug)
         System.out.println("closure at " + RJava.cast_to_string(p.attr_enclosing_rule.attr_name) + " state " + RJava.cast_to_string(p.attr_state_number) + "|" + RJava.cast_to_string(alt) + " filling DFA state " + RJava.cast_to_string(d.attr_state_number) + " with context " + RJava.cast_to_string(context))
@@ -604,7 +604,6 @@ module Org::Antlr::Analysis
       d.add_nfaconfiguration(p, proposed_nfaconfiguration)
       # Case 1: are we a reference to another rule?
       transition0 = p.attr_transition[0]
-      # Case 2: end of rule state, context (i.e., an invoker) exists
       if (transition0.is_a?(RuleClosureTransition))
         depth = context.recursion_depth_emanating_from_state(p.attr_state_number)
         # Detect recursion by more than a single alt, which indicates
@@ -617,16 +616,16 @@ module Org::Antlr::Analysis
             d.attr_aborted_due_to_multiple_recursive_alts = true
             raise NonLLStarDecisionException.new(d.attr_dfa)
           end
-          # 				System.out.println("alt "+alt+" in rule "+p.enclosingRule+" dec "+d.dfa.decisionNumber+
-          # 					" ctx: "+context);
-          # 				System.out.println("d="+d);
+          # System.out.println("alt "+alt+" in rule "+p.enclosingRule+" dec "+d.dfa.decisionNumber+
+          #     " ctx: "+context);
+          # System.out.println("d="+d);
         end
         # Detect an attempt to recurse too high
         # if this context has hit the max recursions for p.stateNumber,
         # don't allow it to enter p.stateNumber again
         if (depth >= NFAContext::MAX_SAME_RULE_INVOCATIONS_PER_NFA_CONFIG_STACK)
-          # 				System.out.println("OVF state "+d);
-          # 				System.out.println("proposed "+proposedNFAConfiguration);
+          # System.out.println("OVF state "+d);
+          # System.out.println("proposed "+proposedNFAConfiguration);
           d.attr_aborted_due_to_recursion_overflow = true
           d.attr_dfa.attr_probe.report_recursion_overflow(d, proposed_nfaconfiguration)
           if (self.attr_debug)
@@ -648,25 +647,26 @@ module Org::Antlr::Analysis
         # traverse epsilon edge to new rule
         rule_target = ref.attr_target
         closure(rule_target, alt, new_context, semantic_context, d, collect_predicates)
+        # Case 2: end of rule state, context (i.e., an invoker) exists
       else
-        # Case 3: end of rule state, nobody invoked this rule (no context)
-        #    Fall thru to be handled by case 4 automagically.
-        # Case 4: ordinary NFA->DFA conversion case: simple epsilon transition
         if (p.is_accept_state && !(context.attr_parent).nil?)
           which_state_invoked_rule = context.attr_invoking_state
           edge_to_rule = which_state_invoked_rule.attr_transition[0]
           continue_state = edge_to_rule.attr_follow_state
           new_context = context.attr_parent # "pop" invoking state
           closure(continue_state, alt, new_context, semantic_context, d, collect_predicates)
+          # Case 3: end of rule state, nobody invoked this rule (no context)
+          #    Fall thru to be handled by case 4 automagically.
+          # Case 4: ordinary NFA->DFA conversion case: simple epsilon transition
         else
           # recurse down any epsilon transitions
           if (!(transition0).nil? && transition0.is_epsilon)
             collect_predicates_after_action = collect_predicates
             if (transition0.is_action && collect_predicates)
               collect_predicates_after_action = false
-              # 					if ( computingStartState ) {
-              # 						System.out.println("found action during prediction closure "+((ActionLabel)transition0.label).actionAST.token);
-              # 					}
+              # if ( computingStartState ) {
+              #     System.out.println("found action during prediction closure "+((ActionLabel)transition0.label).actionAST.token);
+              # }
             end
             closure(transition0.attr_target, alt, context, semantic_context, d, collect_predicates_after_action)
           else
@@ -691,11 +691,11 @@ module Org::Antlr::Analysis
                 # starting state's rule (i.e., context is empty)
                 walk_alt = @dfa.attr_decision_nfastart_state.translate_display_alt_to_walk_alt(alt)
                 alt_left_edge = @dfa.attr_nfa.attr_grammar.get_nfastate_for_alt_of_decision(@dfa.attr_decision_nfastart_state, walk_alt)
-                # 					System.out.println("state "+p.stateNumber+" alt "+alt+" walkAlt "+walkAlt+" trans to "+transition0.target);
-                # 					System.out.println("DFA start state "+dfa.decisionNFAStartState.stateNumber);
-                # 					System.out.println("alt left edge "+altLeftEdge.stateNumber+
-                # 						", epsilon target "+
-                # 						altLeftEdge.transition(0).target.stateNumber);
+                # System.out.println("state "+p.stateNumber+" alt "+alt+" walkAlt "+walkAlt+" trans to "+transition0.target);
+                # System.out.println("DFA start state "+dfa.decisionNFAStartState.stateNumber);
+                # System.out.println("alt left edge "+altLeftEdge.stateNumber+
+                #     ", epsilon target "+
+                #     altLeftEdge.transition(0).target.stateNumber);
                 if (!label_context.is_syntactic_predicate || (p).equal?(alt_left_edge.attr_transition[0].attr_target))
                   # System.out.println("&"+labelContext+" enclosingRule="+p.enclosingRule);
                   new_semantic_context = SemanticContext.and_(semantic_context, label_context)
@@ -749,19 +749,19 @@ module Org::Antlr::Analysis
       # to 11 seconds.  Cool.  Closing ANTLR-235.
       def closure_is_busy(d, proposed_nfaconfiguration)
         return d.attr_closure_busy.contains(proposed_nfaconfiguration)
-        # 		int numConfigs = d.closureBusy.size();
-        # 		// Check epsilon cycle (same state, same alt, same context)
-        # 		for (int i = 0; i < numConfigs; i++) {
-        # 			NFAConfiguration c = (NFAConfiguration) d.closureBusy.get(i);
-        # 			if ( proposedNFAConfiguration.state==c.state &&
-        # 				 proposedNFAConfiguration.alt==c.alt &&
-        # 				 proposedNFAConfiguration.semanticContext.equals(c.semanticContext) &&
-        # 				 proposedNFAConfiguration.context.suffix(c.context) )
-        # 			{
-        # 				return true;
-        # 			}
-        # 		}
-        # 		return false;
+        # int numConfigs = d.closureBusy.size();
+        # // Check epsilon cycle (same state, same alt, same context)
+        # for (int i = 0; i < numConfigs; i++) {
+        #     NFAConfiguration c = (NFAConfiguration) d.closureBusy.get(i);
+        #     if ( proposedNFAConfiguration.state==c.state &&
+        #          proposedNFAConfiguration.alt==c.alt &&
+        #          proposedNFAConfiguration.semanticContext.equals(c.semanticContext) &&
+        #          proposedNFAConfiguration.context.suffix(c.context) )
+        #     {
+        #         return true;
+        #     }
+        # }
+        # return false;
       end
     }
     
@@ -907,8 +907,8 @@ module Org::Antlr::Analysis
       if (!(alt).equal?(NFA::INVALID_ALT_NUMBER))
         # uniquely predicts an alt?
         d = convert_to_accept_state(d, alt)
-        # 			System.out.println("convert to accept; DFA "+d.dfa.decisionNumber+" state "+d.stateNumber+" uniquely predicts alt "+
-        # 				d.getUniquelyPredictedAlt());
+        # System.out.println("convert to accept; DFA "+d.dfa.decisionNumber+" state "+d.stateNumber+" uniquely predicts alt "+
+        #     d.getUniquelyPredictedAlt());
       else
         # unresolved, add to work list to continue NFA conversion
         @work.add(d)
@@ -1000,19 +1000,19 @@ module Org::Antlr::Analysis
     # will render them deterministic/separable):
     # 
     # a : A B
-    # | A C
-    # | A
-    # | A
-    # ;
+    #   | A C
+    #   | A
+    #   | A
+    #   ;
     # 
     # Here is a (slightly reduced) NFA of this grammar:
     # 
     # (1)-A->(2)-B->(end)-EOF->(8)
-    # |              ^
+    #  |              ^
     # (2)-A->(3)-C----|
-    # |              ^
+    #  |              ^
     # (4)-A->(5)------|
-    # |              ^
+    #  |              ^
     # (6)-A->(7)------|
     # 
     # where (n) is NFA state n.  To begin DFA conversion, the start
@@ -1040,14 +1040,14 @@ module Org::Antlr::Analysis
     # The final DFA looks like:
     # 
     # {(1|1),(2|2),(4|3),(6|4)}
-    # |
-    # v
+    #             |
+    #             v
     # {(2|1),(3|2),(5|3),(7|4),(end|3),(end|4)} -B-> (end|1)
-    # |                        |
-    # C                        ----EOF-> (8,3)
-    # |
-    # v
-    # (end|2)
+    #             |                        |
+    #             C                        ----EOF-> (8,3)
+    #             |
+    #             v
+    #          (end|2)
     # 
     # Upon AB, alt 1 is predicted.  Upon AC, alt 2 is predicted.
     # Upon A EOF, alt 3 is predicted.  Alt 4 is not a viable
@@ -1160,10 +1160,10 @@ module Org::Antlr::Analysis
       else
         # If nongreedy, the exit alt shout win, but only if it's
         # involved in the nondeterminism!
-        # 			System.out.println("resolving exit alt for decision="+
-        # 				dfa.decisionNumber+" state="+d);
-        # 			System.out.println("nondet="+nondeterministicAlts);
-        # 			System.out.println("exit alt "+exitAlt);
+        # System.out.println("resolving exit alt for decision="+
+        #     dfa.decisionNumber+" state="+d);
+        # System.out.println("nondet="+nondeterministicAlts);
+        # System.out.println("exit alt "+exitAlt);
         exit_alt = @dfa.get_number_of_alts
         if (nondeterministic_alts.contains(Utils.integer(exit_alt)))
           # if nongreedy and exit alt is one of those nondeterministic alts
@@ -1389,9 +1389,9 @@ module Org::Antlr::Analysis
         alt_i = it.next_
         alt_to_set_of_contexts_map.put(alt_i, HashSet.new)
       end
-      # 		List<Label> sampleInputLabels = d.dfa.probe.getSampleNonDeterministicInputSequence(d);
-      # 		String input = d.dfa.probe.getInputSequenceDisplay(sampleInputLabels);
-      # 		System.out.println("sample input: "+input);
+      # List<Label> sampleInputLabels = d.dfa.probe.getSampleNonDeterministicInputSequence(d);
+      # String input = d.dfa.probe.getInputSequenceDisplay(sampleInputLabels);
+      # System.out.println("sample input: "+input);
       # for each configuration, create a unique set of predicates
       # Also, track the alts with at least one uncovered configuration
       # (one w/o a predicate); tracks tautologies like p1||true
@@ -1416,23 +1416,23 @@ module Org::Antlr::Analysis
             # then at least one path exists not covered by a predicate.
             # must remove predicate for this alt; track incomplete alts
             nondet_alts_with_uncovered_configuration.add(alt_i)
-            # 					NFAState s = dfa.nfa.getState(configuration.state);
-            # 					System.out.println("###\ndec "+dfa.decisionNumber+" alt "+configuration.alt+
-            # 									   " enclosing rule for nfa state not covered "+
-            # 									   s.enclosingRule);
-            # 					if ( s.associatedASTNode!=null ) {
-            # 						System.out.println("token="+s.associatedASTNode.token);
-            # 					}
-            # 					System.out.println("nfa state="+s);
+            # NFAState s = dfa.nfa.getState(configuration.state);
+            # System.out.println("###\ndec "+dfa.decisionNumber+" alt "+configuration.alt+
+            #                    " enclosing rule for nfa state not covered "+
+            #                    s.enclosingRule);
+            # if ( s.associatedASTNode!=null ) {
+            #     System.out.println("token="+s.associatedASTNode.token);
+            # }
+            # System.out.println("nfa state="+s);
             # 
-            # 					if ( s.incidentEdgeLabel!=null && Label.intersect(incidentEdgeLabel, s.incidentEdgeLabel) ) {
-            # 						Set<Token> locations = altToLocationsReachableWithoutPredicate.get(altI);
-            # 						if ( locations==null ) {
-            # 							locations = new HashSet<Token>();
-            # 							altToLocationsReachableWithoutPredicate.put(altI, locations);
-            # 						}
-            # 						locations.add(s.associatedASTNode.token);
-            # 					}
+            # if ( s.incidentEdgeLabel!=null && Label.intersect(incidentEdgeLabel, s.incidentEdgeLabel) ) {
+            #     Set<Token> locations = altToLocationsReachableWithoutPredicate.get(altI);
+            #     if ( locations==null ) {
+            #         locations = new HashSet<Token>();
+            #         altToLocationsReachableWithoutPredicate.put(altI, locations);
+            #     }
+            #     locations.add(s.associatedASTNode.token);
+            # }
           end
         end
         i += 1
@@ -1464,27 +1464,27 @@ module Org::Antlr::Analysis
         alt_to_predicate_context_map.put(alt_i, combined_context)
       end
       if (incompletely_covered_alts.size > 0)
-        # 			System.out.println("prob in dec "+dfa.decisionNumber+" state="+d);
-        # 			FASerializer serializer = new FASerializer(dfa.nfa.grammar);
-        # 			String result = serializer.serialize(dfa.startState);
-        # 			System.out.println("dfa: "+result);
-        # 			System.out.println("incomplete alts: "+incompletelyCoveredAlts);
-        # 			System.out.println("nondet="+nondeterministicAlts);
-        # 			System.out.println("nondetAltsWithUncoveredConfiguration="+ nondetAltsWithUncoveredConfiguration);
-        # 			System.out.println("altToCtxMap="+altToSetOfContextsMap);
-        # 			System.out.println("altToPredicateContextMap="+altToPredicateContextMap);
+        # System.out.println("prob in dec "+dfa.decisionNumber+" state="+d);
+        # FASerializer serializer = new FASerializer(dfa.nfa.grammar);
+        # String result = serializer.serialize(dfa.startState);
+        # System.out.println("dfa: "+result);
+        # System.out.println("incomplete alts: "+incompletelyCoveredAlts);
+        # System.out.println("nondet="+nondeterministicAlts);
+        # System.out.println("nondetAltsWithUncoveredConfiguration="+ nondetAltsWithUncoveredConfiguration);
+        # System.out.println("altToCtxMap="+altToSetOfContextsMap);
+        # System.out.println("altToPredicateContextMap="+altToPredicateContextMap);
         i_ = 0
         while i_ < num_configs
           configuration = d.attr_nfa_configurations.get(i_)
           alt_i = Utils.integer(configuration.attr_alt)
           if (incompletely_covered_alts.contains(alt_i) && (configuration.attr_semantic_context).equal?(SemanticContext::EMPTY_SEMANTIC_CONTEXT))
             s = @dfa.attr_nfa.get_state(configuration.attr_state)
-            # 					System.out.print("nondet config w/o context "+configuration+
-            # 									 " incident "+(s.incidentEdgeLabel!=null?s.incidentEdgeLabel.toString(dfa.nfa.grammar):null));
-            # 					if ( s.associatedASTNode!=null ) {
-            # 						System.out.print(" token="+s.associatedASTNode.token);
-            # 					}
-            # 					else System.out.println();
+            # System.out.print("nondet config w/o context "+configuration+
+            #                  " incident "+(s.incidentEdgeLabel!=null?s.incidentEdgeLabel.toString(dfa.nfa.grammar):null));
+            # if ( s.associatedASTNode!=null ) {
+            #     System.out.print(" token="+s.associatedASTNode.token);
+            # }
+            # else System.out.println();
             # We want to report getting to an NFA state with an
             # incoming label, unless it's EOF, w/o a predicate.
             if (!(s.attr_incident_edge_label).nil? && !(s.attr_incident_edge_label.attr_label).equal?(Label::EOF))

@@ -243,16 +243,16 @@ module Org::Antlr::Analysis
     # always for loops at the loopback state).
     # 
     # For walking/parsing the loopback state:
-    # 1 2 3 display alt (for human consumption)
-    # 2 3 1 walk alt
+    #        1 2 3 display alt (for human consumption)
+    #        2 3 1 walk alt
     # 
     # For walking the block start:
-    # 1 2 3 display alt
-    # 1 2 3
+    #        1 2 3 display alt
+    #        1 2 3
     # 
     # For walking the bypass state of a (...)* loop:
-    # 1 2 3 display alt
-    # 1 1 2 all block alts map to entering loop exit means take bypass
+    #        1 2 3 display alt
+    #        1 1 2 all block alts map to entering loop exit means take bypass
     # 
     # Non loop EBNF do not need to be translated; they are ignored by
     # this method as decisionStateType==0.
@@ -267,10 +267,10 @@ module Org::Antlr::Analysis
       # find the NFA loopback state associated with this DFA
       # and count number of alts (all alt numbers are computed
       # based upon the loopback's NFA state.
-      # 		DFA dfa = nfa.grammar.getLookaheadDFA(decisionNumber);
-      # 		if ( dfa==null ) {
-      # 			ErrorManager.internalError("can't get DFA for decision "+decisionNumber);
-      # 		}
+      # DFA dfa = nfa.grammar.getLookaheadDFA(decisionNumber);
+      # if ( dfa==null ) {
+      #     ErrorManager.internalError("can't get DFA for decision "+decisionNumber);
+      # }
       n_alts = @nfa.attr_grammar.get_number_of_alts_for_decision_nfa(nfa_start)
       case (nfa_start.attr_decision_state_type)
       when LOOPBACK

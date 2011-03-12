@@ -41,58 +41,58 @@ module Org::Antlr::Analysis
     }
   end
   
-  # EOT (end of token) is a label that indicates when the DFA conversion
-  # algorithm would "fall off the end of a lexer rule".  It normally
-  # means the default clause.  So for ('a'..'z')+ you would see a DFA
-  # with a state that has a..z and EOT emanating from it.  a..z would
-  # jump to a state predicting alt 1 and EOT would jump to a state
-  # predicting alt 2 (the exit loop branch).  EOT implies anything other
-  # than a..z.  If for some reason, the set is "all char" such as with
-  # the wildcard '.', then EOT cannot match anything.  For example,
-  # 
-  # BLOCK : '{' (.)* '}'
-  # 
-  # consumes all char until EOF when greedy=true.  When all edges are
-  # combined for the DFA state after matching '}', you will find that
-  # it is all char.  The EOT transition has nothing to match and is
-  # unreachable.  The findNewDFAStatesAndAddDFATransitions() method
-  # must know to ignore the EOT, so we simply remove it from the
-  # reachable labels.  Later analysis will find that the exit branch
-  # is not predicted by anything.  For greedy=false, we leave only
-  # the EOT label indicating that the DFA should stop immediately
-  # and predict the exit branch. The reachable labels are often a
-  # set of disjoint values like: [<EOT>, 42, {0..41, 43..65534}]
-  # due to DFA conversion so must construct a pure set to see if
-  # it is same as Label.ALLCHAR.
-  # 
-  # Only do this for Lexers.
-  # 
-  # If EOT coexists with ALLCHAR:
-  # 1. If not greedy, modify the labels parameter to be EOT
-  # 2. If greedy, remove EOT from the labels set
-  # 	protected boolean reachableLabelsEOTCoexistsWithAllChar(OrderedHashSet labels)
-  # 	{
-  # 		Label eot = new Label(Label.EOT);
-  # 		if ( !labels.containsKey(eot) ) {
-  # 			return false;
-  # 		}
-  # 		System.out.println("### contains EOT");
-  # 		boolean containsAllChar = false;
-  # 		IntervalSet completeVocab = new IntervalSet();
-  # 		int n = labels.size();
-  # 		for (int i=0; i<n; i++) {
-  # 			Label rl = (Label)labels.get(i);
-  # 			if ( !rl.equals(eot) ) {
-  # 				completeVocab.addAll(rl.getSet());
-  # 			}
-  # 		}
-  # 		System.out.println("completeVocab="+completeVocab);
-  # 		if ( completeVocab.equals(Label.ALLCHAR) ) {
-  # 			System.out.println("all char");
-  # 			containsAllChar = true;
-  # 		}
-  # 		return containsAllChar;
-  # 	}
+  #   * EOT (end of token) is a label that indicates when the DFA conversion
+  #  *  algorithm would "fall off the end of a lexer rule".  It normally
+  #  *  means the default clause.  So for ('a'..'z')+ you would see a DFA
+  #  *  with a state that has a..z and EOT emanating from it.  a..z would
+  #  *  jump to a state predicting alt 1 and EOT would jump to a state
+  #  *  predicting alt 2 (the exit loop branch).  EOT implies anything other
+  #  *  than a..z.  If for some reason, the set is "all char" such as with
+  #  *  the wildcard '.', then EOT cannot match anything.  For example,
+  #  *
+  #  *     BLOCK : '{' (.)* '}'
+  #  *
+  #  *  consumes all char until EOF when greedy=true.  When all edges are
+  #  *  combined for the DFA state after matching '}', you will find that
+  #  *  it is all char.  The EOT transition has nothing to match and is
+  #  *  unreachable.  The findNewDFAStatesAndAddDFATransitions() method
+  #  *  must know to ignore the EOT, so we simply remove it from the
+  #  *  reachable labels.  Later analysis will find that the exit branch
+  #  *  is not predicted by anything.  For greedy=false, we leave only
+  #  *  the EOT label indicating that the DFA should stop immediately
+  #  *  and predict the exit branch. The reachable labels are often a
+  #  *  set of disjoint values like: [<EOT>, 42, {0..41, 43..65534}]
+  #  *  due to DFA conversion so must construct a pure set to see if
+  #  *  it is same as Label.ALLCHAR.
+  #  *
+  #  *  Only do this for Lexers.
+  #  *
+  #  *  If EOT coexists with ALLCHAR:
+  #  *  1. If not greedy, modify the labels parameter to be EOT
+  #  *  2. If greedy, remove EOT from the labels set
+  # protected boolean reachableLabelsEOTCoexistsWithAllChar(OrderedHashSet labels)
+  # {
+  #     Label eot = new Label(Label.EOT);
+  #     if ( !labels.containsKey(eot) ) {
+  #         return false;
+  #     }
+  #     System.out.println("### contains EOT");
+  #     boolean containsAllChar = false;
+  #     IntervalSet completeVocab = new IntervalSet();
+  #     int n = labels.size();
+  #     for (int i=0; i<n; i++) {
+  #         Label rl = (Label)labels.get(i);
+  #         if ( !rl.equals(eot) ) {
+  #             completeVocab.addAll(rl.getSet());
+  #         }
+  #     }
+  #     System.out.println("completeVocab="+completeVocab);
+  #     if ( completeVocab.equals(Label.ALLCHAR) ) {
+  #         System.out.println("all char");
+  #         containsAllChar = true;
+  #     }
+  #     return containsAllChar;
+  # }
   # A DFA (converted from a grammar's NFA).
   # DFAs are used as prediction machine for alternative blocks in all kinds
   # of recognizers (lexers, parsers, tree walkers).
@@ -113,9 +113,9 @@ module Org::Antlr::Analysis
       const_set_lazy(:REACHABLE_YES) { 1 }
       const_attr_reader  :REACHABLE_YES
       
-      # Prevent explosion of DFA states during conversion. The max number
-      # of states per alt in a single decision's DFA.
-      # 	public static final int MAX_STATES_PER_ALT_IN_DFA = 450;
+      #   * Prevent explosion of DFA states during conversion. The max number
+      #  *  of states per alt in a single decision's DFA.
+      # public static final int MAX_STATES_PER_ALT_IN_DFA = 450;
       # Set to 0 to not terminate early (time in ms)
       
       def max_time_per_dfa_creation
@@ -329,16 +329,16 @@ module Org::Antlr::Analysis
     # we can push into the output template as an ordered list of sets
     # and then ref them from within the transition[][] table.  Like this
     # for C# target:
-    # public static readonly DFA30_transition0 =
-    # new short[] { 46, 46, -1, 46, 46, -1, -1, -1, -1, -1, -1, -1,...};
-    # public static readonly DFA30_transition1 =
-    # new short[] { 21 };
-    # public static readonly short[][] DFA30_transition = {
-    # DFA30_transition0,
-    # DFA30_transition0,
-    # DFA30_transition1,
-    # ...
-    # };
+    #    public static readonly DFA30_transition0 =
+    #        new short[] { 46, 46, -1, 46, 46, -1, -1, -1, -1, -1, -1, -1,...};
+    #        public static readonly DFA30_transition1 =
+    #        new short[] { 21 };
+    #     public static readonly short[][] DFA30_transition = {
+    #          DFA30_transition0,
+    #          DFA30_transition0,
+    #          DFA30_transition1,
+    #          ...
+    #     };
     attr_accessor :edge_transition_class_map
     alias_method :attr_edge_transition_class_map, :edge_transition_class_map
     undef_method :edge_transition_class_map
@@ -359,7 +359,7 @@ module Org::Antlr::Analysis
     # the following tables are filled by createStateTables upon request.
     # These are injected into the templates for code generation.
     # See March 25, 2006 entry for description:
-    # http://www.antlr.org/blog/antlr3/codegen.tml
+    #   http://www.antlr.org/blog/antlr3/codegen.tml
     # Often using Vector as can't set ith position in a List and have
     # it extend list size; bizarre.
     # List of special DFAState objects
@@ -760,47 +760,47 @@ module Org::Antlr::Analysis
         i += 1
       end
       # check that the tables are not messed up by encode/decode
-      # 		testEncodeDecode(min);
-      # 		testEncodeDecode(max);
-      # 		testEncodeDecode(accept);
-      # 		testEncodeDecode(special);
-      # 		System.out.println("min="+min);
-      # 		System.out.println("max="+max);
-      # 		System.out.println("eot="+eot);
-      # 		System.out.println("eof="+eof);
-      # 		System.out.println("accept="+accept);
-      # 		System.out.println("special="+special);
-      # 		System.out.println("transition="+transition);
+      # testEncodeDecode(min);
+      # testEncodeDecode(max);
+      # testEncodeDecode(accept);
+      # testEncodeDecode(special);
+      # System.out.println("min="+min);
+      # System.out.println("max="+max);
+      # System.out.println("eot="+eot);
+      # System.out.println("eof="+eof);
+      # System.out.println("accept="+accept);
+      # System.out.println("special="+special);
+      # System.out.println("transition="+transition);
     end
     
     typesig { [DFAState] }
-    # 	private void testEncodeDecode(List data) {
-    # 		System.out.println("data="+data);
-    # 		List encoded = getRunLengthEncoding(data);
-    # 		StringBuffer buf = new StringBuffer();
-    # 		for (int i = 0; i < encoded.size(); i++) {
-    # 			String I = (String)encoded.get(i);
-    # 			int v = 0;
-    # 			if ( I.startsWith("\\u") ) {
-    # 				v = Integer.parseInt(I.substring(2,I.length()), 16);
-    # 			}
-    # 			else {
-    # 				v = Integer.parseInt(I.substring(1,I.length()), 8);
-    # 			}
-    # 			buf.append((char)v);
-    # 		}
-    # 		String encodedS = buf.toString();
-    # 		short[] decoded = org.antlr.runtime.DFA.unpackEncodedString(encodedS);
-    # 		//System.out.println("decoded:");
-    # 		for (int i = 0; i < decoded.length; i++) {
-    # 			short x = decoded[i];
-    # 			if ( x!=((Integer)data.get(i)).intValue() ) {
-    # 				System.err.println("problem with encoding");
-    # 			}
-    # 			//System.out.print(", "+x);
-    # 		}
-    # 		//System.out.println();
-    # 	}
+    # private void testEncodeDecode(List data) {
+    #     System.out.println("data="+data);
+    #     List encoded = getRunLengthEncoding(data);
+    #     StringBuffer buf = new StringBuffer();
+    #     for (int i = 0; i < encoded.size(); i++) {
+    #         String I = (String)encoded.get(i);
+    #         int v = 0;
+    #         if ( I.startsWith("\\u") ) {
+    #             v = Integer.parseInt(I.substring(2,I.length()), 16);
+    #         }
+    #         else {
+    #             v = Integer.parseInt(I.substring(1,I.length()), 8);
+    #         }
+    #         buf.append((char)v);
+    #     }
+    #     String encodedS = buf.toString();
+    #     short[] decoded = org.antlr.runtime.DFA.unpackEncodedString(encodedS);
+    #     //System.out.println("decoded:");
+    #     for (int i = 0; i < decoded.length; i++) {
+    #         short x = decoded[i];
+    #         if ( x!=((Integer)data.get(i)).intValue() ) {
+    #             System.err.println("problem with encoding");
+    #         }
+    #         //System.out.print(", "+x);
+    #     }
+    #     //System.out.println();
+    # }
     def create_min_max_tables(s)
       smin = Label::MAX_CHAR_VALUE + 1
       smax = Label::MIN_ATOM_VALUE - 1
@@ -846,8 +846,8 @@ module Org::Antlr::Analysis
     
     typesig { [DFAState] }
     def create_transition_table_entry_for_state(s)
-      # 		System.out.println("createTransitionTableEntryForState s"+s.stateNumber+
-      # 			" dec "+s.dfa.decisionNumber+" cyclic="+s.dfa.isCyclic());
+      # System.out.println("createTransitionTableEntryForState s"+s.stateNumber+
+      #     " dec "+s.dfa.decisionNumber+" cyclic="+s.dfa.isCyclic());
       smax = (@max.get(s.attr_state_number)).int_value
       smin = (@min.get(s.attr_state_number)).int_value
       state_transitions = Vector.new(smax - smin + 1)
@@ -980,8 +980,8 @@ module Org::Antlr::Analysis
       # except its state number?
       existing = @unique_states.get(d)
       if (!(existing).nil?)
-        #            System.out.println("state "+d.stateNumber+" exists as state "+
-        #                existing.stateNumber);
+        # System.out.println("state "+d.stateNumber+" exists as state "+
+        #     existing.stateNumber);
         # already there...get the existing DFA state
         return existing
       end

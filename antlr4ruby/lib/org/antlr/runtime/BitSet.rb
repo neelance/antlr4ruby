@@ -91,7 +91,7 @@ module Org::Antlr::Runtime
     end
     
     typesig { [::Java::Int] }
-    # Construct a bitset given the size
+    #  Construct a bitset given the size
     # @param nbits The size of the bitset in bits
     def initialize(nbits)
       @bits = nil
@@ -323,10 +323,10 @@ module Org::Antlr::Runtime
     
     typesig { [] }
     # Is this contained within a?
-    # 	public boolean subset(BitSet a) {
-    #        if (a == null || !(a instanceof BitSet)) return false;
-    #        return this.and(a).equals(this);
-    #    }
+    # public boolean subset(BitSet a) {
+    #     if (a == null || !(a instanceof BitSet)) return false;
+    #     return this.and(a).equals(this);
+    # }
     def to_array
       elems = Array.typed(::Java::Int).new(size) { 0 }
       en = 0

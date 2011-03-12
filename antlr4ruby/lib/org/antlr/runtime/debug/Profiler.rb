@@ -418,8 +418,8 @@ module Org::Antlr::Runtime::Debug
         this_ref_index = @parser.get_token_stream.index
         num_hidden = get_number_of_hidden_tokens(starting_index.int_value, this_ref_index)
         depth = i + this_ref_index - starting_index.int_value - num_hidden
-        # 			System.out.println("LT("+i+") @ index "+thisRefIndex+" is depth "+depth+
-        # 				" max is "+maxLookaheadInCurrentDecision);
+        # System.out.println("LT("+i+") @ index "+thisRefIndex+" is depth "+depth+
+        #     " max is "+maxLookaheadInCurrentDecision);
         if (depth > @max_lookahead_in_current_decision)
           @max_lookahead_in_current_decision = depth
         end
@@ -430,17 +430,17 @@ module Org::Antlr::Runtime::Debug
     # Track backtracking decisions.  You'll see a fixed or cyclic decision
     # and then a backtrack.
     # 
-    # enter rule
-    # ...
-    # enter decision
-    # LA and possibly consumes (for cyclic DFAs)
-    # begin backtrack level
-    # mark m
-    # rewind m
-    # end backtrack level, success
-    # exit decision
-    # ...
-    # exit rule
+    #        enter rule
+    #        ...
+    #        enter decision
+    #        LA and possibly consumes (for cyclic DFAs)
+    #        begin backtrack level
+    #        mark m
+    #        rewind m
+    #        end backtrack level, success
+    #        exit decision
+    #        ...
+    #        exit rule
     def begin_backtrack(level)
       # System.out.println("enter backtrack "+level);
       @num_backtrack_decisions += 1
@@ -454,26 +454,26 @@ module Org::Antlr::Runtime::Debug
     end
     
     typesig { [RecognitionException] }
-    # 	public void mark(int marker) {
-    # 		int i = parser.getTokenStream().index();
-    # 		System.out.println("mark @ index "+i);
-    # 		synPredLookaheadStack.add(new Integer(i));
-    # 	}
+    # public void mark(int marker) {
+    #     int i = parser.getTokenStream().index();
+    #     System.out.println("mark @ index "+i);
+    #     synPredLookaheadStack.add(new Integer(i));
+    # }
     # 
-    # 	public void rewind(int marker) {
-    # 		// pop starting index off stack
-    # 		int stackTop = synPredLookaheadStack.size()-1;
-    # 		Integer startingIndex = (Integer)synPredLookaheadStack.get(stackTop);
-    # 		synPredLookaheadStack.remove(synPredLookaheadStack.size()-1);
-    # 		// compute lookahead depth
-    # 		int stopIndex = parser.getTokenStream().index();
-    # 		System.out.println("rewind @ index "+stopIndex);
-    # 		int depth = stopIndex - startingIndex.intValue();
-    # 		System.out.println("depth of lookahead for synpred: "+depth);
-    # 		decisionMaxSynPredLookaheads.add(
-    # 			new Integer(depth)
-    # 		);
-    # 	}
+    # public void rewind(int marker) {
+    #     // pop starting index off stack
+    #     int stackTop = synPredLookaheadStack.size()-1;
+    #     Integer startingIndex = (Integer)synPredLookaheadStack.get(stackTop);
+    #     synPredLookaheadStack.remove(synPredLookaheadStack.size()-1);
+    #     // compute lookahead depth
+    #     int stopIndex = parser.getTokenStream().index();
+    #     System.out.println("rewind @ index "+stopIndex);
+    #     int depth = stopIndex - startingIndex.intValue();
+    #     System.out.println("depth of lookahead for synpred: "+depth);
+    #     decisionMaxSynPredLookaheads.add(
+    #         new Integer(depth)
+    #     );
+    # }
     def recognition_exception(e)
       @number_reported_errors += 1
     end
